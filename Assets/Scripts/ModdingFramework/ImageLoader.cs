@@ -6,6 +6,7 @@ public static class ImageLoader
     // CONSTANTS
     private const float pixelsPerUnit = 16f;
     private static Vector2 pivot =  new Vector2(0.5f, 0.5f);
+    private static Vector2 pivotB = new Vector2(0.5f, 0f);
     private static Vector2 pivotBL = new Vector2(0f, 0f);
 
     /// <summary>
@@ -20,7 +21,7 @@ public static class ImageLoader
         Sprite newSprite = Sprite.Create(
             spriteTexture,
             new Rect(0, 0, spriteTexture.width, spriteTexture.height),
-            pivot,
+            pivotB,
             pixelsPerUnit
         );
 
@@ -32,7 +33,7 @@ public static class ImageLoader
     /// Loads a PNG or JPG file from disk into a Texture2D Object.
     /// Returns null if loading fails
     /// </summary>
-    private static Texture2D LoadTextureFromFile(string filename) {
+    public static Texture2D LoadTextureFromFile(string filename) {
         string filePath = $"{ModManager.ModDirectory}/{filename}";
 
         // Checking if the file exists
@@ -45,6 +46,7 @@ public static class ImageLoader
         byte[] fileData = File.ReadAllBytes(filePath);  // reading the Image's data into an array of bytes
         Texture2D texture = new Texture2D(1,1);         // creating a Texture2D object to house it
         texture.filterMode = FilterMode.Point;          // Setting the correct filter mode (no filtering)
+        
 
         // checks if the data is readable
         if (!texture.LoadImage(fileData)) {     

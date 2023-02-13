@@ -11,6 +11,9 @@ public class ModdableSprite : MonoBehaviour
     private bool enforceSize = true;
     [SerializeField][Tooltip("What should the image file for this sprite be called? Default: The GameObject's name")]
     private string modFileName = null;
+    [SerializeField][Tooltip("Count the pixels of each colour in this image?")]
+    private bool analyseImage = false;
+
     private string modFileType = "png";
 
     private SpriteRenderer spriteRenderer = null;
@@ -27,9 +30,17 @@ public class ModdableSprite : MonoBehaviour
         if (ModManager.ModExists(modFileName)) {
             Debug.Log($"[{this.name}] >>> Player created custom sprite for [{modFileName}]");
             ReplaceSprite();
+
+            if (analyseImage) {
+                Texture2D customTex = ImageLoader.LoadTextureFromFile(modFileName);
+                ImageAnalyser.Analyse(customTex);
+            }
         }
     }
 
+    /// <summary>
+    /// Replaces the current sprite of this GameObject with a new one created by the Player.
+    /// </summary>
     private void ReplaceSprite() {
         // Vector2Int spriteSize = new Vector2Int((int)sr.sprite.rect.width, (int)sr.sprite.rect.height);  // getting the size of the sprite within the texture atlas: https://answers.unity.com/questions/1489211/getting-sprite-heightwidth-in-local-space.html
         Sprite modSprite = ImageLoader.LoadSprite(modFileName); // Loading custom asset into a Sprite
