@@ -1,6 +1,7 @@
 ### MY EDITS
 # Ignore the player's custom asset folder
 CUSTOM/
+Assets/CUSTOM.meta
 
 # This .gitignore file should be placed at the root of your Unity project directory
 #
