@@ -6,5 +6,5 @@ public class Colour
 {
     public Color colour;
     public int value;
-    public string hexColour => ColorUtility.ToHtmlStringRGB(colour);
+    public string hexColour => ColorUtility.ToHtmlStringRGBA(colour);
 }
