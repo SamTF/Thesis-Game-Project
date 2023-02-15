@@ -8,18 +8,20 @@ using System.Linq;
 /// </summary>
 public static class ImageAnalyser
 {
-    // Loops thru every pixel in the image and gets its colour value
-    public static void Analyse(Texture2D image) {
+    /// <summary>
+    /// Loops thru every pixel in the image and gets its colour value.
+    /// </summary>
+    /// <param name="image">Texture2D object of the image you want to analyse.</param>
+    /// <returns>Array of Colour objects: Colour: {Color, Occurences}</returns>
+    public static Colour[] Analyse(Texture2D image) {
 
         // 1. Loops thru every pixel in the image and gets its colour value
         List<Color> colours = new List<Color>();
 
         for (int x = 0; x < image.width; x++) {
-            for (int y = 0; y < image.height; y++)
-            {
+            for (int y = 0; y < image.height; y++) {
                 Color pixelColour = image.GetPixel(x, y);
                 colours.Add(pixelColour);
-                Debug.Log($"({x}, {y}) - {pixelColour}");
             }
         }
 
@@ -27,8 +29,11 @@ public static class ImageAnalyser
         List<Color> uniqueColours = new List<Color>();
         Dictionary<Color, int> colourCount = new Dictionary<Color, int>();
 
-        foreach (Color c in colours)
-        {
+        foreach (Color c in colours) {
+            // ignore if it's transparent
+            if (c.a < 1) {
+                continue;
+            }
             // if the current colour is not yet in the list, add it
             if (!uniqueColours.Contains(c)) {
                 uniqueColours.Add(c);       // add the colour to the list
@@ -41,8 +46,7 @@ public static class ImageAnalyser
 
         // Creating a list of my custom Colour Objects that hold both the Color value and its count value
         List<Colour> colourObjs = new List<Colour>();
-        foreach (Color c in uniqueColours)
-        {
+        foreach (Color c in uniqueColours) {
             Colour colour = new Colour {
                 colour = c,
                 value = colourCount[c]
@@ -52,7 +56,39 @@ public static class ImageAnalyser
             colourObjs.Add(colour);
         }
 
-        // Displaying the colours on the UI
-        UIManager.instance.DisplayColours(colourObjs.ToArray());
+        // Return the colour objects
+        return colourObjs.ToArray();
+    }
+
+    /// <summary>
+    /// Gets all the uniqte colours found in the given image. (does not count them)
+    /// </summary>
+    /// <param name="image">Image whose colours you want to extract</param>
+    /// <returns>Color Array of all unique colours found</returns>
+    public static Color[] GetColours(Texture2D image) {
+        // 1. Loops thru every pixel in the image and gets its colour value
+        List<Color> colours = new List<Color>();
+
+        for (int x = 0; x < image.width; x++) {
+            for (int y = 0; y < image.height; y++) {
+                Color pixelColour = image.GetPixel(x, y);
+                colours.Add(pixelColour);
+            }
+        }
+
+        // 2. Filters only the unique non-transparent colours
+        List<Color> uniqueColours = new List<Color>();
+        foreach (Color c in colours) {
+            // ignore if it's transparent
+            if (c.a < 1) {
+                continue;
+            }
+            // if the current colour is not yet in the list, add it
+            if (!uniqueColours.Contains(c)) {
+                uniqueColours.Add(c);       // add the colour to the list
+            }
+        }
+
+        return uniqueColours.ToArray();
     }
 }
