@@ -28,12 +28,16 @@ public class ModdableSprite : MonoBehaviour
 
         // Checking if the player created a custom asset for this GameObject
         if (ModManager.ModExists(modFileName)) {
-            Debug.Log($"[{this.name}] >>> Player created custom sprite for [{modFileName}]");
+            // Debug.Log($"[{this.name}] >>> Player created custom sprite for [{modFileName}]");
             ReplaceSprite();
 
+            // Analyses the pixel colours in the imahe
             if (analyseImage) {
                 Texture2D customTex = ImageLoader.LoadTextureFromFile(modFileName);
-                ImageAnalyser.Analyse(customTex);
+                Colour[] colours = ImageAnalyser.Analyse(customTex);
+                
+                // Displaying the colours on the UI
+                UIManager.instance.DisplayColours(colours);
             }
         }
     }
