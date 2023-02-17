@@ -12,6 +12,8 @@ public class InputManager : MonoBehaviour
     private bool    usingController = false;
     private string inputHorizontal  = "Horizontal";
     private string inputVertical    = "Vertical";
+    private string attackHorizontal = "HorizontalAttack";
+    private string attackVertical   = "VerticalAttack"; 
     private string inputFire1       = "Fire1";
     private string inputFire2       = "Fire2";
     private string inputJump        = "Jump";
@@ -24,6 +26,8 @@ public class InputManager : MonoBehaviour
     private bool  jumping       = false;
     // Attack
     private bool  attacking     = false;
+    private float attackX = 0f;
+    private float attackY = 0f;
     
     // Update is called once per frame
     void Update()
@@ -34,7 +38,9 @@ public class InputManager : MonoBehaviour
         jumpPress   = Input.GetButtonDown(inputJump);
         jumping     = Input.GetButton(inputJump);
 
-        attacking   = Input.GetButtonDown(inputFire1);
+        attackX     = Input.GetAxisRaw(attackHorizontal);
+        attackY     = Input.GetAxisRaw(attackVertical);
+        // attacking   = Input.GetButtonDown(inputFire1);
     }
 
     //  Getters
@@ -44,5 +50,7 @@ public class InputManager : MonoBehaviour
     public bool JumpPress => jumpPress;
     public bool Jumping   => jumping;
 
-    public bool Attacking => attacking;
+    public float AttackX => attackX;
+    public float AttackY => attackY;
+    // public bool Attacking => attacking;
 }

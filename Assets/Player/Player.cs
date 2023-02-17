@@ -8,17 +8,11 @@ public class Player : MonoBehaviour
     private Rigidbody2D rb = null;
     private InputManager input = null;
 
-    // Start is called before the first frame update
-    void Start()
+
+    private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         input = GetComponent<InputManager>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     // Component Getters
