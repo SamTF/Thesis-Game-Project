@@ -6,7 +6,9 @@ using UnityEngine;
 [System.Serializable]
 public class Stat {
     [Header("Character Attribute")]
-    [SerializeField][Tooltip("Name of the attribute")]
+    [SerializeField][Tooltip("Attribute type: for use in scripts")]
+    private Attribute attribute;
+    [SerializeField][Tooltip("Name of the attribute: for UI only")]
     private string name;
     [SerializeField][Tooltip("Its lightness value in the palette")]
     private ColourValue colourValue;
@@ -16,10 +18,12 @@ public class Stat {
     /// <summary>
     /// Initialise the attribute with constant values.
     /// </summary>
-    /// <param name="name">Name of he attribute for the UI</param>
+    /// <param name="attribute">Attribute type for use in scripts</param>
+    /// <param name="name">Name of the attribute for the UI</param>
     /// <param name="colourValue">Role/position in the colour palette</param>
     /// <param name="colour">Actual Color value code</param>
-    public Stat(string name, ColourValue colourValue, Color colour) {
+    public Stat(Attribute attribute, string name, ColourValue colourValue, Color colour) {
+        this.attribute = attribute;
         this.name = name;
         this.colourValue = colourValue;
         this.colour = colour;
@@ -32,6 +36,7 @@ public class Stat {
     }
 
     // Getters
+    public Attribute Attribute => attribute;
     public string Name => name;
     public ColourValue ColourValue => colourValue;
     public Color Colour => colour;

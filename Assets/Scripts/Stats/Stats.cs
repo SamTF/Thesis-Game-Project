@@ -14,20 +14,25 @@ public class Stats : MonoBehaviour
     private Stat moveSpeed = null;
 
     private Dictionary<Color, Stat> colour2Stat = new Dictionary<Color, Stat>();
+    private Dictionary<Attribute, Stat> attribute2Stat = new Dictionary<Attribute, Stat>();
 
     // currently hardcoded to 2-bit colour scheme
     // Match each stat to a colour value (light, midlight, middark, dark)
     // This must occur after the PaletteManager has loaded the palette
     private void Start() {
-        attack = new Stat("attack", ColourValue.Dark, Palette.Colours.dark);
-        health = new Stat("health", ColourValue.Light, Palette.Colours.light);
-        attackSpeed = new Stat("fire rate", ColourValue.MidDark, Palette.Colours.midDark);
-        moveSpeed = new Stat("speed", ColourValue.MidLight, Palette.Colours.midLight);
+        // Initialising the Stats
+        attack = new Stat(Attribute.Attack, "attack", ColourValue.Dark, Palette.Colours.dark);
+        health = new Stat(Attribute.Health, "health", ColourValue.Light, Palette.Colours.light);
+        attackSpeed = new Stat(Attribute.AttackSpeed, "fire rate", ColourValue.MidDark, Palette.Colours.midDark);
+        moveSpeed = new Stat(Attribute.MoveSpeed, "speed", ColourValue.MidLight, Palette.Colours.midLight);
 
-        stats = new Stat[] {attack, health, attackSpeed, moveSpeed};
+        // Adding stats to list
+        stats = new Stat[] { attack, health, attackSpeed, moveSpeed };
 
+        // Adding stats to dictionaries
         foreach (Stat s in stats) {
             colour2Stat.Add(s.Colour, s);
+            attribute2Stat.Add(s.Attribute, s);
         }
     }
 
@@ -45,13 +50,23 @@ public class Stats : MonoBehaviour
             }
         }
 
-        foreach (Stat s in stats)
-        {
-            Debug.Log($"{s.Name} - {s.Value}");
-        }
-
         // Displaying the stats on the UI
         UIManager.instance.DisplayStats(stats);
     }
+
+    /// <summary>
+    /// Gets the Stat object of a given Attribute
+    /// </summary>
+    /// <param name="attr">Attribute Enum</param>
+    /// <returns></returns>
+    public Stat GetStat(Attribute attr) {
+        return attribute2Stat[attr];
+    }
+
+    // Getters
+    public Stat Attack => attribute2Stat[Attribute.Attack];
+    public Stat Health => attribute2Stat[Attribute.Health];
+    public Stat MoveSpeed => attribute2Stat[Attribute.MoveSpeed];
+    public Stat AttackSpeed => attribute2Stat[Attribute.AttackSpeed];
 
 }
