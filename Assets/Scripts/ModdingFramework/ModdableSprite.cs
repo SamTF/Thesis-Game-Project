@@ -53,11 +53,19 @@ public class ModdableSprite : MonoBehaviour
     /// Replaces the current sprite of this GameObject with a new one created by the Player.
     /// </summary>
     private void ReplaceSprite() {
-        // Vector2Int spriteSize = new Vector2Int((int)sr.sprite.rect.width, (int)sr.sprite.rect.height);  // getting the size of the sprite within the texture atlas: https://answers.unity.com/questions/1489211/getting-sprite-heightwidth-in-local-space.html
-        Sprite modSprite = ImageLoader.LoadSprite(modFileName); // Loading custom asset into a Sprite
+        // getting the size of the sprite within the texture atlas: https://answers.unity.com/questions/1489211/getting-sprite-heightwidth-in-local-space.html
+        Vector2Int spriteSize = new Vector2Int(
+            (int)spriteRenderer.sprite.rect.width,
+            (int)spriteRenderer.sprite.rect.height
+        );
 
-        if (modSprite == null)  return;                         // checking if a sprite was successfully found
+        // Loading custom asset into a Sprite
+        Sprite modSprite = ImageLoader.LoadSprite(modFileName, spriteSize);
 
-        spriteRenderer.sprite = modSprite;                      // replacing current sprite with custom asset
+        // checking if a sprite was successfully found
+        if (modSprite == null)  return;
+
+        // replacing current sprite with custom asset
+        spriteRenderer.sprite = modSprite;
     }
 }
