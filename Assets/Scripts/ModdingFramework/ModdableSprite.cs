@@ -44,7 +44,17 @@ public class ModdableSprite : MonoBehaviour
                 if (myStats) {
                     myStats.GetStatsFromImage(colours);
                 }
-                
+            }
+        
+        // Also analyse stats for Default image
+        } else {
+            if (!analyseImage)  return;
+            Texture2D defaultTex = spriteRenderer.sprite.texture;
+            Colour[] colours = ImageAnalyser.Analyse(defaultTex);
+
+            Stats myStats = GetComponent<Stats>();
+            if (myStats) {
+                myStats.GetStatsFromImage(colours);
             }
         }
     }
