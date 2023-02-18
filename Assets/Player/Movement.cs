@@ -5,8 +5,6 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     // Movement Vars
-    [Header("Stats")]
-    [SerializeField]
     private float movementSpeed = 4f;
     private float movementX     = 0f;
     private float movementY     = 0f;
@@ -16,6 +14,8 @@ public class Movement : MonoBehaviour
     private float s                     = 0f;
     private bool  isMoving              = false;
     private float timeSinceLastKeyPress = 10f;
+    // Status
+    private bool isFacingRight = true;
 
     // Components
     private Player player = null;
@@ -70,8 +70,19 @@ public class Movement : MonoBehaviour
         Vector2 playerVelocity = new Vector2(movementX, movementY);
         rb.velocity = playerVelocity.normalized * s;
 
-        // Flipping - maybe only flip when shooting?
-        // if(movementX > 0 && !status.isFacingRight)     Flip();
-        // if(movementX < 0 && status.isFacingRight)      Flip();
+        // Flipping
+        if(movementX > 0 && !isFacingRight)     Flip();
+        if(movementX < 0 && isFacingRight)      Flip();
+    }
+
+    /// <summary>
+    /// Rotates the player sprite 180 degrees to face a new direction.
+    /// </summary>
+    private void Flip() {
+        Vector3 rotation = transform.localEulerAngles;
+        rotation.y += 180f;
+        transform.localEulerAngles = rotation;
+
+        isFacingRight = !isFacingRight;
     }
 }
