@@ -37,7 +37,14 @@ public class ModdableSprite : MonoBehaviour
                 Colour[] colours = ImageAnalyser.Analyse(customTex);
                 
                 // Displaying the colours on the UI
-                UIManager.instance.DisplayColours(colours);
+                // UIManager.instance.DisplayColours(colours);
+
+                // Sends the colours to the Stats component (if there is one)
+                Stats myStats = GetComponent<Stats>();
+                if (myStats) {
+                    myStats.GetStatsFromImage(colours);
+                }
+                
             }
         }
     }
