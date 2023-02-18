@@ -3561,7 +3561,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: COLOURS
+  m_text: STATS
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: da3360875ec474a4fa4f0959b84acb7a, type: 2}
   m_sharedMaterial: {fileID: 942141953624113528, guid: da3360875ec474a4fa4f0959b84acb7a, type: 2}
@@ -3588,8 +3588,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 48
-  m_fontSizeBase: 48
+  m_fontSize: 36
+  m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -4393,38 +4393,6 @@ PrefabInstance:
     - target: {fileID: 4188570572756861758, guid: e2acdc3aeba0b1648b79a5359b4c37a2, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 6891014597945080225, guid: e2acdc3aeba0b1648b79a5359b4c37a2, type: 3}
-      propertyPath: stats.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6891014597945080225, guid: e2acdc3aeba0b1648b79a5359b4c37a2, type: 3}
-      propertyPath: stats.Array.data[0].name
-      value: health
-      objectReference: {fileID: 0}
-    - target: {fileID: 6891014597945080225, guid: e2acdc3aeba0b1648b79a5359b4c37a2, type: 3}
-      propertyPath: stats.Array.data[1].name
-      value: speed
-      objectReference: {fileID: 0}
-    - target: {fileID: 6891014597945080225, guid: e2acdc3aeba0b1648b79a5359b4c37a2, type: 3}
-      propertyPath: stats.Array.data[2].name
-      value: fire rate
-      objectReference: {fileID: 0}
-    - target: {fileID: 6891014597945080225, guid: e2acdc3aeba0b1648b79a5359b4c37a2, type: 3}
-      propertyPath: stats.Array.data[3].name
-      value: attack
-      objectReference: {fileID: 0}
-    - target: {fileID: 6891014597945080225, guid: e2acdc3aeba0b1648b79a5359b4c37a2, type: 3}
-      propertyPath: stats.Array.data[1].colourValue
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6891014597945080225, guid: e2acdc3aeba0b1648b79a5359b4c37a2, type: 3}
-      propertyPath: stats.Array.data[2].colourValue
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6891014597945080225, guid: e2acdc3aeba0b1648b79a5359b4c37a2, type: 3}
-      propertyPath: stats.Array.data[3].colourValue
-      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e2acdc3aeba0b1648b79a5359b4c37a2, type: 3}
