@@ -306,7 +306,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f672d459be46aaa4085454b516e7b6f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 4
+  movementSpeed: 2
 --- !u!114 &1317082283
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -347,11 +347,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats:
-  - name: health
+  - attribute: 0
+    name: health
     colourValue: 0
-  - name: speed
+  - attribute: 0
+    name: speed
     colourValue: 1
-  - name: fire rate
+  - attribute: 0
+    name: fire rate
     colourValue: 2
-  - name: attack
+  - attribute: 0
+    name: attack
     colourValue: 3

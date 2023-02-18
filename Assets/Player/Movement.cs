@@ -5,7 +5,9 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     // Movement Vars
-    private float movementSpeed = 4f;
+    private const float baseMovement = 2f;
+    [SerializeField]
+    private float movementSpeed = baseMovement;
     private float movementX     = 0f;
     private float movementY     = 0f;
     // Movement Accelaration Stuff
@@ -39,6 +41,11 @@ public class Movement : MonoBehaviour
         /// Movement Input
         movementX = input.MovementX;
         movementY = input.MovementY;
+
+        // Movement speed
+        Stat speedStat = player.Stats.MoveSpeed;
+        movementSpeed = baseMovement + (speedStat.Value * 0.05f);
+
 
         /// Slower start
         // Not pressing any keys
