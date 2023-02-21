@@ -79,7 +79,6 @@ public class ModdableSprite : MonoBehaviour
 
         // Loading custom asset into a Sprite
         Sprite modSprite = ImageLoader.LoadSprite(modFileName, spriteSize);
-        Debug.Log(modSprite);
 
         // checking if a sprite was successfully found
         if (modSprite == null)  return;
