@@ -13,14 +13,22 @@ public class ModdableSprite : MonoBehaviour
     private string modFileName = null;
     [SerializeField][Tooltip("Count the pixels of each colour in this image?")]
     private bool analyseImage = false;
+    [SerializeField][Tooltip("Whether the SpriteRenderer component is a child of this GameObject.")]
+    private bool spriteIsChild = false;
 
     private string modFileType = "png";
 
+    // [SerializeField]
     private SpriteRenderer spriteRenderer = null;
 
 
     private void Start() {
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        // Checking whether to get sprite render from this component or from a child object
+        if (spriteIsChild) {
+            spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        } else {
+            spriteRenderer = GetComponent<SpriteRenderer>();
+        }
         
         // Setting the name of the file required to mod the image
         string name = modFileName != "" ? modFileName : this.name;
@@ -71,6 +79,7 @@ public class ModdableSprite : MonoBehaviour
 
         // Loading custom asset into a Sprite
         Sprite modSprite = ImageLoader.LoadSprite(modFileName, spriteSize);
+        Debug.Log(modSprite);
 
         // checking if a sprite was successfully found
         if (modSprite == null)  return;
