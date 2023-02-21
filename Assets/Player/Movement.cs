@@ -84,17 +84,17 @@ public class Movement : MonoBehaviour
 
 
         // Jumping/dodging
-        if (input.JumpPress && !isJumping) {
-            Vector2 direction = new Vector2(movementX, movementY);
-            Dodge(direction);
-        }
+        // if (input.JumpPress && !isJumping) {
+        //     Vector2 direction = new Vector2(movementX, movementY);
+        //     Dodge(direction);
+        // }
     }
 
     // Physics
     private void FixedUpdate()
     {
         // Jumping/Dodging/Dashing
-        if (isJumping) {
+        if (player.Status.IsJumping || player.Status.IsDodging) {
             return;
         }
 
@@ -118,36 +118,4 @@ public class Movement : MonoBehaviour
         isFacingRight = !isFacingRight;
     }
 
-    /// <summary>
-    /// Perform a dodge roll with i-frames. Speed/Length based on MoveSpeed stat.
-    /// </summary>
-    /// <param name="direction">Direction in which to apply the dodge motion</param>
-    private void Dodge(Vector2 direction) {
-        // Dodging needs a direction
-        if (direction == Vector2.zero) return;
-
-        Debug.Log($"Jump in direction {direction}");
-        rb.AddForce(direction * 10f, ForceMode2D.Impulse);
-
-        StartCoroutine(JumpCooldown());
-        StartCoroutine(JumpLength());
-    }
-
-    /// <summary>
-    /// Controls how long the player can jump for
-    /// </summary>
-    private IEnumerator JumpLength() {
-        isJumping = true;
-        yield return new WaitForSeconds(0.1f);
-        isJumping = false;
-    }
-
-    /// <summary>
-    /// Controls how long until the player can jump again
-    /// </summary>
-    private IEnumerator JumpCooldown() {
-        canJump = false;
-        yield return new WaitForSeconds(1f);
-        canJump = true;
-    }
 }

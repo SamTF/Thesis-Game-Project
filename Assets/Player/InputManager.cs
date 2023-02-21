@@ -33,11 +33,14 @@ public class InputManager : MonoBehaviour
     
     // Utilities
     private Vector2[] moveHistory = new Vector2[2] {Vector2.one, Vector2.zero};
+    private Vector2 timeSinceDirectionSwitch = Vector2.one;
 
 
     // Update is called once per frame
     void Update()
     {
+        // Debug.Log(timeSinceDirectionSwitch);
+
         movementX   = Input.GetAxisRaw(inputHorizontal);
         movementY   = Input.GetAxisRaw(inputVertical);
         isMovingX   = Input.GetButton(inputHorizontal);
@@ -52,6 +55,15 @@ public class InputManager : MonoBehaviour
 
         // Utilities
         Vector2 movement = new Vector2(movementX, movementY);
+
+        //// Movement History
+        // Add to the timer is moving in the same direction or not moving at all
+        if (movement == Vector2.zero || movement.x == moveHistory[0].x) {
+            timeSinceDirectionSwitch.x += Time.deltaTime;
+        } else if (movement.y == moveHistory[0].y) {
+            timeSinceDirectionSwitch.y += Time.deltaTime;
+        }
+
         // if the movement changed
         if (movement != moveHistory[0]) {
 
@@ -61,6 +73,9 @@ public class InputManager : MonoBehaviour
             // storing the old direction (no zero allowed, must be moving in some direction)
             if (moveHistory[0] != Vector2.zero) {
                 moveHistory[1] = moveHistory[0];
+
+                // reset timer when changing direction
+                timeSinceDirectionSwitch = Vector2.zero;
             }
 
             // New current direction
@@ -69,7 +84,7 @@ public class InputManager : MonoBehaviour
         
     }
 
-    //  Getters
+    ////  Getters
     public Vector2 Movement => new Vector2(movementX, movementY);
     public float MovementX => movementX;
     public float MovementY => movementY;
@@ -83,5 +98,7 @@ public class InputManager : MonoBehaviour
     public float AttackY => attackY;
     // public bool Attacking => attacking;
 
+    // Utilities
     public Vector2[] MoveHistory => moveHistory;
+    public Vector2 TimeSinceDirectionSwitch => timeSinceDirectionSwitch;
 }
