@@ -5,10 +5,11 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     // Components
-    private Rigidbody2D rb = null;
-    private InputManager input = null;
-    private Stats stats = null;
-    private GameObject spriteObject = null;
+    private Rigidbody2D     rb              = null;
+    private InputManager    input           = null;
+    private Stats           stats           = null;
+    private GameObject      spriteObject    = null;
+    private Status          status          = null;
 
 
     private void Awake()
@@ -17,6 +18,7 @@ public class Player : MonoBehaviour
         input = GetComponent<InputManager>();
         stats = GetComponent<Stats>();
         spriteObject = GameObject.Find("Sprite");
+        status = GetComponent<Status>();
     }
 
     // Component Getters
@@ -24,4 +26,5 @@ public class Player : MonoBehaviour
     public InputManager Input => input;
     public Stats Stats => stats;
     public GameObject SpriteObject => spriteObject;
+    public Status Status => status;
 }

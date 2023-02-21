@@ -171,6 +171,7 @@ MonoBehaviour:
   enforceSize: 1
   modFileName: grass
   analyseImage: 0
+  spriteIsChild: 0
 --- !u!212 &52518304
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -271,6 +272,7 @@ MonoBehaviour:
   enforceSize: 1
   modFileName: grass
   analyseImage: 0
+  spriteIsChild: 0
 --- !u!212 &127459639
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -371,6 +373,7 @@ MonoBehaviour:
   enforceSize: 1
   modFileName: grass
   analyseImage: 0
+  spriteIsChild: 0
 --- !u!212 &167070629
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -471,6 +474,7 @@ MonoBehaviour:
   enforceSize: 1
   modFileName: grass
   analyseImage: 0
+  spriteIsChild: 0
 --- !u!212 &201803252
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -571,6 +575,7 @@ MonoBehaviour:
   enforceSize: 1
   modFileName: grass
   analyseImage: 0
+  spriteIsChild: 0
 --- !u!212 &274192885
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -671,6 +676,7 @@ MonoBehaviour:
   enforceSize: 1
   modFileName: grass
   analyseImage: 0
+  spriteIsChild: 0
 --- !u!212 &345120712
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -771,6 +777,7 @@ MonoBehaviour:
   enforceSize: 1
   modFileName: grass
   analyseImage: 0
+  spriteIsChild: 0
 --- !u!212 &346693253
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -871,6 +878,7 @@ MonoBehaviour:
   enforceSize: 1
   modFileName: grass
   analyseImage: 0
+  spriteIsChild: 0
 --- !u!212 &410664975
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1139,6 +1147,7 @@ MonoBehaviour:
   enforceSize: 1
   modFileName: grass
   analyseImage: 0
+  spriteIsChild: 0
 --- !u!212 &501695326
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1323,6 +1332,7 @@ MonoBehaviour:
   enforceSize: 1
   modFileName: grass
   analyseImage: 0
+  spriteIsChild: 0
 --- !u!212 &532996083
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1423,6 +1433,7 @@ MonoBehaviour:
   enforceSize: 1
   modFileName: grass
   analyseImage: 0
+  spriteIsChild: 0
 --- !u!212 &646362354
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1523,6 +1534,7 @@ MonoBehaviour:
   enforceSize: 1
   modFileName: grass
   analyseImage: 0
+  spriteIsChild: 0
 --- !u!212 &658991046
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1623,6 +1635,7 @@ MonoBehaviour:
   enforceSize: 1
   modFileName: grass
   analyseImage: 0
+  spriteIsChild: 0
 --- !u!212 &702922249
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1723,6 +1736,7 @@ MonoBehaviour:
   enforceSize: 1
   modFileName: grass
   analyseImage: 0
+  spriteIsChild: 0
 --- !u!212 &792905754
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1823,6 +1837,7 @@ MonoBehaviour:
   enforceSize: 1
   modFileName: grass
   analyseImage: 0
+  spriteIsChild: 0
 --- !u!212 &814832095
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1923,6 +1938,7 @@ MonoBehaviour:
   enforceSize: 1
   modFileName: grass
   analyseImage: 0
+  spriteIsChild: 0
 --- !u!212 &860384154
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2023,6 +2039,7 @@ MonoBehaviour:
   enforceSize: 1
   modFileName: grass
   analyseImage: 0
+  spriteIsChild: 0
 --- !u!212 &868650555
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2170,6 +2187,7 @@ MonoBehaviour:
   enforceSize: 1
   modFileName: grass
   analyseImage: 0
+  spriteIsChild: 0
 --- !u!212 &965963013
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2270,6 +2288,7 @@ MonoBehaviour:
   enforceSize: 1
   modFileName: grass
   analyseImage: 0
+  spriteIsChild: 0
 --- !u!212 &969194399
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2474,6 +2493,7 @@ MonoBehaviour:
   enforceSize: 1
   modFileName: grass
   analyseImage: 0
+  spriteIsChild: 0
 --- !u!212 &988001554
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2574,6 +2594,7 @@ MonoBehaviour:
   enforceSize: 1
   modFileName: grass
   analyseImage: 0
+  spriteIsChild: 0
 --- !u!212 &1033722490
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2674,6 +2695,7 @@ MonoBehaviour:
   enforceSize: 1
   modFileName: grass
   analyseImage: 0
+  spriteIsChild: 0
 --- !u!212 &1037628779
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2818,6 +2840,7 @@ MonoBehaviour:
   enforceSize: 1
   modFileName: grass
   analyseImage: 0
+  spriteIsChild: 0
 --- !u!212 &1050903459
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2918,6 +2941,7 @@ MonoBehaviour:
   enforceSize: 1
   modFileName: grass
   analyseImage: 0
+  spriteIsChild: 0
 --- !u!212 &1055699745
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3018,6 +3042,7 @@ MonoBehaviour:
   enforceSize: 1
   modFileName: grass
   analyseImage: 0
+  spriteIsChild: 0
 --- !u!212 &1178013280
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3118,6 +3143,7 @@ MonoBehaviour:
   enforceSize: 1
   modFileName: grass
   analyseImage: 0
+  spriteIsChild: 0
 --- !u!212 &1251652597
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3218,6 +3244,7 @@ MonoBehaviour:
   enforceSize: 1
   modFileName: grass
   analyseImage: 0
+  spriteIsChild: 0
 --- !u!212 &1258219156
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3318,6 +3345,7 @@ MonoBehaviour:
   enforceSize: 1
   modFileName: grass
   analyseImage: 0
+  spriteIsChild: 0
 --- !u!212 &1261623267
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3787,6 +3815,7 @@ MonoBehaviour:
   enforceSize: 1
   modFileName: grass
   analyseImage: 0
+  spriteIsChild: 0
 --- !u!212 &1674317081
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3887,6 +3916,7 @@ MonoBehaviour:
   enforceSize: 1
   modFileName: grass
   analyseImage: 0
+  spriteIsChild: 0
 --- !u!212 &1755220574
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3987,6 +4017,7 @@ MonoBehaviour:
   enforceSize: 1
   modFileName: grass
   analyseImage: 0
+  spriteIsChild: 0
 --- !u!212 &1759988390
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4087,6 +4118,7 @@ MonoBehaviour:
   enforceSize: 1
   modFileName: grass
   analyseImage: 0
+  spriteIsChild: 0
 --- !u!212 &1828117562
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4187,6 +4219,7 @@ MonoBehaviour:
   enforceSize: 1
   modFileName: grass
   analyseImage: 0
+  spriteIsChild: 0
 --- !u!212 &1945930820
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4287,6 +4320,7 @@ MonoBehaviour:
   enforceSize: 1
   modFileName: grass
   analyseImage: 0
+  spriteIsChild: 0
 --- !u!212 &2097756863
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4346,10 +4380,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4188570572756861746, guid: e2acdc3aeba0b1648b79a5359b4c37a2, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 59b49cb5216e6304c8cfd3b2cf27f8ba, type: 3}
+    - target: {fileID: 0}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4188570572756861747, guid: e2acdc3aeba0b1648b79a5359b4c37a2, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -4397,18 +4431,6 @@ PrefabInstance:
     - target: {fileID: 4188570572756861758, guid: e2acdc3aeba0b1648b79a5359b4c37a2, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 6891014597945080225, guid: e2acdc3aeba0b1648b79a5359b4c37a2, type: 3}
-      propertyPath: stats.Array.data[1].attribute
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6891014597945080225, guid: e2acdc3aeba0b1648b79a5359b4c37a2, type: 3}
-      propertyPath: stats.Array.data[2].attribute
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6891014597945080225, guid: e2acdc3aeba0b1648b79a5359b4c37a2, type: 3}
-      propertyPath: stats.Array.data[3].attribute
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e2acdc3aeba0b1648b79a5359b4c37a2, type: 3}
