@@ -41,6 +41,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: UI
+    uniqueID: 4034846109
+    locked: 0
   - name: Shadows
     uniqueID: 3323310411
     locked: 0
@@ -49,7 +52,4 @@ TagManager:
     locked: 0
   - name: Projectiles
     uniqueID: 1163322459
-    locked: 0
-  - name: UI
-    uniqueID: 4034846109
     locked: 0
