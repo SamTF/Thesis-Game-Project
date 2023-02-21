@@ -22,6 +22,8 @@ public class InputManager : MonoBehaviour
     // Movement
     private float movementX     = 0f;
     private float movementY     = 0f;
+    private bool  isMovingX     = false;
+    private bool  isMovingY     = false;
     private bool  jumpPress     = false;
     private bool  jumping       = false;
     // Attack
@@ -29,11 +31,17 @@ public class InputManager : MonoBehaviour
     private float attackX = 0f;
     private float attackY = 0f;
     
+    // Utilities
+    private Vector2[] moveHistory = new Vector2[2] {Vector2.one, Vector2.zero};
+
+
     // Update is called once per frame
     void Update()
     {
         movementX   = Input.GetAxisRaw(inputHorizontal);
         movementY   = Input.GetAxisRaw(inputVertical);
+        isMovingX   = Input.GetButton(inputHorizontal);
+        isMovingY   = Input.GetButton(inputVertical);
 
         jumpPress   = Input.GetButtonDown(inputJump);
         jumping     = Input.GetButton(inputJump);
@@ -41,11 +49,32 @@ public class InputManager : MonoBehaviour
         attackX     = Input.GetAxisRaw(attackHorizontal);
         attackY     = Input.GetAxisRaw(attackVertical);
         // attacking   = Input.GetButtonDown(inputFire1);
+
+        // Utilities
+        Vector2 movement = new Vector2(movementX, movementY);
+        // if the movement changed
+        if (movement != moveHistory[0]) {
+
+            // ignore standing still
+            if (movement == Vector2.zero) return;
+
+            // storing the old direction (no zero allowed, must be moving in some direction)
+            if (moveHistory[0] != Vector2.zero) {
+                moveHistory[1] = moveHistory[0];
+            }
+
+            // New current direction
+            moveHistory[0] = movement;
+        }
+        
     }
 
     //  Getters
+    public Vector2 Movement => new Vector2(movementX, movementY);
     public float MovementX => movementX;
     public float MovementY => movementY;
+    public bool  IsMovingX => isMovingX;
+    public bool  IsMovingY => isMovingY;
 
     public bool JumpPress => jumpPress;
     public bool Jumping   => jumping;
@@ -53,4 +82,6 @@ public class InputManager : MonoBehaviour
     public float AttackX => attackX;
     public float AttackY => attackY;
     // public bool Attacking => attacking;
+
+    public Vector2[] MoveHistory => moveHistory;
 }

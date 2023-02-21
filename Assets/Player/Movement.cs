@@ -44,6 +44,17 @@ public class Movement : MonoBehaviour
         movementX = input.MovementX;
         movementY = input.MovementY;
 
+        // Avoiding getting stuck when pressong both direction at the same time
+        // Overiding with newest direction
+        if (input.IsMovingX && movementX == 0) {
+            // movementX = input.History[1].x;
+            movementX = input.MoveHistory[0].x * -1;
+        }
+        if (input.IsMovingY && movementY == 0) {
+            // movementY = input.MoveHistory[1].y;
+            movementY = input.MoveHistory[0].y * -1;
+        }
+
         // Movement speed
         Stat speedStat = player.Stats.MoveSpeed;
         movementSpeed = baseMovement + (speedStat.Value * 0.05f);
