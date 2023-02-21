@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     private Rigidbody2D rb = null;
     private InputManager input = null;
     private Stats stats = null;
+    private GameObject spriteObject = null;
 
 
     private void Awake()
@@ -15,10 +16,12 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         input = GetComponent<InputManager>();
         stats = GetComponent<Stats>();
+        spriteObject = GameObject.Find("Sprite");
     }
 
     // Component Getters
     public Rigidbody2D RigidBody => rb;
     public InputManager Input => input;
     public Stats Stats => stats;
+    public GameObject SpriteObject => spriteObject;
 }
