@@ -31,12 +31,7 @@ public static class ImageLoader
         }
 
         // Creating the Sprite
-        Sprite newSprite = Sprite.Create(
-            spriteTexture,
-            new Rect(0, 0, spriteTexture.width, spriteTexture.height),
-            pivotB,
-            pixelsPerUnit
-        );
+        Sprite newSprite = CreateSprite(spriteTexture, Pivot.BottomCenter);
 
         return newSprite;
     }
@@ -68,5 +63,22 @@ public static class ImageLoader
 
         // Return the texture if everything was successful
         return texture; 
+    }
+
+    /// <summary>
+    /// Simple helper function to create a new Sprite Object from a given texture.
+    /// </summary>
+    /// <param name="tex">Image to use for the sprite</param>
+    /// <param name="pivot">Sprite pivot point</param>
+    /// <returns></returns>
+    public static Sprite CreateSprite(Texture2D tex, Pivot pivot) {
+        Sprite newSprite = Sprite.Create(
+            tex,
+            new Rect(0, 0, tex.width, tex.height),
+            pivot.value,
+            pixelsPerUnit
+        );
+
+        return newSprite;
     }
 }
