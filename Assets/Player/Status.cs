@@ -10,6 +10,7 @@ public class Status : MonoBehaviour
     private bool canJump = true;
     private bool canBackflip = true;
     private bool isDodging = false;
+    [SerializeField]
     private bool canDodge = true;
 
     // Cooldowns
@@ -17,7 +18,12 @@ public class Status : MonoBehaviour
     private float backflipCooldown = 1f;
     private float dodgeCooldown = 1f;
 
-    // Getter Setters
+    ///// GETTER SETTERS
+    
+    /// <summary>
+    /// Whether the Player is currently Jumping or not.
+    /// </summary>
+    /// <value>Bool</value>
     public bool IsJumping {
         get { return isJumping; }
         set {
@@ -27,12 +33,15 @@ public class Status : MonoBehaviour
                 canJump = false;
             }
             else {
-                Ref<bool> r = new Ref<bool>(canJump);
-                StartCoroutine(Cooldown(r, false, 1f));
+                StartCoroutine(StatusCooldown (result => canDodge = result));
             }
         }
     }
 
+    /// <summary>
+    /// Whether the Player is currently Dodging or not.
+    /// </summary>
+    /// <value>Bool</value>
     public bool IsDodging {
         get { return isDodging; }
         set {
@@ -40,37 +49,26 @@ public class Status : MonoBehaviour
             if (value == true) {
                 canDodge = false;
             } else {
-                Ref<bool> r = new Ref<bool>(canDodge);
-                StartCoroutine(Cooldown(r, false, 1f));
+                StartCoroutine(StatusCooldown (result => canDodge = result));
             }
         }
     }
 
-    /// <summary>
-    /// Holds a reference to a variable. Useable in Coroutines :D
-    /// </summary>
-    /// <typeparam name="T">Variable type</typeparam>
-    /// From: https://forum.unity.com/threads/passing-ref-variable-to-coroutine.379640/
-    private class Ref<T>
-    {
-        private T backing;
-        public T Value { get { return backing; } set { backing = value; } }
-        public Ref(T reference)
-        {
-            backing = reference;
-        }
-    }
+    public bool CanJump => canJump;
+    public bool CanDodge => canDodge;
+    public bool CanBackflip => canBackflip;
+
+
+    ///// HELPER FUNCTIONS
 
     /// <summary>
-    /// Sets any bool status variable to a value, waits X seconds, then sets it to the opposite value.
+    /// Sets any bool status variable to a false, waits X seconds, then sets it back to true.
     /// </summary>
-    /// <param name="variable">Reference to the status value</param>
-    /// <param name="value">True or false</param>
-    /// <param name="duration">How many seconds to wait before resetting the value</param>
-    /// <returns></returns>
-    private IEnumerator Cooldown(Ref<bool> variable, bool value, float duration) {
-        variable.Value = value;
-        yield return new WaitForSeconds(duration);
-        variable.Value = !value;
+    /// <param name="variableToChange">Reference to the status variable</param>
+    /// FROM: https://forum.unity.com/threads/passing-ref-variable-to-coroutine.379640/
+    public static IEnumerator StatusCooldown(System.Action<bool> variableToChange) {
+        variableToChange (false);
+        yield return new WaitForSeconds(1f);
+        variableToChange (true);
     }
 }

@@ -29,8 +29,12 @@ public class ExtraMovement : MonoBehaviour
         // Movement Input
         Vector2 movement = input.Movement;
 
-        // Jumping/dodging
-        if (input.JumpPress && !player.Status.IsJumping) {
+        // Dodging
+        if (
+            input.JumpPress
+            && !player.Status.IsDodging
+            && player.Status.CanDodge
+        ) {
             Vector2 direction = movement;
             Dodge(direction);
         }
