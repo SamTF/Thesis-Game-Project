@@ -8,10 +8,13 @@ public class Status : MonoBehaviour
     private bool isAlive = true;
     private bool isJumping = false;
     private bool canJump = true;
-    private bool canBackflip = true;
     private bool isDodging = false;
     [SerializeField]
     private bool canDodge = true;
+    [SerializeField]
+    private bool isBackflipping = false;
+    [SerializeField]
+    private bool canBackflip = true;
 
     // Cooldowns
     private float jumpCooldown = 1f;
@@ -33,7 +36,7 @@ public class Status : MonoBehaviour
                 canJump = false;
             }
             else {
-                StartCoroutine(StatusCooldown (result => canDodge = result));
+                StartCoroutine(StatusCooldown (result => canJump = result, false, 1f));
             }
         }
     }
@@ -45,15 +48,32 @@ public class Status : MonoBehaviour
     public bool IsDodging {
         get { return isDodging; }
         set {
-            isDodging = value;
             if (value == true) {
-                canDodge = false;
+                StartCoroutine(StatusCooldown(result => isDodging = result, true, 0.25f));
+                StartCoroutine(StatusCooldown (result => canDodge = result, false, 0.5f));
             } else {
-                StartCoroutine(StatusCooldown (result => canDodge = result));
+                isDodging = false;
             }
         }
     }
 
+    /// <summary>
+    /// Whether the Player is currently Backflipping.
+    /// </summary>
+    /// <value>Setting this to true will begin performing a backflip!</value>
+    public bool IsBackflipping {
+        get { return isBackflipping; }
+        set {
+            if (value == true) {
+                isBackflipping = true;
+                StartCoroutine(StatusCooldown(result => canBackflip = result, false, 1f));
+            } else {
+                isBackflipping = false;
+            }
+        }
+    }
+
+    // Basic getters
     public bool CanJump => canJump;
     public bool CanDodge => canDodge;
     public bool CanBackflip => canBackflip;
@@ -65,10 +85,12 @@ public class Status : MonoBehaviour
     /// Sets any bool status variable to a false, waits X seconds, then sets it back to true.
     /// </summary>
     /// <param name="variableToChange">Reference to the status variable</param>
+    /// <param name="newValue">Value to set right now (will be reversed in X seconds)</param>
+    /// <param name="cooldown">How long to wait (in seconds) before reversing the value</param> 
     /// FROM: https://forum.unity.com/threads/passing-ref-variable-to-coroutine.379640/
-    public static IEnumerator StatusCooldown(System.Action<bool> variableToChange) {
-        variableToChange (false);
-        yield return new WaitForSeconds(1f);
-        variableToChange (true);
+    public static IEnumerator StatusCooldown(System.Action<bool> variableToChange, bool newValue, float cooldown) {
+        variableToChange (newValue);
+        yield return new WaitForSeconds(cooldown);
+        variableToChange (!newValue);
     }
 }

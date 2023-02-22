@@ -63,21 +63,14 @@ public class ExtraMovement : MonoBehaviour
         // Dodging needs a direction
         if (direction == Vector2.zero) return;
 
-        Debug.Log($"Jump in direction {direction}");
+        // Set dodging status to true
+        player.Status.IsDodging = true;
+
+        // Dodge speed
         rb.AddForce(direction * 10f, ForceMode2D.Impulse);
 
-        // StartCoroutine(DodgeCooldown());
-        StartCoroutine(DodgeLength());
+        // Roll animation
         StartCoroutine(Roll());
-    }
-
-    /// <summary>
-    /// Controls how long the player can dodge for (in seconds)
-    /// </summary>
-    private IEnumerator DodgeLength() {
-        player.Status.IsDodging = true;
-        yield return new WaitForSeconds(0.25f);
-        player.Status.IsDodging = false;
     }
 
 
