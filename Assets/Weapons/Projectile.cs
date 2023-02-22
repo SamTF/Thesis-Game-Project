@@ -10,20 +10,41 @@ public class Projectile : MonoBehaviour
     // Stats
     private float mySpeed = 0f;
     private Vector2 myDirection;
+    private float range = 3f;
+
+    // Constants
+    private Vector2 originPos;
+    private float gravity = 0.25f;
     
     // Components
+    [SerializeField]
+    private Transform body = null;
     private Rigidbody2D rb = null;
+    private Animator animator = null;
+
 
     private void Awake() {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
     private void Start() {
-        rb.velocity = Vector2.zero;
+        rb.velocity = (myDirection * mySpeed);
+        originPos = transform.position;
     }
 
     private void FixedUpdate() {
-        rb.velocity = (myDirection * mySpeed);
+        // Range Drop off
+        float distanceTravelled = Mathf.Abs(transform.position.x - originPos.x);
+
+        if (distanceTravelled >= range) {
+            Vector2 dropoff = body.localPosition;
+            dropoff.y -= gravity * 1/16;
+            body.localPosition = dropoff;
+
+            // Checking if it hit the ground
+            if (body.localPosition.y <= 0f) Despawn();
+        }
     }
 
     /// <summary>
@@ -34,10 +55,20 @@ public class Projectile : MonoBehaviour
     public void Shoot(Vector2 direction, float speed) {
         myDirection = direction;
         mySpeed = speed;
+
+        rb.velocity = (myDirection * mySpeed);
+    }
+
+    /// <summary>
+    /// Function wrapper for destroying the projectile with extra effects.
+    /// </summary>
+    private void Despawn() {
+        Destroy(gameObject);
     }
 
     /// Destroy it when it leaves the screen
     private void OnBecameInvisible() {
-        Destroy(gameObject);
+        Despawn();
     }
+
 }
