@@ -4,22 +4,15 @@ using UnityEngine;
 
 public class Backflip : MonoBehaviour
 {
+    // Constants
+    private const float gravity = -(0.33f * 1/16f);
+    // private const float verticalVelocityOG = 0.25f;
+    private const float verticalVelocityOG = 0.33f;
+    private const float horizontalVelocity = 5f;
+
     // Vars
-    // private Direction[] directionHistory = new Direction[2];
-    [SerializeField]
-    private float[] directionHistory = new float[2];
-    private float movementX;
-    private float movementY;
-    private float timeToFlip = 0.15f;
-    [SerializeField]
-    private float timeSinceDirectionSwitch = 0.5f;
-
-    private float timeA;
-
-    private Dictionary<float, Direction> dict = new Dictionary<float, Direction> {
-        {1f, Direction.Right},
-        {-1f, Direction.Left}
-    };
+    private float verticalVelocity = verticalVelocityOG;
+    private Vector2 originPos;
 
     // Components
     private Player player = null;
@@ -32,46 +25,34 @@ public class Backflip : MonoBehaviour
         input = GetComponent<InputManager>();
     }
 
-    private void Update() {
-        /// Movement Input
-        movementX = input.MovementX;
-        movementY = input.MovementY;
+    private void FixedUpdate() {
+        if (player.Status.IsBackflipping) {            
+            // Fake vertical movement
+            verticalVelocity += gravity;
+            player.SpriteObject.localPosition += new Vector3(0, verticalVelocity, 0);
 
-        // Add to the timer is moving in the same direction or not moving at all
-        if (movementX == 0 || movementX == directionHistory[0]) {
-            timeSinceDirectionSwitch += Time.deltaTime;
-        }
-
-        // checking if a new key is being pressed
-        if (movementX != directionHistory[0]) {
-            // ignore standing still
-            if (movementX == 0) return;
-           
-            // storing the old direction (left/right only, no zero allowed)
-            if (directionHistory[0] != 0) {
-                directionHistory[1] = directionHistory[0];
-
-                // reset timer when changing direction
-                timeSinceDirectionSwitch = 0f;
+            // Reset when the player touches the ground
+            if (player.SpriteObject.localPosition.y <= 0) {
+                player.SpriteObject.localPosition = Vector3.zero;
+                player.Status.IsBackflipping = false;
+                verticalVelocity = verticalVelocityOG;
             }
-            
-            // New current direction
-            directionHistory[0] = movementX;
-        };
 
-        // Time Frame Visualiser
-        if (timeSinceDirectionSwitch <= timeToFlip) {
-            GetComponentInChildren<SpriteRenderer>().color = Color.cyan;
-        } else {
-            GetComponentInChildren<SpriteRenderer>().color = Color.white;
         }
-
-        // FLIP!!!
-        if (input.JumpPress && timeSinceDirectionSwitch <= timeToFlip) {
-            Debug.Log("!!! FLIPP !!!");
-            rb.AddForce(Vector2.up * 10f, ForceMode2D.Impulse);
-        }
-
-        
     }
+
+    /// <summary>
+    /// Performs a cool blackflip! WOW!!
+    /// </summary>
+    /// <param name="direction">Vector2 direction to flip in. Only X-Axis actually matters</param>
+    public void PerformBackflip(Vector2 direction) {
+        // storing original transform position
+        originPos = player.SpriteObject.position;
+
+        // adding horizontal force and setting flipping status
+        direction = new Vector2(direction.x, 0f);
+        rb.AddForce(direction * 5f, ForceMode2D.Impulse);
+        player.Status.IsBackflipping = true;
+    }       
+    
 }

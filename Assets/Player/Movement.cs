@@ -81,20 +81,13 @@ public class Movement : MonoBehaviour
             s = Mathf.SmoothStep(movementSpeed / 2f, movementSpeed, t);
             timeSinceLastKeyPress = 0;
         }
-
-
-        // Jumping/dodging
-        // if (input.JumpPress && !isJumping) {
-        //     Vector2 direction = new Vector2(movementX, movementY);
-        //     Dodge(direction);
-        // }
     }
 
     // Physics
     private void FixedUpdate()
     {
         // Jumping/Dodging/Dashing
-        if (player.Status.IsJumping || player.Status.IsDodging) {
+        if (player.Status.IsJumping || player.Status.IsDodging || player.Status.IsBackflipping) {
             return;
         }
 

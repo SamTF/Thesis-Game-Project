@@ -14,6 +14,7 @@ public class ExtraMovement : MonoBehaviour
     private Player player = null;
     private InputManager input = null;
     private Rigidbody2D rb = null;
+    private Backflip backflip = null;
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +22,7 @@ public class ExtraMovement : MonoBehaviour
         player = GetComponent<Player>();
         input = GetComponent<InputManager>();
         rb = GetComponent<Rigidbody2D>();
+        backflip = GetComponent<Backflip>();
     }
 
     // Update is called once per frame
@@ -29,20 +31,27 @@ public class ExtraMovement : MonoBehaviour
         // Movement Input
         Vector2 movement = input.Movement;
 
-        // Dodging
+        // FLIP!!!
         if (
             input.JumpPress
+            && input.TimeSinceDirectionSwitch.x <= timeToFlip
+            && player.Status.CanBackflip
             && !player.Status.IsDodging
+            && !player.Status.IsBackflipping
+        ) {
+            backflip.PerformBackflip(movement);
+            StartCoroutine(Roll());
+        }
+
+        // Dodging
+        else if (
+            input.JumpPress
+            && !player.Status.IsDodging
+            && !player.Status.IsBackflipping
             && player.Status.CanDodge
         ) {
             Vector2 direction = movement;
             Dodge(direction);
-        }
-
-        // FLIP!!!
-        if (input.JumpPress && input.TimeSinceDirectionSwitch.x <= timeToFlip) {
-            Debug.Log("!!! FLIP !!!");
-            rb.AddForce(Vector2.up * 10f, ForceMode2D.Impulse);
         }
     }
 
@@ -62,7 +71,6 @@ public class ExtraMovement : MonoBehaviour
         StartCoroutine(Roll());
     }
 
-
     /// <summary>
     /// Controls how long the player can dodge for (in seconds)
     /// </summary>
@@ -77,7 +85,7 @@ public class ExtraMovement : MonoBehaviour
     /// Make the sprite perform a centered rolling animation.
     /// </summary>
     private IEnumerator Roll() {
-        Transform t = player.SpriteObject.transform;
+        Transform t = player.SpriteObject;
         SpriteRenderer sr = player.SpriteObject.GetComponent<SpriteRenderer>();
 
         // Original values
@@ -96,7 +104,7 @@ public class ExtraMovement : MonoBehaviour
         t.position = offset;
 
         // Rotate the Sprite transform object
-        while (player.Status.IsJumping || player.Status.IsDodging) {
+        while (player.Status.IsJumping || player.Status.IsDodging || player.Status.IsBackflipping) {
             t.Rotate(new Vector3(0, 0, -5f));
             yield return new WaitForEndOfFrame();
         }

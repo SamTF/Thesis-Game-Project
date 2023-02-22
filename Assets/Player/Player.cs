@@ -21,10 +21,11 @@ public class Player : MonoBehaviour
         status = GetComponent<Status>();
     }
 
+
     // Component Getters
     public Rigidbody2D RigidBody => rb;
     public InputManager Input => input;
     public Stats Stats => stats;
-    public GameObject SpriteObject => spriteObject;
+    public Transform SpriteObject => spriteObject.transform;
     public Status Status => status;
 }
