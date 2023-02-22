@@ -103,9 +103,8 @@ public class ExtraMovement : MonoBehaviour
         }
 
         // Resetting values to their original state
-        // t.position = Vector3.zero;
+        sr.sprite = originalSprite;
         t.localPosition = Vector3.zero;
         t.eulerAngles = originalRotation;
-        sr.sprite = originalSprite;
     }
 }

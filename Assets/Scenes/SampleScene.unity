@@ -4380,10 +4380,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 0}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
+    - target: {fileID: 1086849532, guid: e2acdc3aeba0b1648b79a5359b4c37a2, type: 3}
+      propertyPath: melonPrefab
+      value: 
+      objectReference: {fileID: 650309025863093656, guid: c251cd7479619cf45845963b677dad21, type: 3}
     - target: {fileID: 4188570572756861747, guid: e2acdc3aeba0b1648b79a5359b4c37a2, type: 3}
       propertyPath: m_RootOrder
       value: 0

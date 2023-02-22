@@ -13,6 +13,8 @@ public class Backflip : MonoBehaviour
     // Vars
     private float verticalVelocity = verticalVelocityOG;
     private Vector2 originPos;
+    private Vector3 originRotation;
+    
 
     // Components
     private Player player = null;
@@ -33,9 +35,12 @@ public class Backflip : MonoBehaviour
 
             // Reset when the player touches the ground
             if (player.SpriteObject.localPosition.y <= 0) {
-                player.SpriteObject.localPosition = Vector3.zero;
-                player.Status.IsBackflipping = false;
-                verticalVelocity = verticalVelocityOG;
+                player.Status.IsBackflipping = false;               // setting backflipping status to false to stop the movement
+
+                player.SpriteObject.localPosition = Vector3.zero;   // resetting sprite transform to original position
+                player.transform.eulerAngles = originRotation;
+
+                verticalVelocity = verticalVelocityOG;              // resetting vertical velocity
             }
 
         }
@@ -48,6 +53,7 @@ public class Backflip : MonoBehaviour
     public void PerformBackflip(Vector2 direction) {
         // storing original transform position
         originPos = player.SpriteObject.position;
+        originRotation = player.transform.eulerAngles;
 
         // adding horizontal force and setting flipping status
         direction = new Vector2(direction.x, 0f);
