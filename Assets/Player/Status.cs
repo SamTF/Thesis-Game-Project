@@ -4,22 +4,24 @@ using UnityEngine;
 
 public class Status : MonoBehaviour
 {
-    // Bools
+    //// Bools
+    // Alive
     private bool isAlive = true;
+    // Movement
     private bool isJumping = false;
     private bool canJump = true;
     private bool isDodging = false;
-    [SerializeField]
     private bool canDodge = true;
-    [SerializeField]
     private bool isBackflipping = false;
-    [SerializeField]
     private bool canBackflip = true;
+    // Shooting
+    private bool canShoot = true;
 
     // Cooldowns
     private float jumpCooldown = 1f;
     private float backflipCooldown = 1f;
     private float dodgeCooldown = 1f;
+    private float shootingCooldown = 0.5f;
 
     ///// GETTER SETTERS
     
@@ -69,6 +71,21 @@ public class Status : MonoBehaviour
                 StartCoroutine(StatusCooldown(result => canBackflip = result, false, 1f));
             } else {
                 isBackflipping = false;
+            }
+        }
+    }
+
+    /// <summary>
+    /// Player can shoot if the shooting cooldown has passed AND they are not jumping or dodging
+    /// </summary>
+    /// <value>Setting this to False will begin the shooting cooldown</value>
+    public bool CanShoot {
+        get { return canShoot && !isBackflipping && !isDodging && !isJumping; }
+        set {
+            if (value == false) {
+                StartCoroutine( StatusCooldown(result => canShoot = result, false, shootingCooldown) );
+            } else {
+                canShoot = true;
             }
         }
     }

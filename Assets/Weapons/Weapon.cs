@@ -9,9 +9,13 @@ public class Weapon : MonoBehaviour
     [SerializeField]
     private GameObject projectilePrefab = null;
     [SerializeField]
-    private float shootingCooldown = 0.5f;
+    private float shootingCooldown = 0.1f;
     [SerializeField]
     private float shotSpeed = 300f;
+
+    // TEMP TEST!!
+    [SerializeField]
+    private GameObject melonPrefab = null;
 
     // Components
     private Player player = null;
@@ -31,7 +35,7 @@ public class Weapon : MonoBehaviour
         // If the player is pressing any attack buttons
         if (input.AttackX != 0 || input.AttackY != 0) {
             // checking if the player can shoot
-            if (!canShoot)  return;
+            if (!player.Status.CanShoot)  return;
 
             // Horizontal Attack
             if (input.AttackX > 0)      Shoot(Direction.Right);
@@ -50,8 +54,6 @@ public class Weapon : MonoBehaviour
         Vector2 directionVector = GetDirectionVector(direction);
 
         // Instantiate the Projectile
-        // GameObject projectile = Instantiate(projectilePrefab, transform.position, transform.rotation);
-        // projectile.GetComponent<Projectile>().Shoot(directionVector, shotSpeed);
         GameObject projectile = ProjectileFactory.Instantiate(
             projectilePrefab,
             transform.position,
@@ -61,7 +63,7 @@ public class Weapon : MonoBehaviour
         );
 
         // Cooldown until able to shoot again
-        StartCoroutine(ShootingCooldown());
+        player.Status.CanShoot = false;
     }
 
     private IEnumerator ShootingCooldown() {
@@ -90,5 +92,20 @@ public class Weapon : MonoBehaviour
             default:
                 return Vector2.right;
         }
+    }
+
+
+    // TEST TEMP!!
+    private void ShootMelon(Direction direction) {
+        Vector2 directionVector = GetDirectionVector(direction);
+
+        GameObject melon = Instantiate(melonPrefab, transform.position, Quaternion.identity);
+        melon.GetComponent<FakeHeight>().Initialise(
+            directionVector * 0.33f,
+            0.33f
+        );
+
+        // Cooldown until able to shoot again
+        StartCoroutine(ShootingCooldown());
     }
 }
