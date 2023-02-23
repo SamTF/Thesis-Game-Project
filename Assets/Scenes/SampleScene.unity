@@ -1253,7 +1253,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 6
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -4380,10 +4380,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1086849532, guid: e2acdc3aeba0b1648b79a5359b4c37a2, type: 3}
-      propertyPath: melonPrefab
+    - target: {fileID: 1766300078, guid: e2acdc3aeba0b1648b79a5359b4c37a2, type: 3}
+      propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 650309025863093656, guid: c251cd7479619cf45845963b677dad21, type: 3}
+      objectReference: {fileID: 21300000, guid: 2f94b23c861404147b4ada28c834a95d, type: 3}
     - target: {fileID: 4188570572756861747, guid: e2acdc3aeba0b1648b79a5359b4c37a2, type: 3}
       propertyPath: m_RootOrder
       value: 0

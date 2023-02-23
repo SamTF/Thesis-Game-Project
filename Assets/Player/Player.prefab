@@ -47,6 +47,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 2569036080230315859, guid: 7ba982c34a202964090a9fa6df17311d, type: 3}
   shootingCooldown: 0.5
   shotSpeed: 6
+  melonPrefab: {fileID: 650309025863093656, guid: c251cd7479619cf45845963b677dad21, type: 3}
 --- !u!1 &1766300076
 GameObject:
   m_ObjectHideFlags: 0
@@ -234,6 +235,7 @@ GameObject:
   - component: {fileID: 6820096107080512243}
   - component: {fileID: 4188570572756861759}
   - component: {fileID: 4188570571909552037}
+  - component: {fileID: 424378487}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -394,6 +396,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDodge: 1
+  isBackflipping: 0
+  canBackflip: 1
 --- !u!114 &4188570572756861759
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -417,5 +421,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 22f149328c17db649b93b39621c87705, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &424378487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4188570572756861758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6da99456c3db4854d93be484d94efb4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
