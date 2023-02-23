@@ -94,26 +94,6 @@ public class Movement : MonoBehaviour
         // Movement
         Vector2 playerVelocity = new Vector2(movementX, movementY);
         rb.velocity = playerVelocity.normalized * s;
-
-        // Flipping
-        if(movementX > 0 && !isFacingRight)     Flip();
-        if(movementX < 0 && isFacingRight)      Flip();
-    }
-
-    /// <summary>
-    /// Rotates the player sprite 180 degrees to face a new direction.
-    /// </summary>
-    private void Flip() {
-        // don't allow flipping when rolling or flipping
-        if (player.Status.IsDodging || player.Status.IsBackflipping) {
-            return;
-        }
-
-        Vector3 rotation = transform.localEulerAngles;
-        rotation.y += 180f;
-        transform.localEulerAngles = rotation;
-
-        isFacingRight = !isFacingRight;
     }
 
 }
