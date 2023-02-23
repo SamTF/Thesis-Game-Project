@@ -7,8 +7,9 @@ using UnityEngine;
 /// </summary>
 public class ExtraMovement : MonoBehaviour
 {
-    // Vars
-    private float timeToFlip = 0.15f;
+    // Constants
+    private const float timeToFlip = 0.15f;
+    private const float rollSpeed = 5f;
 
     // Components
     private Player player = null;
@@ -40,7 +41,8 @@ public class ExtraMovement : MonoBehaviour
             && !player.Status.IsBackflipping
         ) {
             backflip.PerformBackflip(movement);
-            StartCoroutine(Roll());
+            Axis axis = movement.x != 0 ? Axis.Z : Axis.X;
+            StartCoroutine( Roll(rollSpeed/2, axis) );
         }
 
         // Dodging
@@ -77,13 +79,13 @@ public class ExtraMovement : MonoBehaviour
     /// <summary>
     /// Make the sprite perform a centered rolling animation.
     /// </summary>
-    private IEnumerator Roll() {
-        Transform t = player.SpriteObject;
+    private IEnumerator Roll(float speed=rollSpeed, Axis axis=null, bool clockwise=true) {
+        Transform body = player.SpriteObject;
         SpriteRenderer sr = player.SpriteObject.GetComponent<SpriteRenderer>();
 
         // Original values
-        Vector2 originalPostion = t.position;
-        Vector3 originalRotation = t.eulerAngles;
+        Vector2 originalPostion = body.position;
+        Vector3 originalRotation = body.eulerAngles;
         Sprite originalSprite = sr.sprite;
         Texture2D tex = sr.sprite.texture;
 
@@ -92,19 +94,30 @@ public class ExtraMovement : MonoBehaviour
         sr.sprite = centeredSprite;
 
         // Sprite offset
-        Vector2 offset = t.position;
+        Vector2 offset = body.position;
         offset.y += 0.5f;
-        t.position = offset;
+        body.position = offset;
 
         // Rotate the Sprite transform object
         while (player.Status.IsJumping || player.Status.IsDodging || player.Status.IsBackflipping) {
-            t.Rotate(new Vector3(0, 0, -5f));
+            // Getting right axis
+            Vector3 rotationAxis;
+            if (axis == null)   rotationAxis = Axis.Z.value;
+            else                rotationAxis = axis.value;
+            
+            // Creating the rotation vectoe
+            float direction = clockwise ? -1 : 1;
+            // Vector3 rotationVector = new Vector3(0, 0, speed * direction);
+            Vector3 rotationVector = rotationAxis * (speed * direction);
+
+            body.Rotate(rotationVector);
+
             yield return new WaitForEndOfFrame();
         }
 
         // Resetting values to their original state
         sr.sprite = originalSprite;
-        t.localPosition = Vector3.zero;
-        t.eulerAngles = originalRotation;
+        body.localPosition = Vector3.zero;
+        body.eulerAngles = originalRotation;
     }
 }

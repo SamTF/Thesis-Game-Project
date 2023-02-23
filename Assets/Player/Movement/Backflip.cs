@@ -38,7 +38,8 @@ public class Backflip : MonoBehaviour
                 player.Status.IsBackflipping = false;               // setting backflipping status to false to stop the movement
 
                 player.SpriteObject.localPosition = Vector3.zero;   // resetting sprite transform to original position
-                player.transform.eulerAngles = originRotation;
+                player.transform.eulerAngles = originRotation;      // ... and rotation
+                player.Shadow.localScale = Vector2.one;             // resetting shadow sprite scale
 
                 verticalVelocity = verticalVelocityOG;              // resetting vertical velocity
             }
@@ -51,12 +52,16 @@ public class Backflip : MonoBehaviour
     /// </summary>
     /// <param name="direction">Vector2 direction to flip in. Only X-Axis actually matters</param>
     public void PerformBackflip(Vector2 direction) {
+        // Can only backflip in 4 directions (not diagonaly) - for now anyway
+        if (direction.magnitude != 1)   return;
+
+        Axis axis = direction.x == 1? Axis.Z : Axis.X;
+
         // storing original transform position
         originPos = player.SpriteObject.position;
         originRotation = player.transform.eulerAngles;
 
         // adding horizontal force and setting flipping status
-        direction = new Vector2(direction.x, 0f);
         rb.AddForce(direction * 5f, ForceMode2D.Impulse);
         player.Status.IsBackflipping = true;
     }       
