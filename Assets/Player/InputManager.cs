@@ -36,7 +36,11 @@ public class InputManager : MonoBehaviour
     private Vector2[] moveHistory = new Vector2[2] {Vector2.one, Vector2.zero};
     /// <summary> Seconds since the user switched to a new movement direction.</summary>
     private Vector2 timeSinceDirectionSwitch = Vector2.one;
-    /// <summary>How many seconds a user spent holding down the current and previous direction buttons.</summary>
+    /// <summary>
+    /// How many seconds a user spent holding down the current and previous direction buttons.
+    /// Used for the Backflip and Shooting.
+    /// </summary>
+    [SerializeField]
     private float[] timeHoldingDirection = new float[2] {0, 0};
 
 
@@ -69,8 +73,15 @@ public class InputManager : MonoBehaviour
         }
 
         // Time history
+        // Add to timer if moving in the same direction
         if (movement == moveHistory[0]) {
             timeHoldingDirection[0] += Time.deltaTime;
+        }
+        // Cycle timer array if not moving & current time isn't zero
+        if (movement == Vector2.zero && timeHoldingDirection[0] != 0) {
+            // Cycle directions 
+            timeHoldingDirection[1] = timeHoldingDirection[0];
+            timeHoldingDirection[0] = 0;
         }
 
         // If the movement changed
@@ -86,9 +97,11 @@ public class InputManager : MonoBehaviour
                 // reset timer when changing direction
                 timeSinceDirectionSwitch = Vector2.zero;
 
-                // move 
-                timeHoldingDirection[1] = timeHoldingDirection[0];
-                timeHoldingDirection[0] = 0;
+                // Cycle directions (if current holding time is non-zero)
+                if (timeHoldingDirection[0] != 0) {
+                    timeHoldingDirection[1] = timeHoldingDirection[0];
+                    timeHoldingDirection[0] = 0;
+                }
             }
 
             // New current direction
@@ -114,4 +127,5 @@ public class InputManager : MonoBehaviour
     // Utilities
     public Vector2[] MoveHistory => moveHistory;
     public Vector2 TimeSinceDirectionSwitch => timeSinceDirectionSwitch;
+    public float[] TimeHoldingDirection => timeHoldingDirection;
 }
