@@ -5,7 +5,7 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     // Movement Vars
-    private const float baseMovement = 2f;
+    private const float baseMovement = 3f;
     [SerializeField]
     private float movementSpeed = baseMovement;
     private float movementX     = 0f;
@@ -104,6 +104,11 @@ public class Movement : MonoBehaviour
     /// Rotates the player sprite 180 degrees to face a new direction.
     /// </summary>
     private void Flip() {
+        // don't allow flipping when rolling or flipping
+        if (player.Status.IsDodging || player.Status.IsBackflipping) {
+            return;
+        }
+
         Vector3 rotation = transform.localEulerAngles;
         rotation.y += 180f;
         transform.localEulerAngles = rotation;
