@@ -8,7 +8,7 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     // Stats
-    private float mySpeed = 0f;
+    private float mySpeed = 6f;
     private Vector2 myDirection;
     private float range = 5f;
 
