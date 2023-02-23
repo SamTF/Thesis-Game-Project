@@ -6,12 +6,12 @@ public class Weapon : MonoBehaviour
 {
     // Prefab
     [Header("Generic Weapon")]
-    [SerializeField]
+    [SerializeField][Tooltip("Projectile that this gun shoots")]
     private GameObject projectilePrefab = null;
-    [SerializeField]
-    private float shootingCooldown = 0.1f;
-    [SerializeField]
-    private float shotSpeed = 300f;
+    [SerializeField][Tooltip("How fast the projectile will travel")]
+    private float shotSpeed = 6f;
+    [SerializeField][Tooltip("The spawn points for the projectiles.")]
+    private ShootPoints shootPoints = null;
 
     // TEMP TEST!!
     [SerializeField]
@@ -51,25 +51,32 @@ public class Weapon : MonoBehaviour
     /// </summary>
     /// <param name="direction">Vector2 (Up, Down, Left, or Right)</param>
     private void Shoot(Direction direction) {
-        Vector2 directionVector = GetDirectionVector(direction);
+        // Direction the player is shooting in
+        Vector2 shootingVector = GetDirectionVector(direction);
+
+        // Direction the player is moving in
+        Vector2 movementVector = input.Movement;
+        
+
+        // Checking if moving and shooting in the same direction
+        float speed = shotSpeed;
+        if (movementVector == shootingVector) {
+            speed *= 1.5f;
+        }
+
+        Vector2 shootPoint = shootPoints.Direction2ShootPoint(direction);
 
         // Instantiate the Projectile
         GameObject projectile = ProjectileFactory.Instantiate(
             projectilePrefab,
-            transform.position,
+            shootPoint,
             null,
-            directionVector,
-            shotSpeed
+            shootingVector,
+            speed
         );
 
         // Cooldown until able to shoot again
         player.Status.CanShoot = false;
-    }
-
-    private IEnumerator ShootingCooldown() {
-        canShoot = false;
-        yield return new WaitForSeconds(shootingCooldown);
-        canShoot = true;
     }
 
     /// <summary>
@@ -106,6 +113,6 @@ public class Weapon : MonoBehaviour
         );
 
         // Cooldown until able to shoot again
-        StartCoroutine(ShootingCooldown());
+        player.Status.CanShoot = false;
     }
 }
