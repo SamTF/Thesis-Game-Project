@@ -10,10 +10,10 @@ public class Projectile : MonoBehaviour
     // Stats
     private float mySpeed = 0f;
     private Vector2 myDirection;
-    private float range = 3f;
+    private float range = 5f;
 
     // Constants
-    private Vector2 originPos;
+    private Vector3 originPos;
     private float gravity = 0.25f;
     
     // Components
@@ -35,7 +35,7 @@ public class Projectile : MonoBehaviour
 
     private void FixedUpdate() {
         // Range Drop off
-        float distanceTravelled = Mathf.Abs(transform.position.x - originPos.x);
+        float distanceTravelled = Mathf.Abs((transform.position - originPos).magnitude);
 
         if (distanceTravelled >= range) {
             Vector2 dropoff = body.localPosition;
