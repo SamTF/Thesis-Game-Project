@@ -20,6 +20,6 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
 
         ModManager.ListMods();
-        Palette.WakeUp();
+        Palette.LoadPalette();
     }
 }

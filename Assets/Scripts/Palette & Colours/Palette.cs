@@ -20,7 +20,7 @@ public static class Palette
         Debug.Log("Palette has woken up!");
     }
 
-    public static void WakeUp() {
+    public static void LoadPalette() {
         Texture2D paletteTex = null;
 
         // Checking is user created custom palette
