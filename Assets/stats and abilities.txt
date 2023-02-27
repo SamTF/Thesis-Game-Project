@@ -1,0 +1,14 @@
+MORE STATS
+
+Stamina -> affects how much you can dodge/flip
+Energy -> Charged shot /// special attacks /// powers
+
+Shot speed -> how fast your bullets are
+Shot size -> how big they are
+Shot range -> how far your shots travell
+Shot amount -> how many projectile you shoot at once
+
+Abilities:
+AOE Ground Stomp
+Damage Dash (enemies you touch while rolling take damage)
+Trail of Slime (damages enemies + you can slide on it to move faster)
