@@ -538,6 +538,7 @@ MonoBehaviour:
   modFileName: 
   analyseImage: 1
   spriteIsChild: 1
+  allowHotReload: 1
 --- !u!114 &1317082283
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -550,6 +551,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c99aa5365a47a62468bdf43bd617653a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeHoldingDirection:
+  - 0
+  - 0
 --- !u!114 &6891014597945080225
 MonoBehaviour:
   m_ObjectHideFlags: 0
