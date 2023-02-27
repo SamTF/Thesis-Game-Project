@@ -9,7 +9,7 @@ public class ExtraMovement : MonoBehaviour
 {
     // Constants
     private const float timeToFlip = 0.15f;
-    private const float rollSpeed = 5f;
+    private const float rollSpeed = 10f;
 
     // Components
     private Player player = null;
@@ -40,9 +40,10 @@ public class ExtraMovement : MonoBehaviour
             && !player.Status.IsDodging
             && !player.Status.IsBackflipping
         ) {
-            backflip.PerformBackflip(movement);
-            Axis axis = movement.x != 0 ? Axis.Z : Axis.X;
-            StartCoroutine( Roll(rollSpeed/2, axis) );
+            backflip.PerformBackflip(movement);             // start the backflip movement
+            Axis axis = movement.x != 0 ? Axis.Z : Axis.X;  // getting the correct axis for the current direction
+            bool clockwise = movement.x > 0;                // setting correct rotation direction
+            StartCoroutine( Roll(rollSpeed/2, axis, clockwise) );   // start the rolling animation
         }
 
         // Dodging
@@ -72,7 +73,8 @@ public class ExtraMovement : MonoBehaviour
         rb.AddForce(direction * 10f, ForceMode2D.Impulse);
 
         // Roll animation
-        StartCoroutine(Roll());
+        bool clockwise = direction.x > 0;
+        StartCoroutine(Roll(clockwise:clockwise));
     }
 
 
