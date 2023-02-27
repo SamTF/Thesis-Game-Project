@@ -6,8 +6,6 @@ using TMPro;
 public class UIManager : MonoBehaviour
 {
     [SerializeField]
-    private TextMeshProUGUI text = null;
-    [SerializeField]
     private Transform panel = null;
     [SerializeField]
     private GameObject textPrefab = null;
@@ -48,6 +46,12 @@ public class UIManager : MonoBehaviour
     /// </summary>
     /// <param name="stats">Array of Stat objects to display</param>
     public void DisplayStats(Stat[] stats) {
+        // Destroying any Text elements that may already exist
+        for (int i = panel.childCount-1; i >= 0; i--) {
+            Destroy(panel.GetChild(i).gameObject);
+        }
+
+        // Creating a Text element for each stat
         foreach (Stat s in stats)
         {
             GameObject textObject = Instantiate(textPrefab, parent:panel);
