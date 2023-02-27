@@ -15,6 +15,8 @@ public class ModdableSprite : MonoBehaviour
     private bool analyseImage = false;
     [SerializeField][Tooltip("Whether the SpriteRenderer component is a child of this GameObject.")]
     private bool spriteIsChild = false;
+    [SerializeField][Tooltip("Allow reloading the sprite texture while the game is running (press R)")]
+    private bool allowHotReload = false;
 
     private string modFileType = "png";
 
@@ -39,21 +41,9 @@ public class ModdableSprite : MonoBehaviour
             // Debug.Log($"[{this.name}] >>> Player created custom sprite for [{modFileName}]");
             ReplaceSprite();
 
-            // Analyses the pixel colours in the imahe
-            if (analyseImage) {
-                Texture2D customTex = ImageLoader.LoadTextureFromFile(modFileName);
-                Colour[] colours = ImageAnalyser.Analyse(customTex);
-                
-                // Displaying the colours on the UI
-                // UIManager.instance.DisplayColours(colours);
-
-                // Sends the colours to the Stats component (if there is one)
-                Stats myStats = GetComponent<Stats>();
-                if (myStats) {
-                    myStats.GetStatsFromImage(colours);
-                }
-            }
-        
+            // Analyses the pixel colours in the image
+            if (analyseImage)   AnalyseImage();
+            
         // Also analyse stats for Default image
         } else {
             if (!analyseImage)  return;
@@ -85,5 +75,38 @@ public class ModdableSprite : MonoBehaviour
 
         // replacing current sprite with custom asset
         spriteRenderer.sprite = modSprite;
+    }
+
+    // Swapping the sprite while the game is already running
+    private void Update() {
+        if (
+            Input.GetKeyDown(KeyCode.R)
+            && allowHotReload
+            && ModManager.FileExists(modFileName)
+        ) {
+            ReplaceSprite();
+
+            // Analyses the pixel colours in the image
+            if (analyseImage) {
+                AnalyseImage();
+            }
+        }
+    }
+
+    /// <summary>
+    /// Analyses the pixel of each colour in the current sprite. Sends these values to the Stats component.
+    /// </summary>
+    private void AnalyseImage() {
+        print($"[ModdableSprite] >>> Analysing pixels in {modFileName}");
+
+        // Getting colours from texture image
+        Texture2D customTex = ImageLoader.LoadTextureFromFile(modFileName);
+        Colour[] colours = ImageAnalyser.Analyse(customTex);
+
+        // Sends the colours to the Stats component (if there is one)
+        Stats myStats = GetComponent<Stats>();
+        if (myStats) {
+            myStats.GetStatsFromImage(colours);
+        }
     }
 }
