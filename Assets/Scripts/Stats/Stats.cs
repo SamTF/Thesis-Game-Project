@@ -53,6 +53,12 @@ public class Stats : MonoBehaviour
     public void GetStatsFromImage(Colour[] colours) {
         Debug.Log("[STATS] >>> Inferring stats from image colours...");
 
+        // Reset all attribute values when refreshing stats
+        foreach (Stat stat in stats) {
+            stat.Value = 0;
+        }
+
+        // Setting the appropriate value for each stat based on their colour
         foreach (Colour c in colours) {
             // If the given colour is part of the Palette
             if (colour2Stat.ContainsKey(c.colour)) {
