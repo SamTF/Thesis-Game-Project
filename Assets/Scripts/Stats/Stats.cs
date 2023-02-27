@@ -8,10 +8,20 @@ public class Stats : MonoBehaviour
     [SerializeField]
     private Stat[] stats =  new Stat[4];
 
+    // Main Attributes
     private Stat attack = null;
     private Stat health = null;
     private Stat attackSpeed = null;
     private Stat moveSpeed = null;
+
+    // Derived attributes - just a brainstorming list
+    private float movementSpeed;
+    private float dodgeDistance;
+    private float dodgeLength;
+    private float dodgeCooldown;
+    private float jumpCooldown;
+    private float backflipCooldown;
+    private float shootingCooldown;
 
     private Dictionary<Color, Stat> colour2Stat = new Dictionary<Color, Stat>();
     private Dictionary<Attribute, Stat> attribute2Stat = new Dictionary<Attribute, Stat>();
@@ -19,7 +29,7 @@ public class Stats : MonoBehaviour
     // currently hardcoded to 2-bit colour scheme
     // Match each stat to a colour value (light, midlight, middark, dark)
     // This must occur after the PaletteManager has loaded the palette
-    private void Start() {
+    private void Awake() {
         // Initialising the Stats
         attack = new Stat(Attribute.Attack, "attack", ColourValue.Dark, Palette.Colours.dark);
         health = new Stat(Attribute.Health, "health", ColourValue.Light, Palette.Colours.light);
