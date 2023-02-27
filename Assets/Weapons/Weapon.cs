@@ -13,6 +13,11 @@ public class Weapon : MonoBehaviour
     [SerializeField][Tooltip("The spawn points for the projectiles.")]
     private ShootPoints shootPoints = null;
 
+    // BOI-Shooting Variables
+    float timeToBeginOffset = 0.15f; // feels like this value should be affected by the character's move speed
+    Vector2 minOffset = new Vector2(0.25f, 0.25f);
+    Vector2 maxOffset = new Vector2(0.75f, 1f);
+
     // TEMP TEST!!
     [SerializeField]
     private GameObject melonPrefab = null;
@@ -120,26 +125,26 @@ public class Weapon : MonoBehaviour
         // IF SHOOTING HORIZONTALLY WHILE MOVING VERTICALLY
         if (shootingVector.x != 0 && movementVector.y != 0) {
             // checking for a minimum time to hold direction before applying offset
-            if (input.TimeHoldingDirection[0] < 0.15f) {
+            if (input.TimeHoldingDirection[0] < timeToBeginOffset) {
                 return shootingVector;
             };
 
             // creating the offset vector
-            float offset = input.TimeHoldingDirection[0] * 0.5f;
-            offset = Mathf.Clamp(offset, 0.25f, 0.75f);
+            float offset = input.TimeHoldingDirection[0] * 0.75f;
+            offset = Mathf.Clamp(offset, minOffset.x, maxOffset.x);
             Debug.Log(offset);
             shootingVector.y = movementVector.y * offset;
         }
         // SHOOTING VERTICALLY WHILE MOVING HORIZONTALLY
         else if (shootingVector.y != 0 && movementVector.x !=0 ) {
             // checking for a minimum time to hold direction before applying offset
-            if (input.TimeHoldingDirection[0] < 0.15f) {
+            if (input.TimeHoldingDirection[0] < timeToBeginOffset) {
                 return shootingVector;
             }
 
             // creating the offset vector
-            float offset = input.TimeHoldingDirection[0] * 0.5f;
-            offset = Mathf.Clamp(offset, 0.25f, 1f);
+            float offset = input.TimeHoldingDirection[0] * 0.75f;
+            offset = Mathf.Clamp(offset, minOffset.y, maxOffset.y);
             Debug.Log(offset);
             shootingVector.x = movementVector.x * offset;
         }
