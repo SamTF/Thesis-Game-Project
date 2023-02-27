@@ -21,7 +21,18 @@ public class Status : MonoBehaviour
     private float jumpCooldown = 1f;
     private float backflipCooldown = 1f;
     private float dodgeCooldown = 1f;
-    private float shootingCooldown = 0.5f;
+    private const float baseShootingCooldown = 1f;
+    private float shootingCooldown = 1f;
+
+    // Components
+    private Stats stats = null;
+
+    private void Start() {
+        stats = GetComponent<Stats>();
+        
+        float shotsPerSecond = Mathf.Clamp(stats.AttackSpeed.Value / 33f, 1f, 10f);
+        shootingCooldown = 1 / shotsPerSecond;
+    }
 
     ///// GETTER SETTERS
     
