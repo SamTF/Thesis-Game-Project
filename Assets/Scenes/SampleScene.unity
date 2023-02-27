@@ -172,6 +172,7 @@ MonoBehaviour:
   modFileName: grass
   analyseImage: 0
   spriteIsChild: 0
+  allowHotReload: 0
 --- !u!212 &52518304
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -273,6 +274,7 @@ MonoBehaviour:
   modFileName: grass
   analyseImage: 0
   spriteIsChild: 0
+  allowHotReload: 0
 --- !u!212 &127459639
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -374,6 +376,7 @@ MonoBehaviour:
   modFileName: grass
   analyseImage: 0
   spriteIsChild: 0
+  allowHotReload: 0
 --- !u!212 &167070629
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -475,6 +478,7 @@ MonoBehaviour:
   modFileName: grass
   analyseImage: 0
   spriteIsChild: 0
+  allowHotReload: 0
 --- !u!212 &201803252
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -576,6 +580,7 @@ MonoBehaviour:
   modFileName: grass
   analyseImage: 0
   spriteIsChild: 0
+  allowHotReload: 0
 --- !u!212 &274192885
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -677,6 +682,7 @@ MonoBehaviour:
   modFileName: grass
   analyseImage: 0
   spriteIsChild: 0
+  allowHotReload: 0
 --- !u!212 &345120712
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -778,6 +784,7 @@ MonoBehaviour:
   modFileName: grass
   analyseImage: 0
   spriteIsChild: 0
+  allowHotReload: 0
 --- !u!212 &346693253
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -879,6 +886,7 @@ MonoBehaviour:
   modFileName: grass
   analyseImage: 0
   spriteIsChild: 0
+  allowHotReload: 0
 --- !u!212 &410664975
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1148,6 +1156,7 @@ MonoBehaviour:
   modFileName: grass
   analyseImage: 0
   spriteIsChild: 0
+  allowHotReload: 0
 --- !u!212 &501695326
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1354,6 +1363,7 @@ MonoBehaviour:
   modFileName: grass
   analyseImage: 0
   spriteIsChild: 0
+  allowHotReload: 0
 --- !u!212 &532996083
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1455,6 +1465,7 @@ MonoBehaviour:
   modFileName: grass
   analyseImage: 0
   spriteIsChild: 0
+  allowHotReload: 0
 --- !u!212 &646362354
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1556,6 +1567,7 @@ MonoBehaviour:
   modFileName: grass
   analyseImage: 0
   spriteIsChild: 0
+  allowHotReload: 0
 --- !u!212 &658991046
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1657,6 +1669,7 @@ MonoBehaviour:
   modFileName: grass
   analyseImage: 0
   spriteIsChild: 0
+  allowHotReload: 0
 --- !u!212 &702922249
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1758,6 +1771,7 @@ MonoBehaviour:
   modFileName: grass
   analyseImage: 0
   spriteIsChild: 0
+  allowHotReload: 0
 --- !u!212 &792905754
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1859,6 +1873,7 @@ MonoBehaviour:
   modFileName: grass
   analyseImage: 0
   spriteIsChild: 0
+  allowHotReload: 0
 --- !u!212 &814832095
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1960,6 +1975,7 @@ MonoBehaviour:
   modFileName: grass
   analyseImage: 0
   spriteIsChild: 0
+  allowHotReload: 0
 --- !u!212 &860384154
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2061,6 +2077,7 @@ MonoBehaviour:
   modFileName: grass
   analyseImage: 0
   spriteIsChild: 0
+  allowHotReload: 0
 --- !u!212 &868650555
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2209,6 +2226,7 @@ MonoBehaviour:
   modFileName: grass
   analyseImage: 0
   spriteIsChild: 0
+  allowHotReload: 0
 --- !u!212 &965963013
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2310,6 +2328,7 @@ MonoBehaviour:
   modFileName: grass
   analyseImage: 0
   spriteIsChild: 0
+  allowHotReload: 0
 --- !u!212 &969194399
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2392,15 +2411,14 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1373508152}
+  m_Children: []
   m_Father: {fileID: 1563645649}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 25, y: -12.5}
-  m_SizeDelta: {x: 333, y: -25}
+  m_AnchoredPosition: {x: 25, y: -40}
+  m_SizeDelta: {x: 333, y: -80}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &972825149
 MonoBehaviour:
@@ -2515,6 +2533,7 @@ MonoBehaviour:
   modFileName: grass
   analyseImage: 0
   spriteIsChild: 0
+  allowHotReload: 0
 --- !u!212 &988001554
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2616,6 +2635,7 @@ MonoBehaviour:
   modFileName: grass
   analyseImage: 0
   spriteIsChild: 0
+  allowHotReload: 0
 --- !u!212 &1033722490
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2717,6 +2737,7 @@ MonoBehaviour:
   modFileName: grass
   analyseImage: 0
   spriteIsChild: 0
+  allowHotReload: 0
 --- !u!212 &1037628779
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2862,6 +2883,7 @@ MonoBehaviour:
   modFileName: grass
   analyseImage: 0
   spriteIsChild: 0
+  allowHotReload: 0
 --- !u!212 &1050903459
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2963,6 +2985,7 @@ MonoBehaviour:
   modFileName: grass
   analyseImage: 0
   spriteIsChild: 0
+  allowHotReload: 0
 --- !u!212 &1055699745
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3064,6 +3087,7 @@ MonoBehaviour:
   modFileName: grass
   analyseImage: 0
   spriteIsChild: 0
+  allowHotReload: 0
 --- !u!212 &1178013280
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3165,6 +3189,7 @@ MonoBehaviour:
   modFileName: grass
   analyseImage: 0
   spriteIsChild: 0
+  allowHotReload: 0
 --- !u!212 &1251652597
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3266,6 +3291,7 @@ MonoBehaviour:
   modFileName: grass
   analyseImage: 0
   spriteIsChild: 0
+  allowHotReload: 0
 --- !u!212 &1258219156
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3367,6 +3393,7 @@ MonoBehaviour:
   modFileName: grass
   analyseImage: 0
   spriteIsChild: 0
+  allowHotReload: 0
 --- !u!212 &1261623267
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3582,12 +3609,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 972825148}
+  m_Father: {fileID: 1563645649}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 25, y: -25}
   m_SizeDelta: {x: 333, y: 50}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1373508153
@@ -3779,6 +3806,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1373508152}
   - {fileID: 972825148}
   m_Father: {fileID: 0}
   m_RootOrder: 3
@@ -3837,6 +3865,7 @@ MonoBehaviour:
   modFileName: grass
   analyseImage: 0
   spriteIsChild: 0
+  allowHotReload: 0
 --- !u!212 &1674317081
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3938,6 +3967,7 @@ MonoBehaviour:
   modFileName: grass
   analyseImage: 0
   spriteIsChild: 0
+  allowHotReload: 0
 --- !u!212 &1755220574
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4039,6 +4069,7 @@ MonoBehaviour:
   modFileName: grass
   analyseImage: 0
   spriteIsChild: 0
+  allowHotReload: 0
 --- !u!212 &1759988390
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4140,6 +4171,7 @@ MonoBehaviour:
   modFileName: grass
   analyseImage: 0
   spriteIsChild: 0
+  allowHotReload: 0
 --- !u!212 &1828117562
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4241,6 +4273,7 @@ MonoBehaviour:
   modFileName: grass
   analyseImage: 0
   spriteIsChild: 0
+  allowHotReload: 0
 --- !u!212 &1945930820
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4342,6 +4375,7 @@ MonoBehaviour:
   modFileName: grass
   analyseImage: 0
   spriteIsChild: 0
+  allowHotReload: 0
 --- !u!212 &2097756863
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4403,6 +4437,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1075845369504634621, guid: e2acdc3aeba0b1648b79a5359b4c37a2, type: 3}
       propertyPath: enforceSize
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1075845369504634621, guid: e2acdc3aeba0b1648b79a5359b4c37a2, type: 3}
+      propertyPath: allowHotReload
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4188570572756861747, guid: e2acdc3aeba0b1648b79a5359b4c37a2, type: 3}
