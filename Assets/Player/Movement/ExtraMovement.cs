@@ -9,7 +9,7 @@ public class ExtraMovement : MonoBehaviour
 {
     // Constants
     private const float timeToFlip = 0.15f;
-    private const float rollSpeed = 10f;
+    private const float rollSpeed = 20f;
 
     // Components
     private Player player = null;
