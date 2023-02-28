@@ -21,8 +21,11 @@ public class Status : MonoBehaviour
     private float jumpCooldown = 1f;
     private float backflipCooldown = 1f;
     private float dodgeCooldown = 1f;
-    private const float baseShootingCooldown = 1f;
     private float shootingCooldown = 1f;
+
+    // Constants
+    private const float baseShootingCooldown = 1f;
+    private const float baseDodgeLength = 0.25f;
 
     // Components
     private Stats stats = null;
@@ -59,7 +62,8 @@ public class Status : MonoBehaviour
         get { return isDodging; }
         set {
             if (value == true) {
-                StartCoroutine(StatusCooldown(result => isDodging = result, true, 0.25f));
+                float dodgeLength = (stats.MoveSpeed.Value * 0.005f) + baseDodgeLength;
+                StartCoroutine(StatusCooldown(result => isDodging = result, true, dodgeLength));
                 StartCoroutine(StatusCooldown (result => canDodge = result, false, 0.5f));
             } else {
                 isDodging = false;
