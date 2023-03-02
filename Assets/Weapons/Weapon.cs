@@ -18,10 +18,6 @@ public class Weapon : MonoBehaviour
     Vector2 minOffset = new Vector2(0.25f, 0.25f);
     Vector2 maxOffset = new Vector2(0.75f, 1f);
 
-    // TEMP TEST!!
-    [SerializeField]
-    private GameObject melonPrefab = null;
-
     // Components
     private Player player = null;
     private InputManager input = null;
@@ -68,7 +64,7 @@ public class Weapon : MonoBehaviour
             speed *= 1.5f;
         }
 
-        Debug.Log(shootingVector);
+        // Debug.Log(shootingVector);
 
         // Getting the appropriate spawn point for the projectile given the aiming direction
         Vector2 shootPoint = shootPoints.Direction2ShootPoint(direction);
@@ -153,18 +149,4 @@ public class Weapon : MonoBehaviour
         return shootingVector;
     }
 
-
-    // TEST TEMP!!
-    private void ShootMelon(Direction direction) {
-        Vector2 directionVector = GetDirectionVector(direction);
-
-        GameObject melon = Instantiate(melonPrefab, transform.position, Quaternion.identity);
-        melon.GetComponent<FakeHeight>().Initialise(
-            directionVector * 0.33f,
-            0.33f
-        );
-
-        // Cooldown until able to shoot again
-        player.Status.CanShoot = false;
-    }
 }
