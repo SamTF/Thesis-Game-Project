@@ -24,7 +24,7 @@ public class ModdableSprite : MonoBehaviour
     private SpriteRenderer spriteRenderer = null;
 
 
-    private void Awake() {
+    private void Start() {
         // Checking whether to get sprite render from this component or from a child object
         if (spriteIsChild) {
             spriteRenderer = GetComponentInChildren<SpriteRenderer>();
@@ -47,6 +47,7 @@ public class ModdableSprite : MonoBehaviour
         // Also analyse stats for Default image
         } else {
             if (!analyseImage)  return;
+            Debug.Log("[ModdableSprite] >>> Analysing Stats for default image...");
             Texture2D defaultTex = spriteRenderer.sprite.texture;
             Colour[] colours = ImageAnalyser.Analyse(defaultTex);
 
