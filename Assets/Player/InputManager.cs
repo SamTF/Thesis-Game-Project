@@ -28,8 +28,10 @@ public class InputManager : MonoBehaviour
     private bool  jumping       = false;
     // Attack
     private bool  attacking     = false;
-    private float attackX = 0f;
-    private float attackY = 0f;
+    private float attackX       = 0f;
+    private float attackY       = 0f;
+    private bool  isAttackingX  = false;
+    private bool  isAttackingY  = false;
     
     // Utilities
     /// <summary>Keeps track of the current and previous movement input directions.</summary>
@@ -40,7 +42,6 @@ public class InputManager : MonoBehaviour
     /// How many seconds a user spent holding down the current and previous direction buttons.
     /// Used for the Backflip and Shooting.
     /// </summary>
-    [SerializeField]
     private float[] timeHoldingDirection = new float[2] {0, 0};
 
 
@@ -59,10 +60,23 @@ public class InputManager : MonoBehaviour
 
         attackX     = Input.GetAxisRaw(attackHorizontal);
         attackY     = Input.GetAxisRaw(attackVertical);
-        // attacking   = Input.GetButtonDown(inputFire1);
+        isAttackingX = Input.GetButton(attackHorizontal);
+        isAttackingY = Input.GetButton(attackVertical);
+        attacking   = isAttackingX || isAttackingY;
 
         // Utilities
         Vector2 movement = new Vector2(movementX, movementY);
+        Vector2 attack = new Vector2(attackX, attackY);
+
+        // Omega simple way to avoid attack input getting stuck when pressing
+        // opposite directions at the same time
+        // why didn't l just do this for the movement instead? ^^"
+        if (isAttackingX && attackX == 0) {
+            attackX = 1f;
+        }
+        if (isAttackingY && attackY == 0) {
+            attackY = 1f;
+        }
 
         //// Movement History
         // Add to the timer is moving in the same direction or not moving at all
@@ -107,8 +121,8 @@ public class InputManager : MonoBehaviour
             // New current direction
             moveHistory[0] = movement;
         }
-
     }
+
 
     ////  Getters
     public Vector2 Movement => new Vector2(movementX, movementY);
@@ -122,7 +136,17 @@ public class InputManager : MonoBehaviour
 
     public float AttackX => attackX;
     public float AttackY => attackY;
-    // public bool Attacking => attacking;
+    public bool IsAttacking => attacking;
+    public bool IsAttackingX => isAttackingX;
+    public bool IsAttackingY => isAttackingY;
+    public Vector2 Attack {
+        get { // Vector represting the direction of the player's attack
+            Vector2 attackVector = new Vector2(attackX, attackY);
+            // Can't be diagonal, so one value must be 0. X always takes priority.
+            if (attackVector.magnitude > 1) attackVector.y = 0;
+            return attackVector;
+        }
+    }
 
     // Utilities
     public Vector2[] MoveHistory => moveHistory;

@@ -34,7 +34,7 @@ public class Weapon : MonoBehaviour
     void Update()
     {
         // If the player is pressing any attack buttons
-        if (input.AttackX != 0 || input.AttackY != 0) {
+        if (input.IsAttacking) {
             // checking if the player can shoot
             if (!player.Status.CanShoot)  return;
 
