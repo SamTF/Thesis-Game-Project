@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField]
+    private Player player = null;
+
     /// Singleton thing
     private static GameManager _instance = null;
     public static GameManager instance
@@ -22,4 +25,8 @@ public class GameManager : MonoBehaviour
         ModManager.ListMods();
         Palette.LoadPalette();
     }
+
+    // Getters
+    public Player Player => player;
+    public Transform PlayerTrans => player.transform;
 }
