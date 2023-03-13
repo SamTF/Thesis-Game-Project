@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -46,6 +47,9 @@ TagManager:
     locked: 0
   - name: Shadows
     uniqueID: 3323310411
+    locked: 0
+  - name: Enemies
+    uniqueID: 3063594509
     locked: 0
   - name: Player
     uniqueID: 3054448701
