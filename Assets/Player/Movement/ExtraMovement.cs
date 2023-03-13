@@ -114,7 +114,7 @@ public class ExtraMovement : MonoBehaviour
 
             body.Rotate(rotationVector);
 
-            yield return new WaitForEndOfFrame();
+            yield return new WaitForFixedUpdate();
         }
 
         // Resetting values to their original state
