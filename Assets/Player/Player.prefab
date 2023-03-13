@@ -48,7 +48,6 @@ MonoBehaviour:
   projectilePrefab: {fileID: 2569036080230315859, guid: 7ba982c34a202964090a9fa6df17311d, type: 3}
   shotSpeed: 6
   shootPoints: {fileID: 2139505226}
-  melonPrefab: {fileID: 650309025863093656, guid: c251cd7479619cf45845963b677dad21, type: 3}
 --- !u!1 &1179790809
 GameObject:
   m_ObjectHideFlags: 0
@@ -267,7 +266,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1240518595
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 1646a22b6d81312458ff660fea82ef4a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -466,7 +465,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0.5}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.45
 --- !u!50 &4188570572756861756
 Rigidbody2D:
   serializedVersion: 4
@@ -487,7 +486,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!95 &928370847
 Animator:
   serializedVersion: 5
@@ -551,9 +550,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c99aa5365a47a62468bdf43bd617653a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeHoldingDirection:
-  - 0
-  - 0
 --- !u!114 &6891014597945080225
 MonoBehaviour:
   m_ObjectHideFlags: 0

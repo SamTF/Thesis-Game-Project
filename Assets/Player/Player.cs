@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     private InputManager    input           = null;
     private Stats           stats           = null;
     private Status          status          = null;
+    private CircleCollider2D collider       = null;
 
     // Children
     [SerializeField]
@@ -24,6 +25,7 @@ public class Player : MonoBehaviour
         input = GetComponent<InputManager>();
         stats = GetComponent<Stats>();
         status = GetComponent<Status>();
+        collider = GetComponent<CircleCollider2D>();
 
         spriteObject = spriteObject ? spriteObject : transform.Find("Sprite");
         shadow = shadow ? shadow : transform.Find("Shadow");
