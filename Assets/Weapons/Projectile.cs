@@ -63,6 +63,10 @@ public class Projectile : MonoBehaviour
     /// Function wrapper for destroying the projectile with extra effects.
     /// </summary>
     private void Despawn() {
+        GameObject poofCloud = Resources.Load<GameObject>("FX/Poof");
+        Vector3 randomOffset = new Vector3 (Random.Range(-0.25f, 0.25f), Random.Range(-0.25f, 0.25f), 0);
+        Instantiate(poofCloud, transform.position + randomOffset, Quaternion.identity);
+
         Destroy(gameObject);
     }
 
