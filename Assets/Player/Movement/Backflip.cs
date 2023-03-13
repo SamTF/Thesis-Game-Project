@@ -20,11 +20,13 @@ public class Backflip : MonoBehaviour
     private Player player = null;
     private Rigidbody2D rb = null;
     private InputManager input = null;
+    private Collider2D collider = null;
 
     private void Awake() {
         player = GetComponent<Player>();
         rb = GetComponent<Rigidbody2D>();
         input = GetComponent<InputManager>();
+        collider = GetComponent<Collider2D>();
     }
 
     private void FixedUpdate() {
@@ -32,6 +34,9 @@ public class Backflip : MonoBehaviour
             // Fake vertical movement
             verticalVelocity += gravity;
             player.SpriteObject.localPosition += new Vector3(0, verticalVelocity, 0);
+
+            // Disable collider
+            collider.enabled = false;
 
             // Reset when the player touches the ground
             if (player.SpriteObject.localPosition.y <= 0) {
@@ -42,6 +47,8 @@ public class Backflip : MonoBehaviour
                 player.Shadow.localScale = Vector2.one;             // resetting shadow sprite scale
 
                 verticalVelocity = verticalVelocityOG;              // resetting vertical velocity
+
+                collider.enabled = true;                            // re-enable collider
             }
 
         }
