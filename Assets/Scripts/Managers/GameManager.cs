@@ -29,4 +29,5 @@ public class GameManager : MonoBehaviour
     // Getters
     public Player Player => player;
     public Transform PlayerTrans => player.transform;
+    public Vector2 PlayerPosition => player.transform.position;
 }
