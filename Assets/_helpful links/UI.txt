@@ -1,0 +1,14 @@
+Create a health bar that hovers over the player with UI Toolkit
+https://gamedev-resources.com/create-a-health-bar-that-hovers-over-the-player-with-ui-toolkit/
+
+Easy Heart Health System in Unity (with half hearts)
+https://www.youtube.com/watch?v=5NViMw-ALAo
+
+How to make a Better Health Bar in Unity : Chip Away Tutorial
+https://www.youtube.com/watch?v=CFASjEuhyf4
+
+Why you should use code to animate your UI in Unity.
+https://www.youtube.com/watch?v=Ll3yujn9GVQ
+
+Binding of Isaac Lives UI - Unity 2019 beginner tutorial
+https://www.youtube.com/watch?v=PVqpM7WaH1I
