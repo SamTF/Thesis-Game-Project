@@ -49,15 +49,15 @@ public class EnemyMovement : MonoBehaviour
     }
 
 
-    void Awake()
-    {
+    void Awake() {
         rb = GetComponent<Rigidbody2D>();
         body = body ? body : transform.Find("Body");
         shadow = shadow ? shadow : transform.Find("Shadow");
 
-        if (movementType == MovementType.Orbit) {
-            // shadow.localPosition = new Vector3(0, -0.5f, 0);
+        if (movementType == MovementType.Orbit && shadow != null) {
             shadow.localPosition = shadow.localPosition + new Vector3(0, -0.5f, 0);
+        } else if (movementType == MovementType.SmoothDamp) {
+            rb.bodyType = RigidbodyType2D.Kinematic;
         }
     }
 
