@@ -13,6 +13,13 @@ public class Stats : MonoBehaviour
     private Stat health = null;
     private Stat attackSpeed = null;
     private Stat moveSpeed = null;
+    private Stat stamina = null;
+    private Stat energy = null;
+    // Weapon Stats
+    private Stat shotSpeed = null;
+    private Stat shotRange = null;
+    private Stat shotAmount = null;
+    private Stat shotSize = null;
 
     // Derived attributes - just a brainstorming list
     private float movementSpeed;
@@ -31,13 +38,20 @@ public class Stats : MonoBehaviour
     // This must occur after the PaletteManager has loaded the palette
     private void Awake() {
         // Initialising the Stats
-        attack = new Stat(Attribute.Attack, "attack", ColourValue.Dark, Palette.Colours.dark);
-        health = new Stat(Attribute.Health, "health", ColourValue.Light, Palette.Colours.light);
-        attackSpeed = new Stat(Attribute.AttackSpeed, "fire rate", ColourValue.MidDark, Palette.Colours.midDark);
-        moveSpeed = new Stat(Attribute.MoveSpeed, "speed", ColourValue.MidLight, Palette.Colours.midLight);
+        attack          = new Stat(Attribute.Attack,        "attack",       Palette.Colours[0]);
+        health          = new Stat(Attribute.Health,        "health",       Palette.Colours[1]);
+        attackSpeed     = new Stat(Attribute.AttackSpeed,   "fire rate",    Palette.Colours[2]);
+        moveSpeed       = new Stat(Attribute.MoveSpeed,     "speed",        Palette.Colours[3]);
+        stamina         = new Stat(Attribute.Stamina,       "stamina",      Palette.Colours[4]);
+        energy          = new Stat(Attribute.Energy,        "energy",       Palette.Colours[5]);
+        shotSpeed       = new Stat(Attribute.ShotSpeed,     "shot speed",   Palette.Colours[6]);
+        shotRange       = new Stat(Attribute.ShotRange,     "shot range",   Palette.Colours[7]);
+        shotAmount      = new Stat(Attribute.ShotAmount,    "shot amount",  Palette.Colours[8]);
+        shotSize        = new Stat(Attribute.ShotSize,      "shot size",    Palette.Colours[9]);
+        
 
         // Adding stats to list
-        stats = new Stat[] { attack, health, attackSpeed, moveSpeed };
+        stats = new Stat[] { attack, health, attackSpeed, moveSpeed, stamina, energy, shotSpeed, shotRange, shotAmount, shotSize };
 
         // Adding stats to dictionaries
         foreach (Stat s in stats) {
