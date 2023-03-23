@@ -14,7 +14,6 @@ public static class Palette
     private static int segments = 4;
     private static Color[] coloursArray = null;
     private static Colour[] colourObjs = null;
-    private static PaletteColours coloursPalette = null;
 
 
     // Class Constructor
@@ -49,11 +48,8 @@ public static class Palette
         // Checking that the Custom Palette contains enough colours
         if (coloursArray.Length < amountOfColours) {
             Debug.LogError("[PALETTE] >>> Custom Palette does not contain enough colours!");
-            // LoadPalette(true);
+            LoadPalette(forceDefault:true);
         }
-
-        // Creating Palette colour object
-        coloursPalette = new PaletteColours(coloursArray);
 
         // Displaying it on the UI for debugging purposes
         // UIManager.instance.DisplayColours(colourObjs);
@@ -62,7 +58,8 @@ public static class Palette
         }
     }
 
+    /// <summary>An array of all the Colors used in the game palette.</summary>
     public static Color[] Colours => coloursArray;
+    /// <summary>An array of all the Colors used in the game palette as Colour Objects.</summary>
     public static Colour[] ColourObjects => colourObjs;
-    // public static PaletteColours Colours => coloursPalette;
 }
