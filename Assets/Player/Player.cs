@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     private Stats           stats           = null;
     private Status          status          = null;
     private CircleCollider2D collider       = null;
+    private Health          health          = null;
 
     // Children
     [SerializeField]
@@ -26,6 +27,7 @@ public class Player : MonoBehaviour
         stats = GetComponent<Stats>();
         status = GetComponent<Status>();
         collider = GetComponent<CircleCollider2D>();
+        health = GetComponent<Health>();
 
         spriteObject = spriteObject ? spriteObject : transform.Find("Sprite");
         shadow = shadow ? shadow : transform.Find("Shadow");
@@ -37,6 +39,7 @@ public class Player : MonoBehaviour
     public InputManager Input => input;
     public Stats Stats => stats;
     public Status Status => status;
+    public Health Health => health;
 
     // Child getters
     public Transform SpriteObject => spriteObject;

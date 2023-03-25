@@ -265,8 +265,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1240518595
-  m_SortingLayer: 4
+  m_SortingLayerID: -1280598203
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 1646a22b6d81312458ff660fea82ef4a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -507,6 +507,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &1093608966458521874
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -565,16 +566,12 @@ MonoBehaviour:
   stats:
   - attribute: 0
     name: health
-    colourValue: 0
   - attribute: 2
     name: speed
-    colourValue: 1
   - attribute: 3
     name: fire rate
-    colourValue: 2
   - attribute: 1
     name: attack
-    colourValue: 3
 --- !u!114 &6820096107080512243
 MonoBehaviour:
   m_ObjectHideFlags: 0
