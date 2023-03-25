@@ -24,7 +24,7 @@ public class ModdableSprite : MonoBehaviour
     private SpriteRenderer spriteRenderer = null;
 
 
-    private void Start() {
+    private void Awake() {
         // Checking whether to get sprite render from this component or from a child object
         if (spriteIsChild) {
             spriteRenderer = GetComponentInChildren<SpriteRenderer>();
