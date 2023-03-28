@@ -1,6 +1,17 @@
+######## UI TOOLKIT #####################
 Create a health bar that hovers over the player with UI Toolkit
 https://gamedev-resources.com/create-a-health-bar-that-hovers-over-the-player-with-ui-toolkit/
 
+How do I programmatically set a Background image in UI Elements
+https://forum.unity.com/threads/how-do-i-programmatically-set-a-background-image-in-ui-elements.1084589/
+
+Scaling, sorting layers and pixel perfect?
+https://forum.unity.com/threads/scaling-sorting-layers-and-pixel-perfect.1299429/
+
+Dynamically Change Visual Element's Background Image in Unity UI Builder
+https://stackoverflow.com/questions/70222544/dynamically-change-visual-elements-background-image-in-unity-ui-builder
+
+######## UNITY CANVAS #####################
 Easy Heart Health System in Unity (with half hearts)
 https://www.youtube.com/watch?v=5NViMw-ALAo
 

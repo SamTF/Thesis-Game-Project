@@ -1,0 +1,32 @@
+MAKE A REAL GAMEBOY GAME!!!
+
+Make a real GameBoy game easy & user friendly [Tutorial, Gamedev]
+https://www.youtube.com/watch?v=0xO5jCqs3As
+
+GB Studio Tutorial PLAYLIST
+https://www.youtube.com/watch?v=hNXlV2tt7eE&list=PLmac3HPrav--Q4QKUVknwwMSNk1YECFKT
+
+Learn to code and write games on the Nintendo Game Boy | MVG
+https://www.youtube.com/watch?v=FzPTK91EJY8
+
+GB Studio Tutorials
+https://www.youtube.com/playlist?list=PLEeET_LWnAgvQs6TexUttMyuwmuPm81Dc
+
+Pixelart 101 FREE College Course "Game Boy"
+https://www.youtube.com/watch?v=mNGnQMPUFxw
+
+Sprite Analysis | Pokémon: Top-Down RPG Pixel Art
+https://www.youtube.com/watch?v=gwF0L55kIgg
+
+ETC............................................................................
+How to Sort 2D Sprites by Pivot Point for 2D Unity URP Top Down Games
+https://www.youtube.com/watch?v=SlMJx3MWvfM
+
+Making 3D pixel art using picoCAD
+https://www.youtube.com/watch?v=dMX0SI5Av-8
+
+4 PixelArt Tips! - [Outline Tool][Size Consistency][Snap to Grid][Mask Fill] #Tutorial
+https://www.youtube.com/watch?v=yMRAwU8NpD4
+
+How to procedurally place Items and Enemies in Unity 2D
+https://www.youtube.com/watch?v=t1a1QBcfRlM

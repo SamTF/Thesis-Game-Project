@@ -1,5 +1,11 @@
 Create A DAMAGE FLASH Effect for Sprites | Unity Tutorial
 https://www.youtube.com/watch?v=rq6yGh-piIU
 
+50 Effects in 1 Shader! (Take your game from boring to AWESOME!)
+https://www.youtube.com/watch?v=fSDEcsVK2UY
+
+How to create and implement a 2D Flash/Blink/Hit Shader in Unity!
+https://www.youtube.com/watch?v=dnyEuCgPZH0&t=0s
+
 Giving Personality to Procedural Animations using Math
 https://www.youtube.com/watch?v=KPoeNZZ6H4s
