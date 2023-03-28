@@ -63,8 +63,15 @@ public class Hearts : MonoBehaviour
     private void Start() {
         playerHealth = GameManager.instance.Player.Health;
 
-        ClearHearts();
         DrawHearts();
+    }
+
+    // Subscribing and unsubscribing to events
+    private void OnEnable() {
+        Health.onPlayerDamaged += DrawHearts;
+    }
+    private void OnDisable() {
+        Health.onPlayerDamaged -= DrawHearts;
     }
 
     /// <summary>
@@ -112,8 +119,12 @@ public class Hearts : MonoBehaviour
         return newHeart;
     }
 
-
+    /// <summary>
+    /// Creates all hearts and sets their respective stauses to match the Player's health
+    /// </summary>
     private void DrawHearts() {
+        ClearHearts();
+
         for (int i = 0; i < heartList.Length; i++) {
             int t = heartTypes.Length - 1;
             int statusRemainder = Mathf.Clamp(playerHealth.HP - (i*t), 0, t);
