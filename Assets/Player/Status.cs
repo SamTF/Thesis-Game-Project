@@ -5,8 +5,9 @@ using UnityEngine;
 public class Status : MonoBehaviour
 {
     //// Bools
-    // Alive
+    // Health
     private bool isAlive = true;
+    private bool isInvulnerable = false;
     // Movement
     private bool isJumping = false;
     private bool canJump = true;
@@ -22,6 +23,7 @@ public class Status : MonoBehaviour
     private float backflipCooldown = 1f;
     private float dodgeCooldown = 1f;
     private float shootingCooldown = 1f;
+    private float invulnerableCooldown = 2f;
 
     // Constants
     private const float baseShootingCooldown = 1f;
@@ -104,10 +106,27 @@ public class Status : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Whether the Player can currently take damage or not.
+    /// </summary>
+    /// <value></value>
+    public bool IsInvulnerable {
+        get { return isInvulnerable || isBackflipping || isDodging || isJumping; }
+        set {
+            if (value == true) {
+                isInvulnerable = true;
+                StartCoroutine(StatusCooldown(result => isInvulnerable = result, true, invulnerableCooldown));
+            } else {
+                isInvulnerable = false;
+            }
+        }
+    }
+
     // Basic getters
     public bool CanJump => canJump;
     public bool CanDodge => canDodge;
     public bool CanBackflip => canBackflip;
+    public float InvulnerableCooldown => invulnerableCooldown;
 
 
     ///// HELPER FUNCTIONS

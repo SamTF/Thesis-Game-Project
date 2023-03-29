@@ -49,12 +49,28 @@ public class Health : MonoBehaviour
     /// </summary>
     /// <param name="amount">Amount to reduce health by. Default: 1</param>
     private void TakeDamage(int amount=1) {
+        if (player.Status.IsInvulnerable) {
+            Debug.Log("Player can't take damage right now. They are invulnerable!");
+            return;
+        }
+
+        player.Status.IsInvulnerable = true;
         health -= amount;
+
+        HitStop.Hit();
+        StartCoroutine(DamagedAnimation());
+
         onPlayerDamaged?.Invoke();
 
         if (health <= 0) {
             onPlayerDeath?.Invoke();
         }
+    }
+
+    private IEnumerator DamagedAnimation() {
+        player.Animator.SetBool("Blink", player.Status.IsInvulnerable);
+        yield return new WaitForSeconds(player.Status.InvulnerableCooldown);
+        player.Animator.SetBool("Blink", player.Status.IsInvulnerable);
     }
 
     
