@@ -149,6 +149,9 @@ MonoBehaviour:
   projectilePrefab: {fileID: 2569036080230315859, guid: 7ba982c34a202964090a9fa6df17311d, type: 3}
   shotSpeed: 6
   shootPoints: {fileID: 2139505226}
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!1 &1179790809
 GameObject:
   m_ObjectHideFlags: 0
@@ -385,6 +388,7 @@ GameObject:
   - component: {fileID: 1812430042}
   - component: {fileID: 1812430043}
   - component: {fileID: 1075493281}
+  - component: {fileID: 2052764086}
   m_Layer: 6
   m_Name: Sprite
   m_TagString: Untagged
@@ -471,6 +475,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb9654de457727e468995d49fd623a2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2052764086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1812430041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27c529a3eebec0e4b863340b9ef100e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashMaterial: {fileID: 2100000, guid: b003a2d2e12788b46a840ee661fe1e28, type: 2}
 --- !u!1 &1934802121
 GameObject:
   m_ObjectHideFlags: 0
