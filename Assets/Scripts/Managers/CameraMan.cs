@@ -35,7 +35,7 @@ public class CameraMan : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (pixelPerfect) return;
+        // if (pixelPerfect) return;
 
         playerPos = player.transform.position;
         Vector3 currentPos = transform.position;
@@ -94,5 +94,16 @@ public class CameraMan : MonoBehaviour
 
             yield return new WaitForFixedUpdate();
         }
+    }
+
+    // Stop following if the Player is dead
+    private void OnEnable() {
+        Health.onPlayerDeath += OnPlayerDeath;
+    }
+    private void OnDisable() {
+        Health.onPlayerDeath -= OnPlayerDeath;
+    }
+    private void OnPlayerDeath() {
+        this.enabled = false;
     }
 }

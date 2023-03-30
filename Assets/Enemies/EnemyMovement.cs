@@ -70,7 +70,7 @@ public class EnemyMovement : MonoBehaviour
     private void FixedUpdate() {
         Vector2 target = GameManager.instance.PlayerPosition;
         float distance2target = (target - (Vector2)transform.position).magnitude;
-        Debug.Log(distance2target);
+        // Debug.Log(distance2target);
 
         switch (movementType)
         {
@@ -106,7 +106,7 @@ public class EnemyMovement : MonoBehaviour
         if (distance2target <= 2f)   delay = followDelay / 4f;
         else if (distance2target <= 3f)   delay = followDelay / 2f;
         
-        Debug.Log(delay);
+        // Debug.Log(delay);
 
         transform.position = Vector3.SmoothDamp(transform.position, target, ref velocity, delay);
     }
@@ -166,6 +166,19 @@ public class EnemyMovement : MonoBehaviour
         // shadow.localPosition = transform.position.normalized;
         body.localEulerAngles = new Vector3(0, 0, -transform.eulerAngles.z);
         shadow.localEulerAngles = new Vector3(0, 0, -transform.eulerAngles.z);
+    }
+
+
+    ///// Stop following if the Player is dead
+    private void OnEnable() {
+        Health.onPlayerDeath += OnPlayerDeath;
+    }
+    private void OnDisable() {
+        Health.onPlayerDeath -= OnPlayerDeath;
+    }
+    private void OnPlayerDeath() {
+        rb.bodyType = RigidbodyType2D.Kinematic;
+        this.enabled = false;
     }
 
 }
