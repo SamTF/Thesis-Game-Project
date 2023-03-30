@@ -15,6 +15,7 @@ public class Status : MonoBehaviour
     private bool canDodge = true;
     private bool isBackflipping = false;
     private bool canBackflip = true;
+    private bool isKnockedBack = false;
     // Shooting
     private bool canShoot = true;
 
@@ -24,6 +25,7 @@ public class Status : MonoBehaviour
     private float dodgeCooldown = 1f;
     private float shootingCooldown = 1f;
     private float invulnerableCooldown = 2f;
+    private float knockbackCooldown = 0.25f;
 
     // Constants
     private const float baseShootingCooldown = 1f;
@@ -118,6 +120,18 @@ public class Status : MonoBehaviour
                 StartCoroutine(StatusCooldown(result => isInvulnerable = result, true, invulnerableCooldown));
             } else {
                 isInvulnerable = false;
+            }
+        }
+    }
+
+
+    public bool IsKnockedBack {
+        get { return isKnockedBack; }
+        set {
+            if (value == true) {
+                StartCoroutine(StatusCooldown(result => isKnockedBack = result, true, knockbackCooldown));
+            } else {
+                isKnockedBack = false;
             }
         }
     }
