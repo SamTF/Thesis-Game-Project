@@ -13,7 +13,14 @@ public class HitStop : MonoBehaviour
     private SpriteRenderer spriteRenderer = null;
 
     private void Awake() {
+        // Get the appropriate sprite renderer
         spriteRenderer = GetComponent<SpriteRenderer>();
+        if (spriteRenderer == null) spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+
+        // Load material shader from Resources
+        if (flashMaterial == null) flashMaterial = Resources.Load("Shaders/FlashMaterial") as Material;
+
+        // storing the original sprite material
         ogMaterial = spriteRenderer.material;
     }
 
@@ -23,8 +30,6 @@ public class HitStop : MonoBehaviour
     /// <param name="duration">Time in milliseconds. Default: 100ms</param>
     public void Hit(float duration=200) {
         if (isStopped) return;
-
-        Debug.Log("HIT!!!");
 
         duration = duration/1000;
         StartCoroutine(Freeze(duration));
