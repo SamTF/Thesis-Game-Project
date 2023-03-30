@@ -86,8 +86,8 @@ public class Movement : MonoBehaviour
     // Physics
     private void FixedUpdate()
     {
-        // Jumping/Dodging/Dashing
-        if (player.Status.IsJumping || player.Status.IsDodging || player.Status.IsBackflipping) {
+        // Ignore movement inpit if Jumping/Dodging/Dashing/Knocked-back
+        if (player.Status.IsJumping || player.Status.IsDodging || player.Status.IsBackflipping || player.Status.IsKnockedBack) {
             return;
         }
 
