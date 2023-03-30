@@ -9,7 +9,7 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     [Header("Health System")]
-    [SerializeField][Tooltip("Object in these Physics Layers will cause the Player to take damage")]
+    [SerializeField][Tooltip("Objects in these Physics Layers will cause the Player to take damage")]
     private LayerMask damageLayer;
 
     // Health values
@@ -36,48 +36,46 @@ public class Health : MonoBehaviour
         health = maxHearts * 2; // each heart is worth 2 HP
     }
 
-    // Checking for collisions
-    private void OnTriggerEnter2D(Collider2D other) {
-        if(((1<<other.gameObject.layer) & damageLayer) != 0) {
-            Debug.Log($"[HEALTH] >>> Ouch! Player was damaged by {other.name}");
-            TakeDamage();
-        }
-    }
 
     /// <summary>
     /// Reduces the amount of health the Player has by a certain amount
     /// </summary>
     /// <param name="amount">Amount to reduce health by. Default: 1</param>
-    private void TakeDamage(int amount=1) {
+    public void TakeDamage(int amount=1) {
         if (player.Status.IsInvulnerable) {
             Debug.Log("Player can't take damage right now. They are invulnerable!");
             return;
         }
 
-        player.Status.IsInvulnerable = true;
-        health -= amount;
+        player.Status.IsInvulnerable = true;    // makes player invulernable to damage for a short while
+        health -= amount;                       // subtracts health
+        StartCoroutine(DamagedAnimation());     // plays nice blinking animation
 
-        HitStop.Hit();
-        StartCoroutine(DamagedAnimation());
-
+        // Triggers the event
         onPlayerDamaged?.Invoke();
 
+        // DEATH!
         if (health <= 0) {
             onPlayerDeath?.Invoke();
         }
     }
 
+
+    /// <summary>
+    /// Trigger a nice Blinking animation on the player sprite.
+    /// </summary>
     private IEnumerator DamagedAnimation() {
         player.Animator.SetBool("Blink", player.Status.IsInvulnerable);
         yield return new WaitForSeconds(player.Status.InvulnerableCooldown);
         player.Animator.SetBool("Blink", player.Status.IsInvulnerable);
     }
 
-    
 
     // Getters
     /// <summary>Maximum amount of hearts the Player can have.</summary>
     public int MaxHearts => maxHearts;
     /// <summary>The Player's current health points.</summary>
     public int HP => health;
+    /// <summary>Objects in these Physics Layers will cause the Player to take damage.</summary>
+    public LayerMask DamageLayer => damageLayer;
 }
