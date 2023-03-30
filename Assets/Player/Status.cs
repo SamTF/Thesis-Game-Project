@@ -137,6 +137,7 @@ public class Status : MonoBehaviour
     }
 
     // Basic getters
+    public bool IsAlive => isAlive;
     public bool CanJump => canJump;
     public bool CanDodge => canDodge;
     public bool CanBackflip => canBackflip;
@@ -156,5 +157,17 @@ public class Status : MonoBehaviour
         variableToChange (newValue);
         yield return new WaitForSeconds(cooldown);
         variableToChange (!newValue);
+    }
+
+
+    ///// EVENT LISTENERS
+    private void OnEnable() {
+        Health.onPlayerDeath += OnPlayerDeath;
+    }
+    private void OnDisable() {
+        Health.onPlayerDeath -= OnPlayerDeath;
+    }
+    private void OnPlayerDeath() {
+        isAlive = false;
     }
 }
