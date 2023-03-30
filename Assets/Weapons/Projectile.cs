@@ -11,6 +11,7 @@ public class Projectile : MonoBehaviour
     private float mySpeed;
     private float myRange;
     private Vector2 myDirection;
+    private LayerMask targetLayer;
 
     // Constants
     private Vector3 originPos;
@@ -52,12 +53,29 @@ public class Projectile : MonoBehaviour
     /// </summary>
     /// <param name="direction">Vector2 direction the projectile will travel in</param>
     /// <param name="speed">Float speed at which it will travel</param>
-    public void Shoot(Vector2 direction, float speed, float range) {
+    public void Shoot(Vector2 direction, float speed, float range, LayerMask layer) {
         myDirection = direction;
         mySpeed = speed;
         myRange = range;
+        targetLayer = layer;
 
         rb.velocity = (myDirection * mySpeed);
+    }
+
+    // Checking for collisions
+    private void OnTriggerEnter2D(Collider2D other) {
+        if(((1<<other.gameObject.layer) & targetLayer) != 0) {
+            Debug.Log($"[PROJECTILE] >>> Gotcha! Projectile hit its target => {other.name}");
+            OnHit(other.transform);
+        }
+    }
+
+    /// <summary>
+    /// Call this function when the projectile hit its target
+    /// </summary>
+    /// <param name="target"></param>
+    private void OnHit(Transform target) {
+        Despawn();
     }
 
     /// <summary>

@@ -12,6 +12,8 @@ public class Weapon : MonoBehaviour
     private float shotSpeed = 6f;
     [SerializeField][Tooltip("The spawn points for the projectiles.")]
     private ShootPoints shootPoints = null;
+    [SerializeField][Tooltip("The Projectile will damage Objects in this layer.")]
+    private LayerMask targetLayer;
 
     // BOI-Shooting Variables
     float timeToBeginOffset = 0.15f; // feels like this value should be affected by the character's move speed
@@ -75,7 +77,8 @@ public class Weapon : MonoBehaviour
             shootPoint,
             null,
             shootingVector,
-            speed
+            speed,
+            targetLayer
         );
 
         // Cooldown until able to shoot again

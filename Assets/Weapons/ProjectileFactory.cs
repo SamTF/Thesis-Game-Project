@@ -15,18 +15,20 @@ public static class ProjectileFactory
     /// <param name="parent">Its transform parent</param>
     /// <param name="direction">Direction to move the projectile at</param>
     /// <param name="speed">Speed at which to move the projectile</param>
+    /// <param name="targetLayer">Physics layer that this projectile will collide with</param>
     /// <returns>GameObject instance of the projectile</returns>
     public static GameObject Instantiate(
         GameObject prefab,
         Vector2 position,
         Transform parent,
         Vector2 direction,
-        float speed
+        float speed,
+        LayerMask targetLayer
         )
     {
         GameObject projectile = Object.Instantiate(prefab, position, Quaternion.identity, parent);
         float range = baseRange + Random.Range(-0.5f, 0.5f);
-        projectile.GetComponent<Projectile>().Shoot(direction, speed, range);
+        projectile.GetComponent<Projectile>().Shoot(direction, speed, range, targetLayer);
 
         return projectile;
     }
