@@ -8,9 +8,9 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     // Stats
-    private float mySpeed = 6f;
+    private float mySpeed;
+    private float myRange;
     private Vector2 myDirection;
-    private float range = 5f;
 
     // Constants
     private Vector3 originPos;
@@ -37,7 +37,7 @@ public class Projectile : MonoBehaviour
         // Range Drop off
         float distanceTravelled = Mathf.Abs((transform.position - originPos).magnitude);
 
-        if (distanceTravelled >= range) {
+        if (distanceTravelled >= myRange) {
             Vector2 dropoff = body.localPosition;
             dropoff.y -= gravity * 1/16;
             body.localPosition = dropoff;
@@ -52,9 +52,10 @@ public class Projectile : MonoBehaviour
     /// </summary>
     /// <param name="direction">Vector2 direction the projectile will travel in</param>
     /// <param name="speed">Float speed at which it will travel</param>
-    public void Shoot(Vector2 direction, float speed) {
+    public void Shoot(Vector2 direction, float speed, float range) {
         myDirection = direction;
         mySpeed = speed;
+        myRange = range;
 
         rb.velocity = (myDirection * mySpeed);
     }
@@ -65,7 +66,7 @@ public class Projectile : MonoBehaviour
     private void Despawn() {
         GameObject poofCloud = Resources.Load<GameObject>("FX/Poof");
         Vector3 randomOffset = new Vector3 (Random.Range(-0.25f, 0.25f), Random.Range(-0.25f, 0.25f), 0);
-        Instantiate(poofCloud, transform.position + randomOffset, Quaternion.identity);
+        Instantiate(poofCloud, transform.position, Quaternion.identity);
 
         Destroy(gameObject);
     }

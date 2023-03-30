@@ -5,6 +5,8 @@ using UnityEngine;
 /// </summary>
 public static class ProjectileFactory
 {
+    public static int baseRange = 3;
+
     /// <summary>
     /// Instantiate a projectile with attributes set already
     /// </summary>
@@ -23,7 +25,8 @@ public static class ProjectileFactory
         )
     {
         GameObject projectile = Object.Instantiate(prefab, position, Quaternion.identity, parent);
-        projectile.GetComponent<Projectile>().Shoot(direction, speed);
+        float range = baseRange + Random.Range(-0.5f, 0.5f);
+        projectile.GetComponent<Projectile>().Shoot(direction, speed, range);
 
         return projectile;
     }
