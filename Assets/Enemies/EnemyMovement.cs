@@ -19,7 +19,7 @@ public class EnemyMovement : MonoBehaviour
 
     [Header("Classic Follow & Follow Delayed")]
     [SerializeField][Tooltip("How fast the enemy follows its target")]
-    [Range(30f, 75f)]
+    [Range(50f, 200f)]
     private float followSpeed = 50f;
 
     [Header("Orbit")]
@@ -45,7 +45,8 @@ public class EnemyMovement : MonoBehaviour
         SmoothDamp,
         Follow,
         FollowDelayed,
-        Orbit
+        Orbit,
+        ScreenRelative
     }
 
 
@@ -56,15 +57,15 @@ public class EnemyMovement : MonoBehaviour
 
         if (movementType == MovementType.Orbit && shadow != null) {
             shadow.localPosition = shadow.localPosition + new Vector3(0, -0.5f, 0);
-        } else if (movementType == MovementType.SmoothDamp) {
-            rb.bodyType = RigidbodyType2D.Kinematic;
         }
     }
 
     private void Start() {
         if (movementType == MovementType.FollowDelayed) {
             StartCoroutine(FollowDelayed());
-        } 
+        } else if (movementType == MovementType.ScreenRelative) {
+            StartCoroutine(ScreenRelative(new Vector2(0, 0.5f), new Vector2(1, 0.5f), 10f));
+        }
     }
 
     private void FixedUpdate() {
@@ -89,6 +90,9 @@ public class EnemyMovement : MonoBehaviour
             case MovementType.FollowDelayed:
                 break;
 
+            case MovementType.ScreenRelative:
+                break;
+
             default:
                 SmoothFollow(target);
                 break;
@@ -101,7 +105,6 @@ public class EnemyMovement : MonoBehaviour
     /// <param name="target"></param>
     private void SmoothFollow(Vector2 target) {
         float distance2target = (target - (Vector2)transform.position).magnitude;
-        // float delay = distance2target > 2.5f ? followDelay : followDelay / 4f;
         float delay = followDelay;
         if (distance2target <= 2f)   delay = followDelay / 4f;
         else if (distance2target <= 3f)   delay = followDelay / 2f;
@@ -109,6 +112,7 @@ public class EnemyMovement : MonoBehaviour
         // Debug.Log(delay);
 
         transform.position = Vector3.SmoothDamp(transform.position, target, ref velocity, delay);
+        rb.velocity = Vector2.zero;
     }
 
     /// <summary>
@@ -169,12 +173,45 @@ public class EnemyMovement : MonoBehaviour
     }
 
 
+
+    /// <summary>
+    /// Move the enemy from Start to Target relative to the Camera/Screen Space (not to World Space)
+    /// </summary>
+    /// <param name="start">Start position offset relative to screen size (between 0-1).</param>
+    /// <param name="target">Target position offset relative to screen size (between 0-1).</param>
+    /// <param name="duration">Length in seconds that the movement will take.</param>
+    /// <returns></returns>
+    private IEnumerator ScreenRelative(Vector2 start, Vector2 target, float duration) {
+        float time = 0;
+        Vector2 cameraSize = new Vector2(Camera.main.pixelWidth, Camera.main.pixelHeight);
+
+        while (time < duration)
+        {
+            // Getting the appropriate start and end positions relative to the camera
+            Vector2 startPosition = Camera.main.ScreenToWorldPoint(Vector2.Scale( cameraSize, start ));
+            Vector2 targetPosition = Camera.main.ScreenToWorldPoint(Vector2.Scale( cameraSize, target ));
+
+            // Smoothly lerping from start to end
+            transform.position = Vector2.Lerp(startPosition, targetPosition, time / duration);
+
+            // Sine wave offset
+            transform.position = new Vector2(transform.position.x, transform.position.y + (Mathf.Sin(Time.time * 5f)));
+
+            time += Time.deltaTime;
+            yield return null;
+        }
+
+        this.enabled = false;
+    }
+
+
     ///// Stop following if the Player is dead
     private void OnEnable() {
         Health.onPlayerDeath += OnPlayerDeath;
     }
     private void OnDisable() {
         Health.onPlayerDeath -= OnPlayerDeath;
+        StopAllCoroutines();
     }
     private void OnPlayerDeath() {
         rb.bodyType = RigidbodyType2D.Kinematic;
