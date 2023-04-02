@@ -9608,8 +9608,9 @@ MonoBehaviour:
   rotationSpeed: 0.5
   radius: 3
   screenRelativeDuration: 10
+  reappearanceCooldown: 2
   sineWaveMovement: 1
-  sineWaveFreq: 5
+  sineWaveFreq: 3.5
   screenBounceSpeed: 6
   bounceModifier: 1
   body: {fileID: 2134121952}
