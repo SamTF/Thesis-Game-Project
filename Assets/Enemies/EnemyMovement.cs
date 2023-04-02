@@ -15,7 +15,7 @@ public class EnemyMovement : MonoBehaviour
     [Header("Smooth Follow")]
     [SerializeField][Range(0f, 5f)]
     private float followDelay = 0.75f;
-    private Vector3 velocity = Vector3.one;
+    private Vector2 velocity = Vector3.one;
     private float delayOffset = 0f;
     private Vector2 targetOffset = Vector2.zero;
 
@@ -31,6 +31,20 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField]
     private float radius = 3f;
     private float angle;
+
+    [Header("Screen Relative")]
+    [SerializeField][Tooltip("How many seconds it takes to complete the movement")][Range(1f, 10f)]
+    private float screenRelativeDuration = 10f;
+    [SerializeField][Tooltip("Whether to also move the object in a Sine wave pattern on the Y axis")]
+    private bool sineWaveMovement = true;
+    [SerializeField][Tooltip("Frequency of the Sine wave movement")][Range(1f, 10f)]
+    private float sineWaveFreq = 5f;
+
+    [Header("Screen Bounce")]
+    [SerializeField][Tooltip("Speed of the bouncing object")]
+    private float screenBounceSpeed = 6f;
+    [SerializeField][Tooltip("Modifier to apply to speed value after every bounce")][Range(1f, 1.2f)]
+    private float bounceModifier = 1.05f;
     
 
     // Components
@@ -48,7 +62,8 @@ public class EnemyMovement : MonoBehaviour
         Follow,
         FollowDelayed,
         Orbit,
-        ScreenRelative
+        ScreenRelative,
+        ScreenBounce
     }
 
 
@@ -63,8 +78,11 @@ public class EnemyMovement : MonoBehaviour
     }
 
     private void Start() {
+        // Follow Delayed
         if (movementType == MovementType.FollowDelayed) {
             StartCoroutine(FollowDelayed());
+        
+        // Smooth Follow
         } else if (movementType == MovementType.SmoothDamp) {
             // Lil bit of delay randomisation so enemies don't all become one hivemind
             float r = followDelay * 0.25f;
@@ -74,8 +92,18 @@ public class EnemyMovement : MonoBehaviour
             float o = 2f;
             targetOffset = new Vector2(Random.Range(-o, o), (Random.Range(-o, o)));
         }
+
+        // Screen Relative
         else if (movementType == MovementType.ScreenRelative) {
-            StartCoroutine(ScreenRelative(new Vector2(0, 0.5f), new Vector2(1, 0.5f), 10f));
+            StartCoroutine(ScreenRelative(new Vector2(0, 0.5f), new Vector2(1, 0.5f), screenRelativeDuration));
+
+        // Screen Bounce
+        } else if (movementType == MovementType.ScreenBounce) {
+            Vector2 initialDirection = new Vector2(
+                Random.Range(-1f, 1f),
+                Random.Range(-1f, 1f)
+            );
+            rb.velocity = initialDirection.normalized * screenBounceSpeed;
         }
     }
 
@@ -102,6 +130,10 @@ public class EnemyMovement : MonoBehaviour
                 break;
 
             case MovementType.ScreenRelative:
+                break;
+
+            case MovementType.ScreenBounce:
+                ScreenBounce();
                 break;
 
             default:
@@ -141,7 +173,7 @@ public class EnemyMovement : MonoBehaviour
         }
 
         // Smooth movement
-        transform.position = Vector3.SmoothDamp(transform.position, target, ref velocity, delay);
+        transform.position = Vector2.SmoothDamp(transform.position, target, ref velocity, delay);
         rb.velocity = Vector2.zero;
     }
 
@@ -225,13 +257,47 @@ public class EnemyMovement : MonoBehaviour
             transform.position = Vector2.Lerp(startPosition, targetPosition, time / duration);
 
             // Sine wave offset
-            transform.position = new Vector2(transform.position.x, transform.position.y + (Mathf.Sin(Time.time * 5f)));
+            if (sineWaveMovement)
+                transform.position = new Vector2(transform.position.x, transform.position.y + (Mathf.Sin(Time.time * sineWaveFreq)));
 
             time += Time.deltaTime;
             yield return null;
         }
 
         this.enabled = false;
+    }
+
+    /// <summary>
+    /// Bounces this object as it hits the screen edges.
+    /// </summary>
+    private void ScreenBounce() {
+        // Getting the object's position relative to the screen
+        Vector2 screenPosition = Camera.main.WorldToScreenPoint(transform.position);
+
+        // Reflect on X axis
+        if (screenPosition.x > Screen.width || screenPosition.x < 0f) {
+            // Clamp X Position
+            screenPosition.x = Mathf.Clamp(screenPosition.x, 16f, Screen.width - 16f);
+            Vector3 newWorldPosition = Camera.main.ScreenToWorldPoint(screenPosition);
+            transform.position = new Vector2(newWorldPosition.x, newWorldPosition.y);
+
+            // Flip X Velocity & Clamp to max velocity
+            Vector2 newVelocity = rb.velocity;
+            newVelocity.x *= -1;
+            rb.velocity = Vector2.ClampMagnitude(newVelocity * bounceModifier, 10f);
+        }
+        // Reflect on Y Axis
+        else if (screenPosition.y > Screen.height || screenPosition.y < 0f) {
+            // Clamp Y Position
+            screenPosition.y = Mathf.Clamp(screenPosition.y, 16f, Screen.height -16f);
+            Vector3 newWorldPosition = Camera.main.ScreenToWorldPoint(screenPosition);
+            transform.position = new Vector2(newWorldPosition.x, newWorldPosition.y);
+
+            // Flip Y Velocity & Clamp to max velocity
+            Vector2 newVelocity = rb.velocity;
+            newVelocity.y *= -1;
+            rb.velocity = Vector2.ClampMagnitude(newVelocity * bounceModifier, 10f);
+        }
     }
 
 
