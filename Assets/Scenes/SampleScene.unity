@@ -2704,9 +2704,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0.0015673981
-    width: 0.99999994
-    height: 0.99686515
+    y: 0.0030674846
+    width: 0.9991372
+    height: 0.993865
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -5908,7 +5908,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 25, y: -64.99997}
+  m_AnchoredPosition: {x: 25, y: -65}
   m_SizeDelta: {x: 333, y: -130}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &972825149
@@ -7572,7 +7572,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0.5}
   serializedVersion: 2
-  m_Radius: 1.25
+  m_Radius: 1
 --- !u!1 &1278026157
 GameObject:
   m_ObjectHideFlags: 0
@@ -9602,11 +9602,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f540bc0980bb09499edeb85e85817cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementType: 4
+  movementType: 0
   followDelay: 2
   followSpeed: 50
   rotationSpeed: 0.5
   radius: 3
+  screenRelativeDuration: 10
+  sineWaveMovement: 1
+  sineWaveFreq: 5
+  screenBounceSpeed: 6
+  bounceModifier: 1
   body: {fileID: 2134121952}
   shadow: {fileID: 454238901}
 --- !u!50 &1666624024
