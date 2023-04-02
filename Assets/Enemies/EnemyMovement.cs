@@ -35,6 +35,8 @@ public class EnemyMovement : MonoBehaviour
     [Header("Screen Relative")]
     [SerializeField][Tooltip("How many seconds it takes to complete the movement")][Range(1f, 10f)]
     private float screenRelativeDuration = 10f;
+    [SerializeField][Tooltip("How long until this Enemy will reappear after leaving the screen")]
+    private float reappearanceCooldown = 2f;
     [SerializeField][Tooltip("Whether to also move the object in a Sine wave pattern on the Y axis")]
     private bool sineWaveMovement = true;
     [SerializeField][Tooltip("Frequency of the Sine wave movement")][Range(1f, 10f)]
@@ -244,9 +246,25 @@ public class EnemyMovement : MonoBehaviour
     /// <param name="duration">Length in seconds that the movement will take.</param>
     /// <returns></returns>
     private IEnumerator ScreenRelative(Vector2 start, Vector2 target, float duration) {
+        // Resetting time and Camera Screen size
         float time = 0;
         Vector2 cameraSize = new Vector2(Camera.main.pixelWidth, Camera.main.pixelHeight);
 
+        // Generating random start and target positions (with a path that crosses thru the center of the screen)
+        start = new Vector2(Random.Range(0f, 1f), Random.Range(0f, 1f));
+        target = new Vector2(1 - start.x, 1 - start.y);
+
+        // Setting a random axis to go from 0 to 1
+        int axis = Random.Range(0, 2);
+        if (axis == 0) {
+            start.x = 0f;
+            target.x = 1.1f;
+        } else {
+            start.y = 0;
+            target.y = 1.1f;
+        }
+
+        // Move the enemy for the duration given
         while (time < duration)
         {
             // Getting the appropriate start and end positions relative to the camera
@@ -261,10 +279,27 @@ public class EnemyMovement : MonoBehaviour
                 transform.position = new Vector2(transform.position.x, transform.position.y + (Mathf.Sin(Time.time * sineWaveFreq)));
 
             time += Time.deltaTime;
-            yield return null;
+            yield return new WaitForFixedUpdate();
         }
 
-        this.enabled = false;
+        // Hide the enemy & disable all colliders after it completes the movement
+        GetComponentInChildren<SpriteRenderer>().enabled = false;
+        Collider2D[] colliders = GetComponentsInChildren<Collider2D>();
+        foreach (Collider2D c in colliders) {
+            c.enabled = false;
+        }
+
+        // Wait x seconds before doing new movement
+        yield return new WaitForSeconds(reappearanceCooldown);
+
+        // Show enemy and enable all colliders
+        GetComponentInChildren<SpriteRenderer>().enabled = true;
+        foreach (Collider2D c in colliders) {
+            c.enabled = true;
+        }
+
+        // Repeat the coroutine
+        StartCoroutine(ScreenRelative(Vector2.zero, Vector2.one, duration));
     }
 
     /// <summary>
