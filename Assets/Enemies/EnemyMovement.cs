@@ -16,6 +16,8 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField][Range(0f, 5f)]
     private float followDelay = 0.75f;
     private Vector3 velocity = Vector3.one;
+    private float delayOffset = 0f;
+    private Vector2 targetOffset = Vector2.zero;
 
     [Header("Classic Follow & Follow Delayed")]
     [SerializeField][Tooltip("How fast the enemy follows its target")]
@@ -63,7 +65,16 @@ public class EnemyMovement : MonoBehaviour
     private void Start() {
         if (movementType == MovementType.FollowDelayed) {
             StartCoroutine(FollowDelayed());
-        } else if (movementType == MovementType.ScreenRelative) {
+        } else if (movementType == MovementType.SmoothDamp) {
+            // Lil bit of delay randomisation so enemies don't all become one hivemind
+            float r = followDelay * 0.25f;
+            delayOffset = Random.Range(-r, r);
+
+            // Slight target randomisation
+            float o = 2f;
+            targetOffset = new Vector2(Random.Range(-o, o), (Random.Range(-o, o)));
+        }
+        else if (movementType == MovementType.ScreenRelative) {
             StartCoroutine(ScreenRelative(new Vector2(0, 0.5f), new Vector2(1, 0.5f), 10f));
         }
     }
@@ -104,13 +115,32 @@ public class EnemyMovement : MonoBehaviour
     /// </summary>
     /// <param name="target"></param>
     private void SmoothFollow(Vector2 target) {
+        // Speed up as the enemy gets closer to the player and vice versa
         float distance2target = (target - (Vector2)transform.position).magnitude;
         float delay = followDelay;
-        if (distance2target <= 2f)   delay = followDelay / 4f;
-        else if (distance2target <= 3f)   delay = followDelay / 2f;
-        
-        // Debug.Log(delay);
 
+        // Far
+        if (distance2target >= 8f) {
+            delay += (delayOffset * 2f);
+            delay *= 1.5f;
+            target += targetOffset * 2f;
+        }
+        // Medium far
+        else if (distance2target > 4f ) {
+            delay = followDelay + delayOffset;
+        }
+        //  Medium-close
+        else if (distance2target > 3f) {
+            delay += delayOffset;
+            delay = delay / 2f;
+            target += targetOffset;
+        }
+        // Close range
+        else {
+            delay = followDelay / 4f;
+        }
+
+        // Smooth movement
         transform.position = Vector3.SmoothDamp(transform.position, target, ref velocity, delay);
         rb.velocity = Vector2.zero;
     }
