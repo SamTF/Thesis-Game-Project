@@ -107,9 +107,16 @@ public class Enemy : MonoBehaviour
         spriteRenderer.sortingLayerName = "Shadows";
         spriteRenderer.sortingOrder = -10;
 
+        // Rotate sprite away from Player
+        float hitAngle = Mathf.Atan2(
+            GameManager.instance.PlayerPosition.y - transform.position.y,
+            GameManager.instance.PlayerPosition.x - transform.position.x
+        ) * Mathf.Rad2Deg;
+
+        Vector3 rotation = new Vector3(0, 0, hitAngle + 90f);
+        transform.Rotate(rotation);
+
         // spriteRenderer.color = Color.HSVToRGB(0, 14, 39);
-        // Vector3 rotation = new Vector3(0, 0, -45f);
-        // transform.Rotate(rotation);
         Destroy(shadow.gameObject);
     }
 
