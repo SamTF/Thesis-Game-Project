@@ -85,6 +85,7 @@ public class Enemy : MonoBehaviour
 
 
     private void OnDeath() {
+        // Longer hit stop
         hitStop.Hit(200);
 
         // Disable all components
@@ -96,7 +97,12 @@ public class Enemy : MonoBehaviour
             c.enabled = false;
         }
 
+        // Play death animation
         StartCoroutine(DeathAnimation());
+
+        // Spawn death VFX
+        GameObject deathFX = Resources.Load<GameObject>("FX/Fart");
+        Instantiate(deathFX, transform.position, Quaternion.identity);
     }
 
     private IEnumerator DeathAnimation() {
