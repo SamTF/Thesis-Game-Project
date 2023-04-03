@@ -7,6 +7,7 @@ TagManager:
   - Enemy
   - EnemyProjectile
   - PlayerProjectile
+  - VFX
   layers:
   - Default
   - TransparentFX
@@ -52,6 +53,9 @@ TagManager:
     locked: 0
   - name: Characters
     uniqueID: 3014369093
+    locked: 0
+  - name: VFX
+    uniqueID: 4214420383
     locked: 0
   - name: Projectiles
     uniqueID: 1163322459
