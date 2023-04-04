@@ -2,13 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+/// <summary>
+/// Contains all the functionality and methods that ALL enemies must have. All enemies inherit from this.
+/// </summary>
+public abstract class Enemy : MonoBehaviour
 {
     [Header("ENEMY")]
+    /// <summary>Objects in these Physics Layers will cause this Enemy to take damage on hit.</summary>
     [SerializeField][Tooltip("Objects in these Physics Layers will cause this object to take damage")]
     private LayerMask damageLayer;
-    [SerializeField]
-    private int health = 6;
+
+    /// <summary>How many hits this enemy can take before it dies.</summary>
+    [SerializeField][Tooltip("How many hits this enemy can take before it dies")]
+    protected int health = 6;
 
     // Status
     private bool isKnockedBack = false;
@@ -16,18 +22,18 @@ public class Enemy : MonoBehaviour
     private float damageCooldown = 0.05f;
 
     // Children
-    private Transform body = null;
-    private Transform shadow = null;
+    protected Transform body = null;
+    protected Transform shadow = null;
 
     // Components
-    private SpriteRenderer spriteRenderer = null;
-    private Animator animator = null;
-    private Rigidbody2D rigidBody = null;
-    private EnemyMovement movement = null;
-    private HitStop hitStop = null;
+    protected SpriteRenderer spriteRenderer = null;
+    protected Animator animator = null;
+    protected Rigidbody2D rigidBody = null;
+    protected EnemyMovement movement = null;
+    protected HitStop hitStop = null;
 
 
-    private void Awake() {
+    protected virtual void Awake() {
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         rigidBody = GetComponent<Rigidbody2D>();
@@ -56,8 +62,8 @@ public class Enemy : MonoBehaviour
     /// <summary>
     /// Called when this Enemy takes damage.
     /// </summary>
-    /// <param name="hitter"></param>
-    private void OnHit(Transform hitter) {
+    /// <param name="hitter">Transform of the object that hit the enemy.</param>
+    protected virtual void OnHit(Transform hitter) {
         health -= 1;
 
         if (health <= 0) {
@@ -84,7 +90,10 @@ public class Enemy : MonoBehaviour
     }
 
 
-    private void OnDeath() {
+    /// <summary>
+    /// Called when this Enemy runs out of health and is killed.
+    /// </summary>
+    protected virtual void OnDeath() {
         // Longer hit stop
         hitStop.Hit(200);
 
@@ -105,13 +114,11 @@ public class Enemy : MonoBehaviour
         Instantiate(deathFX, transform.position, Quaternion.identity);
     }
 
+    /// <summary>
+    /// Animations to play on the Enemy's corpse once it dies.
+    /// </summary>
     private IEnumerator DeathAnimation() {
         yield return new WaitForSeconds(0.01f);
-
-        // Trigger animation
-        animator.SetBool("Dead", true);
-        spriteRenderer.sortingLayerName = "Shadows";
-        spriteRenderer.sortingOrder = -10;
 
         // Rotate sprite away from Player
         float hitAngle = Mathf.Atan2(
@@ -120,12 +127,16 @@ public class Enemy : MonoBehaviour
         ) * Mathf.Rad2Deg;
 
         Vector3 rotation = new Vector3(0, 0, hitAngle + 90f);
-        transform.Rotate(rotation);
 
-        // spriteRenderer.color = Color.HSVToRGB(0, 14, 39);
-        Destroy(shadow.gameObject);
+        // Create a Corpse Object
+        CorpseFactory.Instantiate(transform.position, rotation, spriteRenderer.sprite);
+
+        // Destroy this object
+        Destroy(gameObject);
     }
 
+    // Fail-safe to prevent enemies from taking damage more than once from the same projectile
+    // (still no idea why that was even happening)
     private IEnumerator DamageCooldown() {
         canTakeDamage = false;
         yield return new WaitForSeconds(damageCooldown);
