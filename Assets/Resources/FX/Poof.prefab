@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3875985796242006344}
   - component: {fileID: 3875985796242006345}
   - component: {fileID: 2662920717237630401}
+  - component: {fileID: 2531921960924204980}
   m_Layer: 1
   m_Name: Poof
   m_TagString: VFX
@@ -101,6 +102,8 @@ MonoBehaviour:
   lifeTime: 0.3
   moves: 0
   fadesOut: 1
+  animate: 0
+  randomiseScale: 0
 --- !u!114 &2662920717237630401
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118,3 +121,24 @@ MonoBehaviour:
   analyseImage: 0
   spriteIsChild: 0
   allowHotReload: 0
+--- !u!95 &2531921960924204980
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3875985796242006346}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b881a8becf2e69f4e9e022fba340dde1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

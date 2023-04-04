@@ -14,18 +14,30 @@ public class Poof : MonoBehaviour
     private bool moves = false;
     [SerializeField]
     private bool fadesOut = false;
+    [SerializeField]
+    private bool animate = false;
+    [SerializeField]
+    private bool randomiseScale = false;
 
     // Component
     private SpriteRenderer spriteRenderer = null;
+    private Animator animator = null;
 
     // Start is called before the first frame update
     void Start()
     {
+        // Components
         spriteRenderer = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
+
+        // Base behaviour
         transform.Rotate(0f, 0f, Random.Range(0f, 360f));
         StartCoroutine(SelfDestruct());
 
-        if (fadesOut)   StartCoroutine(FadeOut());
+        // Options
+        if (fadesOut)       StartCoroutine(FadeOut());
+        if (animate)        animator.enabled = true;
+        if (randomiseScale) RandomiseScale();
     }
 
     private void Update() {
@@ -64,5 +76,17 @@ public class Poof : MonoBehaviour
             yield return null;
         }
         spriteRenderer.color = endColor;
+    }
+
+    /// <summary>
+    /// Randomises this object scale while mainting its ratio.
+    /// </summary>
+    private void RandomiseScale() {
+        float r = Random.Range(-3, 4);
+        r = r == 0 ? r : r/10f; 
+        Vector2 scale = transform.localScale;
+        Vector2 newScale = new Vector2(scale.x + r, scale.y - r);
+        Debug.Log(newScale);
+        transform.localScale = newScale;
     }
 }
