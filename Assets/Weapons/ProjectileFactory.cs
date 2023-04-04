@@ -5,7 +5,8 @@ using UnityEngine;
 /// </summary>
 public static class ProjectileFactory
 {
-    public static int baseRange = 3;
+    // public static int baseRange = 3;
+    public const int baseRange = 3;
 
     /// <summary>
     /// Instantiate a projectile with attributes set already
@@ -23,7 +24,8 @@ public static class ProjectileFactory
         Transform parent,
         Vector2 direction,
         float speed,
-        LayerMask targetLayer
+        LayerMask targetLayer,
+        int baseRange = baseRange
         )
     {
         GameObject projectile = Object.Instantiate(prefab, position, Quaternion.identity, parent);
