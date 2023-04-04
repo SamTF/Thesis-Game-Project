@@ -32,8 +32,16 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3875985796242006345, guid: 1cbcbff4be764ce43a46f65df3739cfe, type: 3}
+      propertyPath: animate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3875985796242006345, guid: 1cbcbff4be764ce43a46f65df3739cfe, type: 3}
       propertyPath: lifeTime
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3875985796242006345, guid: 1cbcbff4be764ce43a46f65df3739cfe, type: 3}
+      propertyPath: randomiseScale
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3875985796242006346, guid: 1cbcbff4be764ce43a46f65df3739cfe, type: 3}
       propertyPath: m_Name
