@@ -5,10 +5,9 @@ using UnityEngine;
 public class Backflip : MonoBehaviour
 {
     // Constants
-    private const float gravity = -(0.33f * 1/16f);
-    // private const float verticalVelocityOG = 0.25f;
-    private const float verticalVelocityOG = 0.33f;
-    private const float horizontalVelocity = 5f;
+    private const float gravity = -(0.4f * 1/16f);
+    private const float verticalVelocityOG = 0.4f;
+    private const float backflipSpeed = 7.5f;
 
     // Vars
     private float verticalVelocity = verticalVelocityOG;
@@ -62,14 +61,16 @@ public class Backflip : MonoBehaviour
         // Can only backflip in 4 directions (not diagonaly) - for now anyway
         if (direction.magnitude != 1)   return;
 
-        Axis axis = direction.x == 1? Axis.Z : Axis.X;
+        // getting the correct axis for the current direction - less speed on vertical backflip (X Axis)
+        Axis axis = direction.x != 0 ? Axis.Z : Axis.X;
+        float speedMod = axis == Axis.Z ? 1f : 0.5f;
 
         // storing original transform position
         originPos = player.SpriteObject.position;
         originRotation = player.transform.eulerAngles;
 
         // adding horizontal force and setting flipping status
-        rb.AddForce(direction * 5f, ForceMode2D.Impulse);
+        rb.AddForce(direction * backflipSpeed * speedMod, ForceMode2D.Impulse);
         player.Status.IsBackflipping = true;
     }       
     
