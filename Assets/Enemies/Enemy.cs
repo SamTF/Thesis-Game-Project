@@ -97,21 +97,8 @@ public abstract class Enemy : MonoBehaviour
         // Longer hit stop
         hitStop.Hit(200);
 
-        // Disable all components
-        movement.enabled = false;
-        rigidBody.bodyType = RigidbodyType2D.Static;
-
-        Collider2D[] colliders = GetComponentsInChildren<Collider2D>();
-        foreach (Collider2D c in colliders) {
-            c.enabled = false;
-        }
-
         // Play death animation
         StartCoroutine(DeathAnimation());
-
-        // Spawn death VFX
-        GameObject deathFX = Resources.Load<GameObject>("FX/Fart");
-        Instantiate(deathFX, transform.position, Quaternion.identity);
     }
 
     /// <summary>
@@ -130,6 +117,10 @@ public abstract class Enemy : MonoBehaviour
 
         // Create a Corpse Object
         CorpseFactory.Instantiate(transform.position, rotation, spriteRenderer.sprite);
+
+        // Spawn death VFX
+        GameObject deathFX = Resources.Load<GameObject>("FX/Fart");
+        Instantiate(deathFX, transform.position, Quaternion.identity);
 
         // Destroy this object
         Destroy(gameObject);
