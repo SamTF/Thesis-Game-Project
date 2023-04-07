@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 1802443260627419422}
   - component: {fileID: 1802443260627419421}
   - component: {fileID: 1802443260627419420}
-  - component: {fileID: 1802443260627419419}
   - component: {fileID: 1802443260627419418}
+  - component: {fileID: 8132871453282776543}
   - component: {fileID: 1802443260627419417}
   m_Layer: 8
   m_Name: Chaser
@@ -81,31 +81,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1802443260627419419
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1802443260627419416}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f540bc0980bb09499edeb85e85817cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movementType: 0
-  followDelay: 2
-  followSpeed: 100
-  rotationSpeed: 0.5
-  radius: 3
-  screenRelativeDuration: 10
-  reappearanceCooldown: 2
-  sineWaveMovement: 1
-  sineWaveFreq: 3.5
-  screenBounceSpeed: 6
-  bounceModifier: 1
-  body: {fileID: 1802443261690855195}
-  shadow: {fileID: 1802443262167346784}
 --- !u!114 &1802443260627419418
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -122,6 +97,21 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   health: 6
+--- !u!114 &8132871453282776543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1802443260627419416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7bb610843e3afb46ab40f198044b377, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  body: {fileID: 0}
+  shadow: {fileID: 0}
+  followDelay: 2
 --- !u!114 &1802443260627419417
 MonoBehaviour:
   m_ObjectHideFlags: 0
