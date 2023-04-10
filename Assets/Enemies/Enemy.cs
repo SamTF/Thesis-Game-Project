@@ -5,6 +5,9 @@ using UnityEngine;
 /// <summary>
 /// Contains all the functionality and methods that ALL enemies must have. All enemies inherit from this.
 /// </summary>
+
+[RequireComponent(typeof(HitStop))]
+
 public abstract class Enemy : MonoBehaviour
 {
     [Header("ENEMY")]
@@ -116,7 +119,7 @@ public abstract class Enemy : MonoBehaviour
         Vector3 rotation = new Vector3(0, 0, hitAngle + 90f);
 
         // Create a Corpse Object
-        CorpseFactory.Instantiate(transform.position, rotation, spriteRenderer.sprite);
+        CorpseFactory.Instantiate(transform.position, rotation, spriteRenderer.sprite, transform.localScale);
 
         // Spawn death VFX
         GameObject deathFX = Resources.Load<GameObject>("FX/Fart");
