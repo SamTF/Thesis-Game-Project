@@ -336,6 +336,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   projectileSpeed: 8
+  projectileRange: 10
 --- !u!114 &5943692369010613541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -363,6 +364,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   body: {fileID: 0}
   shadow: {fileID: 0}
-  safeDistance: 3
+  safeDistance: 4
   followDelay: 2
-  rotationCooldown: 2
+  rotationCooldown: 1
