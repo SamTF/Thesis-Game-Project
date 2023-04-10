@@ -1,3 +1,13 @@
+### 2D Pathfinding Packages
+DOTSNAV
+https://github.com/dotsnav/dotsnav
+
+NAV MESH PLUS
+https://github.com/h8man/NavMeshPlus
+
+
+
+#######
 A* Pathfinding in Unity
 https://www.youtube.com/watch?v=alU04hvz6L4&list=PLzDRvYVwl53tqzN5R-j33Sd7kf_f6b6z4&index=8
 
@@ -9,3 +19,9 @@ https://www.youtube.com/watch?v=i0x5fj4PqP4
 
 Enemy Follow Player, PATHFINDING in Unity2D || 4 Lines Of Code!
 https://www.youtube.com/watch?v=BcF1f-p2-tU
+
+NavMeshPlus
+https://github.com/h8man/NavMeshPlus/wiki/HOW-TO
+
+https://www.youtube.com/watch?v=DGBaEuZz-RA
+https://www.youtube.com/watch?v=SDfEytEjb5o
