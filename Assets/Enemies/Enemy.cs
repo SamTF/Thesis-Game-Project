@@ -32,22 +32,26 @@ public abstract class Enemy : MonoBehaviour
     protected SpriteRenderer spriteRenderer = null;
     protected Animator animator = null;
     protected Rigidbody2D rigidBody = null;
-    protected EnemyMovement movement = null;
+    protected EnemyMovementBase movement = null;
     protected HitStop hitStop = null;
+    protected CircleCollider2D bodyCollider = null;
 
 
     protected virtual void Awake() {
+        // Getting child transforms
+        body = body ? body : transform.Find("Body");
+        shadow = shadow ? shadow : transform.Find("Shadow");
+        
+        // Getting components
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         rigidBody = GetComponent<Rigidbody2D>();
-        movement = GetComponent<EnemyMovement>();
+        movement = GetComponent<EnemyMovementBase>();
         hitStop = GetComponent<HitStop>();
+        bodyCollider = body.GetComponent<CircleCollider2D>();
 
         // Checking the children for sprite renderers if the main object doesn't have one
         if (spriteRenderer == null) spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-
-        body = body ? body : transform.Find("Body");
-        shadow = shadow ? shadow : transform.Find("Shadow");
     }
 
 
@@ -136,5 +140,9 @@ public abstract class Enemy : MonoBehaviour
         yield return new WaitForSeconds(damageCooldown);
         canTakeDamage = true;
     }
+
+
+    // Public Getters
+    public SpriteRenderer SpriteRenderer => spriteRenderer;
 
 }
