@@ -9,8 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3042545727195141419}
-  - component: {fileID: 3042545727195141417}
-  - component: {fileID: 3042545727195141423}
+  - component: {fileID: 1617318476}
   - component: {fileID: 3042545727195141421}
   - component: {fileID: 3042545727195141416}
   - component: {fileID: 3042545727195141420}
@@ -38,23 +37,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &3042545727195141417
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3042545727195141399}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.66
---- !u!50 &3042545727195141423
+--- !u!50 &1617318476
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -83,7 +66,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3042545727195141399}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 3a54988631f9947448f8402d227dc53b, type: 2}
   m_CullingMode: 0
@@ -113,6 +96,7 @@ MonoBehaviour:
     m_Bits: 128
   health: 6
   spinAnimation: 1
+  bouncesToActivate: 3
 --- !u!114 &3042545727195141420
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,7 +122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f7e4e31b7215c44f870932ae3ab86f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  body: {fileID: 0}
+  body: {fileID: 3042545728280513734}
   shadow: {fileID: 0}
   screenBounceSpeed: 2
   bounceModifier: 1
@@ -153,9 +137,10 @@ GameObject:
   m_Component:
   - component: {fileID: 3042545728280513734}
   - component: {fileID: 3042545728280513735}
+  - component: {fileID: 1038934777}
   m_Layer: 8
   m_Name: Body
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -227,3 +212,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &1038934777
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3042545728280513733}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.66
