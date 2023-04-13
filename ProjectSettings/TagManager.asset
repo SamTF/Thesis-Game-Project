@@ -8,6 +8,7 @@ TagManager:
   - EnemyProjectile
   - PlayerProjectile
   - VFX
+  - Item
   layers:
   - Default
   - TransparentFX
@@ -20,8 +21,8 @@ TagManager:
   - Enemy
   - EnemyProjectile
   - EnemyRepel
-  - 
-  - 
+  - Item
+  - ItemDetection
   - 
   - 
   - 
