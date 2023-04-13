@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Melee enemy that travels across Screen Space and bounces around the Screen edges.
+/// </summary>
 public class Bouncer : Enemy
 {
     [Header("Screen Bouncer")]
