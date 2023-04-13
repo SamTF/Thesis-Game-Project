@@ -104,6 +104,10 @@ public abstract class Enemy : MonoBehaviour
         // Longer hit stop
         hitStop.Hit(200);
 
+        // Spawn XP Item!
+        Vector2 bounceDirection = ((Vector2)transform.position - GameManager.instance.PlayerPosition).normalized;
+        ItemFactory.Spawn(ItemFactory.ItemType.XP, transform.position, bounceDirection);
+
         // Play death animation
         StartCoroutine(DeathAnimation());
     }
