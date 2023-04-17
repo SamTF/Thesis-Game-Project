@@ -3,23 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Item that is dropped when Enemies are killed. The Player can collect these to gain XP and level up.
+/// Item that is dropped when Enemies are killed and can be picked up by the Player.
 /// </summary>
-public class XP : MonoBehaviour
+public class Item : MonoBehaviour
 {
     [Header("ITEM")]
+
+    [Header("Type")]
+    [SerializeField][Tooltip("What kind of Item is this? Determins its effect on the Player.")]
+    private ItemType itemType = ItemType.XP;
+
+    [Header("Properties")]
+    [SerializeField][Tooltip("Physics layer of the Player Gameobject")]
+    private LayerMask playerLayer;
     [SerializeField][Tooltip("How quickly the Item will react to a change in the Player's position. Also works as a speed value, kind of.")][Range(0f, 1f)]
     private float followDelay = 0.25f;
-
-    [SerializeField][Tooltip("Auto-pick up range for this item")][Range(0f, 2f)]
+    [SerializeField][Tooltip("Auto-pick up range for this item")][Range(0f, 3f)]
     private float detectionRadius = 1f;
     [SerializeField][Tooltip("Transform of object with the detection collider")]
     private Transform detectionTransform = null;
 
-    [SerializeField][Tooltip("Physics layer of the Player Gameobject")]
-    private LayerMask playerLayer;
-
-    [SerializeField]
+    [Header("Children")]
+    [SerializeField][Tooltip("Child transform containing the Player Sprite (AKA Body).")]
     private Transform body = null;
 
     private Rigidbody2D rigidBody = null;
@@ -37,8 +42,11 @@ public class XP : MonoBehaviour
     }
 
 
+    /// <summary>
+    /// Initialises this Item's spawn routine with the given properties.
+    /// </summary>
+    /// <param name="bounceDirection">Direction in which to bounch away.</param>
     public void Spawn(Vector2 bounceDirection) {
-        Debug.Log("Spawning!!");
         StartCoroutine(BounceAway(bounceDirection));
     }
 
@@ -50,14 +58,14 @@ public class XP : MonoBehaviour
         // Using this instead of Time.time so that it ALWAYS starts at ZERO
         float time = 0f;
 
-        rigidBody.AddForce(direction.normalized * 150f);    // Add force
-        body.GetComponent<Collider2D>().enabled = false;    // Disable body collider
+        float bounceForce = Random.Range(100f, 250f);               // Randomised bounce force
+        rigidBody.AddForce(direction.normalized * bounceForce);     // Add force
+        GetComponent<Collider2D>().enabled = false;            // Disable body collider
 
         // Perform the arc jump movement
         while (body.localPosition.y >= 0f)
         {
-            float verticalVelocity = Mathf.Clamp(Mathf.Sin(time * 4f) * 0.75f, -0.1f, 1f);
-            Debug.Log(verticalVelocity);
+            float verticalVelocity = Mathf.Clamp(Mathf.Sin(time * 5f) * 1.00f, -0.1f, 1f);
             body.localPosition = new Vector3(0, verticalVelocity, 0);
             // body.localPosition += new Vector3(0, Mathf.Sin(Time.time * 5f) * 0.05f, 0);
 
@@ -69,7 +77,7 @@ public class XP : MonoBehaviour
         // Reset everything
         body.localPosition = Vector3.zero;
         rigidBody.velocity = Vector2.zero;
-        body.GetComponent<Collider2D>().enabled = true;
+        GetComponent<Collider2D>().enabled = true;
 
         // test
         // StartCoroutine(BounceAway( ((Vector2)transform.position - GameManager.instance.PlayerPosition).normalized ));
@@ -92,7 +100,7 @@ public class XP : MonoBehaviour
         Vector2 velocity = Vector2.one;
 
         // Follow the player's position
-        while ( (GameManager.instance.PlayerPosition - (Vector2)transform.position).magnitude > 0.05f ) {
+        while ( (GameManager.instance.PlayerPosition - (Vector2)transform.position).magnitude > 0.1f ) {
             Vector2 target = GameManager.instance.PlayerPosition;
             float delayModifier = 1f;
 
@@ -113,7 +121,12 @@ public class XP : MonoBehaviour
     /// <summary>
     /// Triggered when the Item is collected by the Player. Does some cool effects before destroying the object.
     /// </summary>
-    private void Despawn() {
+    public void Despawn() {
         Destroy(gameObject);
     }
+
+
+    /// Public Getters
+    /// <summary>Returns what kind of Item this is.</summary>
+    public ItemType ItemType => itemType;
 }
