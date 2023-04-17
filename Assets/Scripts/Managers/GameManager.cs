@@ -27,7 +27,10 @@ public class GameManager : MonoBehaviour
     }
 
     // Getters
+    /// <summary>The Player object in the scene.</summary>
     public Player Player => player;
-    public Transform PlayerTrans => player.transform;
+    /// <summary>The current position of the Player in world space. </summary>
     public Vector2 PlayerPosition => player.transform.position;
+    /// <summary>The current Sprite image of the Player's body.</summary>
+    public Sprite PlayerSprite => player.Sprite;
 }
