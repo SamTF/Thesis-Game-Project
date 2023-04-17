@@ -56,11 +56,12 @@ public class LevelSystem : MonoBehaviour
 
         // Check if enough to level up
         if (xp >= xpToLevelUp) {
-            level++;            // increment level
-            xp -= xpToLevelUp;  // keep remainder XP
+            level++;                // increment level
+            xp -= xpToLevelUp;      // keep remainder XP
+            onLevelUp?.Invoke();    // trigger the level up event
         }
 
-        // Trigger the Event
+        // Trigger the XP Gain Event
         onXPGained?.Invoke();
 
         // test
