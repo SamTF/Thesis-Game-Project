@@ -82,8 +82,8 @@ public class ExtraMovement : MonoBehaviour
     /// Make the sprite perform a centered rolling animation.
     /// </summary>
     private IEnumerator Roll(float speed=rollSpeed, Axis axis=null, bool clockwise=true) {
-        Transform body = player.SpriteObject;
-        SpriteRenderer sr = player.SpriteObject.GetComponent<SpriteRenderer>();
+        Transform body = player.Body;
+        SpriteRenderer sr = player.Body.GetComponent<SpriteRenderer>();
 
         // Original values
         Vector2 originalPostion = body.position;

@@ -32,16 +32,16 @@ public class Backflip : MonoBehaviour
         if (player.Status.IsBackflipping) {            
             // Fake vertical movement
             verticalVelocity += gravity;
-            player.SpriteObject.localPosition += new Vector3(0, verticalVelocity, 0);
+            player.Body.localPosition += new Vector3(0, verticalVelocity, 0);
 
             // Disable collider
             collider.enabled = false;
 
             // Reset when the player touches the ground
-            if (player.SpriteObject.localPosition.y <= 0) {
+            if (player.Body.localPosition.y <= 0) {
                 player.Status.IsBackflipping = false;               // setting backflipping status to false to stop the movement
 
-                player.SpriteObject.localPosition = Vector3.zero;   // resetting sprite transform to original position
+                player.Body.localPosition = Vector3.zero;   // resetting sprite transform to original position
                 player.transform.eulerAngles = originRotation;      // ... and rotation
                 player.Shadow.localScale = Vector2.one;             // resetting shadow sprite scale
 
@@ -66,7 +66,7 @@ public class Backflip : MonoBehaviour
         float speedMod = axis == Axis.Z ? 1f : 0.5f;
 
         // storing original transform position
-        originPos = player.SpriteObject.position;
+        originPos = player.Body.position;
         originRotation = player.transform.eulerAngles;
 
         // adding horizontal force and setting flipping status
