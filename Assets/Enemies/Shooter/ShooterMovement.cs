@@ -5,12 +5,14 @@ using UnityEngine;
 public class ShooterMovement : EnemyMovementBase
 {
     [Header("Shooter Movement")]
-    [SerializeField][Range(3f, 6f)][Tooltip("Distance from its target at which this Enemy will start to run away.")]
+    [SerializeField][Range(1f, 6f)][Tooltip("Distance from its target at which this Enemy will start to run away.")]
     private float safeDistance = 4f;
     [SerializeField][Range(0f, 5f)][Tooltip("How quickly the Enemy will react to a change in the target's position. Also works as a speed value, kind of.")]
     private float followDelay = 2.00f;
     [SerializeField][Tooltip("How long until this Enemy rotates to a new position (in seconds)")][Range(0f, 4f)]
     private float rotationCooldown = 2f;
+    [SerializeField][Tooltip("Whether this enemy repositions itself every few seconds or not.")]
+    private bool rotatesPosition = true;
 
     private Vector2 velocity = Vector3.one;
     private bool isRunningAway = false;
@@ -94,6 +96,11 @@ public class ShooterMovement : EnemyMovementBase
     /// </summary>
     /// <param name="target">The new position to move to.</param>
     private IEnumerator RunAndGun(Vector2 target) {
+        // Breaks the coroutine if repositioning is disabled
+        if (!rotatesPosition) {
+            yield break;
+        }
+
         // Round the target positions to nearest integers
         target = Vector2Int.RoundToInt(target);
 
@@ -140,4 +147,9 @@ public class ShooterMovement : EnemyMovementBase
 
         return newTarget;
     }
+
+
+    // Public Getters
+    public bool IsMoving => isMoving;
+    public bool IsRunningAway => isRunningAway;
 }

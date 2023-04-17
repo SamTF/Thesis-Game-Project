@@ -19,26 +19,44 @@ public class Shooter : Enemy
     [SerializeField][Tooltip("The projectile will hit objects in these physics layers.")]
     private LayerMask projectileLayer;
 
-    [SerializeField][Tooltip("Speed at which the projectile will travel.")]
+    [SerializeField][Tooltip("Speed at which the projectile will travel.")][Range(5, 15)]
     private float projectileSpeed = 6f;
 
     [SerializeField][Tooltip("How many units the projectile travels before being affected by gravity")][Range(5,15)]
     private int projectileRange = 10;
 
+    [SerializeField]
+    private bool canShootWhileMoving = false;
+
+
+    // Components
+    private ShooterMovement myMovement = null;
+
 
     private void Start() {
+        myMovement = GetComponent<ShooterMovement>();
+        
         StartCoroutine(ShootBehaviour());
     }
 
 
     /// <summary>
-    /// 
+    /// Starts the shooting pattern for this enemy.
     /// </summary>
     /// <returns></returns>
     private IEnumerator ShootBehaviour() {
         while (true) {
             yield return new WaitForSeconds(shootingInterval);
 
+            // Don't shoot while moving or running away
+            if
+            (
+                !canShootWhileMoving &&
+                (myMovement.IsMoving || myMovement.IsRunningAway)
+            )
+                continue;
+
+            // Shoot
             Vector2 shootingVector = (GameManager.instance.PlayerPosition - (Vector2)transform.position).normalized;
             Shoot(shootingVector, projectileSpeed, projectileLayer, projectileRange);   
         }
