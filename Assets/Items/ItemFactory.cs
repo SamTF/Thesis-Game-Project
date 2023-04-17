@@ -7,11 +7,13 @@ using UnityEngine;
 /// </summary>
 public static class ItemFactory
 {
-    public enum ItemType {
-        XP, Heart
-    }
-
-
+    /// <summary>
+    /// Spawns a type of Item into the game.
+    /// </summary>
+    /// <param name="itemType">Which kind of Item to spawn.</param>
+    /// <param name="position">Where to spawn the Item.</param>
+    /// <param name="bounceDirection">Direction for the Item Bounce method.</param>
+    /// <returns></returns>
     public static GameObject Spawn(ItemType itemType, Vector3 position, Vector2 bounceDirection) {
         GameObject itemPrefab = Resources.Load<GameObject>("Items/XP");
 
@@ -23,7 +25,7 @@ public static class ItemFactory
         );
 
         // Initialise the Item
-        item.GetComponent<XP>().Spawn(bounceDirection);
+        item.GetComponent<Item>().Spawn(bounceDirection);
 
         // Return the spawned Item
         return item;
