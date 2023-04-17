@@ -1,13 +1,13 @@
 using UnityEngine;
 using System.IO;
 
+/// <summary>
+/// This class features helper methods to load images from disk and create Sprite objects from them.
+/// </summary>
 public static class ImageLoader
 {
     // CONSTANTS
     private const float pixelsPerUnit = 16f;
-    private static Vector2 pivot =  new Vector2(0.5f, 0.5f);
-    private static Vector2 pivotB = new Vector2(0.5f, 0f);
-    private static Vector2 pivotBL = new Vector2(0f, 0f);
     
 
     /// <summary>
@@ -66,15 +66,21 @@ public static class ImageLoader
     }
 
     /// <summary>
-    /// Simple helper function to create a new Sprite Object from a given texture.
+    /// Creates a Sprite Object from a texture with a custom Rect/slice.
     /// </summary>
-    /// <param name="tex">Image to use for the sprite</param>
-    /// <param name="pivot">Sprite pivot point</param>
-    /// <returns></returns>
-    public static Sprite CreateSprite(Texture2D tex, Pivot pivot) {
+    /// <param name="tex">The spritesheet image.</param>
+    /// <param name="pivot">Sprite pivot point.</param>
+    /// <param name="start">Where to start the rect. (Only set this if creating a sprite from a spritesheet)</param>
+    /// <param name="imageSize">Dimensions of the Sprite. (Only set this if creating a sprite from a spritesheet)</param>
+    /// <returns>A Sprite object.</returns>
+    public static Sprite CreateSprite(Texture2D tex, Pivot pivot, int start=0, Vector2Int? imageSize=null) {
+        // Getting the dimensions for the Sprite Rect. Using Texture dimensions if none were given.
+        Vector2Int rectSize = imageSize == null ? new Vector2Int(tex.width, tex.height) : imageSize.Value;
+
+        // Creating the Sprite object.
         Sprite newSprite = Sprite.Create(
             tex,
-            new Rect(0, 0, tex.width, tex.height),
+            new Rect(start, 0, rectSize.x, rectSize.y),
             pivot.value,
             pixelsPerUnit
         );

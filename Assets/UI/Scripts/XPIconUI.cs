@@ -64,20 +64,20 @@ public class XPIconUI : MonoBehaviour
     private void CreateAllSprites(string textureName, ref Sprite[] spriteArray) {
         Texture2D tex = null;
 
-        // Checking if the player created a custom number spritesheet
+        // Checking if the player created a custom texture
         if (ModManager.ModExists($"{textureName}.{fileType}")) {
             Debug.Log("[XP ICON]>>> Custom texture found");
-            tex = ImageLoader.LoadTextureFromFile(iconName);
+            tex = ImageLoader.LoadTextureFromFile($"{textureName}.{fileType}");
         }
-        // If not, use the default icon
+        // If not, use the default texture
         else {
             Debug.Log("[XP ICON]>>> Loading default texture...");
             tex = Resources.Load($"UI/{textureName}") as Texture2D;  
         }
 
-        for (int i = 0; i < spriteArray.Length; i++)
-        {
-            Sprite s = CreateSprite(tex, Pivot.Center, iconSize.x * i, iconSize);
+        // Create a sprite for each element in the array, and assign to that element
+        for (int i = 0; i < spriteArray.Length; i++) {
+            Sprite s = ImageLoader.CreateSprite(tex, Pivot.Center, iconSize.x * i, iconSize);
             spriteArray[i] = s;
         }
     }
@@ -97,29 +97,5 @@ public class XPIconUI : MonoBehaviour
         int level = LevelSystem.instance.Level;
         int i = Mathf.Clamp(level - 1, 0, numberSprites.Length - 1);
         lvlNumber.sprite = numberSprites[i];
-    }
-
-
-    /// <summary>
-    /// Creates a Sprite from a texture with a custom rect/slice.
-    /// </summary>
-    /// <param name="tex">The spritesheet image.</param>
-    /// <param name="pivot">Sprite pivot point.</param>
-    /// <param name="start">Where to start the rect. Only set this if creating a sprite from a spritesheet.</param>
-    /// <param name="imageSize">Dimensions of the Sprite. Only set this if creating a sprite from a spritesheet.</param>
-    /// <returns>A Sprite object.</returns>
-    private Sprite CreateSprite(Texture2D tex, Pivot pivot, int start=0, Vector2Int? imageSize=null) {
-        // Getting the dimensions for the Sprite Rect. Using Texture dimensions if none were given.
-        Vector2Int rectSize = imageSize == null ? new Vector2Int(tex.width, tex.height) : imageSize.Value;
-
-        // Creating the Sprite object.
-        Sprite newSprite = Sprite.Create(
-            tex,
-            new Rect(start, 0, rectSize.x, rectSize.y),
-            pivot.value,
-            16
-        );
-
-        return newSprite;
     }
 }

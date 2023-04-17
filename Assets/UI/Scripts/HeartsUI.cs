@@ -12,7 +12,7 @@ public class HeartsUI : MonoBehaviour
     [Header("Hearts UI")]
     [SerializeField]
     private string iconName = "Hearts";
-    private const int iconSize = 8;
+    private Vector2Int iconSize = new Vector2Int(8, 8);
     private string fileType = "png";
 
     // Textures & Sprites
@@ -132,33 +132,13 @@ public class HeartsUI : MonoBehaviour
     }
 
 
-    ////// HELPER FUNCTIONS ////////////
-
     /// <summary>
     /// Create all 3 Heart sprites from the texture image.
     /// </summary>
     /// <param name="pivot">Pivot for the heart sprites.</param>
     private void CreateAllSprites(Pivot pivot) {
-        heartFull = CreateSprite(heartTex, pivot, 0 * iconSize);
-        heartHalf = CreateSprite(heartTex, pivot, 1 * iconSize);
-        heartEmpty = CreateSprite(heartTex, pivot, 2 * iconSize);
-    }
-
-    /// <summary>
-    /// Creates a Sprite from a texture with a custom rect/slice.
-    /// </summary>
-    /// <param name="tex">The spritesheet image.</param>
-    /// <param name="pivot">Sprite pivot point.</param>
-    /// <param name="start">Where to start the rect.</param>
-    /// <returns>A Sprite object.</returns>
-    private Sprite CreateSprite(Texture2D tex, Pivot pivot, int start=0) {
-        Sprite newSprite = Sprite.Create(
-            tex,
-            new Rect(start, 0, iconSize, iconSize),
-            pivot.value,
-            16
-        );
-
-        return newSprite;
+        heartFull = ImageLoader.CreateSprite(heartTex, pivot, 0 * iconSize.x, iconSize);
+        heartHalf = ImageLoader.CreateSprite(heartTex, pivot, 1 * iconSize.x, iconSize);
+        heartEmpty = ImageLoader.CreateSprite(heartTex, pivot, 2 * iconSize.x, iconSize);
     }
 }
