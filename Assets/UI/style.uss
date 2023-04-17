@@ -1,0 +1,43 @@
+.HUDContainer {
+    height: 24px;
+    margin-left: 8px;
+    margin-top: 8px;
+    margin-right: 8px;
+    width: auto;
+    margin-bottom: 0;
+    flex-direction: row;
+}
+
+.XPIcon {
+    height: 24px;
+    width: 16px;
+    background-image: resource('UI/XP Icon');
+    -unity-background-scale-mode: scale-to-fit;
+}
+
+.PlayerIconContainer {
+    width: 32px;
+    height: 24px;
+    background-image: resource('UI/Player Icon Panel');
+    -unity-background-scale-mode: scale-to-fit;
+    justify-content: center;
+    align-items: center;
+}
+
+.PlayerIcon {
+    width: 16px;
+    height: 16px;
+    background-image: url('project://database/Assets/Player/funny_guy_rc.png?fileID=2800000&guid=1646a22b6d81312458ff660fea82ef4a&type=3#funny_guy_rc');
+    -unity-background-scale-mode: scale-to-fit;
+}
+
+.HeartsContainer {
+    flex-direction: row;
+    align-items: center;
+}
+
+.HeartIcon {
+    height: 16px;
+    width: 16px;
+    -unity-background-scale-mode: scale-to-fit;
+}

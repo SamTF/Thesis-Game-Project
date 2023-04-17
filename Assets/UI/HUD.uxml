@@ -1,0 +1,15 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/style.uss?fileID=7433441132597879392&amp;guid=ee8b41938529e0446b01eb918071039c&amp;type=3#style" />
+    <ui:VisualElement name="HUDContainer" tooltip="Container for all the HUD elements at the top of the screen" focusable="false" class="HUDContainer">
+        <ui:VisualElement name="XPIcon" tooltip="Shows the Player&apos;s current XP" class="XPIcon" />
+        <ui:VisualElement name="PlayerIconContainer" tooltip="Container for the Player Sprite and a background image" class="PlayerIconContainer">
+            <ui:VisualElement name="PlayerIcon" tooltip="Image of the Player&apos;s Spute" class="PlayerIcon" style="display: flex;" />
+            <MyImage name="PlayerSprite" tooltip="Displays the Player&apos;s Sprite using unity Image" />
+        </ui:VisualElement>
+        <ui:VisualElement name="HeartsContainer" tooltip="Container for all the Heart Icons" class="HeartsContainer">
+            <ui:VisualElement name="Heart" tooltip="Heart Icon displaying Player&apos;s HP value" class="HeartIcon" style="background-image: resource(&apos;UI/Hearts_multiple&apos;);" />
+            <ui:VisualElement name="Heart" tooltip="Heart Icon displaying Player&apos;s HP value" class="HeartIcon" style="background-image: resource(&apos;UI/Hearts_multiple&apos;);" />
+            <ui:VisualElement name="Heart" tooltip="Heart Icon displaying Player&apos;s HP value" class="HeartIcon" style="background-image: resource(&apos;UI/Hearts_multiple&apos;);" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
