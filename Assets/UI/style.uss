@@ -13,6 +13,8 @@
     width: 16px;
     background-image: resource('UI/XP Icon');
     -unity-background-scale-mode: scale-to-fit;
+    align-items: center;
+    justify-content: center;
 }
 
 .PlayerIconContainer {
