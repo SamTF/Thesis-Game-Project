@@ -72,10 +72,6 @@ public class SmoothFollow : EnemyMovementBase
             delay = followDelay / 4f;
         }
 
-        // debug
-        Debug.Log($"Distance >>> {distance2target}");
-        Debug.Log($"Delay >>> {delay}");
-
         // Smooth movement
         transform.position = Vector2.SmoothDamp(transform.position, target, ref velocity, delay);
         rb.velocity = Vector2.zero;
