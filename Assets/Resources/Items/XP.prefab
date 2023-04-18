@@ -271,7 +271,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   followDelay: 0.25
-  detectionRadius: 1.5
+  detectionRadius: 2
   detectionTransform: {fileID: 993870901935394775}
   body: {fileID: 993870902370437547}
 --- !u!50 &993870902414221192
