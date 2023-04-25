@@ -9,12 +9,6 @@ using UnityEngine.UIElements;
 public class HUDController : MonoBehaviour
 {
     [Header("HUD CONTROLLER")]
-    [SerializeField]
-    private int goblin = 1;
-    [SerializeField]
-    private Sprite newSpriteTest = null;
-    [SerializeField]
-    private Sprite heartSpriteTest = null;
 
     //  Objects to update at runtime
     /// <summary>Player Icon element using Visual Element</summary>
@@ -22,18 +16,14 @@ public class HUDController : MonoBehaviour
     /// <summary>Player Icon using a UI Image sprite.</summary>
     private MyImage playerSprite;
 
-    private VisualElement heartsContainer;
-
 
     private void Start() {
         VisualElement root = GetComponent<UIDocument>().rootVisualElement;
 
         uiPlayerIcon = root.Q<VisualElement>("PlayerIcon");
         playerSprite = root.Q<MyImage>("PlayerSprite");
-        heartsContainer = root.Q<VisualElement>("HeartsContainer");
 
-        // from: https://stackoverflow.com/questions/70222544/dynamically-change-visual-elements-background-image-in-unity-ui-builder
-        uiPlayerIcon.style.backgroundImage = new StyleBackground(newSpriteTest);
+        // Hide placeholder icon
         uiPlayerIcon.style.display = DisplayStyle.None;
 
         // Using my Image class 
