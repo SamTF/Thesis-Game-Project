@@ -65,7 +65,8 @@ public class EnemyMovement : MonoBehaviour
         FollowDelayed,
         Orbit,
         ScreenRelative,
-        ScreenBounce
+        ScreenBounce,
+        RunAway
     }
 
 
@@ -107,6 +108,11 @@ public class EnemyMovement : MonoBehaviour
             );
             rb.velocity = initialDirection.normalized * screenBounceSpeed;
         }
+
+        else if (movementType == MovementType.RunAway) {
+            Vector2 targetPosition = GameManager.instance.PlayerPosition + (Random.insideUnitCircle.normalized * 6f);
+            StartCoroutine(Gunner2(targetPosition));
+        }
     }
 
     private void FixedUpdate() {
@@ -136,6 +142,11 @@ public class EnemyMovement : MonoBehaviour
 
             case MovementType.ScreenBounce:
                 ScreenBounce();
+                break;
+
+            case MovementType.RunAway:
+                // RunAndGun(target);
+                Gunner(target);
                 break;
 
             default:
@@ -334,6 +345,113 @@ public class EnemyMovement : MonoBehaviour
             rb.velocity = Vector2.ClampMagnitude(newVelocity * bounceModifier, 10f);
         }
     }
+
+
+    private bool isRunningAway = false;
+    private void RunAndGun(Vector2 target) {
+        float distance2target = (target - (Vector2)transform.position).magnitude;
+        target += Random.insideUnitCircle * 3f;
+
+        float minimumDistance = 3.5f + Mathf.Sin(Time.time * 0.5f);
+
+        if (distance2target < 3.5f) {
+            // Vector away from the target
+            Vector3 runAwayDirection = Vector3.ClampMagnitude(((transform.position - (Vector3)target) * 2f), 5f);
+            Vector3 runAwayTarget = transform.position + runAwayDirection;
+
+            // Run Away coroutine
+            if (!isRunningAway) StartCoroutine(RunAway(runAwayTarget));
+        } else {
+            // Vector3 movement = new Vector3(Mathf.Sin(Time.time * 5f), Mathf.Cos(Time.time * 5f), 0f);
+            // transform.position = new Vector3(7, 0, 0) + movement;
+        }
+    }
+
+    private IEnumerator RunAway(Vector2 target) {
+        isRunningAway = true;
+        target = Vector2Int.RoundToInt(target);
+        Debug.Log(target);
+        Vector2 difference = (Vector2)transform.position - target;
+        Debug.Log(difference);
+
+        Debug.Log("AAAAHH RUN AWAY!!");
+
+        float distance2target = (target - (Vector2)transform.position).magnitude;
+
+        while (Vector2Int.RoundToInt(transform.position) != target)
+        {
+            Vector2 movement = Vector2.SmoothDamp(
+                transform.position,
+                target,
+                ref velocity,
+                followDelay/3f
+            );
+
+            // Sine wave movement?
+            // movement += new Vector2(Mathf.Sin(Time.time * 5f) * 0.1f, Mathf.Sin(Time.time * 3.5f) * -0.075f);
+            transform.position = movement;
+
+            yield return new WaitForFixedUpdate();
+        }
+
+        isRunningAway = false;
+    }
+
+    private IEnumerator Gunner(Vector2 target) {
+        target = Vector2Int.RoundToInt(target);
+        // Debug.Log(target);
+
+        while (Vector2Int.RoundToInt(transform.position) != target)
+        {
+            transform.position = Vector2.SmoothDamp(transform.position, target, ref velocity, followDelay);
+            rb.velocity = Vector2.zero;
+
+            yield return new WaitForFixedUpdate();
+        }
+
+        yield return new WaitForSeconds(1f);
+
+        Vector2 newTarget = GameManager.instance.PlayerPosition + (Random.insideUnitCircle.normalized * 5f );
+        Vector2 difference = (Vector2)transform.position - target;
+        Debug.Log(difference);
+        Debug.Log(difference.magnitude);
+
+        if (difference.magnitude < 0.55f) {
+            newTarget = GameManager.instance.PlayerPosition + (Random.insideUnitCircle.normalized * 6f );
+            difference = (Vector2)transform.position - target;
+            Debug.Log(difference);
+            Debug.Log(difference.magnitude);
+        }
+
+        StartCoroutine( Gunner( newTarget ));
+    }
+
+    private IEnumerator Gunner2(Vector2 target) {
+        target = Vector2Int.RoundToInt(target);
+
+        while (Vector2Int.RoundToInt(transform.position) != target)
+        {
+            transform.position = Vector2.SmoothDamp(transform.position, target, ref velocity, followDelay/2f);
+            rb.velocity = Vector2.zero;
+
+            yield return new WaitForFixedUpdate();
+        }
+
+        yield return new WaitForSeconds(1f);
+
+        float distance2player = ((Vector2)transform.position - GameManager.instance.PlayerPosition).magnitude;
+        Vector2 newTarget;
+
+        if (distance2player > 7f) {
+            newTarget = GameManager.instance.PlayerPosition + (Random.insideUnitCircle.normalized * 5f );
+        } else {
+            newTarget = (Vector2)transform.position + (Random.insideUnitCircle.normalized * 3f );
+        }
+
+        StartCoroutine( Gunner2 ( newTarget ));
+    }
+
+    
 
 
     ///// Stop following if the Player is dead

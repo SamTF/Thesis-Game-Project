@@ -337,7 +337,7 @@ MonoBehaviour:
     m_Bits: 64
   projectileSpeed: 8
   projectileRange: 10
-  canShootWhileMoving: 0
+  canShootWhileMoving: 1
 --- !u!114 &5943692369010613541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -351,6 +351,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flashMaterial: {fileID: 2100000, guid: b003a2d2e12788b46a840ee661fe1e28, type: 2}
+  useAnimator: 1
 --- !u!114 &274869092633771267
 MonoBehaviour:
   m_ObjectHideFlags: 0

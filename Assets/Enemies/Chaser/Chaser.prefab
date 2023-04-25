@@ -125,6 +125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flashMaterial: {fileID: 2100000, guid: b003a2d2e12788b46a840ee661fe1e28, type: 2}
+  useAnimator: 1
 --- !u!1 &1802443261690855194
 GameObject:
   m_ObjectHideFlags: 0
