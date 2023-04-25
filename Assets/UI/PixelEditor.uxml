@@ -25,5 +25,9 @@
                 <ui:Button text="Save" display-tooltip-when-elided="true" name="BtnSave" class="UIButton" />
             </ui:VisualElement>
         </ui:VisualElement>
+        <ui:VisualElement name="RightMargin" style="height: 100%; width: 33%; align-items: center; justify-content: center;">
+            <ui:VisualElement name="Preview" style="width: 64px; height: 64px;" />
+            <ui:Label text="PREVIEW" display-tooltip-when-elided="true" style="-unity-font-definition: url(&apos;project://database/Assets/TextMesh%20Pro/Fonts/FOT-NewRodin%20Pro%20EB%20SDF%201.asset?fileID=11400000&amp;guid=385e7130eb8c9a64cabe54a07d8eefd5&amp;type=2#FOT-NewRodin Pro EB SDF 1&apos;); font-size: 8px;" />
+        </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>
