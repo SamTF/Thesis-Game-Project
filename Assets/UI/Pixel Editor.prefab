@@ -61,5 +61,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d61d762b9a1af504f8092acf27a481ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pixelBlockElement: Pixel
-  canvasElement: Canvas
+  pixelBlockID: Pixel
+  canvasID: Canvas
+  paletteContainerID: PaletteContainer
+  saveButtonID: BtnSave
+  spritePreviewID: Preview
