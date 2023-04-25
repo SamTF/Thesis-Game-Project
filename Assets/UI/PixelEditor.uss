@@ -1,0 +1,133 @@
+* {
+    cursor: url('project://database/Assets/UI/Static%20Images/Cursors/Pencil%20Cursor%2060x60.png?fileID=2800000&guid=ab40817c063c1e0439b910e642de97b5&type=3#Pencil Cursor 60x60');
+}
+
+.MainContainer {
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.Canvas {
+    flex-direction: row;
+    flex-shrink: 1;
+    flex-grow: 0;
+    width: 256px;
+    height: 256px;
+    flex-wrap: wrap;
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+    border-left-color: rgb(0, 0, 0);
+    border-right-color: rgb(0, 0, 0);
+    border-top-color: rgb(0, 0, 0);
+    border-bottom-color: rgb(0, 0, 0);
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.Pixel {
+    width: 16px;
+    height: 16px;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    display: flex;
+    border-left-width: 0;
+    border-right-width: 1px;
+    border-top-width: 0;
+    border-bottom-width: 1px;
+    border-left-color: rgb(175, 175, 255);
+    border-right-color: rgb(175, 175, 255);
+    border-top-color: rgb(175, 175, 255);
+    border-bottom-color: rgb(175, 175, 255);
+    background-color: rgb(255, 255, 255);
+}
+
+.ColourItem {
+    width: 80%;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 10px;
+    flex-direction: row;
+}
+
+.ColourPicker {
+    width: 32px;
+    height: 32px;
+    border-left-color: rgb(0, 0, 0);
+    border-right-color: rgb(0, 0, 0);
+    border-top-color: rgb(0, 0, 0);
+    border-bottom-color: rgb(0, 0, 0);
+    border-left-width: 4px;
+    border-right-width: 4px;
+    border-top-width: 4px;
+    border-bottom-width: 4px;
+}
+
+.StatText {
+    -unity-font: url('project://database/Assets/TextMesh%20Pro/Fonts/FOT-NewRodin%20Pro%20EB.otf?fileID=12800000&guid=c059d593910e06a4fac86ca39cbc2c4a&type=3#FOT-NewRodin Pro EB');
+    -unity-font-definition: url('project://database/Assets/TextMesh%20Pro/Fonts/FOT-NewRodin%20Pro%20EB%20SDF%201.asset?fileID=11400000&guid=385e7130eb8c9a64cabe54a07d8eefd5&type=2#FOT-NewRodin Pro EB SDF 1');
+    -unity-text-align: middle-left;
+    white-space: normal;
+}
+
+.UIButton {
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-left-width: 4px;
+    border-right-width: 4px;
+    border-top-width: 4px;
+    border-bottom-width: 4px;
+    border-left-color: rgb(0, 108, 149);
+    border-right-color: rgb(0, 108, 149);
+    border-top-color: rgb(0, 108, 149);
+    border-bottom-color: rgb(0, 108, 149);
+    background-color: rgb(50, 187, 224);
+    color: rgb(255, 255, 255);
+    -unity-font-definition: url('project://database/Assets/TextMesh%20Pro/Fonts/FOT-NewRodin%20Pro%20EB%20SDF%201.asset?fileID=11400000&guid=385e7130eb8c9a64cabe54a07d8eefd5&type=2#FOT-NewRodin Pro EB SDF 1');
+    -unity-font: url('project://database/Assets/TextMesh%20Pro/Fonts/FOT-NewRodin%20Pro%20EB.otf?fileID=12800000&guid=c059d593910e06a4fac86ca39cbc2c4a&type=3#FOT-NewRodin Pro EB');
+    transition-duration: 200ms, 5ms, 5ms;
+    transition-property: scale, background-color, border-color;
+}
+
+.UIButton:hover {
+    scale: 1.1 1.1;
+}
+
+.UIButton:active {
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+    border-left-color: rgba(0, 108, 149, 0);
+    border-right-color: rgba(0, 108, 149, 0);
+    border-top-color: rgba(0, 108, 149, 0);
+    border-bottom-color: rgba(0, 108, 149, 0);
+    background-color: rgb(0, 108, 149);
+    color: rgb(255, 255, 255);
+    -unity-font-definition: url('project://database/Assets/TextMesh%20Pro/Fonts/FOT-NewRodin%20Pro%20EB%20SDF%201.asset?fileID=11400000&guid=385e7130eb8c9a64cabe54a07d8eefd5&type=2#FOT-NewRodin Pro EB SDF 1');
+    -unity-font: url('project://database/Assets/TextMesh%20Pro/Fonts/FOT-NewRodin%20Pro%20EB.otf?fileID=12800000&guid=c059d593910e06a4fac86ca39cbc2c4a&type=3#FOT-NewRodin Pro EB');
+    transition-duration: 200ms;
+    scale: 1.2 0.8;
+}

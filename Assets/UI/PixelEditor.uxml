@@ -1,0 +1,29 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/PixelEditor.uss?fileID=7433441132597879392&amp;guid=448a968f046f24e4c9bede2a598c7432&amp;type=3#PixelEditor" />
+    <ui:VisualElement name="Container" class="MainContainer" style="background-image: none; -unity-background-scale-mode: scale-to-fit; background-color: rgb(255, 255, 235); flex-direction: row; justify-content: flex-start;">
+        <ui:VisualElement name="LeftSidebar" style="width: 33%; height: 100%; flex-direction: column; align-items: stretch; flex-wrap: wrap;">
+            <ui:VisualElement name="PaperMargin" style="height: 100%; width: 64px; border-left-color: rgb(217, 87, 99); border-right-color: rgb(217, 87, 99); border-top-color: rgb(217, 87, 99); border-bottom-color: rgb(217, 87, 99); border-right-width: 4px; align-items: center; flex-grow: 1;">
+                <ui:VisualElement name="PaperHole" style="background-color: rgb(51, 51, 51); border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); width: 32px; height: 32px; border-top-left-radius: 100%; border-bottom-left-radius: 100%; border-top-right-radius: 100%; border-bottom-right-radius: 100%; margin-left: 0; margin-right: 0; margin-top: auto; margin-bottom: auto;" />
+                <ui:VisualElement name="PaperHole" style="background-color: rgb(51, 51, 51); border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); width: 32px; height: 32px; border-top-left-radius: 100%; border-bottom-left-radius: 100%; border-top-right-radius: 100%; border-bottom-right-radius: 100%; margin-left: 0; margin-right: 0; margin-top: auto; margin-bottom: auto;" />
+                <ui:VisualElement name="PaperHole" style="background-color: rgb(51, 51, 51); border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); width: 32px; height: 32px; border-top-left-radius: 100%; border-bottom-left-radius: 100%; border-top-right-radius: 100%; border-bottom-right-radius: 100%; margin-left: 0; margin-right: 0; margin-top: auto; margin-bottom: auto;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="PaletteContainer" style="height: 100%; width: 80%; align-items: center; flex-grow: 1; justify-content: center;">
+                <ui:VisualElement name="ColourItem" class="ColourItem">
+                    <ui:Button display-tooltip-when-elided="true" name="ColourPicker" class="ColourPicker" />
+                    <ui:Label text="Colour Stat" display-tooltip-when-elided="true" enable-rich-text="true" name="StatText" class="StatText" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="Main" style="align-items: center; justify-content: center; width: 33%; height: 100%;">
+            <ui:VisualElement name="Header" style="-unity-font: url(&apos;project://database/Assets/TextMesh%20Pro/Fonts/FOT-NewRodin%20Pro%20EB.otf?fileID=12800000&amp;guid=c059d593910e06a4fac86ca39cbc2c4a&amp;type=3#FOT-NewRodin Pro EB&apos;); -unity-font-definition: url(&apos;project://database/Assets/TextMesh%20Pro/Fonts/FOT-NewRodin%20Pro%20EB%20SDF%201.asset?fileID=11400000&amp;guid=385e7130eb8c9a64cabe54a07d8eefd5&amp;type=2#FOT-NewRodin Pro EB SDF 1&apos;); font-size: 36px; -unity-text-align: upper-center; margin-top: 10%; margin-bottom: 10%; margin-left: 0; margin-right: 0;">
+                <ui:Label text="Pixel Art Editor" display-tooltip-when-elided="true" />
+            </ui:VisualElement>
+            <ui:VisualElement name="Canvas" class="Canvas" style="border-left-width: 4px; border-right-width: 4px; border-top-width: 4px; border-bottom-width: 4px; width: 264px; height: 264px; margin-top: 0; margin-bottom: 0; margin-left: 0; margin-right: 0;">
+                <ui:Button display-tooltip-when-elided="true" name="Pixel" class="Pixel" style="display: none;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="Buttons" style="margin-left: 0; margin-right: 0; margin-top: 10%; margin-bottom: 10%; width: 100%;">
+                <ui:Button text="Save" display-tooltip-when-elided="true" name="BtnSave" class="UIButton" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
