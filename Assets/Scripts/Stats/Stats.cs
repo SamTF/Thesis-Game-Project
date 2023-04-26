@@ -94,6 +94,7 @@ public class Stats : MonoBehaviour
     }
 
     // Getters
+    public Dictionary<Color, Stat> Colour2Stat => colour2Stat;
     public Stat Attack => attribute2Stat[Attribute.Attack];
     public Stat Health => attribute2Stat[Attribute.Health];
     public Stat MoveSpeed => attribute2Stat[Attribute.MoveSpeed];
