@@ -181,15 +181,16 @@ public class PixelEditor : MonoBehaviour
         // Remove any existing element
         colourPalette.Clear();
 
-        Colour[] colours = Palette.ColourObjects;
+        Color[] colours = Palette.Colours;
 
         // Create new elements
         for (int i = 0; i < 4; i++)
         {
-            Colour colour = colours[i];
+            Color colour = colours[i];
+            string text = GameManager.instance.PlayerStats.Colour2Stat[colour].Name;
 
             // Instantiate new ColourItem and add it to the UI
-            ColourItem colourItem = new ColourItem(colour.colour, colour.hexColour, SetColour);
+            ColourItem colourItem = new ColourItem(colour, text, SetColour);
             colourPalette.Add(colourItem);
         }
     }
@@ -245,8 +246,21 @@ public class PixelEditor : MonoBehaviour
     /// Saves the drawn texture to disk -> CUSTOM folder
     /// </summary>
     private void SaveTexture() {
+        // Don't save the image if it has already been saved - kinda hacky way but it's only for now
+        if (saveButton.text == "SAVED!")    return;
+
+        // encode texture to byte array
         byte[] texBytes = drawingTex.EncodeToPNG();
-        System.IO.File.WriteAllBytes($"{ModManager.ModDirectory}/test.png", texBytes);
+
+        // Hash the bytes to generate a unique filenames - why not?
+        Hash128 hash = new Hash128();
+        hash.Append(texBytes);
+        
+        // Save bytes as a PNG in the CUSTOM/MyDrawings folder (for now)
+        System.IO.File.WriteAllBytes($"{ModManager.ModDirectory}/MyDrawings/{hash.ToString()}.png", texBytes);
+
+        // Update button text
+        saveButton.text = "SAVED!";
     }
 
 }
