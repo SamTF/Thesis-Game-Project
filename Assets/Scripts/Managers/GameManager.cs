@@ -33,4 +33,6 @@ public class GameManager : MonoBehaviour
     public Vector2 PlayerPosition => player.transform.position;
     /// <summary>The current Sprite image of the Player's body.</summary>
     public Sprite PlayerSprite => player.Sprite;
+    /// <summary>The Stats Colours of the Player and their current values.</summary>
+    public Stats PlayerStats => player.Stats;
 }
