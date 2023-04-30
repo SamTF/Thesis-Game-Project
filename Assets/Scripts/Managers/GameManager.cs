@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     // Events
     public static event Action onPause;
     public static event Action onRestart;
+    public static event Action onLevelStart;
 
     /// Singleton thing
     private static GameManager _instance = null;
@@ -36,12 +37,24 @@ public class GameManager : MonoBehaviour
         Palette.LoadPalette();
     }
 
-
+    // Game-wide Input
     private void Update() {
         // Pause Button Pressed
         if(Input.GetButtonDown("Pause")) {
             gameIsPaused = !gameIsPaused;
             onPause?.Invoke();
+        }
+    }
+
+    /// <summary>
+    /// Triggers an event when the current scene first loads
+    /// </summary>
+    private void OnLevelStart(Scene scene, LoadSceneMode mode) {
+        onLevelStart?.Invoke();
+
+        // it's probably best to just make the player a singleton tbh...
+        if (!player) {
+            player = FindObjectOfType<Player>();
         }
     }
 
@@ -52,6 +65,14 @@ public class GameManager : MonoBehaviour
         onRestart?.Invoke();
         int currentLevel = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(currentLevel);
+    }
+
+    // Subscribing to Events
+    private void OnEnable() {
+        SceneManager.sceneLoaded += OnLevelStart;
+    }
+    private void OnDisable() {
+        SceneManager.sceneLoaded -= OnLevelStart;
     }
 
     // Getters
