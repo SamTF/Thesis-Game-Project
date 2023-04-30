@@ -8,9 +8,12 @@ using UnityEngine.UIElements;
 /// </summary>
 public class PixelBlockUI : MyButton
 {
-    // Vars
-    private string cssClass = "Pixel";
-    private Vector2Int position;
+    // Constants
+    private const string cssClass = "Pixel";
+    private readonly Vector2Int position;
+    private readonly Color originalColour;
+
+    // Variables
     private Color colour;
 
     /// <summary>
@@ -19,10 +22,13 @@ public class PixelBlockUI : MyButton
     /// <param name="position">(X,Y) Position in the Canvas/Image grid.</param>
     /// <param name="colour">Default starting colour.</param>
     public PixelBlockUI(Vector2Int position, Color colour, string name="Pixel Block") {
+        // Vars
         this.position = position;
+        this.originalColour = colour;
         this.colour = colour;
         this.name = name;
 
+        // Styles
         this.style.backgroundColor = colour;
         this.AddToClassList(cssClass);
         // this.pickingMode = PickingMode.Position;
@@ -44,4 +50,7 @@ public class PixelBlockUI : MyButton
             this.style.backgroundColor = value;
         }
     }
+
+    /// <summary>The original colour that this Pixel had when it was created.</summary>
+    public Color OriginalColour => originalColour;
 }
