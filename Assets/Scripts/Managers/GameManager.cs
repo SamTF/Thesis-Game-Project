@@ -1,11 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    [Header("GAME MANAGER")]
     [SerializeField]
     private Player player = null;
+
+    // Status
+    private bool gameIsPaused = false;
+
+    // Events
+    public static event Action onPause;
+    public static event Action onRestart;
 
     /// Singleton thing
     private static GameManager _instance = null;
@@ -24,6 +34,24 @@ public class GameManager : MonoBehaviour
 
         ModManager.ListMods();
         Palette.LoadPalette();
+    }
+
+
+    private void Update() {
+        // Pause Button Pressed
+        if(Input.GetButtonDown("Pause")) {
+            gameIsPaused = !gameIsPaused;
+            onPause?.Invoke();
+        }
+    }
+
+    /// <summary>
+    /// Restarts the current level
+    /// </summary>
+    public void RestartLevel() {
+        onRestart?.Invoke();
+        int currentLevel = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(currentLevel);
     }
 
     // Getters

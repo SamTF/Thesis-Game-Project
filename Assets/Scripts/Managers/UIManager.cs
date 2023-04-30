@@ -9,6 +9,9 @@ public class UIManager : MonoBehaviour
     private Transform panel = null;
     [SerializeField]
     private GameObject textPrefab = null;
+    [SerializeField]
+    private GameObject pauseMenu = null;
+    private PauseMenu pauseMenuInstance = null;
 
     // Singleton Thing
     private static UIManager _instance = null;
@@ -24,6 +27,14 @@ public class UIManager : MonoBehaviour
         else                    { Destroy(gameObject); }
 
         DontDestroyOnLoad(this.gameObject);
+    }
+
+    // Events
+    private void OnEnable() {
+        GameManager.onPause += PauseMenuToggle;
+    }
+    private void OnDisable() {
+        GameManager.onPause -= PauseMenuToggle;
     }
 
     /// <summary>
@@ -60,5 +71,20 @@ public class UIManager : MonoBehaviour
             textUI.text = text;
             textUI.color = s.Colour;
         }
+    }
+
+    /// <summary>
+    /// Show the Pause Menu, or resume the Game if the pause menu is already visible.
+    /// </summary>
+    private void PauseMenuToggle() {
+        // If a pause menu instance already exists, resume the game
+        if (pauseMenuInstance) {
+            pauseMenuInstance.OnResumeGame();
+            return;
+        }
+            
+        // Instantiate a Pause Menu
+        GameObject pauseMenuObject = Instantiate(pauseMenu);
+        pauseMenuInstance = pauseMenuObject.GetComponent<PauseMenu>();
     }
 }
