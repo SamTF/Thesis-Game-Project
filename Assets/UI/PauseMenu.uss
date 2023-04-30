@@ -1,0 +1,47 @@
+.MainContainer {
+    width: 144px;
+    height: 128px;
+    scale: 1 1;
+}
+
+.Header {
+    height: 32px;
+    margin-top: 8px;
+}
+
+.menu-item {
+    font-size: 8px;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    -unity-font-definition: url('project://database/Assets/UI%20Toolkit/Fonts/Precise-M.asset?fileID=11400000&guid=8377d9355ba010940a8750895108b850&type=2#Precise-M');
+    -unity-font-style: normal;
+    color: rgb(102, 93, 83);
+    -unity-text-align: upper-center;
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.menu-item:focus {
+    font-size: 8px;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    -unity-font-definition: url('project://database/Assets/UI%20Toolkit/Fonts/Precise-M%20Bold.asset?fileID=11400000&guid=985ca571f19bb384a829249fbd98f274&type=2#Precise-M Bold');
+    -unity-font-style: normal;
+    color: rgb(51, 47, 42);
+    -unity-text-align: upper-center;
+}

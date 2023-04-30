@@ -1,0 +1,12 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/PauseMenu.uss?fileID=7433441132597879392&amp;guid=120d2a438745e6545a1e7bfe4a39e0b2&amp;type=3#PauseMenu" />
+    <ui:VisualElement name="MainContainer" focusable="false" class="MainContainer">
+        <ui:VisualElement name="Header" class="Header" />
+        <ui:VisualElement name="MenuItems" focusable="false" style="margin-top: 8px; justify-content: flex-start; align-items: center; margin-left: 0; margin-right: 0; margin-bottom: 0;">
+            <ui:Button text="resume" display-tooltip-when-elided="true" name="resume" class="menu-item" />
+            <ui:Button text="options" display-tooltip-when-elided="true" name="options" tabindex="1" class="menu-item" />
+            <ui:Button text="restart" display-tooltip-when-elided="true" name="restart" tabindex="2" class="menu-item" />
+            <ui:Button text="menu" display-tooltip-when-elided="true" name="menu" tabindex="3" class="menu-item" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
