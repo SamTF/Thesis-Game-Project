@@ -80,7 +80,6 @@ public class PauseMenu : MonoBehaviour
     /// </summary>
     /// https://forum.unity.com/threads/focus-doesnt-seem-to-work.901130/
     private void SetFocus() {
-        Debug.Log("poop");
         resumeBtn.focusable = true;
         resumeBtn.Focus();
         // element.RegisterCallback<AttachToPanelEvent>(evt => element.Focus());
@@ -120,6 +119,7 @@ public class PauseMenu : MonoBehaviour
     /// Restart the current level
     /// </summary>
     private void RestartLevel() {
+        Time.timeScale = 1f;
         GameManager.instance.RestartLevel();
     }
 
@@ -150,5 +150,13 @@ public class PauseMenu : MonoBehaviour
 
         // Callback to execute after animation is over
         callback?.Invoke();
+    }
+
+
+    /// <summary>
+    /// Reset the singleton
+    /// </summary>
+    private void OnDestroy() {
+        if (this == _instance) { _instance = null; }
     }
 }
