@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using System;
 
+/// <summary>
+/// UI Element in World Space that pauses the game, and displays a pause menu with various options.
+/// </summary>
 public class PauseMenu : MonoBehaviour
 {
     [SerializeField]
