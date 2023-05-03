@@ -1,0 +1,39 @@
+.main-container {
+    width: 119px;
+    height: 138px;
+    background-image: url('project://database/Assets/UI/Static%20Images/palette.png?fileID=2800000&guid=5fe87c53a73546543948a80d31886480&type=3#palette');
+    -unity-background-scale-mode: scale-to-fit;
+}
+
+.colour-splash {
+    width: 24px;
+    height: 24px;
+    position: absolute;
+}
+
+.colour-splash Button {
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    background-color: rgba(188, 188, 188, 0);
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.colour-splash MyImage {
+    width: 24px;
+    height: 24px;
+    background-image: url('project://database/Assets/UI/Static%20Images/Colour%20Splashes/splash0.png?fileID=21300000&guid=b62c37a6535a56d4ebf7dd8274825d34&type=3#splash0');
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+}

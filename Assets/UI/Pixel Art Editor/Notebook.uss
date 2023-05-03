@@ -1,0 +1,25 @@
+.PixelElement {
+    width: 7px;
+    height: 7px;
+    margin-left: 1px;
+    margin-top: 1px;
+    background-color: rgb(255, 255, 255);
+}
+
+.pixel {
+    margin-left: 1px;
+    margin-right: 0;
+    margin-top: 1px;
+    margin-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    width: 7px;
+    height: 7px;
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+    background-color: rgb(255, 255, 255);
+}

@@ -1,0 +1,54 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Notebook.uss?fileID=7433441132597879392&amp;guid=e5efe42683f86f94e994d88b88519381&amp;type=3#Notebook" />
+    <ui:VisualElement name="MainContainer" style="width: 100%; height: 100%; align-items: center; justify-content: center; background-image: url(&apos;project://database/Assets/UI/Static%20Images/Colouring%20Notebook.png?fileID=2800000&amp;guid=9d89277f69f12f3448d1a405fb3492b3&amp;type=3#Colouring Notebook&apos;);">
+        <ui:VisualElement name="ColourPalette" style="width: 86px; height: 110px; position: absolute; top: 106px; left: -17px;" />
+        <ui:VisualElement name="Notebook" style="width: 240px; height: 168px; position: absolute; top: 33px; left: 33px;">
+            <ui:VisualElement name="Canvas" style="position: absolute; width: 128px; height: 128px; left: 55px; top: 23px; right: auto; flex-direction: row; flex-wrap: wrap;">
+                <ui:Button display-tooltip-when-elided="true" name="PixelBlock" enable-rich-text="false" class="pixel" />
+                <ui:Button display-tooltip-when-elided="true" name="PixelBlock" enable-rich-text="false" class="pixel" />
+                <ui:Button display-tooltip-when-elided="true" name="PixelBlock" enable-rich-text="false" class="pixel" />
+                <ui:Button display-tooltip-when-elided="true" name="PixelBlock" enable-rich-text="false" class="pixel" />
+                <ui:Button display-tooltip-when-elided="true" name="PixelBlock" enable-rich-text="false" class="pixel" />
+                <ui:Button display-tooltip-when-elided="true" name="PixelBlock" enable-rich-text="false" class="pixel" />
+                <ui:Button display-tooltip-when-elided="true" name="PixelBlock" enable-rich-text="false" class="pixel" />
+                <ui:Button display-tooltip-when-elided="true" name="PixelBlock" enable-rich-text="false" class="pixel" />
+                <ui:Button display-tooltip-when-elided="true" name="PixelBlock" enable-rich-text="false" class="pixel" />
+                <ui:Button display-tooltip-when-elided="true" name="PixelBlock" enable-rich-text="false" class="pixel" />
+                <ui:Button display-tooltip-when-elided="true" name="PixelBlock" enable-rich-text="false" class="pixel" />
+                <ui:Button display-tooltip-when-elided="true" name="PixelBlock" enable-rich-text="false" class="pixel" />
+                <ui:Button display-tooltip-when-elided="true" name="PixelBlock" enable-rich-text="false" class="pixel" />
+                <ui:Button display-tooltip-when-elided="true" name="PixelBlock" enable-rich-text="false" class="pixel" />
+                <ui:Button display-tooltip-when-elided="true" name="PixelBlock" enable-rich-text="false" class="pixel" />
+                <ui:Button display-tooltip-when-elided="true" name="PixelBlock" enable-rich-text="false" class="pixel" />
+                <ui:Button display-tooltip-when-elided="true" name="PixelBlock" enable-rich-text="false" class="pixel" />
+                <ui:Button display-tooltip-when-elided="true" name="PixelBlock" enable-rich-text="false" class="pixel" />
+                <ui:Button display-tooltip-when-elided="true" name="PixelBlock" enable-rich-text="false" class="pixel" />
+                <ui:Button display-tooltip-when-elided="true" name="PixelBlock" enable-rich-text="false" class="pixel" />
+                <ui:Button display-tooltip-when-elided="true" name="PixelBlock" enable-rich-text="false" class="pixel" />
+                <ui:Button display-tooltip-when-elided="true" name="PixelBlock" enable-rich-text="false" class="pixel" />
+                <ui:Button display-tooltip-when-elided="true" name="PixelBlock" enable-rich-text="false" class="pixel" />
+                <ui:Button display-tooltip-when-elided="true" name="PixelBlock" enable-rich-text="false" class="pixel" />
+                <ui:Button display-tooltip-when-elided="true" name="PixelBlock" enable-rich-text="false" class="pixel" />
+                <ui:Button display-tooltip-when-elided="true" name="PixelBlock" enable-rich-text="false" class="pixel" />
+                <ui:Button display-tooltip-when-elided="true" name="PixelBlock" enable-rich-text="false" class="pixel" />
+                <ui:Button display-tooltip-when-elided="true" name="PixelBlock" enable-rich-text="false" class="pixel" />
+                <ui:Button display-tooltip-when-elided="true" name="PixelBlock" enable-rich-text="false" class="pixel" />
+                <ui:Button display-tooltip-when-elided="true" name="PixelBlock" enable-rich-text="false" class="pixel" />
+                <ui:Button display-tooltip-when-elided="true" name="PixelBlock" enable-rich-text="false" class="pixel" />
+                <ui:Button display-tooltip-when-elided="true" name="PixelBlock" enable-rich-text="false" class="pixel" />
+                <ui:Button display-tooltip-when-elided="true" name="PixelBlock" enable-rich-text="false" class="pixel" />
+                <ui:Button display-tooltip-when-elided="true" name="PixelBlock" enable-rich-text="false" class="pixel" />
+                <ui:Button display-tooltip-when-elided="true" name="PixelBlock" enable-rich-text="false" class="pixel" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="PaperSidebar" style="width: 109px; height: 164px; left: 266px; top: 47px; position: absolute; justify-content: center; align-items: center;">
+            <ui:VisualElement name="PreviewContainer" style="width: 100%; height: 50%; justify-content: center; align-items: center;">
+                <ui:Label text="preview" display-tooltip-when-elided="true" name="Header" style="font-size: 8px; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 8px; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; -unity-font-definition: url(&apos;project://database/Assets/UI%20Toolkit/Fonts/Precise-M.asset?fileID=11400000&amp;guid=8377d9355ba010940a8750895108b850&amp;type=2#Precise-M&apos;);" />
+                <ui:VisualElement name="Preview" style="width: 32px; height: 32px;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="Buttons" style="height: 50%; width: 100%; align-items: center;">
+                <ui:Button text="save" display-tooltip-when-elided="true" name="BtnSave" style="padding-left: 6px; padding-right: 6px; padding-top: 4px; padding-bottom: 4px; font-size: 8px; -unity-font-definition: url(&apos;project://database/Assets/UI%20Toolkit/Fonts/Early%20GameBoy.asset?fileID=11400000&amp;guid=878e078412c5d9147adf7e2c53b8e9e7&amp;type=2#Early GameBoy&apos;); background-color: rgba(255, 255, 255, 0); margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; width: 60%; border-top-left-radius: 5px; border-bottom-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; border-left-color: rgb(191, 182, 185); border-right-color: rgb(191, 182, 185); border-top-color: rgb(191, 182, 185); border-bottom-color: rgb(191, 182, 185); color: rgb(102, 97, 99);" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

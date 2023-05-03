@@ -1,0 +1,55 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Pixel%20Art%20Editor/ColourPalette.uss?fileID=7433441132597879392&amp;guid=20c57a64de3f8c2479bfea9e484b2bd0&amp;type=3#ColourPalette" />
+    <ui:VisualElement name="MainContainer" class="main-container">
+        <ui:VisualElement name="ColorSplash" class="colour-splash" style="left: 65px; top: 54px;">
+            <ui:Button display-tooltip-when-elided="false" enable-rich-text="false" focusable="false" name="Button" class="button">
+                <MyImage name="Sprite" class="sprite" style="background-image: url(&apos;project://database/Assets/UI/Static%20Images/Colour%20Splashes/splash0.png?fileID=21300000&amp;guid=b62c37a6535a56d4ebf7dd8274825d34&amp;type=3#splash0&apos;);" />
+            </ui:Button>
+        </ui:VisualElement>
+        <ui:VisualElement name="ColorSplash" class="colour-splash" style="left: 78px; top: 32px;">
+            <ui:Button display-tooltip-when-elided="false" enable-rich-text="false" focusable="false" name="Button">
+                <MyImage name="Sprite" style="background-image: url(&apos;project://database/Assets/UI/Static%20Images/Colour%20Splashes/splash2.png?fileID=21300000&amp;guid=2dcc47ee31f3a0f4b9d524b3c6d2dc10&amp;type=3#splash2&apos;);" />
+            </ui:Button>
+        </ui:VisualElement>
+        <ui:VisualElement name="ColorSplash" class="colour-splash" style="left: 86px; top: 56px;">
+            <ui:Button display-tooltip-when-elided="false" enable-rich-text="false" focusable="false" name="Button">
+                <MyImage name="Sprite" style="background-image: url(&apos;project://database/Assets/UI/Static%20Images/Colour%20Splashes/splash1.png?fileID=21300000&amp;guid=0141eb795a15cb344aafc71afd932133&amp;type=3#splash1&apos;);" />
+            </ui:Button>
+        </ui:VisualElement>
+        <ui:VisualElement name="ColorSplash" class="colour-splash" style="left: 74px; top: 78px;">
+            <ui:Button display-tooltip-when-elided="false" enable-rich-text="false" focusable="false" name="Button">
+                <MyImage name="Sprite" class="colour-splash" style="background-image: url(&apos;project://database/Assets/UI/Static%20Images/Colour%20Splashes/splash3.png?fileID=21300000&amp;guid=ecdbe923dcc96a2448ae934a4d61f3c3&amp;type=3#splash3&apos;);" />
+            </ui:Button>
+        </ui:VisualElement>
+        <ui:VisualElement name="ColorSplash" class="colour-splash" style="left: 60px; top: 18px;">
+            <ui:Button display-tooltip-when-elided="false" enable-rich-text="false" focusable="false" name="Button">
+                <MyImage name="Sprite" style="background-image: url(&apos;project://database/Assets/UI/Static%20Images/Colour%20Splashes/splash4.png?fileID=21300000&amp;guid=ea6336ffd033292489b2ac20ca7808e2&amp;type=3#splash4&apos;);" />
+            </ui:Button>
+        </ui:VisualElement>
+        <ui:VisualElement name="ColorSplash" class="colour-splash" style="left: 46px; top: 38px;">
+            <ui:Button display-tooltip-when-elided="false" enable-rich-text="false" focusable="false" name="Button">
+                <MyImage name="Sprite" style="background-image: url(&apos;project://database/Assets/UI/Static%20Images/Colour%20Splashes/splash7.png?fileID=21300000&amp;guid=497c31e738fbfa546a7cbd87bb34961d&amp;type=3#splash7&apos;);" />
+            </ui:Button>
+        </ui:VisualElement>
+        <ui:VisualElement name="ColorSplash" class="colour-splash" style="left: 52px; top: 76px;">
+            <ui:Button display-tooltip-when-elided="false" enable-rich-text="false" focusable="false" name="Button">
+                <MyImage name="Sprite" style="background-image: url(&apos;project://database/Assets/UI/Static%20Images/Colour%20Splashes/splash8.png?fileID=21300000&amp;guid=2c2e500bf885d1b4f8eda94a9ebe973a&amp;type=3#splash8&apos;);" />
+            </ui:Button>
+        </ui:VisualElement>
+        <ui:VisualElement name="ColorSplash" class="colour-splash" style="left: 56px; top: 98px;">
+            <ui:Button display-tooltip-when-elided="false" enable-rich-text="false" focusable="false" name="Button">
+                <MyImage name="Sprite" style="background-image: url(&apos;project://database/Assets/UI/Static%20Images/Colour%20Splashes/splash5.png?fileID=21300000&amp;guid=8524178cc73e77f408e6ef5f2e0dcbb9&amp;type=3#splash5&apos;);" />
+            </ui:Button>
+        </ui:VisualElement>
+        <ui:VisualElement name="ColorSplash" class="colour-splash" style="left: 40px; top: 5px;">
+            <ui:Button display-tooltip-when-elided="false" enable-rich-text="false" focusable="false" name="Button">
+                <MyImage name="Sprite" style="background-image: url(&apos;project://database/Assets/UI/Static%20Images/Colour%20Splashes/splash6.png?fileID=21300000&amp;guid=d9655bc79a662ee41bd6c4b0e9ea0dfb&amp;type=3#splash6&apos;);" />
+            </ui:Button>
+        </ui:VisualElement>
+        <ui:VisualElement name="ColorSplash" class="colour-splash" style="left: 36px; top: 60px;">
+            <ui:Button display-tooltip-when-elided="false" enable-rich-text="false" focusable="false" name="Button">
+                <MyImage name="Sprite" style="background-image: url(&apos;project://database/Assets/UI/Static%20Images/Colour%20Splashes/splash9.png?fileID=21300000&amp;guid=fb316ed5b368bb644b6db5a60628a82e&amp;type=3#splash9&apos;);" />
+            </ui:Button>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
