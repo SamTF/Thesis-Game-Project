@@ -9,7 +9,7 @@ using UnityEngine.UIElements;
 public class PixelBlockUI : MyButton
 {
     // Constants
-    private const string cssClass = "Pixel";
+    private const string cssClass = "pixel";
     private readonly Vector2Int position;
     private readonly Color originalColour;
 
@@ -30,6 +30,7 @@ public class PixelBlockUI : MyButton
 
         // Styles
         this.style.backgroundColor = colour;
+        this.ClearClassList();
         this.AddToClassList(cssClass);
         // this.pickingMode = PickingMode.Position;
         // this.focusable = true;
