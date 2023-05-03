@@ -81,6 +81,9 @@ public class PixelEditor : MonoBehaviour
     /// Create the Pixel Grid in the canvas by adding Pixel elements to the Canvas and setting their callback events.
     /// </summary>
     private void CreatePixelGrid() {
+        canvas.Clear();
+
+        // Loop thru the Grid, creating a PixelBlock at every coordinate
         for (int y = 0; y < pixelGrid.GetLength(1); y++) {
             for (int x = 0; x < pixelGrid.GetLength(0); x++) {
                 // Create new PixelBlock
