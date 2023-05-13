@@ -245,8 +245,16 @@ public class ColouringBook : MonoBehaviour
         transform.position = screenCenter;
     }
 
+    /// <summary>
+    /// Closes the Notebook and resumes the game.
+    /// </summary>
     private void Close() {
         GetComponent<Animator>().SetTrigger("Out");
+        StartCoroutine(CloseAnimation());
+    }
+
+    private IEnumerator CloseAnimation() {
+        yield return new WaitForSecondsRealtime(1f); // must be realtime because the game is paused
         GameManager.instance.GameIsPaused = false;
         Destroy(gameObject);
     }
