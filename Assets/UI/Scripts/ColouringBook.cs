@@ -39,14 +39,37 @@ public class ColouringBook : MonoBehaviour
     [Header("Child Scripts")]
     [SerializeField]
     private ColourPaletteUI colourPalette = null;
+    [SerializeField]
+    private Texture2D pencilCursor = null;
+
+    /// Singleton thing
+    private static ColouringBook _instance = null;
+    public static ColouringBook instance
+    {
+        get {return _instance;}
+    }
 
 
     private void Awake() {
+        // Singleton - there can only be one pixel art editor!
+        if (_instance != null && _instance != this) {
+            Destroy(this.gameObject);
+        } else {
+            _instance = this;
+        }
+        
+        // getting child pbjects if they weren't added in the inspector
         if (colourPalette == null) colourPalette = GetComponentInChildren<ColourPaletteUI>();
+
+        // Pause the game
+        GameManager.instance.GameIsPaused = true;
     }
 
 
     private void Start() {
+        // Set position
+        SetPosition();
+
         // Initialise Variables
         pixelGrid = new PixelBlockUI[canvasSize, canvasSize];
         drawingTex = CreateTexture(true);
@@ -59,9 +82,20 @@ public class ColouringBook : MonoBehaviour
         // Start Preview
         spritePreview.style.backgroundImage = drawingTex;
         saveButton.clicked += SaveTexture;
+        saveButton.clicked += Close;
 
         // Instantiate all Pixel blocks inside the canvas
         CreatePixelGrid();
+
+        // Mouse cursor
+        UnityEngine.UIElements.Cursor cursor = new UnityEngine.UIElements.Cursor();
+        cursor.texture = pencilCursor;
+        canvas.style.cursor = cursor;
+        colourPaletteUI.rootVisualElement.style.cursor = cursor;
+
+        canvas.style.cursor = new StyleCursor(cursor);
+        colourPaletteUI.rootVisualElement.style.cursor = new StyleCursor(cursor);
+        saveButton.style.cursor = new StyleCursor(cursor);
     }
 
 
@@ -200,5 +234,26 @@ public class ColouringBook : MonoBehaviour
 
         // Update button text
         saveButton.text = "SAVED!";
+    }
+
+    /// <summary>
+    /// Sets the world position of the parent game object to the center of the screen
+    /// </summary>
+    private void SetPosition() {
+        Vector2 screenSize = new Vector2(Screen.width, Screen.height);
+        Vector2 screenCenter = Camera.main.ScreenToWorldPoint(screenSize/2);
+        transform.position = screenCenter;
+    }
+
+    private void Close() {
+        GetComponent<Animator>().SetTrigger("Out");
+        GameManager.instance.GameIsPaused = false;
+        Destroy(gameObject);
+    }
+
+
+    /// <summary>Reset the singleton.</summary>
+    private void OnDestroy() {
+        if (this == _instance) { _instance = null; }
     }
 }
