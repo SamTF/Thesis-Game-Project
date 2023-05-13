@@ -5,13 +5,17 @@ using TMPro;
 
 public class UIManager : MonoBehaviour
 {
+    [Header("UI MANAGER")]
     [SerializeField]
     private Transform panel = null;
     [SerializeField]
     private GameObject textPrefab = null;
+
     [SerializeField]
     private GameObject pauseMenu = null;
-    private PauseMenu pauseMenuInstance = null;
+
+    [SerializeField]
+    private GameObject colouringBook = null;
 
     // Singleton Thing
     private static UIManager _instance = null;
@@ -32,9 +36,11 @@ public class UIManager : MonoBehaviour
     // Events
     private void OnEnable() {
         GameManager.onPause += PauseMenuToggle;
+        LevelSystem.onLevelUp += ColouringBookToggle;
     }
     private void OnDisable() {
         GameManager.onPause -= PauseMenuToggle;
+        LevelSystem.onLevelUp -= ColouringBookToggle;
     }
 
     /// <summary>
@@ -78,13 +84,27 @@ public class UIManager : MonoBehaviour
     /// </summary>
     private void PauseMenuToggle() {
         // If a pause menu instance already exists, resume the game
-        if (pauseMenuInstance) {
-            pauseMenuInstance.OnResumeGame();
+        if (PauseMenu.instance) {
+            PauseMenu.instance.OnResumeGame();
             return;
         }
+
+        // If a Colouring Book instance exists, do nothing
+        if (ColouringBook.instance) return;
             
         // Instantiate a Pause Menu
         GameObject pauseMenuObject = Instantiate(pauseMenu);
-        pauseMenuInstance = pauseMenuObject.GetComponent<PauseMenu>();
+    }
+
+    /// <summary>
+    /// Instantiate the Colouring Book (if it's now already present)
+    /// </summary>
+    private void ColouringBookToggle() {
+        // do nothing if there already is a pixel art editor running
+        if (ColouringBook.instance) {
+            return;
+        }
+
+        Instantiate(colouringBook);
     }
 }
