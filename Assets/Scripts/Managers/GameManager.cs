@@ -84,4 +84,22 @@ public class GameManager : MonoBehaviour
     public Sprite PlayerSprite => player.Sprite;
     /// <summary>The Stats Colours of the Player and their current values.</summary>
     public Stats PlayerStats => player.Stats;
+
+    /// <summary>Gets or Sets whether the game is paused. Setting it to true will trigger the OnPause event.</summary>
+    public bool GameIsPaused {
+        get { return gameIsPaused; }
+        set {
+            gameIsPaused = value;
+
+            // pausing the game
+            if (gameIsPaused) {
+                onPause?.Invoke();
+                Time.timeScale = 0f;
+            }
+            // unpausing the game
+            else {
+                Time.timeScale = 1f;
+            }
+        }
+    }
 }
