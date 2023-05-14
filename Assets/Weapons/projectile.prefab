@@ -164,6 +164,7 @@ GameObject:
   - component: {fileID: 8291087935463748873}
   - component: {fileID: 2494465487973955037}
   - component: {fileID: 7420747856820269169}
+  - component: {fileID: 104494221321977369}
   m_Layer: 7
   m_Name: Body
   m_TagString: Untagged
@@ -254,3 +255,20 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0.1875}
   serializedVersion: 2
   m_Radius: 0.1875
+--- !u!114 &104494221321977369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3401053892257679794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d554456133ebe1d49975fa62b8fac9e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enforceSize: 1
+  modFileName: Projectile
+  analyseImage: 1
+  spriteIsChild: 0
+  allowHotReload: 0
