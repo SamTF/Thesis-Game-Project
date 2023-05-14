@@ -27,6 +27,7 @@ public class Player : MonoBehaviour
     private Animator        animator        = null;
     private HitStop         hitStop         = null;
     private LevelSystem     levelSystem     = null;
+    private ModdableSprite  moddableSprite  = null;
 
 
 
@@ -44,6 +45,7 @@ public class Player : MonoBehaviour
         health = GetComponent<Health>();
         hitStop = GetComponentInChildren<HitStop>();
         levelSystem = LevelSystem.instance;
+        moddableSprite = GetComponent<ModdableSprite>();
 
         // Children
         body = body ? body : transform.Find("Body");
@@ -137,6 +139,15 @@ public class Player : MonoBehaviour
     }
 
 
+    /// <summary>
+    /// Update the Player Sprite with a new one and re-calculate stats!
+    /// </summary>
+    /// <param name="newTexture">Texture to update the Sprite with.</param>
+    public void UpdateSprite(Texture2D newTexture) {
+        moddableSprite.ReplaceSprite(newTexture);
+    }
+
+
     // Component Getters
     public Rigidbody2D RigidBody => rb;
     public InputManager Input => input;
@@ -144,6 +155,7 @@ public class Player : MonoBehaviour
     public Status Status => status;
     public Health Health => health;
     public Animator Animator => animator;
+    public ModdableSprite ModdableSprite => moddableSprite;
 
     // Child getters
     public Transform Body => body;
