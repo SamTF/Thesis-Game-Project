@@ -22,6 +22,7 @@ public class ModdableSprite : MonoBehaviour
 
     // [SerializeField]
     private SpriteRenderer spriteRenderer = null;
+    private Stats myStats = null;
 
 
     private void Awake() {
@@ -31,6 +32,9 @@ public class ModdableSprite : MonoBehaviour
         } else {
             spriteRenderer = GetComponent<SpriteRenderer>();
         }
+
+        // Getting the stats component if it exists
+        myStats = GetComponent<Stats>();
         
         // Setting the name of the file required to mod the image
         string name = modFileName != "" ? modFileName : this.name;
@@ -51,7 +55,6 @@ public class ModdableSprite : MonoBehaviour
             Texture2D defaultTex = spriteRenderer.sprite.texture;
             Colour[] colours = ImageAnalyser.Analyse(defaultTex);
 
-            Stats myStats = GetComponent<Stats>();
             if (myStats) {
                 myStats.GetStatsFromImage(colours);
             }
@@ -59,23 +62,46 @@ public class ModdableSprite : MonoBehaviour
     }
 
     /// <summary>
-    /// Replaces the current sprite of this GameObject with a new one created by the Player.
+    /// Replaces the current sprite of this GameObject with a new one created by the player.
+    /// Optionally analyse the colours in the new texture and re-calculate stats
+    /// <param name="newTexture">Texture to update the Sprite with.
+    /// If none is given, attempts to load one from mod folder.</param>
     /// </summary>
-    private void ReplaceSprite() {
+    public void ReplaceSprite(Texture2D newTexture = null) {
         // getting the size of the sprite within the texture atlas: https://answers.unity.com/questions/1489211/getting-sprite-heightwidth-in-local-space.html
         Vector2Int spriteSize = new Vector2Int(
             (int)spriteRenderer.sprite.rect.width,
             (int)spriteRenderer.sprite.rect.height
         );
 
-        // Loading custom asset into a Sprite
-        Sprite modSprite = ImageLoader.LoadSprite(modFileName, spriteSize);
+        Sprite newSprite; // initialise the new sprite var
 
-        // checking if a sprite was successfully found
-        if (modSprite == null)  return;
+        // If a Sprite has been given in the function call, use that one
+        if (newTexture)  {
+            // check that the texture size matches the desired sprite size
+            Vector2Int textureSize = new Vector2Int(newTexture.width, newTexture.height);
+            if (textureSize != spriteSize && enforceSize)  return;
+
+            // create the sprite object from the texture
+            newSprite = ImageLoader.CreateSprite(newTexture, Pivot.BottomCenter);
+            
+            // analyse colours and inferr stats from new texture
+            Colour[] colours = ImageAnalyser.Analyse(newTexture);
+            myStats?.GetStatsFromImage(colours);
+        }
+
+        // Otherwise, load texture from disk
+        else {
+            // loading custom asset into a Sprite
+            newSprite = ImageLoader.LoadSprite(modFileName, spriteSize);
+
+            // checking if a sprite was successfully found
+            if (newSprite == null)  return;
+        }
+
 
         // replacing current sprite with custom asset
-        spriteRenderer.sprite = modSprite;
+        spriteRenderer.sprite = newSprite;
     }
 
     // Swapping the sprite while the game is already running
@@ -105,9 +131,6 @@ public class ModdableSprite : MonoBehaviour
         Colour[] colours = ImageAnalyser.Analyse(customTex);
 
         // Sends the colours to the Stats component (if there is one)
-        Stats myStats = GetComponent<Stats>();
-        if (myStats) {
-            myStats.GetStatsFromImage(colours);
-        }
+        myStats?.GetStatsFromImage(colours);
     }
 }
