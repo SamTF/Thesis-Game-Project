@@ -40,6 +40,8 @@ public class ColouringBook : MonoBehaviour
     [SerializeField]
     private ColourPaletteUI colourPalette = null;
     [SerializeField]
+    private StatsUI statsUI = null;
+    [SerializeField]
     private Texture2D pencilCursor = null;
 
     /// Singleton thing
@@ -58,8 +60,9 @@ public class ColouringBook : MonoBehaviour
             _instance = this;
         }
         
-        // getting child pbjects if they weren't added in the inspector
+        // getting child objects if they weren't added in the inspector
         if (colourPalette == null) colourPalette = GetComponentInChildren<ColourPaletteUI>();
+        if (statsUI == null) statsUI = GetComponentInChildren<StatsUI>();
 
         // Pause the game
         GameManager.instance.GameIsPaused = true;
@@ -81,8 +84,11 @@ public class ColouringBook : MonoBehaviour
 
         // Start Preview
         spritePreview.style.backgroundImage = drawingTex;
-        saveButton.clicked += SaveTexture;
+
+        // Save Button callbacks
+        // saveButton.clicked += SaveTexture;
         saveButton.clicked += Close;
+        saveButton.clicked += UpdateSprite;
 
         // Instantiate all Pixel blocks inside the canvas
         CreatePixelGrid();
@@ -165,9 +171,18 @@ public class ColouringBook : MonoBehaviour
     /// </summary>
     /// <param name="pixel">The UI Pixel element in the canvas</param>
     private void ChangeColour(PixelBlockUI pixel) {
-        pixel.Colour = colourPalette.SelectedColour;
+        // Do nothing if the pixel already has the desired colour (to avoid unnecessary operations)
+        if (pixel.Colour == colourPalette.SelectedColour)
+            return;
+        
+        statsUI.UpdateStatValue(pixel.Colour, false);   // stats UI - decrement old colour
+
+        pixel.Colour = colourPalette.SelectedColour;    // change pixel colour
+        
+        UpdateTexture(pixel.Position, pixel.Colour);    // update the preview texture
+        statsUI.UpdateStatValue(pixel.Colour, true);    // stats UI - increment new colour
+
         Debug.Log($"Changed colour of pixel @ {pixel.Position} to {ColorUtility.ToHtmlStringRGBA(colourPalette.SelectedColour)}");
-        UpdateTexture(pixel.Position, pixel.Colour);
     }
 
     /// <summary>
@@ -175,8 +190,13 @@ public class ColouringBook : MonoBehaviour
     /// </summary>
     /// <param name="pixel">The UI Pixel element in the canvas</param>
     private void ClearColour(PixelBlockUI pixel) {
-        pixel.Colour = Color.clear;
-        UpdateTexture(pixel.Position, pixel.Colour);
+        // Do nothing if the pixel already has the desired colour (to avoid unnecessary operations)
+        if (pixel.Colour == Color.clear)
+            return;
+
+        statsUI.UpdateStatValue(pixel.Colour, false);   // stats UI - decrement old colour
+        pixel.Colour = Color.clear;                     // set the colour to transparent
+        UpdateTexture(pixel.Position, pixel.Colour);    // update the preview texture
     }
 
 
@@ -211,8 +231,13 @@ public class ColouringBook : MonoBehaviour
     /// <param name="colour">New color to give that pixel.</param>
     private void UpdateTexture(Vector2Int coordinates, Color colour) {
         Debug.Log($"Updating Sprite Texture >>> {coordinates} -> {colour}");
+
         drawingTex.SetPixel(coordinates.x, coordinates.y, colour);
         drawingTex.Apply();
+        
+        // Colour[] newColours = ImageAnalyser.Analyse(drawingTex);
+        // GameManager.instance.Player.Stats.GetStatsFromImage(newColours);
+        // statsUI.UpdateStats();
     }
 
     /// <summary>
@@ -234,6 +259,13 @@ public class ColouringBook : MonoBehaviour
 
         // Update button text
         saveButton.text = "SAVED!";
+    }
+
+    /// <summary>
+    /// Updates the Sprite of the GameObject that is currently being edited.
+    /// </summary>
+    private void UpdateSprite() {
+        GameManager.instance.Player.UpdateSprite(drawingTex);
     }
 
     /// <summary>
