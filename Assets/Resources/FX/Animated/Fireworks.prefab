@@ -1,0 +1,107 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &7073238887814628139
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2472379029985023600, guid: 759a1c1baf6b7a64d8ed980529b4f756, type: 3}
+      propertyPath: texture
+      value: 
+      objectReference: {fileID: 2800000, guid: a848ef8805daf7848bc63565b8e68970, type: 3}
+    - target: {fileID: 2472379029985023600, guid: 759a1c1baf6b7a64d8ed980529b4f756, type: 3}
+      propertyPath: textureName
+      value: Fireworks1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2472379029985023600, guid: 759a1c1baf6b7a64d8ed980529b4f756, type: 3}
+      propertyPath: numOfSprites
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2472379029985023600, guid: 759a1c1baf6b7a64d8ed980529b4f756, type: 3}
+      propertyPath: loopAnimation
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2472379029985023600, guid: 759a1c1baf6b7a64d8ed980529b4f756, type: 3}
+      propertyPath: animationSpeed
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2472379029985023600, guid: 759a1c1baf6b7a64d8ed980529b4f756, type: 3}
+      propertyPath: randomRotation
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2472379029985023600, guid: 759a1c1baf6b7a64d8ed980529b4f756, type: 3}
+      propertyPath: destroyAfterAnimation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2472379029985023600, guid: 759a1c1baf6b7a64d8ed980529b4f756, type: 3}
+      propertyPath: randomTextures.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2472379029985023600, guid: 759a1c1baf6b7a64d8ed980529b4f756, type: 3}
+      propertyPath: randomTextures.Array.data[0]
+      value: 
+      objectReference: {fileID: 2800000, guid: a848ef8805daf7848bc63565b8e68970, type: 3}
+    - target: {fileID: 2472379029985023600, guid: 759a1c1baf6b7a64d8ed980529b4f756, type: 3}
+      propertyPath: randomTextures.Array.data[1]
+      value: 
+      objectReference: {fileID: 2800000, guid: 74aa31ce067b8e2419779ce5d119f581, type: 3}
+    - target: {fileID: 2472379029985023600, guid: 759a1c1baf6b7a64d8ed980529b4f756, type: 3}
+      propertyPath: randomTextures.Array.data[2]
+      value: 
+      objectReference: {fileID: 2800000, guid: 57d96a8075835454f8bfed12cd5d2f4f, type: 3}
+    - target: {fileID: 2472379029985023600, guid: 759a1c1baf6b7a64d8ed980529b4f756, type: 3}
+      propertyPath: randomTextures.Array.data[3]
+      value: 
+      objectReference: {fileID: 2800000, guid: a57b94a6b39b6234987a1a8a342affba, type: 3}
+    - target: {fileID: 2472379029985023601, guid: 759a1c1baf6b7a64d8ed980529b4f756, type: 3}
+      propertyPath: m_Name
+      value: Fireworks
+      objectReference: {fileID: 0}
+    - target: {fileID: 2472379029985023602, guid: 759a1c1baf6b7a64d8ed980529b4f756, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2472379029985023602, guid: 759a1c1baf6b7a64d8ed980529b4f756, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2472379029985023602, guid: 759a1c1baf6b7a64d8ed980529b4f756, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2472379029985023602, guid: 759a1c1baf6b7a64d8ed980529b4f756, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2472379029985023602, guid: 759a1c1baf6b7a64d8ed980529b4f756, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2472379029985023602, guid: 759a1c1baf6b7a64d8ed980529b4f756, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2472379029985023602, guid: 759a1c1baf6b7a64d8ed980529b4f756, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2472379029985023602, guid: 759a1c1baf6b7a64d8ed980529b4f756, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2472379029985023602, guid: 759a1c1baf6b7a64d8ed980529b4f756, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2472379029985023602, guid: 759a1c1baf6b7a64d8ed980529b4f756, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2472379029985023602, guid: 759a1c1baf6b7a64d8ed980529b4f756, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 759a1c1baf6b7a64d8ed980529b4f756, type: 3}
