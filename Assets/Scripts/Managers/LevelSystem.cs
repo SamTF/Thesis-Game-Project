@@ -42,7 +42,7 @@ public class LevelSystem : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
 
         if (player == null)
-            player = GameManager.instance.Player;
+            player = Player.instance;
     }
 
 

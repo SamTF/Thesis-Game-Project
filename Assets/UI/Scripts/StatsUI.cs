@@ -50,7 +50,7 @@ public class StatsUI : MonoBehaviour
         mainContainer.Clear();
 
         // fetch stats (i really need to make the player a singleton)
-        Stat[] stats = GameManager.instance.Player.Stats.StatsArray;
+        Stat[] stats = Player.instance.Stats.StatsArray;
 
         statItems = new StatsItemUI[stats.Length];
 
@@ -91,7 +91,7 @@ public class StatsUI : MonoBehaviour
     /// </summary>
     public void RefreshAllStats() {
         foreach (StatsItemUI item in statItems) {
-            Stat stat = GameManager.instance.Player.Stats.Colour2Stat[item.Colour];
+            Stat stat = Player.instance.Stats.Colour2Stat[item.Colour];
             item.Value = stat.Value;
         }
     }

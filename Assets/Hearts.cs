@@ -61,7 +61,7 @@ public class Hearts : MonoBehaviour
     }
 
     private void Start() {
-        playerHealth = GameManager.instance.Player.Health;
+        playerHealth = Player.instance.Health;
 
         DrawHearts();
     }

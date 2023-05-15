@@ -16,7 +16,7 @@ public class CameraMan : MonoBehaviour
 
     void Start() {
         // Getting the Player object in the scene
-        if (player == null) player = GameManager.instance.Player;
+        if (player == null) player = Player.instance;
     }
 
     // Update is called once per frame

@@ -16,7 +16,6 @@ public class Player : MonoBehaviour
     [SerializeField][Tooltip("Child Transform containing the Shadow sprite.")]
     private Transform shadow = null;
 
-
     // Components
     private Rigidbody2D     rb              = null;
     private InputManager    input           = null;
@@ -29,10 +28,22 @@ public class Player : MonoBehaviour
     private LevelSystem     levelSystem     = null;
     private ModdableSprite  moddableSprite  = null;
 
+    /// Singleton thing
+    private static Player _instance = null;
+    public static Player instance
+    {
+        get {return _instance;}
+    }
 
 
     private void Awake()
     {
+        // Singleton - there can only be one!
+        if (_instance != null && _instance != this)
+            Destroy(this.gameObject);
+        else
+            _instance = this;
+
         // Getting Components - Unity
         rb = GetComponent<Rigidbody2D>();
         collider = GetComponent<CircleCollider2D>();
@@ -145,6 +156,12 @@ public class Player : MonoBehaviour
     /// <param name="newTexture">Texture to update the Sprite with.</param>
     public void UpdateSprite(Texture2D newTexture) {
         moddableSprite.ReplaceSprite(newTexture);
+    }
+
+
+    /// <summary>Reset the singleton if the object is ever destroyed</summary>
+    private void OnDestroy() {
+        if (this == _instance) { _instance = null; }
     }
 
 

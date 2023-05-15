@@ -70,7 +70,7 @@ public class HeartsUI : MonoBehaviour
         heartsContainer = root.Q<VisualElement>("HeartsContainer");
 
         // Get script references
-        playerHealth = GameManager.instance.Player.Health;
+        playerHealth = Player.instance.Health;
 
         /// !! Instantiating hearts !!
         InitHearts();

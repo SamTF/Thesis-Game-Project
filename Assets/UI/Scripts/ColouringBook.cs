@@ -236,7 +236,7 @@ public class ColouringBook : MonoBehaviour
         drawingTex.Apply();
         
         // Colour[] newColours = ImageAnalyser.Analyse(drawingTex);
-        // GameManager.instance.Player.Stats.GetStatsFromImage(newColours);
+        // Player.instance.Stats.GetStatsFromImage(newColours);
         // statsUI.UpdateStats();
     }
 
@@ -265,7 +265,7 @@ public class ColouringBook : MonoBehaviour
     /// Updates the Sprite of the GameObject that is currently being edited.
     /// </summary>
     private void UpdateSprite() {
-        GameManager.instance.Player.UpdateSprite(drawingTex);
+        Player.instance.UpdateSprite(drawingTex);
     }
 
     /// <summary>
