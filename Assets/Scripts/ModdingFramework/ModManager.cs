@@ -9,9 +9,11 @@ using System.Linq;
 /// </summary>
 public static class ModManager
 {
-    /// MODDING VARIABLES
+    /// MODDING CONSTANTS
     private const string modFolderName = "CUSTOM";
+    private const string fileType = ".png";
     
+    // Vars
     private static string modDirectory = null;
     private static string[] modList = null;
 
@@ -88,5 +90,8 @@ public static class ModManager
     // Getters
     ///<summary>The full path to the Mods folder on disk.</summary>
     public static string ModDirectory => modDirectory;
+    ///<summary>List of all files in the Mods folder.</summary>
     public static string[] ModList => modList;
+    ///<summary>The file extension used for mod files.</summary>
+    public static string FileType => fileType;
 }
