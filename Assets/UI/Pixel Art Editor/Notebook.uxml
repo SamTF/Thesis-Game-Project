@@ -1,5 +1,6 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/Pixel%20Art%20Editor/Notebook.uss?fileID=7433441132597879392&amp;guid=e5efe42683f86f94e994d88b88519381&amp;type=3#Notebook" />
+    <Style src="project://database/Assets/UI/Globals.uss?fileID=7433441132597879392&amp;guid=7d653874a8625ca4cb3f8366e0226acb&amp;type=3#Globals" />
     <ui:VisualElement name="MainContainer" style="width: 240px; height: 176px; background-image: url(&apos;project://database/Assets/UI/Static%20Images/Notebook.png?fileID=2800000&amp;guid=a741c18b5c27d324d8e2a4be099ca922&amp;type=3#Notebook&apos;); justify-content: center; align-items: center;">
         <ui:VisualElement name="Canvas" style="width: 128px; height: 128px; top: 7px; left: -1px; flex-direction: row; flex-wrap: wrap;">
             <ui:Button display-tooltip-when-elided="true" enable-rich-text="false" focusable="false" name="PixelBlock" class="pixel" />
@@ -20,6 +21,15 @@
             <ui:Button display-tooltip-when-elided="true" enable-rich-text="false" focusable="false" name="PixelBlock" class="pixel" />
             <ui:Button display-tooltip-when-elided="true" enable-rich-text="false" focusable="false" name="PixelBlock" class="pixel" />
             <ui:Button display-tooltip-when-elided="true" enable-rich-text="false" focusable="false" name="PixelBlock" class="pixel" />
+        </ui:VisualElement>
+        <ui:VisualElement name="StatsUI" style="position: absolute; width: 40px; height: 128px; left: 191px; top: 31px;">
+            <ui:Label text="STATS" display-tooltip-when-elided="true" name="Header" enable-rich-text="true" class="text" style="-unity-font-definition: url(&apos;project://database/Assets/UI%20Toolkit/Fonts/Precise-M%20Bold.asset?fileID=11400000&amp;guid=985ca571f19bb384a829249fbd98f274&amp;type=2#Precise-M Bold&apos;); margin-left: 1px; margin-top: 1px; height: 7px;" />
+            <ui:VisualElement name="StatsContainer" class="stats-container">
+                <ui:VisualElement name="StatsItem" tooltip="hello my baby" class="stats-item">
+                    <MyImage name="icon" class="icon" />
+                    <ui:Label text="999" display-tooltip-when-elided="true" name="text" class="text stats-item-label" />
+                </ui:VisualElement>
+            </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>
