@@ -47,40 +47,14 @@ public class XPIconUI : MonoBehaviour
         xpIconContainer.style.backgroundImage = new StyleBackground(iconSprites[0]);
 
         // Create the Sprites for the Icon and Numbers from their spritesheets
-        CreateAllSprites(iconName, ref iconSprites);
-        CreateAllSprites(numbersName, ref numberSprites);
+        iconSprites     = ImageLoader.CreateAllSprites(iconName, "UI", iconSprites.Length, iconSize);
+        numberSprites   = ImageLoader.CreateAllSprites(numbersName, "UI", numberSprites.Length, iconSize);
 
         // Set current icon and level number
         UpdateIcon();
         UpdateLevel();
     }
 
-
-    /// <summary>
-    /// Create all Sprites from a spritesheet file of a given name, and store them in the given array.
-    /// </summary>
-    /// <param name="textureName">Name of the image file (must be identical in both Resources and CUSTOM folder)</param>
-    /// <param name="spriteArray">Sprite array to save the Sprites into</param>
-    private void CreateAllSprites(string textureName, ref Sprite[] spriteArray) {
-        Texture2D tex = null;
-
-        // Checking if the player created a custom texture
-        if (ModManager.ModExists($"{textureName}.{fileType}")) {
-            Debug.Log("[XP ICON]>>> Custom texture found");
-            tex = ImageLoader.LoadTextureFromFile($"{textureName}.{fileType}");
-        }
-        // If not, use the default texture
-        else {
-            Debug.Log("[XP ICON]>>> Loading default texture...");
-            tex = Resources.Load($"UI/{textureName}") as Texture2D;  
-        }
-
-        // Create a sprite for each element in the array, and assign to that element
-        for (int i = 0; i < spriteArray.Length; i++) {
-            Sprite s = ImageLoader.CreateSprite(tex, Pivot.Center, iconSize.x * i, iconSize);
-            spriteArray[i] = s;
-        }
-    }
 
     /// <summary>
     /// Sets the appropriate XP Icon for the current XP progress

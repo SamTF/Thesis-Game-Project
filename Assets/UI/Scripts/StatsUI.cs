@@ -34,43 +34,13 @@ public class StatsUI : MonoBehaviour
         mainContainer = root.Q<VisualElement>(mainContainerID);
 
         // Create Icon sprites
-        iconSprites = CreateAllSprites(iconName, iconSize, iconSprites.Length);
+        // iconSprites = CreateAllSprites(iconName, iconSize, iconSprites.Length);
+        iconSprites = ImageLoader.CreateAllSprites(iconName, "UI", iconSprites.Length, iconSize);
 
         // Instantiate Stat Items
         InitItems();
     }
 
-    /// <summary>
-    /// Create all Sprites from a spritesheet file of a given name, and return them as an array.
-    /// </summary>
-    /// <param name="textureName">Name of the image file (must be identical in both Resources and CUSTOM folder)</param>
-    /// <param name="iconSize">Size of the icons inside the spritesheet.</param>
-    /// <param name="numOfIcons">How many icons to create.</param>
-    /// <returns>Array of sprites.</returns>
-    private Sprite[] CreateAllSprites(string textureName, Vector2Int iconSize, int numOfIcons) {
-        Texture2D tex = null;
-
-        // Checking if the player created a custom texture
-        if (ModManager.ModExists($"{textureName}.{fileType}")) {
-            Debug.Log("[STAT ICONS]>>> Custom texture found");
-            tex = ImageLoader.LoadTextureFromFile($"{textureName}.{fileType}");
-        }
-        // If not, use the default texture
-        else {
-            Debug.Log("[STAT ICONS]>>> Loading default texture...");
-            tex = Resources.Load($"UI/{textureName}") as Texture2D;  
-        }
-
-        // Create a sprite for each element in the array, and assign to that element
-        Sprite[] spriteArray = new Sprite[numOfIcons];
-        for (int i = 0; i < numOfIcons; i++) {
-            Sprite s = ImageLoader.CreateSprite(tex, Pivot.Center, iconSize.x * i, iconSize);
-            spriteArray[i] = s;
-        }
-
-        // Return the sprites
-        return spriteArray;
-    }
 
     /// <summary>
     /// Initalise the Stat Item visual elements

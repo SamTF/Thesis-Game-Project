@@ -87,4 +87,45 @@ public static class ImageLoader
 
         return newSprite;
     }
+
+    /// <summary>
+    /// Create all Sprites from a spritesheet file of a given name, and return them as an array.
+    /// </summary>
+    /// <param name="textureName">Name of the image file (must be identical in both Resources and CUSTOM folder)</param>
+    /// <param name="textureFolder">Name of the subfolder inside the Resources directory.</param>
+    /// <param name="numOfSprites">How many icons to create.</param>
+    /// <param name="spriteSize">Size of the icons inside the spritesheet. (Deduced from number of icons if no value is given)</param>
+    /// <param name="texture">Optional Texture file to use directly without loading from disk.</param>
+    /// <returns>Array of sprites.</returns>
+    public static Sprite[] CreateAllSprites(string textureName, string textureFolder, int numOfSprites, Vector2Int? spriteSize = null, Texture2D texture = null) {
+        Texture2D tex = null;
+
+        // Checking if the player created a custom texture
+        if (ModManager.ModExists($"{textureName}.{ModManager.FileType}")) {
+            tex = ImageLoader.LoadTextureFromFile($"{textureName}.{ModManager.FileType}");
+        }
+        // If not, use the default texture
+        else {
+            if (texture)    tex = texture;
+            else            tex = Resources.Load($"{textureFolder}/{textureName}") as Texture2D;  
+        }
+
+        // Get sprite size within spritesheet
+        Vector2Int size;
+        if (spriteSize.HasValue) {
+            size = spriteSize.Value;
+        } else {
+            size = new Vector2Int(tex.width / numOfSprites, tex.height);
+        }
+
+        // Create a sprite for each element in the array, and assign to that element
+        Sprite[] spriteArray = new Sprite[numOfSprites];
+        for (int i = 0; i < numOfSprites; i++) {
+            Sprite s = CreateSprite(tex, Pivot.Center, size.x * i, size);
+            spriteArray[i] = s;
+        }
+
+        // Return the sprites
+        return spriteArray;
+    }
 }
