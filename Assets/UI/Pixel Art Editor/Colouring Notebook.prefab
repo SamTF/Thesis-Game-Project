@@ -89,6 +89,7 @@ GameObject:
   - component: {fileID: 7560860741943758168}
   - component: {fileID: 7560860741943758170}
   - component: {fileID: 7560860741943758181}
+  - component: {fileID: 222301422163360462}
   m_Layer: 0
   m_Name: Notebook
   m_TagString: Untagged
@@ -195,6 +196,20 @@ MonoBehaviour:
   containerID: MainContainer
   anchorX: 1
   anchorY: 1
+--- !u!114 &222301422163360462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7560860741943758169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cec76e30a7a36bd4a8800920dbd3305f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainContainerID: StatsContainer
+  testIcon: {fileID: 8459057698258135811, guid: 18b01753eef6525499a8a9ea26e4c5f5, type: 3}
 --- !u!1 &7560860742549349798
 GameObject:
   m_ObjectHideFlags: 0
