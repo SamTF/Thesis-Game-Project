@@ -1,0 +1,14 @@
+.text {
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    font-size: 8px;
+    -unity-font-definition: url('project://database/Assets/UI%20Toolkit/Fonts/Precise-M.asset?fileID=11400000&guid=8377d9355ba010940a8750895108b850&type=2#Precise-M');
+    color: rgb(51, 49, 50);
+    height: 8px;
+}
