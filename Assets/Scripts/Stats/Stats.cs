@@ -14,12 +14,12 @@ public class Stats : MonoBehaviour
     private Stat attackSpeed = null;
     private Stat moveSpeed = null;
     private Stat stamina = null;
-    private Stat energy = null;
+    // private Stat energy = null;
     // Weapon Stats
     private Stat shotSpeed = null;
-    private Stat shotRange = null;
-    private Stat shotAmount = null;
-    private Stat shotSize = null;
+    // private Stat shotRange = null;
+    // private Stat shotAmount = null;
+    // private Stat shotSize = null;
 
     // Derived attributes - just a brainstorming list
     private float movementSpeed;
@@ -42,16 +42,15 @@ public class Stats : MonoBehaviour
         health          = new Stat(Attribute.Health,        "health",       Palette.Colours[1]);
         attackSpeed     = new Stat(Attribute.AttackSpeed,   "fire rate",    Palette.Colours[2]);
         moveSpeed       = new Stat(Attribute.MoveSpeed,     "speed",        Palette.Colours[3]);
-        stamina         = new Stat(Attribute.Stamina,       "stamina",      Palette.Colours[4]);
-        energy          = new Stat(Attribute.Energy,        "energy",       Palette.Colours[5]);
-        shotSpeed       = new Stat(Attribute.ShotSpeed,     "shot speed",   Palette.Colours[6]);
-        shotRange       = new Stat(Attribute.ShotRange,     "shot range",   Palette.Colours[7]);
-        shotAmount      = new Stat(Attribute.ShotAmount,    "shot amount",  Palette.Colours[8]);
-        shotSize        = new Stat(Attribute.ShotSize,      "shot size",    Palette.Colours[9]);
+        shotSpeed       = new Stat(Attribute.ShotSpeed,     "shot speed",   Palette.Colours[4]);
+        stamina         = new Stat(Attribute.Stamina,       "stamina",      Palette.Colours[5]);
+        // shotRange       = new Stat(Attribute.ShotRange,     "shot range",   Palette.Colours[6]);
+        // shotAmount      = new Stat(Attribute.ShotAmount,    "shot amount",  Palette.Colours[7]);
+        // shotSize        = new Stat(Attribute.ShotSize,      "shot size",    Palette.Colours[8]);
         
 
         // Adding stats to list
-        stats = new Stat[] { attack, health, attackSpeed, moveSpeed, stamina, energy, shotSpeed, shotRange, shotAmount, shotSize };
+        stats = new Stat[] { attack, health, attackSpeed, moveSpeed, shotSpeed, stamina };
 
         // Adding stats to dictionaries
         foreach (Stat s in stats) {
@@ -95,6 +94,7 @@ public class Stats : MonoBehaviour
 
     // Getters
     public Dictionary<Color, Stat> Colour2Stat => colour2Stat;
+    public Stat[] StatsArray => stats;
     public Stat Attack => attribute2Stat[Attribute.Attack];
     public Stat Health => attribute2Stat[Attribute.Health];
     public Stat MoveSpeed => attribute2Stat[Attribute.MoveSpeed];
