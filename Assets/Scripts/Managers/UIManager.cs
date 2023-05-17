@@ -36,7 +36,8 @@ public class UIManager : MonoBehaviour
     // Events
     private void OnEnable() {
         GameManager.onPause += PauseMenuToggle;
-        LevelSystem.onLevelUp += ColouringBookToggle;
+        // LevelSystem.onLevelUp += ColouringBookToggle;
+        LevelSystem.onLevelUp += LevelUp;
     }
     private void OnDisable() {
         GameManager.onPause -= PauseMenuToggle;
@@ -106,5 +107,42 @@ public class UIManager : MonoBehaviour
         }
 
         Instantiate(colouringBook);
+    }
+
+
+    private void LevelUp() {
+        StartCoroutine(LevelUpCelebration());
+    }
+
+    private IEnumerator LevelUpCelebration(float duration = 3f) {
+        // Instantiate Level Up text
+        GameObject levelUpVFX = Resources.Load("FX/Animated/LevelUpVFX") as GameObject;
+        GameObject levelUpObject = Instantiate(levelUpVFX, Player.instance.transform, false);
+        levelUpObject.transform.localPosition = new Vector2(0, 2);
+
+        // Spawn Fireworks every x milliseconds over the duration period
+        GameObject fireworksVFX = Resources.Load("FX/Animated/Fireworks") as GameObject;
+        Timer timer = new Timer();
+
+        while (timer.currentSeconds <= duration)
+        {
+            Vector3 rand = new Vector3(
+                Random.Range(-6f, 6f),
+                Random.Range(-4f, 4f),
+                0
+            );
+            Vector3 position = Player.instance.transform.position + rand;
+
+            Instantiate(fireworksVFX, position, Quaternion.identity);
+
+            Debug.Log(timer.currentSeconds);
+            yield return new WaitForSeconds( Random.Range(0.01f, 0.1f) );
+        }
+
+        // despawn level up text
+        Destroy(levelUpObject);
+
+        // enable the colouring book
+        ColouringBookToggle();
     }
 }
