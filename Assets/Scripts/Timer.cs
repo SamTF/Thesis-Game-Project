@@ -29,6 +29,6 @@ public class Timer
         timerOn = true;
     }
 
-    public int currentSeconds => Mathf.FloorToInt(Time.time - t);
+    public float currentSeconds => Time.time - t;
     public TimeFormat currentTime => new TimeFormat(Time.time - t);
 }
