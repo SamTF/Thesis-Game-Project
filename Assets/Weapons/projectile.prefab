@@ -269,6 +269,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enforceSize: 1
   modFileName: Projectile
-  analyseImage: 1
+  analyseImage: 0
   spriteIsChild: 0
   allowHotReload: 0
