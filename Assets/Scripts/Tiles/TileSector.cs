@@ -35,7 +35,6 @@ public class TileSector : MonoBehaviour
 
     // Executed as a coroutine so several instances can run at the same time
     private IEnumerator PlaceTiles() {
-        Debug.Log("PLACING TILES");
         for (int x = 0; x < sectorSize; x++) {
             for (int y = 0; y < sectorSize; y++) {
                 bool addTile = Random.Range(0, 7) >= spawnChance;
