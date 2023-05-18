@@ -8,8 +8,6 @@ public class StatsUI : MonoBehaviour
     [Header("STATS UI")]
     [SerializeField][Tooltip("Name of the root Visual Element containing the Stats UI stuff")]
     private string mainContainerID = "StatsContainer";
-    [SerializeField]
-    private Sprite testIcon = null;
 
     // Elements
     private VisualElement mainContainer = null;
@@ -49,8 +47,8 @@ public class StatsUI : MonoBehaviour
         // clear
         mainContainer.Clear();
 
-        // fetch stats (i really need to make the player a singleton)
-        Stat[] stats = Player.instance.Stats.StatsArray;
+        // fetch stats from Level System
+        Stat[] stats = LevelSystem.instance.UnlockedStats;
 
         statItems = new StatsItemUI[stats.Length];
 
@@ -58,8 +56,7 @@ public class StatsUI : MonoBehaviour
         int i = 0;
         foreach (Stat stat in stats) {
             // create element and add it to container
-            // StatsItemUI item = new StatsItemUI(stat.Colour, stat.Value, iconSprites[i], stat.Name);
-            StatsItemUI item = new StatsItemUI(stat.Colour, 0, iconSprites[i], stat.Name);
+            StatsItemUI item = new StatsItemUI(stat.Colour, stat.Value, stat.Icon, stat.Name);
             mainContainer.Add(item);
 
             // add element reference to array and dictionary

@@ -56,6 +56,7 @@ public class ColourPaletteUI : MonoBehaviour
             // set properties
             this.rootElement = element;
             this.colour = colour;
+            rootElement.visible = true;
 
             // fetch elements
             button = rootElement.Q<Button>();
@@ -83,12 +84,19 @@ public class ColourPaletteUI : MonoBehaviour
         root = GetComponent<UIDocument>().rootVisualElement;
         elementList = root.Query<VisualElement>(colourSplashID).ToList();
 
-        // Initialise ColourSplash elements
-        elementList.ForEach(element => {
-            int i = elementList.IndexOf(element);
+        // Hide all elements so only unlocked colours are displayed
+        elementList.ForEach(element => { element.visible = false; });
+
+        // Initialise ColourSplash elements for each unlocked colour
+        Color[] colours = LevelSystem.instance.UnlockedColours;
+
+        for (int i = 0; i < colours.Length; i++) {
+            VisualElement element = elementList[i];
+            Color color = colours[i];
+
             ColourSplash cs = new ColourSplash(element, Palette.Colours[i], OnClick);
             splashList.Add(cs);
-        });
+        }
     }
 
     /// <summary>
