@@ -21,6 +21,14 @@ public class Stats : MonoBehaviour
     // private Stat shotAmount = null;
     // private Stat shotSize = null;
 
+    // Icons
+    /// <summary>The Icons for each stats as Sprite objects</summary>
+    private Sprite[] iconSprites = new Sprite[6];
+    /// <summary>The dimensions of the XP Icon sprite in px.</summary>
+    private Vector2Int iconSize = new Vector2Int(16, 16);
+    /// <summary>Name of the Stat Icons spritesheet file.</summary>
+    private string iconName = "StatIcons";
+
     // Derived attributes - just a brainstorming list
     private float movementSpeed;
     private float dodgeDistance;
@@ -30,6 +38,7 @@ public class Stats : MonoBehaviour
     private float backflipCooldown;
     private float shootingCooldown;
 
+    // Dictionaries
     private Dictionary<Color, Stat> colour2Stat = new Dictionary<Color, Stat>();
     private Dictionary<Attribute, Stat> attribute2Stat = new Dictionary<Attribute, Stat>();
 
@@ -37,20 +46,22 @@ public class Stats : MonoBehaviour
     // Match each stat to a colour value (light, midlight, middark, dark)
     // This must occur after the PaletteManager has loaded the palette
     private void Awake() {
+        iconSprites = ImageLoader.CreateAllSprites(iconName, "UI", iconSprites.Length, iconSize);
+
         // Initialising the Stats
-        attack          = new Stat(Attribute.Attack,        "attack",       Palette.Colours[0]);
-        health          = new Stat(Attribute.Health,        "health",       Palette.Colours[1]);
-        attackSpeed     = new Stat(Attribute.AttackSpeed,   "fire rate",    Palette.Colours[2]);
-        moveSpeed       = new Stat(Attribute.MoveSpeed,     "speed",        Palette.Colours[3]);
-        shotSpeed       = new Stat(Attribute.ShotSpeed,     "shot speed",   Palette.Colours[4]);
-        stamina         = new Stat(Attribute.Stamina,       "stamina",      Palette.Colours[5]);
+        health          = new Stat(Attribute.Health,        "health",       Palette.Colours[0], iconSprites[0]);
+        attack          = new Stat(Attribute.Attack,        "attack",       Palette.Colours[1], iconSprites[1]);
+        moveSpeed       = new Stat(Attribute.MoveSpeed,     "speed",        Palette.Colours[3], iconSprites[2]);
+        attackSpeed     = new Stat(Attribute.AttackSpeed,   "fire rate",    Palette.Colours[2], iconSprites[3]);
+        shotSpeed       = new Stat(Attribute.ShotSpeed,     "shot speed",   Palette.Colours[4], iconSprites[4]);
+        stamina         = new Stat(Attribute.Stamina,       "stamina",      Palette.Colours[5], iconSprites[5]);
         // shotRange       = new Stat(Attribute.ShotRange,     "shot range",   Palette.Colours[6]);
         // shotAmount      = new Stat(Attribute.ShotAmount,    "shot amount",  Palette.Colours[7]);
         // shotSize        = new Stat(Attribute.ShotSize,      "shot size",    Palette.Colours[8]);
         
 
         // Adding stats to list
-        stats = new Stat[] { attack, health, attackSpeed, moveSpeed, shotSpeed, stamina };
+        stats = new Stat[] {health, attack, moveSpeed, attackSpeed, shotSpeed, stamina };
 
         // Adding stats to dictionaries
         foreach (Stat s in stats) {
@@ -95,9 +106,11 @@ public class Stats : MonoBehaviour
     // Getters
     public Dictionary<Color, Stat> Colour2Stat => colour2Stat;
     public Stat[] StatsArray => stats;
-    public Stat Attack => attribute2Stat[Attribute.Attack];
-    public Stat Health => attribute2Stat[Attribute.Health];
-    public Stat MoveSpeed => attribute2Stat[Attribute.MoveSpeed];
-    public Stat AttackSpeed => attribute2Stat[Attribute.AttackSpeed];
+    public Stat Health => health;
+    public Stat Attack => attack;
+    public Stat MoveSpeed => moveSpeed;
+    public Stat AttackSpeed => attackSpeed;
+    public Stat ShotSpeed => shotSpeed;
+    public Stat Stamina => stamina;
 
 }
