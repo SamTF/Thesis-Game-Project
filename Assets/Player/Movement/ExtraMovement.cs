@@ -36,10 +36,12 @@ public class ExtraMovement : MonoBehaviour
         if (
             input.JumpPress
             && input.TimeSinceDirectionSwitch.x <= timeToFlip
+            && input.TimeHoldingDirection[1] > 1f
             && player.Status.CanBackflip
             && !player.Status.IsDodging
             && !player.Status.IsBackflipping
         ) {
+            Debug.Log(input.TimeSinceDirectionSwitch.x);
             backflip.PerformBackflip(movement);             // start the backflip movement
             Axis axis = movement.x != 0 ? Axis.Z : Axis.X;  // getting the correct axis for the current direction
             bool clockwise = movement.x > 0;                // setting correct rotation direction
