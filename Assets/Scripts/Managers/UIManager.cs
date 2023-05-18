@@ -135,7 +135,6 @@ public class UIManager : MonoBehaviour
 
             Instantiate(fireworksVFX, position, Quaternion.identity);
 
-            Debug.Log(timer.currentSeconds);
             yield return new WaitForSeconds( Random.Range(0.01f, 0.1f) );
         }
 
