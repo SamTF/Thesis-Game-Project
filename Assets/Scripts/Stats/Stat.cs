@@ -11,6 +11,7 @@ public class Stat {
     [SerializeField][Tooltip("Name of the attribute: for UI only")]
     private string name;
     private Color colour;
+    private Sprite icon;
     private int _value = 0;
 
     /// <summary>
@@ -19,20 +20,27 @@ public class Stat {
     /// <param name="attribute">Attribute type for use in scripts</param>
     /// <param name="name">Name of the attribute for the UI</param>
     /// <param name="colour">Actual Color value code</param>
-    public Stat(Attribute attribute, string name, Color colour) {
+    /// <param name="icon">Icon to represent this Stat in the UI</param>
+    public Stat(Attribute attribute, string name, Color colour, Sprite icon) {
         this.attribute = attribute;
         this.name = name;
         this.colour = colour;
+        this.icon = icon;
     }
 
-    // Getter/Setter for the attribute value
+    // Getters & Setters
+
+    /// <summary>Value of this stat - the number of pixels it has present in the character sprite.</summary>
     public int Value {
         get { return _value; }
         set { _value = value; }
     }
-
-    // Getters
+    
     public Attribute Attribute => attribute;
+    /// <summary>Name of this Stat for displaying in the UI</summary>
     public string Name => name;
+    /// <summary>Colour that this stat corresponds to.</summary>
     public Color Colour => colour;
+    /// <summary>UI Icon representation of this Stat.</summary>
+    public Sprite Icon => icon;
 }
