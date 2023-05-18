@@ -9,9 +9,8 @@ public static class Palette
     private const int paletteWidth = 16;
     private const string fileType = ".png";
     private const string fileName = "palette";
-    private const int amountOfColours = 10;
+    private const int amountOfColours = 6;
 
-    private static int segments = 4;
     private static Color[] coloursArray = null;
     private static Colour[] colourObjs = null;
 
@@ -62,4 +61,6 @@ public static class Palette
     public static Color[] Colours => coloursArray;
     /// <summary>An array of all the Colors used in the game palette as Colour Objects.</summary>
     public static Colour[] ColourObjects => colourObjs;
+    /// <summary>Amount of colours present in the Palette.</summary>
+    public static int NumOfColours => amountOfColours;
 }
