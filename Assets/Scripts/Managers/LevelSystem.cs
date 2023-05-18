@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using System.Linq;
 
 /// <summary>
 /// This class is in charge of collecting XP and levelling up the Player.
@@ -20,6 +21,8 @@ public class LevelSystem : MonoBehaviour
     [SerializeField]
     private Player player;
 
+    private List<Stat> unlockedStats = new List<Stat>();
+    private List<Color> unlockedColours = new List<Color>();
 
     // Events
     public static event Action onXPGained;
@@ -46,6 +49,16 @@ public class LevelSystem : MonoBehaviour
     }
 
 
+    private void Start() {
+        UnlockColour();
+
+        foreach (Color c in Palette.Colours[0..2])
+        {
+            Debug.Log(ColorUtility.ToHtmlStringRGBA(c));
+        }
+    }
+
+
     /// <summary>
     /// Increase current XP and potentially level up!
     /// </summary>
@@ -54,11 +67,12 @@ public class LevelSystem : MonoBehaviour
         // Increment current XP with gained XP
         xp += gainedXP;
 
-        // Check if enough to level up
-        if (xp >= xpToLevelUp) {
+        // Check if enough to level up AND is not at the max level already
+        if (xp >= xpToLevelUp && level < Palette.NumOfColours) {
             level++;                // increment level
             xp -= xpToLevelUp;      // keep remainder XP
             onLevelUp?.Invoke();    // trigger the level up event
+            // UnlockColour();
         }
 
         // Trigger the XP Gain Event
@@ -72,6 +86,14 @@ public class LevelSystem : MonoBehaviour
         Debug.Log(progressRounded / 20);
     }
 
+    private void UnlockColour() {
+        Color newColour = Palette.Colours[level-1];
+        Stat newStat = Player.instance.Stats.Colour2Stat[newColour];
+
+        unlockedColours.Add(newColour);
+        unlockedStats.Add(newStat);
+    }
+
 
     // Public Getters
     public int Level => level;
@@ -83,6 +105,19 @@ public class LevelSystem : MonoBehaviour
             float progress = ((float)xp / (float)xpToLevelUp) * 100f;
             int progressRounded = Mathf.FloorToInt(progress / 20);
             return progressRounded;
+        }
+    }
+
+    /// <summary>
+    /// The Colours that the Player has unlocked so far by levelling up.
+    /// </summary>
+    public Color[] UnlockedColours => unlockedColours.ToArray();
+    // public Stat[] UnlockedStats => unlockedStats.ToArray();
+
+    /// <summary>The Stats that the Player has unlocked so far by levelling up.</summary>
+    public Stat[] UnlockedStats {
+        get {
+            return unlockedColours.Select(x => Player.instance.Stats.Colour2Stat[x]).ToArray();
         }
     }
 }
