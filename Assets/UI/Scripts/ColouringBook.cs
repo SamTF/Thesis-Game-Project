@@ -20,20 +20,28 @@ public class ColouringBook : MonoBehaviour
     [SerializeField]
     private string canvasID = "Canvas";
     [SerializeField]
+    private string spritePreviewID = "Preview";
+    [SerializeField]
     private string saveButtonID = "BtnSave";
     [SerializeField]
-    private string spritePreviewID = "Preview";
+    private string resetButtonID = "BtnReset";
+    [SerializeField]
+    private string clearButtonID = "BtnClear";
+    
 
     // Pixel Editor vars
     private int canvasSize = 16;
     private PixelBlockUI[ , ] pixelGrid = new PixelBlockUI[16, 16];
     private Color selectedColor = Color.magenta;
     private Texture2D drawingTex = null;
+    private Texture2D originalTex = null;
 
     // Visual Elements
     private VisualElement canvas = null;
     private VisualElement spritePreview = null;
     private Button saveButton = null;
+    private Button resetButton = null;
+    private Button clearButton = null;
 
     // Components in Children
     [Header("Child Scripts")]
@@ -73,14 +81,21 @@ public class ColouringBook : MonoBehaviour
         // Set position
         SetPosition();
 
+        // Get original texture
+        if (LevelSystem.instance.Level > 0)
+            originalTex = Player.instance?.Sprite.texture;
+
         // Initialise Variables
         pixelGrid = new PixelBlockUI[canvasSize, canvasSize];
-        drawingTex = CreateTexture(true);
+        drawingTex = CreateTexture(true, originalTex);
+        
 
         // Get UI Elements
         canvas = notebookUI.rootVisualElement.Q<VisualElement>(canvasID);
         spritePreview = paperUI.rootVisualElement.Q<VisualElement>(spritePreviewID);
         saveButton = paperUI.rootVisualElement.Q<Button>(saveButtonID);
+        resetButton = paperUI.rootVisualElement.Q<Button>(resetButtonID);
+        clearButton = paperUI.rootVisualElement.Q<Button>(clearButtonID);
 
         // Start Preview
         spritePreview.style.backgroundImage = drawingTex;
@@ -89,6 +104,12 @@ public class ColouringBook : MonoBehaviour
         // saveButton.clicked += SaveTexture;
         saveButton.clicked += Close;
         saveButton.clicked += UpdateSprite;
+
+        // Reset Button callbacks
+        resetButton.clicked += ResetColours;
+
+        // Clear Button callbacks
+        clearButton.clicked += ClearColours;
 
         // Instantiate all Pixel blocks inside the canvas
         CreatePixelGrid();
@@ -116,7 +137,11 @@ public class ColouringBook : MonoBehaviour
             for (int x = 0; x < pixelGrid.GetLength(0); x++) {
                 // Create new PixelBlock
                 Vector2Int position = new Vector2Int(x, canvasSize - (y + 1)); // invert Y position
-                PixelBlockUI p = new PixelBlockUI(position, Color.clear);
+                Color pixelColour = originalTex ?
+                    originalTex.GetPixel(x, position.y)
+                    : Color.clear;
+
+                PixelBlockUI p = new PixelBlockUI(position, pixelColour);
 
                 // Callback Events
                 p.RegisterCallback<PointerEnterEvent>(OnPointerEnter, TrickleDown.TrickleDown);
@@ -204,7 +229,7 @@ public class ColouringBook : MonoBehaviour
     /// Creates a Texture2D from scratch
     /// </summary>
     /// <returns>A Texture 2D object</returns>
-    private Texture2D CreateTexture(bool empty = false) {
+    private Texture2D CreateTexture(bool empty = true, Texture2D copyTexture = null) {
         // create empty texture of correct length
         Texture2D tex = new Texture2D(pixelGrid.GetLength(0), pixelGrid.GetLength(1), TextureFormat.ARGB32, false);
 
@@ -215,6 +240,7 @@ public class ColouringBook : MonoBehaviour
         for (int y = 0; y < tex.height; y++) {
             for (int x = 0; x < tex.width; x++) {
                 Color color = empty ? Color.clear : pixelGrid[x, y].Colour;
+                if (copyTexture) color = copyTexture.GetPixel(x, y);
                 tex.SetPixel(x, y, color);
             }
         }
@@ -259,6 +285,42 @@ public class ColouringBook : MonoBehaviour
 
         // Update button text
         saveButton.text = "SAVED!";
+    }
+
+    /// <summary>
+    /// Resets the drawing back to the original state.
+    /// </summary>
+    private void ResetColours() {
+        for (int y = 0; y < pixelGrid.GetLength(1); y++) {
+            for (int x = 0; x < pixelGrid.GetLength(0); x++) {
+                Vector2Int position = new Vector2Int(x, canvasSize - (y + 1)); // invert Y position
+                PixelBlockUI p = pixelGrid[x, y];
+
+                // update the pixels on the canvas
+                p.Colour = originalTex.GetPixel(x, y);
+
+                // update the texture preview
+                UpdateTexture(new Vector2Int(x, y), originalTex.GetPixel(x, y));
+            }
+        }
+    }
+
+    /// <summary>
+    /// Erases every colour in the drawing. Blank canvas!
+    /// </summary>
+    private void ClearColours() {
+        for (int y = 0; y < pixelGrid.GetLength(1); y++) {
+            for (int x = 0; x < pixelGrid.GetLength(0); x++) {
+                Vector2Int position = new Vector2Int(x, canvasSize - (y + 1)); // invert Y position
+                PixelBlockUI p = pixelGrid[x, y];
+
+                // update the pixels on the canvas
+                p.Colour = Color.clear;
+
+                // update the texture preview
+                UpdateTexture(position, Color.clear);
+            }
+        }
     }
 
     /// <summary>
