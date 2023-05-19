@@ -11,7 +11,7 @@ public class Stats : MonoBehaviour
     // Main Attributes
     private Stat attack = null;
     private Stat health = null;
-    private Stat attackSpeed = null;
+    private Stat attackRate = null;
     private Stat moveSpeed = null;
     private Stat stamina = null;
     // private Stat energy = null;
@@ -49,10 +49,10 @@ public class Stats : MonoBehaviour
         iconSprites = ImageLoader.CreateAllSprites(iconName, "UI", iconSprites.Length, iconSize);
 
         // Initialising the Stats
-        health          = new Stat(Attribute.Health,        "health",       Palette.Colours[0], iconSprites[0]);
-        attack          = new Stat(Attribute.Attack,        "attack",       Palette.Colours[1], iconSprites[1]);
-        moveSpeed       = new Stat(Attribute.MoveSpeed,     "speed",        Palette.Colours[3], iconSprites[2]);
-        attackSpeed     = new Stat(Attribute.AttackSpeed,   "fire rate",    Palette.Colours[2], iconSprites[3]);
+        health          = new Stat(Attribute.Health,        "health",       Palette.Colours[0], iconSprites[0], 1);
+        attack          = new Stat(Attribute.Attack,        "attack",       Palette.Colours[1], iconSprites[1], 1);
+        moveSpeed       = new Stat(Attribute.MoveSpeed,     "speed",        Palette.Colours[3], iconSprites[2], 2);
+        attackRate      = new Stat(Attribute.AttackRate,    "fire rate",    Palette.Colours[2], iconSprites[3], 2);
         shotSpeed       = new Stat(Attribute.ShotSpeed,     "shot speed",   Palette.Colours[4], iconSprites[4]);
         stamina         = new Stat(Attribute.Stamina,       "stamina",      Palette.Colours[5], iconSprites[5]);
         // shotRange       = new Stat(Attribute.ShotRange,     "shot range",   Palette.Colours[6]);
@@ -61,7 +61,7 @@ public class Stats : MonoBehaviour
         
 
         // Adding stats to list
-        stats = new Stat[] {health, attack, moveSpeed, attackSpeed, shotSpeed, stamina };
+        stats = new Stat[] {health, attack, moveSpeed, attackRate, shotSpeed, stamina };
 
         // Adding stats to dictionaries
         foreach (Stat s in stats) {
@@ -109,7 +109,7 @@ public class Stats : MonoBehaviour
     public Stat Health => health;
     public Stat Attack => attack;
     public Stat MoveSpeed => moveSpeed;
-    public Stat AttackSpeed => attackSpeed;
+    public Stat AttackRate => attackRate;
     public Stat ShotSpeed => shotSpeed;
     public Stat Stamina => stamina;
 
