@@ -94,7 +94,7 @@ public class ColourPaletteUI : MonoBehaviour
             VisualElement element = elementList[i];
             Color color = colours[i];
 
-            ColourSplash cs = new ColourSplash(element, Palette.Colours[i], OnClick);
+            ColourSplash cs = new ColourSplash(element, color, OnClick);
             splashList.Add(cs);
         }
     }
