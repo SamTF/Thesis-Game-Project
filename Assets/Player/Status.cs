@@ -28,7 +28,7 @@ public class Status : MonoBehaviour
     private float knockbackCooldown = 0.25f;
 
     // Constants
-    private const float baseShootingCooldown = 1f;
+    private float baseShotsPerSecond = 2f;
     private const float baseDodgeLength = 0.25f;
 
     // Components
@@ -36,6 +36,8 @@ public class Status : MonoBehaviour
 
     private void Awake() {
         stats = GetComponent<Stats>();
+
+        baseShotsPerSecond = stats.AttackRate.baseValue;
     }
 
     ///// GETTER SETTERS
@@ -99,7 +101,7 @@ public class Status : MonoBehaviour
         get { return canShoot && !isBackflipping && !isDodging && !isJumping; }
         set {
             if (value == false) {
-                float shotsPerSecond = Mathf.Clamp(stats.AttackSpeed.Value / 33f, baseShootingCooldown, 10f);
+                float shotsPerSecond = Mathf.Clamp(stats.AttackRate.Value / 33f, baseShotsPerSecond, 10f);
                 shootingCooldown = 1 / shotsPerSecond;
                 StartCoroutine( StatusCooldown(result => canShoot = result, false, shootingCooldown) );
             } else {
