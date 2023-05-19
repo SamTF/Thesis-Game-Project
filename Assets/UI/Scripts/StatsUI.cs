@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using System.Linq;
 
 public class StatsUI : MonoBehaviour
 {
@@ -86,7 +87,23 @@ public class StatsUI : MonoBehaviour
     /// <summary>
     /// Updates ALL stats from scratch by re-fetching the value from the Stats.
     /// </summary>
-    public void RefreshAllStats() {
+    public void RefreshAllStats(Texture2D texture = null) {
+        // Fetches stat valuesdirectly from the texture
+        if (texture) {
+            Colour[] colourValues = ImageAnalyser.Analyse(texture);
+
+            foreach (StatsItemUI item in statItems) {
+                try {
+                    item.Value = colourValues.First(x => x.colour == item.Colour).value;
+                } catch (System.Exception) {
+                    item.Value = 0;
+                }
+            }
+
+            return;
+        }
+
+        // Fetches stat values from the Player Stats component
         foreach (StatsItemUI item in statItems) {
             Stat stat = Player.instance.Stats.Colour2Stat[item.Colour];
             item.Value = stat.Value;
