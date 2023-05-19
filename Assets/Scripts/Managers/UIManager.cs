@@ -6,16 +6,19 @@ using TMPro;
 public class UIManager : MonoBehaviour
 {
     [Header("UI MANAGER")]
+    [Header("Old Canvas Stuff")]
     [SerializeField]
     private Transform panel = null;
     [SerializeField]
     private GameObject textPrefab = null;
 
+    [Header("UI Element Menus")]
     [SerializeField]
     private GameObject pauseMenu = null;
-
     [SerializeField]
     private GameObject colouringBook = null;
+    [SerializeField]
+    private GameObject levelUpMenu = null;
 
     // Singleton Thing
     private static UIManager _instance = null;
@@ -36,12 +39,13 @@ public class UIManager : MonoBehaviour
     // Events
     private void OnEnable() {
         GameManager.onPause += PauseMenuToggle;
-        // LevelSystem.onLevelUp += ColouringBookToggle;
         LevelSystem.onLevelUp += LevelUp;
+        LevelUpUI.onNewColourChosen += ColouringBookToggle;
     }
     private void OnDisable() {
         GameManager.onPause -= PauseMenuToggle;
-        LevelSystem.onLevelUp -= ColouringBookToggle;
+        LevelSystem.onLevelUp -= LevelUp;
+        LevelUpUI.onNewColourChosen -= ColouringBookToggle;
     }
 
     /// <summary>
@@ -90,23 +94,34 @@ public class UIManager : MonoBehaviour
             return;
         }
 
-        // If a Colouring Book instance exists, do nothing
-        if (ColouringBook.instance) return;
+        // If another menu that pauses the game is running, do nothing
+        if (ColouringBook.instance || LevelUpUI.instance) return;
             
         // Instantiate a Pause Menu
         GameObject pauseMenuObject = Instantiate(pauseMenu);
     }
 
-    /// <summary>
-    /// Instantiate the Colouring Book (if it's now already present)
-    /// </summary>
-    private void ColouringBookToggle() {
-        // do nothing if there already is a pixel art editor running
-        if (ColouringBook.instance) {
+    private void ShowLevelUpMenu() {
+        // do nothing if there already is a Level Up Menu open
+        if (LevelUpUI.instance) {
             return;
         }
 
-        Instantiate(colouringBook);
+        Instantiate(levelUpMenu);
+    }
+
+    /// <summary>
+    /// Instantiate the Colouring Book (if it's now already present)
+    /// </summary>
+    private void ColouringBookToggle(Color newColour) {
+        Debug.Log("COLOURING BOOK TOGGLE");
+        // do nothing if there already is a pixel art editor running
+        // if (ColouringBook.instance || PauseMenu.instance || LevelUpUI.instance) {
+        //     return;
+        // }
+
+        // Instantiate(colouringBook);
+        StartCoroutine(DelayedDisplay(colouringBook, 0.1f));
     }
 
 
@@ -141,7 +156,18 @@ public class UIManager : MonoBehaviour
         // despawn level up text
         Destroy(levelUpObject);
 
-        // enable the colouring book
-        ColouringBookToggle();
+        // enable the level up menu book
+        ShowLevelUpMenu();
+    }
+
+    private IEnumerator DelayedDisplay(GameObject menu, float delay)  {
+        yield return new WaitForSeconds(delay);
+
+        // do nothing if there already is a UI menu running
+        if (ColouringBook.instance || PauseMenu.instance || LevelUpUI.instance) {
+            yield return null;
+        }
+
+        Instantiate(menu);
     }
 }
