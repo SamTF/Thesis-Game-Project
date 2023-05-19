@@ -30,11 +30,18 @@ public class LevelSystem : MonoBehaviour
 
     /// Singleton thing
     private static LevelSystem _instance = null;
-    public static LevelSystem instance
-    {
+    public static LevelSystem instance {
         get {return _instance;}
     }
 
+
+    // Subscribing to Events
+    private void OnEnable() {
+        LevelUpUI.onNewColourChosen += UnlockColour;
+    }
+    private void OnDisable() {
+        LevelUpUI.onNewColourChosen -= UnlockColour;
+    }
     
     private void Awake()
     {
@@ -50,7 +57,7 @@ public class LevelSystem : MonoBehaviour
 
 
     private void Start() {
-        UnlockColour();
+        UnlockColour(Palette.Colours[level-1]);
 
         foreach (Color c in Palette.Colours[0..2])
         {
@@ -72,7 +79,6 @@ public class LevelSystem : MonoBehaviour
             level++;                // increment level
             xp -= xpToLevelUp;      // keep remainder XP
             onLevelUp?.Invoke();    // trigger the level up event
-            // UnlockColour();
         }
 
         // Trigger the XP Gain Event
@@ -86,8 +92,17 @@ public class LevelSystem : MonoBehaviour
         Debug.Log(progressRounded / 20);
     }
 
-    private void UnlockColour() {
-        Color newColour = Palette.Colours[level-1];
+    /// <summary>
+    /// A new Colour to the Player's Palette -> list of available colours to use when drawing the sprite.
+    /// </summary>
+    /// <param name="newColour">The Colour that the Player chose to unlock</param>
+    private void UnlockColour(Color newColour) {
+        // Check if the colour given exists in the Palette!
+        if (!Array.Exists( Palette.Colours, c => c == newColour )) {
+            Debug.LogError("[LEVEL SYSTEM] >>> Unlocked colour does not exist in the Colour Palette!");
+            return;
+        }
+
         Stat newStat = Player.instance.Stats.Colour2Stat[newColour];
 
         unlockedColours.Add(newColour);
