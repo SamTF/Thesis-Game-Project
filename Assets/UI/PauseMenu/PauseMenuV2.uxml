@@ -1,0 +1,29 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Globals.uss?fileID=7433441132597879392&amp;guid=7d653874a8625ca4cb3f8366e0226acb&amp;type=3#Globals" />
+    <Style src="project://database/Assets/UI/PauseMenu/PauseMenu%20v2.uss?fileID=7433441132597879392&amp;guid=6941f9b9ca3b7a4478881a8b422d3669&amp;type=3#PauseMenu v2" />
+    <ui:VisualElement name="MainContainer" class="main-container">
+        <ui:VisualElement name="Notebook" picking-mode="Ignore" class="notebook">
+            <ui:VisualElement name="TextContainer" class="text-container">
+                <ui:VisualElement name="Header" picking-mode="Ignore" class="header" />
+                <ui:VisualElement name="MenuItems" class="menu-items">
+                    <ui:Button text="resume" display-tooltip-when-elided="true" name="resume" enable-rich-text="false" class="text menu-item" />
+                    <ui:Button text="options" display-tooltip-when-elided="true" name="options" enable-rich-text="false" tabindex="1" class="text menu-item" />
+                    <ui:Button text="restart" display-tooltip-when-elided="true" name="restart" enable-rich-text="false" tabindex="2" class="text menu-item" />
+                    <ui:Button text="menu" display-tooltip-when-elided="true" name="menu" enable-rich-text="false" tabindex="3" class="text menu-item" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="PreviewContainer" style="margin-left: 26px; width: 144px; height: 112px; justify-content: center; align-items: center;">
+                <ui:VisualElement name="Preview" style="width: 64px; height: 64px; -unity-background-scale-mode: scale-to-fit; background-image: url(&apos;project://database/Assets/CUSTOM/MyDrawings/658b9a213322a8186d4aa4e65c77c611.png?fileID=2800000&amp;guid=785665aa69b182d438a059e989013bf2&amp;type=3#658b9a213322a8186d4aa4e65c77c611&apos;);" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="PaperSidebar" style="background-image: url(&apos;project://database/Assets/UI/Static%20Images/Paper.png?fileID=2800000&amp;guid=fcf44c13bda0b5e4eb1a420106fe7832&amp;type=3#Paper&apos;); width: 112px; height: 164px; position: absolute; left: 266px; top: 40px; align-items: center;">
+            <ui:Label text="[USERNAME]" display-tooltip-when-elided="true" name="Header" class="text" style="-unity-text-align: upper-center; margin-top: 16px; margin-bottom: 16px; -unity-font-definition: url(&apos;project://database/Assets/UI%20Toolkit/Fonts/Precise-M%20Bold.asset?fileID=11400000&amp;guid=985ca571f19bb384a829249fbd98f274&amp;type=2#Precise-M Bold&apos;);" />
+            <ui:VisualElement name="StatsContainer" style="width: 64px; height: 96px;">
+                <ui:VisualElement name="StatItem" class="stats-item">
+                    <MyImage name="icon" style="background-image: url(&apos;project://database/Assets/Tiles/1bit%2016px%20tiles.png?fileID=8459057698258135811&amp;guid=18b01753eef6525499a8a9ea26e4c5f5&amp;type=3#1bit 16px tiles_25&apos;);" />
+                    <ui:Label text="256" display-tooltip-when-elided="true" name="text" class="text" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

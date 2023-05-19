@@ -1,0 +1,81 @@
+.main-container {
+    width: 384px;
+    height: 216px;
+}
+
+.notebook {
+    background-image: url('project://database/Assets/UI/Static%20Images/notebook%20portrait.png?fileID=21300000&guid=6c5f8c96c61450f47920c88ecb9ad3bb&type=3#notebook portrait');
+    width: 176px;
+    height: 240px;
+    position: absolute;
+    -unity-background-scale-mode: scale-to-fit;
+    left: 86px;
+    top: 16px;
+}
+
+.notebook .text-container {
+    width: 144px;
+    height: 104px;
+    margin-left: 26px;
+    margin-top: 16px;
+    align-items: center;
+}
+
+.notebook .header {
+    background-image: resource('UI/Paused Text');
+    width: 78px;
+    height: 16px;
+    margin-top: 8px;
+}
+
+.notebook .menu-items {
+    width: 100%;
+    height: auto;
+    margin-top: 16px;
+}
+
+.notebook .menu-items .menu-item {
+    background-color: rgba(188, 188, 188, 0);
+    border-left-color: rgba(149, 149, 149, 0);
+    border-right-color: rgba(149, 149, 149, 0);
+    border-top-color: rgba(149, 149, 149, 0);
+    border-bottom-color: rgba(149, 149, 149, 0);
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+    color: rgb(102, 97, 99);
+    margin-bottom: 8px;
+}
+
+.menu-item:focus {
+    -unity-font-definition: url('project://database/Assets/UI%20Toolkit/Fonts/Precise-M%20Bold.asset?fileID=11400000&guid=985ca571f19bb384a829249fbd98f274&type=2#Precise-M Bold');
+    color: rgb(51, 49, 50);
+}
+
+.menu-item:hover {
+    -unity-font-definition: url('project://database/Assets/UI%20Toolkit/Fonts/Precise-M%20Bold.asset?fileID=11400000&guid=985ca571f19bb384a829249fbd98f274&type=2#Precise-M Bold');
+    color: rgb(51, 49, 50);
+}
+
+.stats-item {
+    width: 100%;
+    height: 16px;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.stats-item Label {
+    height: 105%;
+    align-items: stretch;
+    justify-content: space-around;
+    -unity-text-align: lower-right;
+    white-space: nowrap;
+    width: 24px;
+}
+
+.stats-item MyImage {
+    width: 16px;
+    height: 16px;
+    margin-right: 16px;
+}
