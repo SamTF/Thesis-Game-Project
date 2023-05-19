@@ -2,7 +2,7 @@ public enum Attribute {
     Health,
     Attack,
     MoveSpeed,
-    AttackSpeed,
+    AttackRate,
     Stamina,
     Energy,
     ShotSpeed,
