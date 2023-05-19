@@ -9,6 +9,8 @@ public class StatsUI : MonoBehaviour
     [Header("STATS UI")]
     [SerializeField][Tooltip("Name of the root Visual Element containing the Stats UI stuff")]
     private string mainContainerID = "StatsContainer";
+    [SerializeField][Tooltip("Whether to show all Stats (True) or only Unlocked Stats (False)")]
+    private bool showAllStats = true;
 
     // Elements
     private VisualElement mainContainer = null;
@@ -16,25 +18,11 @@ public class StatsUI : MonoBehaviour
 
     private Dictionary<Color, StatsItemUI> colour2item = new Dictionary<Color, StatsItemUI>();
 
-    // Icons
-    /// <summary>The Icons for each stats as Sprite objects</summary>
-    private Sprite[] iconSprites = new Sprite[6];
-    /// <summary>The dimensions of the XP Icon sprite in px.</summary>
-    private Vector2Int iconSize = new Vector2Int(16, 16);
-    /// <summary>Name of the Stat Icons spritesheet file.</summary>
-    private string iconName = "StatIcons";
-    /// <summary>File extension of the image files.</summary>
-    private string fileType = "png";
-
 
     private void Start() {
         // Get elements
         VisualElement root = GetComponent<UIDocument>().rootVisualElement;
         mainContainer = root.Q<VisualElement>(mainContainerID);
-
-        // Create Icon sprites
-        // iconSprites = CreateAllSprites(iconName, iconSize, iconSprites.Length);
-        iconSprites = ImageLoader.CreateAllSprites(iconName, "UI", iconSprites.Length, iconSize);
 
         // Instantiate Stat Items
         InitItems();
@@ -48,8 +36,14 @@ public class StatsUI : MonoBehaviour
         // clear
         mainContainer.Clear();
 
-        // fetch stats from Level System
-        Stat[] stats = LevelSystem.instance.UnlockedStats;
+        Stat[] stats;
+        
+        // fetch stats from Player if all attributes must be shown
+        if (showAllStats)
+            stats = Player.instance.Stats.StatsArray;
+        // fetch stats from level system if only unlocked attributes should be shown
+        else
+            stats = LevelSystem.instance.UnlockedStats;
 
         statItems = new StatsItemUI[stats.Length];
 
