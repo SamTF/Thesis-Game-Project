@@ -16,6 +16,7 @@ public class ColouringBook : MonoBehaviour
     [SerializeField][Tooltip("The UI Document of the Paper")]
     private UIDocument paperUI = null;
 
+
     [Header("Element Names")]
     [SerializeField]
     private string canvasID = "Canvas";
@@ -59,6 +60,26 @@ public class ColouringBook : MonoBehaviour
         get {return _instance;}
     }
 
+    // Subscribing to Events
+    private void OnEnable() {
+        // PaperUI.onSaveBtnClicked += SaveTexture;
+        PaperUI.onSaveBtnClicked += Close;
+        PaperUI.onSaveBtnClicked += UpdateSprite;
+
+        PaperUI.onResetBtnClicked += ResetCanvas;
+
+        PaperUI.onClearBtnClicked += ClearCanvas;
+    }
+    private void OnDisable() {
+        PaperUI.onSaveBtnClicked -= SaveTexture;
+        PaperUI.onSaveBtnClicked -= Close;
+        PaperUI.onSaveBtnClicked -= UpdateSprite;
+
+        PaperUI.onResetBtnClicked -= ResetCanvas;
+
+        PaperUI.onClearBtnClicked -= ClearCanvas;
+    }
+
 
     private void Awake() {
         // Singleton - there can only be one pixel art editor!
@@ -94,22 +115,9 @@ public class ColouringBook : MonoBehaviour
         canvas = notebookUI.rootVisualElement.Q<VisualElement>(canvasID);
         spritePreview = paperUI.rootVisualElement.Q<VisualElement>(spritePreviewID);
         saveButton = paperUI.rootVisualElement.Q<Button>(saveButtonID);
-        resetButton = paperUI.rootVisualElement.Q<Button>(resetButtonID);
-        clearButton = paperUI.rootVisualElement.Q<Button>(clearButtonID);
 
         // Start Preview
         spritePreview.style.backgroundImage = drawingTex;
-
-        // Save Button callbacks
-        // saveButton.clicked += SaveTexture;
-        saveButton.clicked += Close;
-        saveButton.clicked += UpdateSprite;
-
-        // Reset Button callbacks
-        resetButton.clicked += ResetColours;
-
-        // Clear Button callbacks
-        clearButton.clicked += ClearColours;
 
         // Instantiate all Pixel blocks inside the canvas
         CreatePixelGrid();
@@ -290,7 +298,7 @@ public class ColouringBook : MonoBehaviour
     /// <summary>
     /// Resets the drawing back to the original state.
     /// </summary>
-    private void ResetColours() {
+    private void ResetCanvas() {
         for (int y = 0; y < pixelGrid.GetLength(1); y++) {
             for (int x = 0; x < pixelGrid.GetLength(0); x++) {
                 Vector2Int position = new Vector2Int(x, canvasSize - (y + 1)); // invert Y position
@@ -303,12 +311,15 @@ public class ColouringBook : MonoBehaviour
                 UpdateTexture(new Vector2Int(x, y), originalTex.GetPixel(x, y));
             }
         }
+
+        // Update stats UI values
+        statsUI.RefreshAllStats();
     }
 
     /// <summary>
     /// Erases every colour in the drawing. Blank canvas!
     /// </summary>
-    private void ClearColours() {
+    private void ClearCanvas() {
         for (int y = 0; y < pixelGrid.GetLength(1); y++) {
             for (int x = 0; x < pixelGrid.GetLength(0); x++) {
                 Vector2Int position = new Vector2Int(x, canvasSize - (y + 1)); // invert Y position
@@ -321,6 +332,9 @@ public class ColouringBook : MonoBehaviour
                 UpdateTexture(position, Color.clear);
             }
         }
+
+        // Update stats UI values
+        statsUI.RefreshAllStats(drawingTex);
     }
 
     /// <summary>
