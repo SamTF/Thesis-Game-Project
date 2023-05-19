@@ -1134,8 +1134,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   panel: {fileID: 972825148}
   textPrefab: {fileID: 5927881384613751566, guid: bdd123a5bfa587e46a697fe6a47fdcb3, type: 3}
-  pauseMenu: {fileID: 3669937288749483359, guid: f2c686d0e69013d47b0d895a068c87d4, type: 3}
+  pauseMenu: {fileID: 8846207254480795542, guid: fbb8d48da922fbc4fa08a45966c4c4e6, type: 3}
   colouringBook: {fileID: 7560860741495592438, guid: 22dd0097736e2d54b903977ef73d8d23, type: 3}
+  levelUpMenu: {fileID: 7169814910712747006, guid: f0d4bda798c451940888e34c06479329, type: 3}
 --- !u!4 &917779106
 Transform:
   m_ObjectHideFlags: 0
@@ -2180,7 +2181,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1563645646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3292,10 +3293,6 @@ PrefabInstance:
       value: Main Camera
       objectReference: {fileID: 0}
     - target: {fileID: 1572892620791897155, guid: d1cd17a40103b07468ef6a774ab53070, type: 3}
-      propertyPath: orthographic size
-      value: 6.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 1572892620791897155, guid: d1cd17a40103b07468ef6a774ab53070, type: 3}
       propertyPath: m_NormalizedViewPortRect.x
       value: 0
       objectReference: {fileID: 0}
@@ -3309,6 +3306,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1572892620791897155, guid: d1cd17a40103b07468ef6a774ab53070, type: 3}
       propertyPath: m_NormalizedViewPortRect.height
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1572892620791897272, guid: d1cd17a40103b07468ef6a774ab53070, type: 3}
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1572892620791897276, guid: d1cd17a40103b07468ef6a774ab53070, type: 3}
