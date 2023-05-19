@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 using System;
+using System.Linq;
 
 public class LevelUpUI : MonoBehaviour
 {
@@ -61,9 +62,18 @@ public class LevelUpUI : MonoBehaviour
         newLevel.text = "OO YESS";
         colourItemsContainer.Clear();
 
+        // getting available stats & shuffling them
+        Stat[] lockedStats = GetLockedStats();
+
+        System.Random rng = new System.Random();
+        lockedStats = lockedStats.OrderBy(e => rng.NextDouble()).ToArray();
+
+        // determining how many colours to display
+        int numOfItems = lockedStats.Length >= 3 ? 3 : lockedStats.Length;
+
         // Instantiating the Colour Items
-        for (int i = 0; i < 3; i++) {
-            Stat stat = Player.instance.Stats.StatsArray[i];
+        for (int i = 0; i < numOfItems; i++) {
+            Stat stat = lockedStats[i];
 
             NewColourItem item = new NewColourItem(
                 stat,
@@ -75,8 +85,16 @@ public class LevelUpUI : MonoBehaviour
 
             colourItemsContainer.Add(item.element);
         }
+    }
 
-        colourItemsContainer.Query<VisualElement>("ColourItem").Last().Focus();
+    private Color[] GetLockedColours() {
+        Color[] lockedColours = Palette.Colours.Except(LevelSystem.instance.UnlockedColours).ToArray();
+        return lockedColours;
+    }
+
+    private Stat[] GetLockedStats() {
+        Stat[] lockedStats = Player.instance.Stats.StatsArray.Except(LevelSystem.instance.UnlockedStats).ToArray();
+        return lockedStats;
     }
 
     /// <summary>
