@@ -2,17 +2,19 @@
     <Style src="project://database/Assets/UI/Globals.uss?fileID=7433441132597879392&amp;guid=7d653874a8625ca4cb3f8366e0226acb&amp;type=3#Globals" />
     <Style src="project://database/Assets/UI/Pixel%20Art%20Editor/PaperSidebar.uss?fileID=7433441132597879392&amp;guid=1cd92a50eeb9f9b4f918f3173b33091c&amp;type=3#PaperSidebar" />
     <ui:VisualElement name="MainContainer" style="width: 112px; height: 164px; background-image: url(&apos;project://database/Assets/UI/Static%20Images/Paper.png?fileID=2800000&amp;guid=fcf44c13bda0b5e4eb1a420106fe7832&amp;type=3#Paper&apos;); justify-content: flex-start; align-items: center;">
-        <ui:VisualElement name="PreviewContainer" style="width: 80%; height: 68px; align-items: center;">
-            <ui:Label text="Preview" display-tooltip-when-elided="true" name="Header" style="-unity-font-definition: url(&apos;project://database/Assets/UI%20Toolkit/Fonts/Precise-M%20Bold.asset?fileID=11400000&amp;guid=985ca571f19bb384a829249fbd98f274&amp;type=2#Precise-M Bold&apos;); font-size: 6px; -unity-text-align: upper-center; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; margin-left: 0; margin-right: 0; margin-top: 16px; margin-bottom: 8px; color: rgb(51, 49, 50);" />
+        <ui:VisualElement name="PreviewContainer" style="width: 80%; height: 64px; align-items: center;">
+            <ui:Label text="Preview" display-tooltip-when-elided="true" name="Header" style="-unity-font-definition: url(&apos;project://database/Assets/UI%20Toolkit/Fonts/Precise-M%20Bold.asset?fileID=11400000&amp;guid=985ca571f19bb384a829249fbd98f274&amp;type=2#Precise-M Bold&apos;); font-size: 6px; -unity-text-align: upper-center; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; margin-left: 0; margin-right: 0; margin-top: 8px; margin-bottom: 8px; color: rgb(51, 49, 50);" />
             <ui:VisualElement name="Preview" style="width: 32px; height: 32px;" />
         </ui:VisualElement>
-        <ui:VisualElement name="TextInfo" style="height: 20%; width: 80%; display: flex; align-items: center;">
-            <ui:Label text="Draw your&#10;character&#10;or smthing!" display-tooltip-when-elided="true" class="text" style="white-space: normal; height: auto;" />
+        <ui:VisualElement name="TextInfo" style="height: 40px; width: 80%; display: flex; align-items: center; justify-content: center;">
+            <ui:Label text="Draw your&#10;character&#10;or smthing!" display-tooltip-when-elided="true" name="Text" class="text" style="white-space: normal; height: auto;" />
         </ui:VisualElement>
-        <ui:VisualElement name="Buttons" style="width: 80%; height: 33%; align-items: center;">
+        <ui:VisualElement name="Buttons" style="width: 80%; height: 40px; align-items: center; margin-top: 8px;">
             <ui:Button text="SAVE" display-tooltip-when-elided="true" name="BtnSave" enable-rich-text="false" focusable="true" class="btn" />
-            <ui:Button text="RESET" display-tooltip-when-elided="true" name="BtnReset" focusable="true" enable-rich-text="false" class="btn" />
-            <ui:Button text="CLEAR" display-tooltip-when-elided="true" name="BtnClear" focusable="true" enable-rich-text="false" class="btn" />
+            <ui:VisualElement name="IconsContainer" style="width: 100%; flex-direction: row; flex-wrap: wrap; justify-content: center;">
+                <ui:Button display-tooltip-when-elided="true" name="BtnReset" focusable="true" enable-rich-text="false" class="icon-btn" />
+                <ui:Button display-tooltip-when-elided="true" name="BtnClear" focusable="true" enable-rich-text="false" class="icon-btn" style="background-image: url(&apos;project://database/Assets/UI/Static%20Images/Buttons/trash.png?fileID=21300000&amp;guid=7ccab39a00b1cd54fa5ead15562c585f&amp;type=3#trash&apos;);" />
+            </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

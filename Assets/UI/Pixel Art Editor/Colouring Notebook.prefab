@@ -52,9 +52,12 @@ MonoBehaviour:
   notebookUI: {fileID: 7560860741943758170}
   paperUI: {fileID: 7560860742549349795}
   canvasID: Canvas
-  saveButtonID: BtnSave
   spritePreviewID: Preview
-  colourPalette: {fileID: 0}
+  saveButtonID: BtnSave
+  resetButtonID: BtnReset
+  clearButtonID: BtnClear
+  colourPalette: {fileID: 7560860743374346274}
+  statsUI: {fileID: 222301422163360462}
   pencilCursor: {fileID: 0}
 --- !u!95 &1427877057
 Animator:
@@ -209,7 +212,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainContainerID: StatsContainer
-  testIcon: {fileID: 8459057698258135811, guid: 18b01753eef6525499a8a9ea26e4c5f5, type: 3}
 --- !u!1 &7560860742549349798
 GameObject:
   m_ObjectHideFlags: 0
@@ -222,6 +224,7 @@ GameObject:
   - component: {fileID: 7560860742549349793}
   - component: {fileID: 7560860742549349795}
   - component: {fileID: 7560860742549349794}
+  - component: {fileID: 7818969398698848998}
   m_Layer: 0
   m_Name: Paper
   m_TagString: Untagged
@@ -328,6 +331,23 @@ MonoBehaviour:
   containerID: MainContainer
   anchorX: 1
   anchorY: 1
+--- !u!114 &7818969398698848998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7560860742549349798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f6f08b3c938c704bb94faecb97e9314, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainContainerID: MainContainer
+  spritePreviewID: Preview
+  saveButtonID: BtnSave
+  resetButtonID: BtnReset
+  clearButtonID: BtnClear
 --- !u!1 &7560860743374346273
 GameObject:
   m_ObjectHideFlags: 0
