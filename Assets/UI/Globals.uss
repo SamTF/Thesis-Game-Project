@@ -12,3 +12,28 @@
     color: rgb(51, 49, 50);
     height: 8px;
 }
+
+.text-2x {
+    font-size: 16px;
+    height: 16px;
+}
+
+.text-small {
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 4px;
+    padding-bottom: 0;
+    font-size: 16px;
+    -unity-font-definition: url('project://database/Assets/UI%20Toolkit/Fonts/m3x6.asset?fileID=11400000&guid=e58d25536dd71ca4aadbafb8584ad099&type=2#m3x6');
+    -unity-paragraph-spacing: -7.5px;
+    word-spacing: -2px;
+    -unity-text-align: upper-center;
+    white-space: normal;
+    height: 32px;
+    width: 56px;
+    -unity-font-style: normal;
+}
