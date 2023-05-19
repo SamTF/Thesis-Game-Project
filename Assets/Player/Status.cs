@@ -68,7 +68,7 @@ public class Status : MonoBehaviour
         get { return isDodging; }
         set {
             if (value == true) {
-                float dodgeLength = (stats.MoveSpeed.Value * 0.005f) + baseDodgeLength;
+                float dodgeLength = Mathf.Clamp(stats.MoveSpeed.Value / (stats.MoveSpeed.valueModifier * 4f), baseDodgeLength, 5f);
                 StartCoroutine(StatusCooldown(result => isDodging = result, true, dodgeLength));
                 StartCoroutine(StatusCooldown (result => canDodge = result, false, 0.5f));
             } else {
@@ -101,7 +101,7 @@ public class Status : MonoBehaviour
         get { return canShoot && !isBackflipping && !isDodging && !isJumping; }
         set {
             if (value == false) {
-                float shotsPerSecond = Mathf.Clamp(stats.AttackRate.Value / 33f, baseShotsPerSecond, 10f);
+                float shotsPerSecond = Mathf.Clamp(stats.AttackRate.Value / stats.AttackRate.valueModifier, baseShotsPerSecond, 10f);
                 shootingCooldown = 1 / shotsPerSecond;
                 StartCoroutine( StatusCooldown(result => canShoot = result, false, shootingCooldown) );
             } else {

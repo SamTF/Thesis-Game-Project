@@ -13,7 +13,7 @@ public class Health : MonoBehaviour
     private LayerMask damageLayer;
 
     // Health values
-    private const int baseHearts = 1;
+    private int baseHearts = 1;
     private int maxHearts;
     private int health;
 
@@ -27,13 +27,16 @@ public class Health : MonoBehaviour
 
 
     private void Awake() {
+        // Get components
         player = GetComponent<Player>();
         stats = GetComponent<Stats>();
 
-        int extraHearts = Mathf.FloorToInt(stats.Health.Value / 10f);
-        Debug.Log($"Health stat: {stats.Health.Value} -> Extra Hearts: {extraHearts}");
+        // Get stats & set vars
+        baseHearts = stats.Health.baseValue;
+        int extraHearts = Mathf.FloorToInt(stats.Health.Value / stats.Health.valueModifier);
         maxHearts = baseHearts + extraHearts;
         health = maxHearts * 2; // each heart is worth 2 HP
+        Debug.Log($"Health stat: {stats.Health.Value} -> Extra Hearts: {extraHearts}");
     }
 
 

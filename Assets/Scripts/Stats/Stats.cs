@@ -49,11 +49,11 @@ public class Stats : MonoBehaviour
         iconSprites = ImageLoader.CreateAllSprites(iconName, "UI", iconSprites.Length, iconSize);
 
         // Initialising the Stats
-        health          = new Stat(Attribute.Health,        "health",       Palette.Colours[0], iconSprites[0], 1);
+        health          = new Stat(Attribute.Health,        "health",       Palette.Colours[0], iconSprites[0], 1, 10);
         attack          = new Stat(Attribute.Attack,        "attack",       Palette.Colours[1], iconSprites[1], 1);
-        moveSpeed       = new Stat(Attribute.MoveSpeed,     "speed",        Palette.Colours[3], iconSprites[2], 2);
-        attackRate      = new Stat(Attribute.AttackRate,    "fire rate",    Palette.Colours[2], iconSprites[3], 2);
-        shotSpeed       = new Stat(Attribute.ShotSpeed,     "shot speed",   Palette.Colours[4], iconSprites[4]);
+        moveSpeed       = new Stat(Attribute.MoveSpeed,     "speed",        Palette.Colours[2], iconSprites[2], 2, 33);
+        attackRate      = new Stat(Attribute.AttackRate,    "fire rate",    Palette.Colours[3], iconSprites[3], 2, 33);
+        shotSpeed       = new Stat(Attribute.ShotSpeed,     "shot speed",   Palette.Colours[4], iconSprites[4], 4, 25);
         stamina         = new Stat(Attribute.Stamina,       "stamina",      Palette.Colours[5], iconSprites[5]);
         // shotRange       = new Stat(Attribute.ShotRange,     "shot range",   Palette.Colours[6]);
         // shotAmount      = new Stat(Attribute.ShotAmount,    "shot amount",  Palette.Colours[7]);

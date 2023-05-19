@@ -9,7 +9,7 @@ public class Weapon : MonoBehaviour
     [SerializeField][Tooltip("Projectile that this gun shoots")]
     private GameObject projectilePrefab = null;
     [SerializeField][Tooltip("How fast the projectile will travel")]
-    private float shotSpeed = 6f;
+    private float baseShotSpeed = 6f;
     [SerializeField][Tooltip("The spawn points for the projectiles.")]
     private ShootPoints shootPoints = null;
     [SerializeField][Tooltip("The Projectile will damage Objects in this layer.")]
@@ -28,8 +28,12 @@ public class Weapon : MonoBehaviour
 
     void Start()
     {
+        // Components
         player = GetComponentInParent<Player>();
         input = player.Input;
+
+        // Stats
+        baseShotSpeed = player.Stats.ShotSpeed.baseValue;
     }
 
     // Update is called once per frame
@@ -60,11 +64,16 @@ public class Weapon : MonoBehaviour
         // Direction the player is moving in
         Vector2 movementVector = input.Movement;
         
+        // Setting Shot speed value
+        float speed = baseShotSpeed + (player.Stats.ShotSpeed.Value / player.Stats.ShotSpeed.valueModifier );
+
         // Checking if moving and shooting in the same direction
-        float speed = shotSpeed;
         if (movementVector == shootingVector) {
             speed *= 1.5f;
         }
+
+        // Setting shot range value
+        float range = Mathf.Clamp(player.Stats.ShotSpeed.Value / 20f, 2.5f, 20);
 
         // Debug.Log(shootingVector);
 
@@ -78,7 +87,8 @@ public class Weapon : MonoBehaviour
             null,
             shootingVector,
             speed,
-            targetLayer
+            targetLayer,
+            range
         );
 
         // Cooldown until able to shoot again

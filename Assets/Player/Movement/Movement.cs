@@ -5,9 +5,8 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     // Movement Vars
-    private const float baseMovement = 3f;
-    [SerializeField]
-    private float movementSpeed = baseMovement;
+    private float baseMovement  = 3f;
+    private float movementSpeed = 0f;
     private float movementX     = 0f;
     private float movementY     = 0f;
     // Movement Accelaration Stuff
@@ -29,9 +28,13 @@ public class Movement : MonoBehaviour
 
     void Start()
     {
+        // Get components
         player = GetComponent<Player>();
         rb = GetComponent<Rigidbody2D>();
         input = GetComponent<InputManager>();
+
+        // Get base movement speed
+        baseMovement = player.Stats.MoveSpeed.baseValue;
     }
 
 
@@ -57,7 +60,7 @@ public class Movement : MonoBehaviour
 
         // Movement speed
         Stat speedStat = player.Stats.MoveSpeed;
-        movementSpeed = baseMovement + (speedStat.Value * 0.05f);
+        movementSpeed = baseMovement + (speedStat.Value / speedStat.valueModifier);
 
 
         /// Slower start
