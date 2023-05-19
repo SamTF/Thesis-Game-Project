@@ -9,6 +9,8 @@ TagManager:
   - PlayerProjectile
   - VFX
   - Item
+  - Obstacle
+  - Border
   layers:
   - Default
   - TransparentFX
@@ -23,8 +25,8 @@ TagManager:
   - EnemyRepel
   - Item
   - ItemDetection
-  - 
-  - 
+  - Obstacle
+  - Border
   - 
   - 
   - 
