@@ -1,0 +1,9 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Globals.uss?fileID=7433441132597879392&amp;guid=7d653874a8625ca4cb3f8366e0226acb&amp;type=3#Globals" />
+    <Style src="project://database/Assets/UI/Level%20Up/LevelUp.uss?fileID=7433441132597879392&amp;guid=13d55e5621f1bc0478ab42ce61e219e0&amp;type=3#LevelUp" />
+    <ui:VisualElement name="ColourItem" class="colour-item">
+        <ui:Label text="Name" display-tooltip-when-elided="true" name="StatName" class="text item-name" />
+        <MyImage name="Icon" class="icon" />
+        <ui:Label text="This stat does&#10;smth or other" display-tooltip-when-elided="false" name="Description" enable-rich-text="false" class="text-small" />
+    </ui:VisualElement>
+</ui:UXML>

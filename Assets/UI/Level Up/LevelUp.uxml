@@ -1,0 +1,21 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Globals.uss?fileID=7433441132597879392&amp;guid=7d653874a8625ca4cb3f8366e0226acb&amp;type=3#Globals" />
+    <Style src="project://database/Assets/UI/Level%20Up/LevelUp.uss?fileID=7433441132597879392&amp;guid=13d55e5621f1bc0478ab42ce61e219e0&amp;type=3#LevelUp" />
+    <ui:VisualElement name="MainContainer" style="width: 384px; height: 216px; align-items: center; background-color: rgba(0, 0, 0, 0.33);">
+        <ui:VisualElement name="HeaderContainer" class="header-container">
+            <MyImage name="HeaderImg" class="header-img" />
+        </ui:VisualElement>
+        <ui:VisualElement name="SubheaderContainer" class="subheader-container">
+            <ui:Label text="Lvl 0!" display-tooltip-when-elided="true" name="NewLevel" class="text text-2x" style="-unity-font-definition: url(&apos;project://database/Assets/UI%20Toolkit/Fonts/Precise-M%20Bold.asset?fileID=11400000&amp;guid=985ca571f19bb384a829249fbd98f274&amp;type=2#Precise-M Bold&apos;); color: rgb(255, 255, 255);" />
+            <ui:Label text="Choose a new Colour" display-tooltip-when-elided="true" name="Description" class="text text-2x" style="color: rgb(255, 255, 255);" />
+        </ui:VisualElement>
+        <ui:VisualElement name="ColourItemsContainer" class="colour-items-container" style="justify-content: space-around;">
+            <ui:VisualElement name="ColourItem" focusable="true" class="colour-item">
+                <MyImage name="PaperBG" class="test" />
+                <ui:Label text="Name" display-tooltip-when-elided="true" name="StatName" enable-rich-text="false" picking-mode="Ignore" class="text item-name" />
+                <MyImage name="Icon" picking-mode="Ignore" class="icon" />
+                <ui:Label text="This stat does&#10;smth or other" display-tooltip-when-elided="false" name="Description" enable-rich-text="false" picking-mode="Ignore" class="text-small" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
