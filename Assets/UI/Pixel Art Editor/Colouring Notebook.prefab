@@ -212,6 +212,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainContainerID: StatsContainer
+  showAllStats: 0
 --- !u!1 &7560860742549349798
 GameObject:
   m_ObjectHideFlags: 0
