@@ -5,9 +5,6 @@ using UnityEngine;
 /// </summary>
 public static class ProjectileFactory
 {
-    // public static int baseRange = 3;
-    public const int baseRange = 3;
-
     /// <summary>
     /// Instantiate a projectile with attributes set already
     /// </summary>
@@ -17,6 +14,7 @@ public static class ProjectileFactory
     /// <param name="direction">Direction to move the projectile at</param>
     /// <param name="speed">Speed at which to move the projectile</param>
     /// <param name="targetLayer">Physics layer that this projectile will collide with</param>
+    /// <param name="baseRange">How far this projectile will travel before gravity fall-off is applied</param>
     /// <returns>GameObject instance of the projectile</returns>
     public static GameObject Instantiate(
         GameObject prefab,
@@ -25,7 +23,7 @@ public static class ProjectileFactory
         Vector2 direction,
         float speed,
         LayerMask targetLayer,
-        int baseRange = baseRange
+        float baseRange = 3
         )
     {
         GameObject projectile = Object.Instantiate(prefab, position, Quaternion.identity, parent);
