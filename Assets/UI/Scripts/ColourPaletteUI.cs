@@ -77,7 +77,8 @@ public class ColourPaletteUI : MonoBehaviour
 
     private void Start() {
         // Initialise vars
-        SetColour(Palette.Colours[0]);
+        Color newestColour = LevelSystem.instance.UnlockedColours[ LevelSystem.instance.UnlockedColours.Length - 1 ];
+        SetColour(newestColour);
         OnClick = SetColour;
         
         // Get Elements
