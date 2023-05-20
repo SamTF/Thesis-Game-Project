@@ -20,7 +20,7 @@ public class XPIconUI : MonoBehaviour
 
     // Sprites
     private Sprite[] iconSprites =  new Sprite[5];
-    private Sprite[] numberSprites = new Sprite[5];
+    private Sprite[] numberSprites = new Sprite[6];
 
     // UI Element
     private VisualElement xpIconContainer = null;
@@ -69,7 +69,7 @@ public class XPIconUI : MonoBehaviour
     /// </summary>
     private void UpdateLevel() {
         int level = LevelSystem.instance.Level;
-        int i = Mathf.Clamp(level - 1, 0, numberSprites.Length - 1);
+        int i = Mathf.Clamp(level, 0, numberSprites.Length - 1);
         lvlNumber.sprite = numberSprites[i];
     }
 }
