@@ -13,6 +13,9 @@ public class GameManager : MonoBehaviour
     // Status
     private bool gameIsPaused = false;
 
+    // Statistics
+    private Timer timer = null;
+
     // Events
     public static event Action onPause;
     public static event Action onRestart;
@@ -52,6 +55,9 @@ public class GameManager : MonoBehaviour
     private void OnLevelStart(Scene scene, LoadSceneMode mode) {
         onLevelStart?.Invoke();
 
+        timer = new Timer();
+        timer.Start();
+
         // it's probably best to just make the player a singleton tbh...
         if (!player) {
             player = FindObjectOfType<Player>();
@@ -84,6 +90,8 @@ public class GameManager : MonoBehaviour
     public Sprite PlayerSprite => player.Sprite;
     /// <summary>The Stats Colours of the Player and their current values.</summary>
     public Stats PlayerStats => player.Stats;
+    /// <summary>Timer counting the seconds survived in the current level.</summary>
+    public Timer Timer => timer;
 
     /// <summary>Gets or Sets whether the game is paused. Setting it to true will trigger the OnPause event.</summary>
     public bool GameIsPaused {
