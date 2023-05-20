@@ -73,7 +73,7 @@ public class Weapon : MonoBehaviour
         }
 
         // Setting shot range value
-        float range = Mathf.Clamp(player.Stats.ShotSpeed.Value / 20f, 2.5f, 20);
+        float range = Mathf.Clamp(player.Stats.ShotSpeed.Value / 12f, 2f, 20);
 
         // Debug.Log(shootingVector);
 
