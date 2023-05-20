@@ -11,12 +11,23 @@ public class StatsUI : MonoBehaviour
     private string mainContainerID = "StatsContainer";
     [SerializeField][Tooltip("Whether to show all Stats (True) or only Unlocked Stats (False)")]
     private bool showAllStats = true;
+    [SerializeField][Tooltip("Compact version of the Stat Item that only display text and needs only 6px height")]
+    private bool compactMode = false;
 
-    // Elements
+
     private VisualElement mainContainer = null;
     private StatsItemUI[] statItems = null;
-
     private Dictionary<Color, StatsItemUI> colour2item = new Dictionary<Color, StatsItemUI>();
+    private StatsItemCompactUI[] compactItems = null;
+
+
+    // Subscribing to events
+    private void OnEnable() {
+        Player.onSpriteUpdated += UpdateCompactStats;
+    }
+    private void OnDisable() {
+        Player.onSpriteUpdated -= UpdateCompactStats;
+    }
 
 
     private void Start() {
@@ -45,9 +56,15 @@ public class StatsUI : MonoBehaviour
         else
             stats = LevelSystem.instance.UnlockedStats;
 
+        // Creating compact items in compact mode
+        if (compactMode) {
+            InitCompactItems(stats);
+            return;
+        }
+        
+        // creating the stat item elements
         statItems = new StatsItemUI[stats.Length];
 
-        // creating the stat item elements
         int i = 0;
         foreach (Stat stat in stats) {
             // create element and add it to container
@@ -58,6 +75,22 @@ public class StatsUI : MonoBehaviour
             statItems[i] = item;
             colour2item.Add(stat.Colour, statItems[i]);
             i++;
+        }
+    }
+
+    /// <summary>
+    /// Creates Compact Stat Items and adds them to the UI.
+    /// </summary>
+    /// <param name="stats">List of stats to display</param>
+    private void InitCompactItems(Stat[] stats) {
+        compactItems = new StatsItemCompactUI[stats.Length];
+
+        int i = 0;
+        foreach (Stat stat in stats) {
+            StatsItemCompactUI compactItem = new StatsItemCompactUI(stat);
+                mainContainer.Add(compactItem);
+                compactItems[i] = compactItem;
+                i++;
         }
     }
 
@@ -101,6 +134,12 @@ public class StatsUI : MonoBehaviour
         foreach (StatsItemUI item in statItems) {
             Stat stat = Player.instance.Stats.Colour2Stat[item.Colour];
             item.Value = stat.Value;
+        }
+    }
+
+    private void UpdateCompactStats() {
+        foreach (StatsItemCompactUI item in compactItems) {
+            item.UpdateValue();
         }
     }
 }
