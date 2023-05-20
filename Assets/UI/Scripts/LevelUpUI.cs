@@ -59,7 +59,7 @@ public class LevelUpUI : MonoBehaviour
         newLevel = mainContainer.Q<Label>(newLevelID);
 
         // setting values
-        newLevel.text = "OO YESS";
+        newLevel.text = $"Lvl {LevelSystem.instance.Level}!";
         colourItemsContainer.Clear();
 
         // getting available stats & shuffling them
