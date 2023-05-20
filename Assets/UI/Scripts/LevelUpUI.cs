@@ -79,7 +79,7 @@ public class LevelUpUI : MonoBehaviour
                 stat,
                 stat.Colour,
                 stat.Name,
-                $"this is the\ndescription yes",
+                stat.Description,
                 i
             );
 
