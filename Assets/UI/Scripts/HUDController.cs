@@ -17,6 +17,15 @@ public class HUDController : MonoBehaviour
     private MyImage playerSprite;
 
 
+    // Subscribing to events
+    private void OnEnable() {
+        Player.onSpriteUpdated += UpdatePlayerSprite;
+    }
+    private void OnDisable() {
+        Player.onSpriteUpdated -= UpdatePlayerSprite;
+    }
+
+
     private void Start() {
         VisualElement root = GetComponent<UIDocument>().rootVisualElement;
 
@@ -27,6 +36,13 @@ public class HUDController : MonoBehaviour
         uiPlayerIcon.style.display = DisplayStyle.None;
 
         // Using my Image class 
-        playerSprite.sprite = GameManager.instance.PlayerSprite;
+        playerSprite.sprite = Player.instance.Sprite;
+    }
+
+    /// <summary>
+    /// Changes the sprite icon by fetching the current Player sprite
+    /// </summary>
+    private void UpdatePlayerSprite() {
+        playerSprite.sprite = Player.instance.Sprite;
     }
 }

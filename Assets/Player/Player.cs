@@ -28,6 +28,10 @@ public class Player : MonoBehaviour
     private LevelSystem     levelSystem     = null;
     private ModdableSprite  moddableSprite  = null;
 
+    // Events
+    /// <summary>Triggered when the Player updates their Sprite drawing.</summary>
+    public static event System.Action onSpriteUpdated;
+
     /// Singleton thing
     private static Player _instance = null;
     public static Player instance
@@ -156,6 +160,7 @@ public class Player : MonoBehaviour
     /// <param name="newTexture">Texture to update the Sprite with.</param>
     public void UpdateSprite(Texture2D newTexture) {
         moddableSprite.ReplaceSprite(newTexture);
+        onSpriteUpdated?.Invoke();
     }
 
 

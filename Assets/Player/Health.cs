@@ -24,6 +24,15 @@ public class Health : MonoBehaviour
     // Events
     public static event Action onPlayerDamaged;
     public static event Action onPlayerDeath;
+    public static event Action onHealthChange;
+
+    // Subscribing to events
+    private void OnEnable() {
+        Player.onSpriteUpdated += UpdateHearts;
+    }
+    private void OnDisable() {
+        Player.onSpriteUpdated -= UpdateHearts;
+    }
 
 
     private void Awake() {
@@ -71,6 +80,18 @@ public class Health : MonoBehaviour
         player.Animator.SetBool("Blink", player.Status.IsInvulnerable);
         yield return new WaitForSeconds(player.Status.InvulnerableCooldown);
         player.Animator.SetBool("Blink", player.Status.IsInvulnerable);
+    }
+
+    /// <summary>
+    /// Update the amount of hearts and heal to full health on player level up
+    /// </summary>
+    private void UpdateHearts() {
+        int extraHearts = Mathf.FloorToInt(stats.Health.Value / stats.Health.valueModifier);
+        maxHearts = baseHearts + extraHearts;
+        health = maxHearts * 2; // each heart is worth 2 HP
+        Debug.Log($"Health stat: {stats.Health.Value} -> Extra Hearts: {extraHearts}");
+
+        onHealthChange?.Invoke();
     }
 
 

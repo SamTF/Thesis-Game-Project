@@ -81,9 +81,11 @@ public class HeartsUI : MonoBehaviour
     // Subscribing and unsubscribing to events
     private void OnEnable() {
         Health.onPlayerDamaged += DrawHearts;
+        Health.onHealthChange += DrawHearts;
     }
     private void OnDisable() {
         Health.onPlayerDamaged -= DrawHearts;
+        Health.onHealthChange -= DrawHearts;
     }
 
     
