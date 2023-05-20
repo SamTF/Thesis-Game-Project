@@ -15,7 +15,8 @@ public class HUDController : MonoBehaviour
     private VisualElement uiPlayerIcon;
     /// <summary>Player Icon using a UI Image sprite.</summary>
     private MyImage playerSprite;
-
+    /// <summary>Text element showing the time survived on current level.</summary>
+    private Label timerLabel;
 
     // Subscribing to events
     private void OnEnable() {
@@ -31,12 +32,17 @@ public class HUDController : MonoBehaviour
 
         uiPlayerIcon = root.Q<VisualElement>("PlayerIcon");
         playerSprite = root.Q<MyImage>("PlayerSprite");
+        timerLabel = root.Q<Label>("timer");
 
         // Hide placeholder icon
         uiPlayerIcon.style.display = DisplayStyle.None;
 
         // Using my Image class 
         playerSprite.sprite = Player.instance.Sprite;
+    }
+
+    private void Update() {
+        timerLabel.text = GameManager.instance.Timer.currentTime.String;
     }
 
     /// <summary>
