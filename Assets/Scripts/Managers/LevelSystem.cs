@@ -11,12 +11,14 @@ public class LevelSystem : MonoBehaviour
 {
     [Header("LEVEL SYSTEM")]
 
-    [SerializeField]
-    private int level = 1;
-    [SerializeField]
+    [SerializeField][Tooltip("Level that the Player is currently at.")]
+    private int level = 0;
+    [SerializeField][Tooltip("Amount of XP the Player currently has.")]
     private int xp = 0;
-    [SerializeField]
-    private int xpToLevelUp = 10;
+    [SerializeField][Tooltip("Amount of XP required in total to level up")]
+    private int xpToLevelUp = 15;
+    [SerializeField][Tooltip("Multiplier of how much XP need to level up increases with each level")]
+    private float levelUpXpMultiplier = 2f;
 
     [SerializeField]
     private Player player;
@@ -56,14 +58,14 @@ public class LevelSystem : MonoBehaviour
     }
 
 
-    private void Start() {
-        UnlockColour(Palette.Colours[level-1]);
+    // private void Start() {
+    //     UnlockColour(Palette.Colours[level-1]);
 
-        foreach (Color c in Palette.Colours[0..2])
-        {
-            Debug.Log(ColorUtility.ToHtmlStringRGBA(c));
-        }
-    }
+    //     foreach (Color c in Palette.Colours[0..2])
+    //     {
+    //         Debug.Log(ColorUtility.ToHtmlStringRGBA(c));
+    //     }
+    // }
 
 
     /// <summary>
@@ -76,9 +78,10 @@ public class LevelSystem : MonoBehaviour
 
         // Check if enough to level up AND is not at the max level already
         if (xp >= xpToLevelUp && level < Palette.NumOfColours) {
-            level++;                // increment level
-            xp -= xpToLevelUp;      // keep remainder XP
-            onLevelUp?.Invoke();    // trigger the level up event
+            level++;                                    // increment level
+            xp -= xpToLevelUp;                          // keep remainder XP
+            xpToLevelUp *= (int)levelUpXpMultiplier;    // increase xp required to level up again
+            onLevelUp?.Invoke();                        // trigger the level up event
         }
 
         // Trigger the XP Gain Event
@@ -100,6 +103,11 @@ public class LevelSystem : MonoBehaviour
         // Check if the colour given exists in the Palette!
         if (!Array.Exists( Palette.Colours, c => c == newColour )) {
             Debug.LogError("[LEVEL SYSTEM] >>> Unlocked colour does not exist in the Colour Palette!");
+            return;
+        }
+
+        if (unlockedColours.Contains(newColour)) {
+            Debug.Log("[LEVEL SYSTEM] >>> The given colour has already been unlocked!");
             return;
         }
 
