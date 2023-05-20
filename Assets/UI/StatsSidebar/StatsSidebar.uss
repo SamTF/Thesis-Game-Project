@@ -1,0 +1,52 @@
+.main-container {
+    background-image: url('project://database/Assets/UI/Static%20Images/Notebook%20slice.png?fileID=1271775911&guid=9081440c894d4d242a9fc33633567b0d&type=3#Notebook slice normal');
+    width: 62px;
+    height: 100px;
+    position: absolute;
+    top: 54px;
+    left: 0;
+    align-items: center;
+}
+
+.text-container {
+    width: 82%;
+    height: 100%;
+    margin-top: 18px;
+    margin-left: 0;
+    align-items: flex-start;
+}
+
+.header {
+    margin-bottom: 8px;
+    margin-top: 8px;
+    -unity-text-align: upper-center;
+    width: 100%;
+}
+
+.stat-item {
+    height: 8px;
+    width: 100%;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+.stat-item .name {
+    height: 11px;
+    width: auto;
+    -unity-text-align: upper-left;
+    padding-top: 0;
+    -unity-paragraph-spacing: -7.5px;
+    margin-top: -4px;
+    margin-bottom: 0;
+}
+
+.stat-item .value {
+    height: 11px;
+    width: auto;
+    -unity-text-align: upper-right;
+    padding-top: 0;
+    -unity-paragraph-spacing: -7.5px;
+    margin-top: -4px;
+    margin-bottom: 0;
+}
