@@ -79,9 +79,9 @@ public class Health : MonoBehaviour
     private IEnumerator DamagedAnimation() {
         if (player.Status.IsInvulnerable)   yield return null;
 
-        player.Animator.SetBool("Blink", player.Status.IsInvulnerable);
+        player.Animator.SetBool("Blink", true);
         yield return new WaitForSeconds(player.Status.InvulnerableCooldown);
-        player.Animator.SetBool("Blink", player.Status.IsInvulnerable);
+        player.Animator.SetBool("Blink", false);
     }
 
     /// <summary>
