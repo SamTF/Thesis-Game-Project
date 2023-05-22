@@ -15,7 +15,7 @@
             <ui:VisualElement name="Heart" tooltip="Heart Icon displaying Player&apos;s HP value" class="HeartIcon" style="background-image: resource(&apos;UI/Hearts_multiple&apos;);" />
         </ui:VisualElement>
     </ui:VisualElement>
-    <ui:VisualElement name="TimerContainer" style="height: 32px; align-items: center; position: absolute; width: 100%; bottom: 0; justify-content: flex-end;">
-        <ui:Label text="00:00" display-tooltip-when-elided="true" name="timer" style="height: auto; font-size: 16px; color: rgb(255, 255, 255); padding-bottom: 8px; text-shadow: 2px 2px 0 rgb(255, 0, 0); -unity-font-definition: url(&apos;project://database/Assets/UI%20Toolkit/Fonts/quak.asset?fileID=11400000&amp;guid=c490adcb26f082443b5e2a1b43cf3d37&amp;type=2#quak&apos;); padding-left: 0; padding-right: 0; padding-top: 0; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; -unity-text-outline-width: 10px; -unity-text-outline-color: rgb(0, 0, 0);" />
+    <ui:VisualElement name="TimerContainer" class="bottom-container">
+        <ui:Label text="00:00" display-tooltip-when-elided="true" name="timer" enable-rich-text="true" class="timer" />
     </ui:VisualElement>
 </ui:UXML>

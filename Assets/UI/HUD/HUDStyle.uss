@@ -43,3 +43,28 @@
     width: 16px;
     -unity-background-scale-mode: scale-to-fit;
 }
+
+.bottom-container {
+    height: 32px;
+    align-items: center;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    justify-content: flex-end;
+    display: none;
+}
+
+.timer {
+    height: auto;
+    font-size: 16px;
+    color: rgb(255, 255, 255);
+    padding-bottom: 8px;
+    -unity-font-definition: url('project://database/Assets/UI%20Toolkit/Fonts/quak.asset?fileID=11400000&guid=c490adcb26f082443b5e2a1b43cf3d37&type=2#quak');
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+}
