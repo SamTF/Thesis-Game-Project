@@ -12,8 +12,8 @@
                     <ui:Button text="menu" display-tooltip-when-elided="true" name="menu" enable-rich-text="false" tabindex="3" class="text menu-item" />
                 </ui:VisualElement>
             </ui:VisualElement>
-            <ui:VisualElement name="PreviewContainer" style="margin-left: 26px; width: 144px; height: 112px; justify-content: center; align-items: center;">
-                <ui:VisualElement name="Preview" style="width: 64px; height: 64px; -unity-background-scale-mode: scale-to-fit; background-image: url(&apos;project://database/Assets/CUSTOM/MyDrawings/658b9a213322a8186d4aa4e65c77c611.png?fileID=2800000&amp;guid=785665aa69b182d438a059e989013bf2&amp;type=3#658b9a213322a8186d4aa4e65c77c611&apos;);" />
+            <ui:VisualElement name="PreviewContainer" class="preview-container" style="height: 72px;">
+                <MyImage name="Preview" class="preview" />
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="PaperSidebar" style="background-image: url(&apos;project://database/Assets/UI/Static%20Images/Paper.png?fileID=2800000&amp;guid=fcf44c13bda0b5e4eb1a420106fe7832&amp;type=3#Paper&apos;); width: 112px; height: 164px; position: absolute; left: 266px; top: 40px; align-items: center;">

@@ -79,3 +79,18 @@
     height: 16px;
     margin-right: 16px;
 }
+
+.preview-container {
+    margin-left: 26px;
+    width: 144px;
+    height: 71px;
+    justify-content: center;
+    align-items: center;
+}
+
+.preview {
+    width: 64px;
+    height: 64px;
+    background-image: url('project://database/Assets/CUSTOM/bullet%20guy.png?fileID=21300000&guid=aa699e2b5b7d48f4d895bd6bdabce1ae&type=3#bullet guy');
+    -unity-background-scale-mode: scale-to-fit;
+}
