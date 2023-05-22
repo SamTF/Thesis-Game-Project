@@ -42,7 +42,8 @@ public class HUDController : MonoBehaviour
     }
 
     private void Update() {
-        timerLabel.text = GameManager.instance.Timer.currentTime.String;
+        if (timerLabel != null)
+            timerLabel.text = GameManager.instance.Timer.currentTime.String;
     }
 
     /// <summary>
