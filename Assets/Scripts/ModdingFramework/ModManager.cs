@@ -11,7 +11,7 @@ public static class ModManager
 {
     /// MODDING CONSTANTS
     private const string modFolderName = "CUSTOM";
-    private const string fileType = ".png";
+    private const string fileType = "png";
     
     // Vars
     private static string modDirectory = null;
