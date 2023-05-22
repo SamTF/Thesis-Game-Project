@@ -77,6 +77,8 @@ public class Health : MonoBehaviour
     /// Trigger a nice Blinking animation on the player sprite.
     /// </summary>
     private IEnumerator DamagedAnimation() {
+        if (player.Status.IsInvulnerable)   yield return null;
+
         player.Animator.SetBool("Blink", player.Status.IsInvulnerable);
         yield return new WaitForSeconds(player.Status.InvulnerableCooldown);
         player.Animator.SetBool("Blink", player.Status.IsInvulnerable);
