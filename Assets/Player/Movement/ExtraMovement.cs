@@ -36,7 +36,7 @@ public class ExtraMovement : MonoBehaviour
         if (
             input.JumpPress
             && input.TimeSinceDirectionSwitch.x <= timeToFlip
-            && input.TimeHoldingDirection[1] > 0.25f
+            && input.TimeHoldingDirection[1] > 0.1f
             && player.Status.CanBackflip
             && !player.Status.IsDodging
             && !player.Status.IsBackflipping
