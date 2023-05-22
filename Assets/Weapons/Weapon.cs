@@ -14,6 +14,8 @@ public class Weapon : MonoBehaviour
     private ShootPoints shootPoints = null;
     [SerializeField][Tooltip("The Projectile will damage Objects in this layer.")]
     private LayerMask targetLayer;
+    [SerializeField]
+    private float minRange = 2.5f;
 
     // BOI-Shooting Variables
     float timeToBeginOffset = 0.15f; // feels like this value should be affected by the character's move speed
@@ -73,7 +75,10 @@ public class Weapon : MonoBehaviour
         }
 
         // Setting shot range value
-        float range = Mathf.Clamp(player.Stats.ShotSpeed.Value / 12f, 2f, 20);
+        float range = Mathf.Clamp(player.Stats.ShotSpeed.Value / 12f, minRange, 20);
+
+        // Setting the damage value from the Attack stat
+        int damage = 1 + Mathf.FloorToInt(player.Stats.Attack.Value / player.Stats.Attack.valueModifier);
 
         // Debug.Log(shootingVector);
 
@@ -88,7 +93,8 @@ public class Weapon : MonoBehaviour
             shootingVector,
             speed,
             targetLayer,
-            range
+            range,
+            damage
         );
 
         // Cooldown until able to shoot again

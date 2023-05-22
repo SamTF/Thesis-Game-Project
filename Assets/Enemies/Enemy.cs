@@ -71,8 +71,21 @@ public abstract class Enemy : MonoBehaviour
     /// </summary>
     /// <param name="hitter">Transform of the object that hit the enemy.</param>
     protected virtual void OnHit(Transform hitter) {
-        health -= 1;
+        int damage = 1;
+        IDamage iDmg = null;
 
+        // checking if the hitter has an IDamage component, and if so, use its value
+        if(hitter.TryGetComponent<IDamage>(out iDmg))
+            damage = iDmg.Damage;
+        else if (hitter.parent.TryGetComponent<IDamage>(out iDmg))
+            damage = iDmg.Damage;
+        
+        Debug.Log($"[ENEMY] >>> [{damage}] damage");
+        
+        // subtract damage taken from health
+        health -= damage;
+
+        // check if dead
         if (health <= 0) {
             OnDeath();
             return;

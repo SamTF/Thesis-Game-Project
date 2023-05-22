@@ -5,13 +5,14 @@ using UnityEngine;
 /// <summary>
 /// Generic projectile with constant movement direction and speed
 /// </summary>
-public class Projectile : MonoBehaviour
+public class Projectile : MonoBehaviour, IDamage
 {
     // Stats
     private float mySpeed;
     private float myRange;
     private Vector2 myDirection;
     private LayerMask targetLayer;
+    private int myDamage = 1;
 
     // Constants
     private Vector3 originPos;
@@ -22,7 +23,6 @@ public class Projectile : MonoBehaviour
     private Transform body = null;
     private Rigidbody2D rb = null;
     private Animator animator = null;
-
 
     private void Awake() {
         rb = GetComponent<Rigidbody2D>();
@@ -51,15 +51,28 @@ public class Projectile : MonoBehaviour
     /// <summary>
     /// Basic setup function for the projectile to determine it's direction and speed.
     /// </summary>
-    /// <param name="direction">Vector2 direction the projectile will travel in</param>
-    /// <param name="speed">Float speed at which it will travel</param>
-    public void Shoot(Vector2 direction, float speed, float range, LayerMask layer) {
+    /// <param name="direction">Vector2 direction the projectile will travel in.</param>
+    /// <param name="speed">Float speed at which it will travel.</param>
+    /// <param name="range">How far the projectile will travel before drop-off is applied.</param>
+    /// <param name="layer">Which physics layer this projectile affects.</param>
+    /// <param name="damage">How much damage it applies to its target.</param>
+    public void Shoot(Vector2 direction, float speed, float range, LayerMask layer, int damage = 1) {
         myDirection = direction;
         mySpeed = speed;
         myRange = range;
         targetLayer = layer;
+        myDamage = damage;
 
         rb.velocity = (myDirection * mySpeed);
+        DamageScaleUp();
+    }
+
+    /// <summary>
+    /// Scales up the Projectile according to its damage
+    /// </summary>
+    private void DamageScaleUp() {
+        Vector3 scaleUp = Vector3.one * (myDamage * 0.25f);
+        body.localScale += scaleUp;
     }
 
     // Checking for collisions
@@ -93,5 +106,9 @@ public class Projectile : MonoBehaviour
     private void OnBecameInvisible() {
         Despawn();
     }
+
+    // Getters
+    /// <summary>How much Damage this projectile inflicts on its target</summary>
+    public int Damage => myDamage;
 
 }
