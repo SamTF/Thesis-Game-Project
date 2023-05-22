@@ -17,6 +17,8 @@ public class PauseMenu : MonoBehaviour
     private string restartID = "restart";
     [SerializeField]
     private string mainMenuID = "menu";
+    [SerializeField]
+    private string spritePreviewID ="Preview";
 
     // UI Elements
     private VisualElement root = null;
@@ -25,6 +27,7 @@ public class PauseMenu : MonoBehaviour
     private Button optionsBtn = null;
     private Button restartBtn = null;
     private Button mainMenuBtn = null;
+    private MyImage spritePreview = null;
 
     // Position
     private Vector2 originalPosition;
@@ -53,6 +56,7 @@ public class PauseMenu : MonoBehaviour
         optionsBtn = root.Q<Button>(optionsID);
         restartBtn = root.Q<Button>(restartID);
         mainMenuBtn = root.Q<Button>(mainMenuID);
+        spritePreview = root.Q<MyImage>(spritePreviewID);
 
         // Set events
         resumeBtn.clicked += OnResumeGame;
@@ -73,6 +77,10 @@ public class PauseMenu : MonoBehaviour
 
         // Pause
         PauseGame();
+
+        // Set sprite preview
+        spritePreview.style.backgroundImage = null;
+        spritePreview.sprite = Player.instance.Sprite;
 
         // Lil animation
         StartCoroutine(FlyAnimation(offsetPosition, originalPosition, 0.25f, SetFocus));
