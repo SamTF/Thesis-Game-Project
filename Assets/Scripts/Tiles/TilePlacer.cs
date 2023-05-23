@@ -8,21 +8,24 @@ using UnityEngine;
 public class TilePlacer : MonoBehaviour
 {
     [Header("TILE PLACER")]
-    [SerializeField][Tooltip("Tile GameObject to spawn")]
-    private GameObject tilePrefab = null;
-    [SerializeField][Tooltip("Which sprites to use for tiles")]
-    private Sprite[] tiles = null;
-    [SerializeField][Tooltip("Color overlay to apply to all tiles")]
-    private Color tileColour = Color.white;
+    [Header("Dimensions")]
     [SerializeField][Tooltip("Size of each square spawning sector")]
     private int sectorSize = 8;
     [SerializeField][Tooltip("How many sectors to spawn in each direction")]
     private int radius = 4;
 
+    [Header("Tiles")]
+    [SerializeField][Tooltip("Tile GameObject to spawn")]
+    private GameObject tilePrefab = null;
+    [SerializeField][Tooltip("Color overlay to apply to all tiles")]
+    private Color tileColour = Color.white;
+    
 
     private void Awake() {
         if (tilePrefab == null)
             tilePrefab = Resources.Load<GameObject>("Tiles/Tile");
+        
+        Tiles.LoadTiles();
     }
 
     void Start() {
@@ -50,7 +53,7 @@ public class TilePlacer : MonoBehaviour
 
                 Color sectorColour = Random.ColorHSV();
 
-                Sprite sectorTile = tiles[Random.Range(0, tiles.Length)];
+                Sprite sectorTile = Tiles.Grass[Random.Range(0, Tiles.Grass.Length)];
 
                 for (int sx = 0; sx < sectorSize; sx++) {
                     for (int sy = 0; sy < sectorSize; sy++) {
@@ -78,14 +81,14 @@ public class TilePlacer : MonoBehaviour
             for (int y = -radius; y < radius; y++) {
                 int spawnChance = Random.Range(0, 7) >= 5 ? 5 : 6;
 
-                Sprite sectorTile = tiles[Random.Range(0, tiles.Length)];
+                Sprite sectorTile = Tiles.Grass[Random.Range(0, Tiles.Grass.Length)];
 
                 GameObject sectorObj = new GameObject($"Sector ({x}, {y})");
                 sectorObj.transform.parent = transform;
                 sectorObj.transform.position = new Vector2(x * sectorSize, y * sectorSize) + (Vector2)(transform.position);
 
                 TileSector sector = sectorObj.AddComponent<TileSector>();
-                sector.Init(tilePrefab, sectorTile, tileColour, sectorSize, spawnChance);
+                sector.Init(Tiles.TilePrefab, sectorTile, tileColour, sectorSize, spawnChance);
             }
         }
     }
