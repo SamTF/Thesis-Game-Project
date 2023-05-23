@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5419857184290456706}
   - component: {fileID: 5419857184290456707}
   - component: {fileID: 5419857184290456704}
+  - component: {fileID: 518176879}
   m_Layer: 5
   m_Name: HUD
   m_TagString: Untagged
@@ -63,8 +64,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d1b09b0f2d775444b0602649ec13200, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newSpriteTest: {fileID: 5823431219552328851, guid: 18b01753eef6525499a8a9ea26e4c5f5, type: 3}
-  heartSpriteTest: {fileID: -733650413, guid: 743cb58ef1427e045aceada64ff1f087, type: 3}
 --- !u!114 &5419857184290456707
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -90,3 +89,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e8f276de842c7e4d8dbc283f6dd3e7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &518176879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5419857184290456719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcd062dd40dc4d34fb1c01d0b7d19a18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  iconSprites:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
