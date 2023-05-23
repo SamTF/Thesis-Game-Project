@@ -28,6 +28,7 @@ public class Player : MonoBehaviour
     private HitStop         hitStop         = null;
     private LevelSystem     levelSystem     = null;
     private ModdableSprite  moddableSprite  = null;
+    private SpriteRenderer  spriteRenderer  = null;
 
     // Events
     /// <summary>Triggered when the Player updates their Sprite drawing.</summary>
@@ -67,6 +68,10 @@ public class Player : MonoBehaviour
         // Children
         body = body ? body : transform.Find("Body");
         shadow = shadow ? shadow : transform.Find("Shadow");
+
+        // Components in children
+        spriteRenderer = body.GetComponent<SpriteRenderer>();
+
     }
 
 
@@ -185,5 +190,6 @@ public class Player : MonoBehaviour
     // Child getters
     public Transform Body => body;
     public Transform Shadow => shadow;
-    public Sprite Sprite => body.GetComponent<SpriteRenderer>().sprite;
+    public Sprite Sprite => spriteRenderer.sprite;
+    public SpriteRenderer SpriteRenderer => spriteRenderer;
 }

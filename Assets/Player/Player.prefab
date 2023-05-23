@@ -644,6 +644,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6da99456c3db4854d93be484d94efb4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  physicsLayer:
+    serializedVersion: 2
+    m_Bits: 32768
+  spriteLayer: Foreground
 --- !u!114 &4188570571909552047
 MonoBehaviour:
   m_ObjectHideFlags: 0
