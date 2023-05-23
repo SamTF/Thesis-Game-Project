@@ -97,7 +97,6 @@ public class Stamina : MonoBehaviour
                 baseRechargeTime,
                 0.75f
             );
-            Debug.Log(cooldown);
             yield return new WaitForSeconds(cooldown);
             
             // add 1 stamina point every X seconds if not at Max and trigger the event
