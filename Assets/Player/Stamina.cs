@@ -14,7 +14,7 @@ public class Stamina : MonoBehaviour
     private int maxOrbs;
     private int _stamina;
     private int _maxStamina;
-    private int staminaRechargeTime = 2;
+    private float baseRechargeTime = 2;
     private bool isRecharging = false;
 
     // Components
@@ -58,6 +58,9 @@ public class Stamina : MonoBehaviour
         maxOrbs = baseStaminaOrbs + extraOrbs;
         _maxStamina = maxOrbs * 2;
         _stamina = maxOrbs * 2;
+
+        // invoke event
+        onStaminaChange?.Invoke();
     }
 
 
@@ -88,7 +91,14 @@ public class Stamina : MonoBehaviour
         // recharges until it reaches max stamina
         while (stamina < _maxStamina) {
             isRecharging = true;
-            yield return new WaitForSeconds(staminaRechargeTime);
+
+            float cooldown = Mathf.Clamp(
+                baseRechargeTime * (Player.instance.Stats.Stamina.Value / Player.instance.Stats.Stamina.valueModifier * 6),
+                baseRechargeTime,
+                0.75f
+            );
+            Debug.Log(cooldown);
+            yield return new WaitForSeconds(cooldown);
             
             // add 1 stamina point every X seconds if not at Max and trigger the event
             if (stamina < _maxStamina) {
