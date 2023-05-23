@@ -40,11 +40,14 @@ public class ExtraMovement : MonoBehaviour
             && player.Status.CanBackflip
             && !player.Status.IsDodging
             && !player.Status.IsBackflipping
+            && player.Stamina.stamina >= 1
         ) {
+            player.Stamina.UseStamina();                            // use up stamina points to perform this action
+
             Debug.Log(input.TimeSinceDirectionSwitch.x);
-            backflip.PerformBackflip(movement);             // start the backflip movement
-            Axis axis = movement.x != 0 ? Axis.Z : Axis.X;  // getting the correct axis for the current direction
-            bool clockwise = movement.x > 0;                // setting correct rotation direction
+            backflip.PerformBackflip(movement);                     // start the backflip movement
+            Axis axis = movement.x != 0 ? Axis.Z : Axis.X;          // getting the correct axis for the current direction
+            bool clockwise = movement.x > 0;                        // setting correct rotation direction
             StartCoroutine( Roll(rollSpeed/2, axis, clockwise) );   // start the rolling animation
         }
 
@@ -54,9 +57,10 @@ public class ExtraMovement : MonoBehaviour
             && !player.Status.IsDodging
             && !player.Status.IsBackflipping
             && player.Status.CanDodge
+            && player.Stamina.stamina >= 1
         ) {
-            Vector2 direction = movement;
-            Dodge(direction);
+            player.Stamina.UseStamina();                            // use up stamina points to perform this action
+            Dodge(movement);
         }
     }
 

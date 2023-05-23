@@ -46,11 +46,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 2569036080230315859, guid: 7ba982c34a202964090a9fa6df17311d, type: 3}
-  shotSpeed: 6
+  baseShotSpeed: 6
   shootPoints: {fileID: 2139505226}
   targetLayer:
     serializedVersion: 2
     m_Bits: 256
+  minRange: 2.5
 --- !u!1 &1179790809
 GameObject:
   m_ObjectHideFlags: 0
@@ -308,6 +309,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flashMaterial: {fileID: 2100000, guid: b003a2d2e12788b46a840ee661fe1e28, type: 2}
+  useAnimator: 0
 --- !u!1 &1934802121
 GameObject:
   m_ObjectHideFlags: 0
@@ -443,6 +445,7 @@ GameObject:
   - component: {fileID: 4188570571909552037}
   - component: {fileID: 424378487}
   - component: {fileID: 4188570571909552047}
+  - component: {fileID: 6524137292192715906}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -617,7 +620,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f672d459be46aaa4085454b516e7b6f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 2
 --- !u!114 &4188570571909552037
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -657,3 +659,15 @@ MonoBehaviour:
   damageLayer:
     serializedVersion: 2
     m_Bits: 768
+--- !u!114 &6524137292192715906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4188570572756861758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d74c282c4854fad4ea61c88bc377a0a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

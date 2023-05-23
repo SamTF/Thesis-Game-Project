@@ -23,6 +23,7 @@ public class Player : MonoBehaviour
     private Status          status          = null;
     private CircleCollider2D collider       = null;
     private Health          health          = null;
+    private Stamina         stamina         = null;
     private Animator        animator        = null;
     private HitStop         hitStop         = null;
     private LevelSystem     levelSystem     = null;
@@ -58,6 +59,7 @@ public class Player : MonoBehaviour
         stats = GetComponent<Stats>();
         status = GetComponent<Status>();
         health = GetComponent<Health>();
+        stamina = GetComponent<Stamina>();
         hitStop = GetComponentInChildren<HitStop>();
         levelSystem = LevelSystem.instance;
         moddableSprite = GetComponent<ModdableSprite>();
@@ -178,6 +180,7 @@ public class Player : MonoBehaviour
     public Health Health => health;
     public Animator Animator => animator;
     public ModdableSprite ModdableSprite => moddableSprite;
+    public Stamina Stamina => stamina;
 
     // Child getters
     public Transform Body => body;
