@@ -59,6 +59,8 @@ public class Stat {
     public string Name => name;
     /// <summary>Colour that this stat corresponds to.</summary>
     public Color Colour => colour;
+    /// <summary>Colour of this stat in the UI. Only used so that the transparent colour has an actual UI Color.</summary>
+    public Color UIColour => colour == Color.clear ? Color.black : colour;
     /// <summary>UI Icon representation of this Stat.</summary>
     public Sprite Icon => icon;
     /// <summary>Explanation of what this stat does displayed in the level up UI</summary>
