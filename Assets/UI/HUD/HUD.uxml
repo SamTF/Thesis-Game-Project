@@ -9,10 +9,20 @@
             <ui:VisualElement name="PlayerIcon" tooltip="Image of the Player&apos;s Spute" class="PlayerIcon" style="display: flex;" />
             <MyImage name="PlayerSprite" tooltip="Displays the Player&apos;s Sprite using unity Image" />
         </ui:VisualElement>
-        <ui:VisualElement name="HeartsContainer" tooltip="Container for all the Heart Icons" class="HeartsContainer">
-            <ui:VisualElement name="Heart" tooltip="Heart Icon displaying Player&apos;s HP value" class="HeartIcon" style="background-image: resource(&apos;UI/Hearts_multiple&apos;);" />
-            <ui:VisualElement name="Heart" tooltip="Heart Icon displaying Player&apos;s HP value" class="HeartIcon" style="background-image: resource(&apos;UI/Hearts_multiple&apos;);" />
-            <ui:VisualElement name="Heart" tooltip="Heart Icon displaying Player&apos;s HP value" class="HeartIcon" style="background-image: resource(&apos;UI/Hearts_multiple&apos;);" />
+        <ui:VisualElement name="IconsContainer" class="icons-container">
+            <ui:VisualElement name="HeartsContainer" tooltip="Container for all the Heart Icons" class="HeartsContainer">
+                <ui:VisualElement name="Heart" tooltip="Heart Icon displaying Player&apos;s HP value" class="HeartIcon" style="background-image: resource(&apos;UI/Hearts_multiple&apos;);" />
+                <ui:VisualElement name="Heart" tooltip="Heart Icon displaying Player&apos;s HP value" class="HeartIcon" style="background-image: resource(&apos;UI/Hearts_multiple&apos;);" />
+                <ui:VisualElement name="Heart" tooltip="Heart Icon displaying Player&apos;s HP value" class="HeartIcon" style="background-image: resource(&apos;UI/Hearts_multiple&apos;);" />
+            </ui:VisualElement>
+            <ui:VisualElement name="StaminaContainer" tooltip="Container for all the Heart Icons" class="HeartsContainer">
+                <ui:VisualElement name="Stamina" tooltip="Heart Icon displaying Player&apos;s HP value" class="HeartIcon" style="background-image: resource(&apos;UI/Stamina&apos;); -unity-slice-right: 0; -unity-slice-left: 8; -unity-background-scale-mode: stretch-to-fill;" />
+                <ui:VisualElement name="Stamina" tooltip="Heart Icon displaying Player&apos;s HP value" class="HeartIcon" style="background-image: resource(&apos;UI/Stamina&apos;); -unity-slice-right: 0; -unity-slice-left: 8; -unity-background-scale-mode: stretch-to-fill;" />
+                <ui:VisualElement name="Stamina" tooltip="Heart Icon displaying Player&apos;s HP value" class="HeartIcon" style="background-image: resource(&apos;UI/Stamina&apos;); -unity-slice-right: 0; -unity-slice-left: 8; -unity-background-scale-mode: stretch-to-fill;" />
+                <ui:VisualElement name="Stamina" tooltip="Heart Icon displaying Player&apos;s HP value" class="HeartIcon" style="background-image: resource(&apos;UI/Gem&apos;); -unity-slice-right: 0; -unity-slice-left: 0; -unity-background-scale-mode: stretch-to-fill;" />
+                <ui:VisualElement name="Stamina" tooltip="Heart Icon displaying Player&apos;s HP value" class="HeartIcon" style="background-image: resource(&apos;UI/Gem&apos;); -unity-slice-right: 0; -unity-slice-left: 0; -unity-background-scale-mode: stretch-to-fill;" />
+                <ui:VisualElement name="Stamina" tooltip="Heart Icon displaying Player&apos;s HP value" class="HeartIcon" style="background-image: resource(&apos;UI/Gem&apos;); -unity-slice-right: 0; -unity-slice-left: 0; -unity-background-scale-mode: stretch-to-fill;" />
+            </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
     <ui:VisualElement name="TimerContainer" class="bottom-container">
