@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 /// <summary>
 /// This Class is responsible for spawning enemies into the game world in the correct order
 /// </summary>
@@ -27,6 +26,7 @@ public class EnemySpawner : MonoBehaviour
     [Header("ENEMY SPAWNER")]
     [SerializeField][TextArea(5,20)]
     private string spawnOrder = "";
+
     [SerializeField]
     private SpawnCode chaser = null;
     [SerializeField]
@@ -36,6 +36,10 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField]
     private SpawnCode bouncer = null;
 
+    [SerializeField][Tooltip("How far away enemies spawn from the player")][Range(10,20)]
+    private int spawnDistance = 15;
+
+    private string[] spawnWaves;
     private Timer timer = null;
 
 
@@ -44,10 +48,17 @@ public class EnemySpawner : MonoBehaviour
 
         timer = new Timer(0);
         timer.Start();
+
+        spawnWaves = spawnOrder.Split('\n');
+        
+        Debug.Log(spawnOrder);
+        foreach (string item in spawnWaves) {
+            Debug.Log(item);
+        }
     }
 
     private void Update() {
-        Debug.Log(timer.currentTime.String);
+        // Debug.Log(timer.currentTime.String);
     }
 
 
@@ -84,9 +95,9 @@ public class EnemySpawner : MonoBehaviour
     private void Spawn(GameObject prefab) {
         Debug.Log($"[ENEMY SPAWNER] >>> Spawning {prefab.name}");
 
-        Vector2 position = (Random.insideUnitCircle.normalized * 20f) + GameManager.instance.PlayerPosition;
+        Vector2 position = (Random.insideUnitCircle.normalized * spawnDistance) + Player.instance.Position;
 
-        GameObject enemyObject = Instantiate(prefab, position, Quaternion.identity);
+        GameObject enemyObject = Instantiate(prefab, position, Quaternion.identity, transform);
         Enemy enemy = enemyObject.GetComponent<Enemy>();
     }
 
