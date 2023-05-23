@@ -5,12 +5,15 @@ using UnityEngine;
 public class Backflip : MonoBehaviour
 {
     // Constants
-    private const float gravity = -(0.4f * 1/16f);
-    private const float verticalVelocityOG = 0.4f;
-    private const float backflipSpeed = 7.5f;
+    /// <summary>Speed at which the character moves vertically as the backflip is performed.</summary>
+    private const float verticalVelocity = 0.5f;
+    /// <summary>Downwards force applied to vertical movement.</summary>
+    private const float gravity = -(verticalVelocity * 1/16f);
+    /// <summary>How far you travel during the backflip.</summary>
+    private const float backflipDistance = 9f;
 
     // Vars
-    private float verticalVelocity = verticalVelocityOG;
+    private float newVerticalVelocity = verticalVelocity;
     private Vector2 originPos;
     private Vector3 originRotation;
     
@@ -31,8 +34,8 @@ public class Backflip : MonoBehaviour
     private void FixedUpdate() {
         if (player.Status.IsBackflipping) {            
             // Fake vertical movement
-            verticalVelocity += gravity;
-            player.Body.localPosition += new Vector3(0, verticalVelocity, 0);
+            newVerticalVelocity += gravity;
+            player.Body.localPosition += new Vector3(0, newVerticalVelocity, 0);
 
             // Disable collider
             collider.enabled = false;
@@ -41,11 +44,11 @@ public class Backflip : MonoBehaviour
             if (player.Body.localPosition.y <= 0) {
                 player.Status.IsBackflipping = false;               // setting backflipping status to false to stop the movement
 
-                player.Body.localPosition = Vector3.zero;   // resetting sprite transform to original position
+                player.Body.localPosition = Vector3.zero;           // resetting sprite transform to original position
                 player.transform.eulerAngles = originRotation;      // ... and rotation
                 player.Shadow.localScale = Vector2.one;             // resetting shadow sprite scale
 
-                verticalVelocity = verticalVelocityOG;              // resetting vertical velocity
+                newVerticalVelocity = verticalVelocity;             // resetting vertical velocity
 
                 collider.enabled = true;                            // re-enable collider
             }
@@ -69,8 +72,12 @@ public class Backflip : MonoBehaviour
         originPos = player.Body.position;
         originRotation = player.transform.eulerAngles;
 
+        // Using Speed stat to increase backflip distance
+        float backflipForce = backflipDistance * (player.Stats.MoveSpeed.Value / (player.Stats.MoveSpeed.valueModifier * 3f));
+        backflipForce = Mathf.Clamp(backflipForce, backflipDistance, 20f);
+
         // adding horizontal force and setting flipping status
-        rb.AddForce(direction * backflipSpeed * speedMod, ForceMode2D.Impulse);
+        rb.AddForce(direction * (backflipForce) * speedMod, ForceMode2D.Impulse);
         player.Status.IsBackflipping = true;
     }       
     
