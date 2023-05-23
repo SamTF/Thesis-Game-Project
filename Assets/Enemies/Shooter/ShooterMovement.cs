@@ -26,8 +26,12 @@ public class ShooterMovement : EnemyMovementBase
 
 
     private void Update() {
+        // get target position and distance
         Vector2 target = GameManager.instance.PlayerPosition;
         float distance2target = (target - (Vector2)transform.position).magnitude;
+
+        // reset rigidbody velocity
+        rb.velocity = Vector2.zero;
 
         // Run away if the Player gets too close (and the enemy is not already running away)
         if (distance2target < (safeDistance + Mathf.Sin(Time.time * 0.5f))
