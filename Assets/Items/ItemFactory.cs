@@ -17,6 +17,18 @@ public static class ItemFactory
     public static GameObject Spawn(ItemType itemType, Vector3 position, Vector2 bounceDirection) {
         GameObject itemPrefab = Resources.Load<GameObject>("Items/XP");
 
+        switch (itemType)
+        {
+            case ItemType.Heart:
+                itemPrefab = Resources.Load<GameObject>("Items/Heart");
+                break;
+
+            case ItemType.XP:
+            default:
+                itemPrefab = Resources.Load<GameObject>("Items/XP");
+                break;
+        }
+
         // Spawn the Item
         GameObject item = Object.Instantiate(
             itemPrefab,
