@@ -13,6 +13,8 @@ public class TileSector : MonoBehaviour
     private int sectorSize;
     private int spawnChance;
 
+    private Sprite osbtacleSprite;
+
     /// <summary>
     /// Initialise the Sector properties and begin spawning tiles.
     /// </summary>
@@ -29,6 +31,8 @@ public class TileSector : MonoBehaviour
         this.sectorSize = sectorSize;
         this.spawnChance = Mathf.Clamp(spawnChance, 0, 6);
 
+        osbtacleSprite = Tiles.Obstacles[Random.Range(0, Tiles.Obstacles.Length)];
+
         // start placing tiles
         StartCoroutine(PlaceTiles());
     }
@@ -37,17 +41,46 @@ public class TileSector : MonoBehaviour
     private IEnumerator PlaceTiles() {
         for (int x = 0; x < sectorSize; x++) {
             for (int y = 0; y < sectorSize; y++) {
+                // RNG dice rolls
                 bool addTile = Random.Range(0, 7) >= spawnChance;
+                bool addObstacle = Random.Range(0, 7) >= 6;
 
-                if (addTile) {
-                    Vector2 position = new Vector2(x, y) + (Vector2)transform.position;
-                    GameObject tile = Instantiate(tilePrefab, position, Quaternion.identity, transform);
-                    tile.GetComponent<SpriteRenderer>().sprite = tileSprite;
-                    tile.GetComponent<SpriteRenderer>().color = tileColour;
+                if (!addTile)   continue;
+
+                // init vars
+                Vector2 position = new Vector2(x, y) + (Vector2)transform.position;
+                GameObject prefab = null;
+                Sprite sprite = null;
+                Color color = Color.white;
+
+                // Place an Obstacle instead of a Tile if the RNG passes two checks in a row
+                if (addObstacle) {
+                    prefab = Tiles.ObstaclePrefab;
+                    // sprite = Tiles.Obstacles[Random.Range(0, Tiles.Obstacles.Length)];
+                    sprite = osbtacleSprite;
+                    color = Tiles.ObstacleColour;
                 }
+                // Otherwise place the given Environment Tile
+                else {
+                    prefab = tilePrefab;
+                    sprite = tileSprite;
+                    color = tileColour;
+                }
+
+                // Instantiate the Tile
+                PlaceTile(prefab, position, sprite, color);
             }
         }
 
         yield return null;
-    }    
+    }
+
+    /// <summary>
+    /// Instantiates a tile and sets its properties.
+    /// </summary>
+    private void PlaceTile(GameObject prefab, Vector2 position, Sprite sprite, Color colour) {
+        GameObject tile = Instantiate(prefab, position, Quaternion.identity, transform);
+        tile.GetComponent<SpriteRenderer>().sprite = sprite;
+        tile.GetComponent<SpriteRenderer>().color = colour;
+    }
 }
