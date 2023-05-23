@@ -72,7 +72,6 @@ public class Health : MonoBehaviour
         }
     }
 
-
     /// <summary>
     /// Trigger a nice Blinking animation on the player sprite.
     /// </summary>
@@ -82,6 +81,17 @@ public class Health : MonoBehaviour
         player.Animator.SetBool("Blink", true);
         yield return new WaitForSeconds(player.Status.InvulnerableCooldown);
         player.Animator.SetBool("Blink", false);
+    }
+
+    /// <summary>
+    /// Regain an amount of Health Points.
+    /// </summary>
+    /// <param name="amount">Amount of HP to heal.</param>
+    public void Heal(int amount = 2) {
+        health += amount;
+        health = Mathf.Clamp(health, 1, maxHearts * 2);
+
+        onHealthChange?.Invoke();
     }
 
     /// <summary>
@@ -104,4 +114,8 @@ public class Health : MonoBehaviour
     public int HP => health;
     /// <summary>Objects in these Physics Layers will cause the Player to take damage.</summary>
     public LayerMask DamageLayer => damageLayer;
+    /// <summary>Checks if the Player is at full health</summary>
+    public bool FullHealth => health == (maxHearts * 2);
+    /// <summary>RNG chance to spawn a Heart (figured I should put this here for now)</summary>
+    public bool SpawnHeart => UnityEngine.Random.Range(0, 7) >= 6;
 }
