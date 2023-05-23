@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class Backflip : MonoBehaviour
 {
+    [Header("BACKFLIP!")]
+    [SerializeField][Tooltip("The Physics Layer that this GameObject will be moved to during a Backflip.")]
+    private LayerMask physicsLayer;
+    [SerializeField][Tooltip("The Sprite Sorting Layer that this GameObject will be moved to during a Backflip.")]
+    private string spriteLayer = "Foreground";
+
     // Constants
     /// <summary>Speed at which the character moves vertically as the backflip is performed.</summary>
     private const float verticalVelocity = 0.5f;
@@ -16,6 +22,8 @@ public class Backflip : MonoBehaviour
     private float newVerticalVelocity = verticalVelocity;
     private Vector2 originPos;
     private Vector3 originRotation;
+    private LayerMask physicsLayerOG;
+    private string spriteLayerOG;
     
 
     // Components
@@ -25,10 +33,17 @@ public class Backflip : MonoBehaviour
     private Collider2D collider = null;
 
     private void Awake() {
+        // getting components
         player = GetComponent<Player>();
         rb = GetComponent<Rigidbody2D>();
         input = GetComponent<InputManager>();
         collider = GetComponent<Collider2D>();
+    }
+
+    private void Start() {
+        // setting variables
+        physicsLayerOG = player.gameObject.layer;
+        spriteLayerOG = player.SpriteRenderer.sortingLayerName;
     }
 
     private void FixedUpdate() {
@@ -36,9 +51,6 @@ public class Backflip : MonoBehaviour
             // Fake vertical movement
             newVerticalVelocity += gravity;
             player.Body.localPosition += new Vector3(0, newVerticalVelocity, 0);
-
-            // Disable collider
-            collider.enabled = false;
 
             // Reset when the player touches the ground
             if (player.Body.localPosition.y <= 0) {
@@ -50,7 +62,7 @@ public class Backflip : MonoBehaviour
 
                 newVerticalVelocity = verticalVelocity;             // resetting vertical velocity
 
-                collider.enabled = true;                            // re-enable collider
+                UpdateLayers(true);                                 // resets physics and sorting layers
             }
 
         }
@@ -79,6 +91,32 @@ public class Backflip : MonoBehaviour
         // adding horizontal force and setting flipping status
         rb.AddForce(direction * (backflipForce) * speedMod, ForceMode2D.Impulse);
         player.Status.IsBackflipping = true;
-    }       
-    
+
+        // Sets new Physics and Sorting layers if requested
+        UpdateLayers();
+        
+    }
+
+    /// <summary>
+    /// Sets this GameObject to a new Physics Layer and its SpriteRenderer to a new Sorting Layer (if possible)
+    /// </summary>
+    /// <param name="reset">Sets the Layers back to their original values.</param>
+    private void UpdateLayers(bool reset = false) {
+        // reset layers to original values
+        if (reset) {
+            player.gameObject.layer = physicsLayerOG;
+            player.SpriteRenderer.sortingLayerName = spriteLayerOG;
+
+            return;
+        }
+
+        // set new physics layer (if a value was given)
+        int? newLayer = LayerMaskExtensions.FirstLayer(physicsLayer);
+        if (newLayer.HasValue)
+            gameObject.layer = newLayer.Value;
+        
+        // set new sprite sorting layer (if a value was given)
+        if (SortingLayer.NameToID(spriteLayer) > 0)
+            player.SpriteRenderer.sortingLayerName = spriteLayer;
+    }
 }
