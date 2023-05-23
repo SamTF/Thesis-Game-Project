@@ -101,14 +101,18 @@ public static class ImageLoader
         Texture2D tex = null;
 
         // Checking if the player created a custom texture
+        Debug.Log($"[IMAGE LOADER] >>> Checking if {textureName}.{ModManager.FileType} exists...");
         if (ModManager.ModExists($"{textureName}.{ModManager.FileType}")) {
             tex = ImageLoader.LoadTextureFromFile($"{textureName}.{ModManager.FileType}");
+            Debug.Log($"[IMAGE LOADER] >>> Found custom texture for {textureName}");
         }
         // If not, use the default texture
         else {
+            Debug.Log($">>> Loading default texture for {textureName}");
             if (texture)    tex = texture;
-            else            tex = Resources.Load($"{textureFolder}/{textureName}") as Texture2D;  
+            else            tex = Resources.Load($"{textureFolder}/{textureName}") as Texture2D;
         }
+        
 
         // Get sprite size within spritesheet
         Vector2Int size;
@@ -122,6 +126,41 @@ public static class ImageLoader
         Sprite[] spriteArray = new Sprite[numOfSprites];
         for (int i = 0; i < numOfSprites; i++) {
             Sprite s = CreateSprite(tex, Pivot.Center, size.x * i, size);
+            spriteArray[i] = s;
+        }
+
+        // Return the sprites
+        return spriteArray;
+    }
+
+    /// <summary>
+    /// Create all Sprites from a spritesheet file of a given name, and return them as an array.
+    /// Overload when Icon Size is known, but amount of icons in spritesheet is unknown.
+    /// </summary>
+    /// <param name="textureName">Name of the image file (must be identical in both Resources and CUSTOM folder)</param>
+    /// <param name="textureFolder">Name of the subfolder inside the Resources directory.</param>
+    /// <param name="spriteSize">Size of the icons inside the spritesheet. (Deduced from number of icons if no value is given)</param>
+    /// <returns>Array of sprites.</returns>
+    public static Sprite[] CreateAllSprites(string textureName, string textureFolder, Vector2Int spriteSize) {
+        Texture2D tex = null;
+
+        // Checking if the player created a custom texture
+        if (ModManager.ModExists($"{textureName}.{ModManager.FileType}")) {
+            tex = ImageLoader.LoadTextureFromFile($"{textureName}.{ModManager.FileType}");
+        }
+        // If not, use the default texture
+        else {
+            tex = Resources.Load($"{textureFolder}/{textureName}") as Texture2D;
+        }
+        
+
+        // Get amount of possible sprites within spritesheet
+        int numOfSprites = Mathf.FloorToInt(tex.width / spriteSize.x);
+
+        // Create a sprite for each element in the array, and assign to that element
+        Sprite[] spriteArray = new Sprite[numOfSprites];
+        for (int i = 0; i < numOfSprites; i++) {
+            Sprite s = CreateSprite(tex, Pivot.Center, spriteSize.x * i, spriteSize);
             spriteArray[i] = s;
         }
 
