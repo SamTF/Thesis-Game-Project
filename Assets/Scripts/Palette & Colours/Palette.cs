@@ -9,15 +9,21 @@ public static class Palette
     private const int paletteWidth = 16;
     private const string fileType = ".png";
     private const string fileName = "palette";
-    private const int amountOfColours = 6;
+    private const int amountOfColours = 5;
 
     private static Color[] coloursArray = null;
     private static Colour[] colourObjs = null;
+    private static Color[] dummyColors = { Color.black, Color.white };
+    private static HSVColour bgColour;
 
 
     // Class Constructor
     static Palette() {
         Debug.Log("Palette has woken up!");
+
+        Color rgbCamera = Camera.main.backgroundColor;
+        bgColour = new HSVColour(rgbCamera);
+        Debug.Log($"[PALETTE] >>> BG COLOR : {bgColour}");
     }
 
     public static void LoadPalette(bool forceDefault = false) {
@@ -63,4 +69,6 @@ public static class Palette
     public static Colour[] ColourObjects => colourObjs;
     /// <summary>Amount of colours present in the Palette.</summary>
     public static int NumOfColours => amountOfColours;
+    /// <summary>"Dumb" colours that have no stat but can be used for purely cosmetic purposes.</summary>
+    public static Color[] DummyColors => dummyColors;
 }
