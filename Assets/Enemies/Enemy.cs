@@ -52,6 +52,34 @@ public abstract class Enemy : MonoBehaviour
 
         // Checking the children for sprite renderers if the main object doesn't have one
         if (spriteRenderer == null) spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+
+        // Fix in case this Enemy spawns outside the level
+        if (OutOfBounds())  StartCoroutine(OutOfBoundsFix());
+    }
+
+    private bool OutOfBounds() {
+        return Mathf.Abs(transform.position.x) >= GameManager.instance.LevelRadius.x
+            || Mathf.Abs(transform.position.y) >+ GameManager.instance.LevelRadius.y;
+        
+    }
+
+    private IEnumerator OutOfBoundsFix() {
+        Collider2D[] colliders = body.GetComponents<Collider2D>();
+
+        // disable all colliders in Body
+        foreach (Collider2D col in colliders) {
+            col.enabled = false;      
+        }
+
+        // wait until enemy is back inside the level
+        while (OutOfBounds()) {
+            yield return new WaitForFixedUpdate();
+        }
+
+        // re-enable colliders once they are inside
+        foreach (Collider2D col in colliders) {
+            col.enabled = true;      
+        }
     }
 
 
@@ -118,8 +146,14 @@ public abstract class Enemy : MonoBehaviour
         hitStop.Hit(200);
 
         // Spawn XP Item!
-        Vector2 bounceDirection = ((Vector2)transform.position - GameManager.instance.PlayerPosition).normalized;
+        Vector2 bounceDirection = ((Vector2)transform.position - Player.instance.Position).normalized;
         ItemFactory.Spawn(ItemType.XP, transform.position, bounceDirection);
+
+        // Chance to spawn Heart if not at full health
+        if (!Player.instance.Health.FullHealth && Player.instance.Health.SpawnHeart) {
+            bounceDirection = (bounceDirection * Random.Range(-0.5f, 0.5f)).normalized;
+            ItemFactory.Spawn(ItemType.Heart, transform.position, bounceDirection);
+        }
 
         // Play death animation
         StartCoroutine(DeathAnimation());
