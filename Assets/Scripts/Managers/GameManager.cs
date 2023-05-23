@@ -9,12 +9,17 @@ public class GameManager : MonoBehaviour
     [Header("GAME MANAGER")]
     [SerializeField]
     private Player player = null;
+    [SerializeField]
+    private Vector2Int levelRadius = new Vector2Int(50, 50);
 
     // Status
     private bool gameIsPaused = false;
 
     // Statistics
     private Timer timer = null;
+
+    // Customisation
+    private Color grassColour;
 
     // Events
     public static event Action onPause;
@@ -38,6 +43,13 @@ public class GameManager : MonoBehaviour
 
         ModManager.ListMods();
         Palette.LoadPalette();
+    }
+
+    private void Start() {
+        Color bgColor = Camera.main.backgroundColor;
+        Debug.Log(bgColor);
+        HSVColour hsv = new HSVColour(bgColor);
+        Debug.Log(hsv);
     }
 
     // Game-wide Input
@@ -92,6 +104,8 @@ public class GameManager : MonoBehaviour
     public Stats PlayerStats => player.Stats;
     /// <summary>Timer counting the seconds survived in the current level.</summary>
     public Timer Timer => timer;
+    /// <summary>The X and Y radius of the current level.</summary>
+    public Vector2 LevelRadius => levelRadius;
 
     /// <summary>Gets or Sets whether the game is paused. Setting it to true will trigger the OnPause event.</summary>
     public bool GameIsPaused {
