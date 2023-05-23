@@ -10,7 +10,6 @@ public class StaminaUI : MonoBehaviour
 {
     // Icons
     private string iconName = "Stamina";
-    [SerializeField]
     private Sprite[] iconSprites = new Sprite[3];
     private Vector2Int iconSize = new Vector2Int(8, 8);
 
