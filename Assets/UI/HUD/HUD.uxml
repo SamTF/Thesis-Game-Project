@@ -19,9 +19,6 @@
                 <ui:VisualElement name="Stamina" tooltip="Heart Icon displaying Player&apos;s HP value" class="HeartIcon" style="background-image: resource(&apos;UI/Stamina&apos;); -unity-slice-right: 0; -unity-slice-left: 8; -unity-background-scale-mode: stretch-to-fill;" />
                 <ui:VisualElement name="Stamina" tooltip="Heart Icon displaying Player&apos;s HP value" class="HeartIcon" style="background-image: resource(&apos;UI/Stamina&apos;); -unity-slice-right: 0; -unity-slice-left: 8; -unity-background-scale-mode: stretch-to-fill;" />
                 <ui:VisualElement name="Stamina" tooltip="Heart Icon displaying Player&apos;s HP value" class="HeartIcon" style="background-image: resource(&apos;UI/Stamina&apos;); -unity-slice-right: 0; -unity-slice-left: 8; -unity-background-scale-mode: stretch-to-fill;" />
-                <ui:VisualElement name="Stamina" tooltip="Heart Icon displaying Player&apos;s HP value" class="HeartIcon" style="background-image: resource(&apos;UI/Gem&apos;); -unity-slice-right: 0; -unity-slice-left: 0; -unity-background-scale-mode: stretch-to-fill;" />
-                <ui:VisualElement name="Stamina" tooltip="Heart Icon displaying Player&apos;s HP value" class="HeartIcon" style="background-image: resource(&apos;UI/Gem&apos;); -unity-slice-right: 0; -unity-slice-left: 0; -unity-background-scale-mode: stretch-to-fill;" />
-                <ui:VisualElement name="Stamina" tooltip="Heart Icon displaying Player&apos;s HP value" class="HeartIcon" style="background-image: resource(&apos;UI/Gem&apos;); -unity-slice-right: 0; -unity-slice-left: 0; -unity-background-scale-mode: stretch-to-fill;" />
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
