@@ -98,13 +98,27 @@ public class Player : MonoBehaviour
         }
     }
 
+    // When the player remains inside a collider (only needed for enemies)
+    private void OnTriggerStay2D(Collider2D other) {
+        // With enemy / damaging objects
+        if ( ((1<<other.gameObject.layer) & health.DamageLayer) != 0 ) {
+            Debug.Log($"[HEALTH] >>> Ouch! Player was damaged by {other.name}");
+            OnHit(other.transform);
+        }
+    }
+
     /// <summary>
     /// Triggered when an item is picked up.
     /// </summary>
     /// <param name="itemType">What kind of item has been picked up?</param>
     private void OnItemPickup(ItemType itemType) {
+        // XP pick up
         if (itemType == ItemType.XP) {
             levelSystem.GainXP();
+        }
+        // Health pick up
+        else if (itemType == ItemType.Heart) {
+            health.Heal();
         }
     }
 
@@ -178,6 +192,7 @@ public class Player : MonoBehaviour
 
 
     // Component Getters
+    public Vector2 Position => transform.position;
     public Rigidbody2D RigidBody => rb;
     public InputManager Input => input;
     public Stats Stats => stats;
