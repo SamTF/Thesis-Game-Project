@@ -17,8 +17,8 @@ public class LevelSystem : MonoBehaviour
     private int xp = 0;
     [SerializeField][Tooltip("Amount of XP required in total to level up")]
     private int xpToLevelUp = 15;
-    [SerializeField][Tooltip("Multiplier of how much XP need to level up increases with each level")]
-    private float levelUpXpMultiplier = 2f;
+    [SerializeField][Tooltip("By how much XP needed to level up increases with each level")]
+    private int levelUpInflation = 5;
 
     [SerializeField]
     private Player player;
@@ -59,7 +59,7 @@ public class LevelSystem : MonoBehaviour
 
 
     // private void Start() {
-    //     UnlockColour(Palette.Colours[level-1]);
+    //     UnlockColour(Palette.Colours[0]);
 
     //     foreach (Color c in Palette.Colours[0..2])
     //     {
@@ -80,7 +80,7 @@ public class LevelSystem : MonoBehaviour
         if (xp >= xpToLevelUp && level < Palette.NumOfColours) {
             level++;                                    // increment level
             xp -= xpToLevelUp;                          // keep remainder XP
-            xpToLevelUp *= (int)levelUpXpMultiplier;    // increase xp required to level up again
+            xpToLevelUp += levelUpInflation;            // increase xp required to level up again
             onLevelUp?.Invoke();                        // trigger the level up event
         }
 
