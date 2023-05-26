@@ -10,6 +10,7 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     [Header("MAIN MENU")]
+    [Header("UI IDs")]
     [SerializeField]
     private string playID = "play";
     [SerializeField]
@@ -20,6 +21,10 @@ public class MainMenu : MonoBehaviour
     private string customiseID = "customise";
     [SerializeField]
     private string quitID = "quit";
+
+    [Header("Prefabs")]
+    [SerializeField]
+    private GameObject usernameMenu = null;
 
     // UI Elements
     private VisualElement mainContainer = null;
@@ -73,16 +78,28 @@ public class MainMenu : MonoBehaviour
     
 
     private void Play() {
-        // hide cursor
-        CustomCursor.visible = false;
-        UnityEngine.Cursor.visible = false;
+        // play game if username has already been set
+        if (PlayerPrefs.HasKey("username")) {
+            CustomCursor.visible = false;
 
-        StartCoroutine( FlyAnimation (
-            transform.position, 
-            (Vector2)transform.position + new Vector2(0, 12), 
-            0.25f, 
-            CloseMenu
-        ));
+            StartCoroutine( FlyAnimation (
+                transform.position, 
+                (Vector2)transform.position + new Vector2(0, 12), 
+                0.25f, 
+                CloseMenu
+            ));
+        }
+
+        // show the username meny if players have not set one yet
+        else {
+            StartCoroutine( FlyAnimation (
+                transform.position, 
+                (Vector2)transform.position + new Vector2(0, 12), 
+                0.25f, 
+                ShowUsernameMenu
+            ));
+        }
+        
     }
 
     private void Help() {
@@ -106,6 +123,11 @@ public class MainMenu : MonoBehaviour
 
     private void Quit() {
         Application.Quit();
+    }
+
+    private void ShowUsernameMenu() {
+        Instantiate(usernameMenu);
+        Destroy(gameObject);
     }
 
     /// <summary>
