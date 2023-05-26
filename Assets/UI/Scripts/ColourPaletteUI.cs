@@ -106,8 +106,9 @@ public class ColourPaletteUI : MonoBehaviour
     /// </summary>
     /// <param name="newColour">New Colour to paint with.</param>
     private void SetColour(Color newColour) {
-        selectedColour = newColour;
-        onColourChange?.Invoke(newColour);
+        selectedColour = newColour;         // change selected colour
+        onColourChange?.Invoke(newColour);  // trigger the event to inform the colouring book
+        CustomCursor.CursorTint(newColour); // colour the mouse cursor as well!
     }
 
 
