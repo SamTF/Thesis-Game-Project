@@ -1,7 +1,3 @@
-* {
-    cursor: url('project://database/Assets/UI/Static%20Images/Cursors/Pencil%20Cursor%2060x60.png?fileID=2800000&guid=ab40817c063c1e0439b910e642de97b5&type=3#Pencil Cursor 60x60');
-}
-
 .MainContainer {
     width: 100%;
     height: 100%;
