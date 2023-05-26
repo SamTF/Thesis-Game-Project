@@ -383,7 +383,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   body: {fileID: 0}
   shadow: {fileID: 0}
-  safeDistance: 1
+  safeDistance: 2.5
   followDelay: 2
   rotationCooldown: 4
   rotatesPosition: 1
