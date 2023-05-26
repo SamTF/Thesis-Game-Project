@@ -1,0 +1,46 @@
+.username {
+    flex-direction: column;
+    width: 128px;
+    align-items: flex-start;
+    height: auto;
+    margin-bottom: 0;
+    color: rgba(255, 255, 255, 255);
+}
+
+.btn-save {
+    margin-top: 16px;
+    padding-left: 4px;
+    padding-right: 4px;
+    padding-top: 4px;
+    padding-bottom: 2px;
+    height: auto;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-color: rgb(255, 255, 255);
+    border-right-color: rgb(255, 255, 255);
+    border-top-color: rgb(255, 255, 255);
+    border-bottom-color: rgb(255, 255, 255);
+}
+
+.btn-save:hover {
+    border-left-width: 2px;
+    border-right-width: 2px;
+    border-top-width: 2px;
+    border-bottom-width: 2px;
+    border-left-color: rgb(255, 255, 255);
+    border-right-color: rgb(255, 255, 255);
+    border-top-color: rgb(255, 255, 255);
+    border-bottom-color: rgb(255, 255, 255);
+    scale: 1.25 1.25;
+    color: rgba(255, 255, 255, 255);
+    -unity-font-definition: url('project://database/Assets/UI%20Toolkit/Fonts/Precise-M%20Bold.asset?fileID=11400000&guid=985ca571f19bb384a829249fbd98f274&type=2#Precise-M Bold');
+}
+
+.text-input > .unity-base-field__input {
+    border-left-color: rgba(255, 255, 255, 255);
+    border-right-color: rgba(255, 255, 255, 255);
+    border-top-color: rgba(255, 255, 255, 255);
+    border-bottom-color: rgba(255, 255, 255, 255);
+}
