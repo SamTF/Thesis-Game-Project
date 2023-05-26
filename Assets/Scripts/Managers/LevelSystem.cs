@@ -51,8 +51,6 @@ public class LevelSystem : MonoBehaviour
         if (instance == null)   { _instance = this; }
         else                    { Destroy(gameObject); }
 
-        DontDestroyOnLoad(this.gameObject);
-
         if (player == null)
             player = Player.instance;
     }
