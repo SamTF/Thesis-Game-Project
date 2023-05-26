@@ -35,7 +35,7 @@ public class ScreenBounce : EnemyMovementBase
 
     private void Start() {
         // Initialising direction
-        direction = GenerateInitialDirection(DirectionType.DiagonalOnly);
+        direction = GenerateInitialDirection(DirectionType.AnyDirection);
         // rb.velocity = direction * screenBounceSpeed;
 
         // Getting components
@@ -98,18 +98,20 @@ public class ScreenBounce : EnemyMovementBase
 
         //// BOUNCING
         // Reflect on X Axis
-        if (screenPosition.x > Screen.width - spriteSize || screenPosition.x < spriteSize) {
+        // if (screenPosition.x > Screen.width - spriteSize || screenPosition.x < spriteSize) {
+        if (screenPosition.x > Screen.width || screenPosition.x < 0) {
             transform.position = Bounce(Axis.X, screenPosition);    // Clamp X Position & Flip X direction
         }
         // Reflect on Y Axis
-        else if (screenPosition.y > Screen.height - spriteSize || screenPosition.y < spriteSize) {
+        // else if (screenPosition.y > Screen.height - spriteSize || screenPosition.y < spriteSize) {
+        else if (screenPosition.y > Screen.height || screenPosition.y < 0) {
             transform.position = Bounce(Axis.Y, screenPosition);    // Clamp Y Position & Flip Y Direction
         }
 
         //// MOVING
         // New Screen Position
         screenPosition = Camera.main.WorldToScreenPoint(transform.position);
-        Vector2 newPosition = screenPosition + (direction * (screenBounceSpeed * Time.deltaTime * 100f));
+        Vector2 newPosition = screenPosition + (direction * (screenBounceSpeed * Time.deltaTime * (Camera.main.pixelHeight / 10f)));
         screenPosition = Camera.main.ScreenToWorldPoint(newPosition);
 
         // Moving the object
@@ -128,12 +130,14 @@ public class ScreenBounce : EnemyMovementBase
 
         // Clamp position and reflect direction 
         if (axis == Axis.X) {
-            screenPosition.x = Mathf.Clamp(screenPosition.x, spriteSize, Screen.width - spriteSize);
+            // screenPosition.x = Mathf.Clamp(screenPosition.x, spriteSize, Screen.width - spriteSize);
+            screenPosition.x = Mathf.Clamp(screenPosition.x, 0, Screen.width);
             direction.x *= -1;
         }
         else if (axis == Axis.Y) {
             direction.y *= -1;
-            screenPosition.y = Mathf.Clamp(screenPosition.y, spriteSize, Screen.height - spriteSize);
+            // screenPosition.y = Mathf.Clamp(screenPosition.y, spriteSize, Screen.height - spriteSize);
+            screenPosition.y = Mathf.Clamp(screenPosition.y, 0, Screen.height);
         }
 
         // Convert screen to world position and return the vector
