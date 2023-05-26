@@ -6,19 +6,19 @@ using TMPro;
 public class UIManager : MonoBehaviour
 {
     [Header("UI MANAGER")]
-    [Header("Old Canvas Stuff")]
-    [SerializeField]
-    private Transform panel = null;
-    [SerializeField]
-    private GameObject textPrefab = null;
-
     [Header("UI Element Menus")]
+    [SerializeField]
+    private GameObject mainMenu = null;
     [SerializeField]
     private GameObject pauseMenu = null;
     [SerializeField]
     private GameObject colouringBook = null;
     [SerializeField]
     private GameObject levelUpMenu = null;
+    [SerializeField]
+    private GameObject gameOverMenu = null;
+    [SerializeField]
+    private GameObject helpMenu = null;
 
     // Singleton Thing
     private static UIManager _instance = null;
@@ -32,8 +32,6 @@ public class UIManager : MonoBehaviour
         // Singleton Thing
         if (instance == null)   { _instance = this; }
         else                    { Destroy(gameObject); }
-
-        DontDestroyOnLoad(this.gameObject);
     }
 
     // Events
@@ -41,48 +39,15 @@ public class UIManager : MonoBehaviour
         GameManager.onPause += PauseMenuToggle;
         LevelSystem.onLevelUp += LevelUp;
         LevelUpUI.onNewColourChosen += ColouringBookToggle;
+        Health.onPlayerDeath += GameOver;
     }
     private void OnDisable() {
         GameManager.onPause -= PauseMenuToggle;
         LevelSystem.onLevelUp -= LevelUp;
         LevelUpUI.onNewColourChosen -= ColouringBookToggle;
+        Health.onPlayerDeath -= GameOver;
     }
 
-    /// <summary>
-    /// Show a list of colours in the UI: their HEX value and pixel count.
-    /// </summary>
-    /// <param name="colours">Array of Colour objects</param>
-    public void DisplayColours(Colour[] colours) {
-        foreach (Colour c in colours)
-        {
-            GameObject textObject = Instantiate(textPrefab, parent:panel);
-            TextMeshProUGUI textUI = textObject.GetComponent<TextMeshProUGUI>();
-            string text = $"#{c.hexColour} - {c.value} pixels";
-            textUI.text = text;
-            textUI.color = c.colour;
-        }
-    }
-
-    /// <summary>
-    /// Shows a list of Stats in the UI: Their name and value, coloured appropriately
-    /// </summary>
-    /// <param name="stats">Array of Stat objects to display</param>
-    public void DisplayStats(Stat[] stats) {
-        // Destroying any Text elements that may already exist
-        for (int i = panel.childCount-1; i >= 0; i--) {
-            Destroy(panel.GetChild(i).gameObject);
-        }
-
-        // Creating a Text element for each stat
-        foreach (Stat s in stats)
-        {
-            GameObject textObject = Instantiate(textPrefab, parent:panel);
-            TextMeshProUGUI textUI = textObject.GetComponent<TextMeshProUGUI>();
-            string text = $"{s.Name}: {s.Value}";
-            textUI.text = text;
-            textUI.color = s.Colour;
-        }
-    }
 
     /// <summary>
     /// Show the Pause Menu, or resume the Game if the pause menu is already visible.
@@ -95,7 +60,8 @@ public class UIManager : MonoBehaviour
         }
 
         // If another menu that pauses the game is running, do nothing
-        if (ColouringBook.instance || LevelUpUI.instance) return;
+        if (ColouringBook.instance || LevelUpUI.instance || HelpUI.instance || GameOverUI.instance || MainMenu.instance)
+            return;
             
         // Instantiate a Pause Menu
         GameObject pauseMenuObject = Instantiate(pauseMenu);
@@ -108,6 +74,7 @@ public class UIManager : MonoBehaviour
         }
 
         Instantiate(levelUpMenu);
+        CustomCursor.visible = true;    // show cursor
     }
 
     /// <summary>
@@ -138,6 +105,7 @@ public class UIManager : MonoBehaviour
         // Spawn Fireworks every x milliseconds over the duration period
         GameObject fireworksVFX = Resources.Load("FX/Animated/Fireworks") as GameObject;
         Timer timer = new Timer();
+        timer.Start();
 
         while (timer.currentSeconds <= duration)
         {
@@ -160,6 +128,26 @@ public class UIManager : MonoBehaviour
         ShowLevelUpMenu();
     }
 
+    /// <summary>
+    /// Display the Help Menu on screen.
+    /// </summary>
+    public void HelpMenuToggle () {
+        if (HelpUI.instance == null) {
+            Instantiate(helpMenu);
+        }
+    }
+
+    private void GameOver() {
+        if (GameOverUI.instance == null) {
+            StartCoroutine(DelayedDisplay(gameOverMenu, 2f));
+        }
+    }
+
+    /// <summary>
+    /// Display a UI Menu after X seconds.
+    /// </summary>
+    /// <param name="menu">Prefab of menu to display.</param>
+    /// <param name="delay">Seconds to wait before displaying.</param>
     private IEnumerator DelayedDisplay(GameObject menu, float delay)  {
         yield return new WaitForSeconds(delay);
 
