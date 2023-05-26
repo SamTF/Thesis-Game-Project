@@ -1,0 +1,11 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Globals.uss?fileID=7433441132597879392&amp;guid=7d653874a8625ca4cb3f8366e0226acb&amp;type=3#Globals" />
+    <Style src="project://database/Assets/UI/Options/Username.uss?fileID=7433441132597879392&amp;guid=6af79e9b7f541084bba3bc40f5ae65af&amp;type=3#Username" />
+    <ui:VisualElement name="MainContainer" class="main-container" style="align-items: center; justify-content: center; width: 384px; height: 216px;">
+        <ui:VisualElement name="Username" class="username">
+            <ui:Label text="What is your name?" display-tooltip-when-elided="true" class="text" style="-unity-font-definition: url(&apos;project://database/Assets/UI%20Toolkit/Fonts/m3x6.asset?fileID=11400000&amp;guid=e58d25536dd71ca4aadbafb8584ad099&amp;type=2#m3x6&apos;); font-size: 16px; height: 16px; justify-content: flex-end; -unity-text-align: lower-left; color: rgb(255, 255, 255);" />
+            <ui:TextField value="username" text="username" max-length="16" class="text-input" style="width: 100%; -unity-font: url(&apos;project://database/Assets/UI%20Toolkit/Fonts/Precise-M.ttf?fileID=12800000&amp;guid=8593459e58f05b1479a9722b64d559a0&amp;type=3#Precise-M&apos;); -unity-font-definition: url(&apos;project://database/Assets/UI%20Toolkit/Fonts/Precise-M.asset?fileID=11400000&amp;guid=8377d9355ba010940a8750895108b850&amp;type=2#Precise-M&apos;);" />
+        </ui:VisualElement>
+        <ui:Button text="GO!" display-tooltip-when-elided="true" name="BtnSave" class="text-btn text btn-save" style="width: 100px; color: rgb(255, 255, 255);" />
+    </ui:VisualElement>
+</ui:UXML>
