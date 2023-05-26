@@ -244,6 +244,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 36449238734785110, guid: ae586a95cd18df546a4a5077d4e4547a, type: 3}
+      propertyPath: usernameMenu
+      value: 
+      objectReference: {fileID: 4729095377396466565, guid: 2689009a46cf23546baf751dab2035d5, type: 3}
     - target: {fileID: 36449238734785112, guid: ae586a95cd18df546a4a5077d4e4547a, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -375,7 +379,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &2088996710
 SpriteRenderer:
   m_ObjectHideFlags: 0
