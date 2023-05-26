@@ -35,6 +35,7 @@
 .colour-item:hover {
     scale: 1.1 1.1;
     background-image: url('project://database/Assets/UI/Static%20Images/Notebook%20slice.png?fileID=-366025168&guid=9081440c894d4d242a9fc33633567b0d&type=3#Notebook slice active');
+    cursor: url('project://database/Assets/UI/Static%20Images/Cursors/cursor_pointer.png?fileID=2800000&guid=3440e1bceef78284f9b081373717aa6f&type=3#cursor_pointer');
 }
 
 .colour-item:focus {
@@ -53,18 +54,4 @@
     height: 32px;
     -unity-background-scale-mode: scale-to-fit;
     background-image: resource('UI/paint bucket');
-}
-
-.colour-item .bg-btn {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-image: url('project://database/Assets/UI/Static%20Images/Notebook%20slice.png?fileID=1271775911&guid=9081440c894d4d242a9fc33633567b0d&type=3#Notebook slice normal');
-}
-
-.colour-item .bg-btn {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-image: url('project://database/Assets/UI/Static%20Images/Notebook%20slice.png?fileID=-366025168&guid=9081440c894d4d242a9fc33633567b0d&type=3#Notebook slice active');
 }
