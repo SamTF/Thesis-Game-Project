@@ -181,6 +181,13 @@ public class Player : MonoBehaviour
     /// <param name="newTexture">Texture to update the Sprite with.</param>
     public void UpdateSprite(Texture2D newTexture) {
         moddableSprite.ReplaceSprite(newTexture);
+        
+        if (HUDController.instance == null) {
+            Debug.Log("where is the hud controller ????");
+        } else {
+            HUDController.instance.UpdatePlayerSprite();
+        }
+
         onSpriteUpdated?.Invoke();
     }
 
