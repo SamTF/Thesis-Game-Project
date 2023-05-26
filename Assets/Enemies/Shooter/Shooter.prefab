@@ -346,8 +346,8 @@ MonoBehaviour:
   damageLayer:
     serializedVersion: 2
     m_Bits: 128
-  health: 3
-  shootingInterval: 2
+  health: 5
+  shootingInterval: 3
   projectilePrefab: {fileID: 2569036080230315859, guid: 69f2fa6f7e88e0e48a10248cd03ff46c, type: 3}
   projectileLayer:
     serializedVersion: 2
