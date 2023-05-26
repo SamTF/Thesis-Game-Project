@@ -39,7 +39,7 @@ public class HSVColour
 
     
     /// Getters & Setters
-    public Color Colour => Color.HSVToRGB(hue / 360, saturation / 100, value / 100);
+    public Color Colour => Color.HSVToRGB(hue / 360f, saturation / 100f, value / 100f);
 
     /// <summary>The Hue value of this Colour.</summary>
     public int Hue {
