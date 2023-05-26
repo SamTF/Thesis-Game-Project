@@ -123,14 +123,7 @@ public class ColouringBook : MonoBehaviour
         CreatePixelGrid();
 
         // Mouse cursor
-        UnityEngine.UIElements.Cursor cursor = new UnityEngine.UIElements.Cursor();
-        cursor.texture = pencilCursor;
-        canvas.style.cursor = cursor;
-        colourPaletteUI.rootVisualElement.style.cursor = cursor;
-
-        canvas.style.cursor = new StyleCursor(cursor);
-        colourPaletteUI.rootVisualElement.style.cursor = new StyleCursor(cursor);
-        saveButton.style.cursor = new StyleCursor(cursor);
+        CustomCursor.SetCursor(CustomCursor.Style.brush);
     }
 
 
@@ -357,8 +350,13 @@ public class ColouringBook : MonoBehaviour
     /// Closes the Notebook and resumes the game.
     /// </summary>
     private void Close() {
+        // play closing animation
         GetComponent<Animator>().SetTrigger("Out");
         StartCoroutine(CloseAnimation());
+
+        // reset the cursor
+        CustomCursor.SetCursor(CustomCursor.Style.auto);
+        CustomCursor.visible = false;
     }
 
     private IEnumerator CloseAnimation() {
