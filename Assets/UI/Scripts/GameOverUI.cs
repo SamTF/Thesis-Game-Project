@@ -18,6 +18,8 @@ public class GameOverUI : MonoBehaviour
     private string spriteID = "Sprite";
     [SerializeField]
     private string timerID = "TimeSurvived";
+    [SerializeField]
+    private string usernameID = "Username";
 
     // UI Elements
     private VisualElement mainContainer = null;
@@ -25,6 +27,7 @@ public class GameOverUI : MonoBehaviour
     private Button quitBtn = null;
     private MyImage playerSprite = null;
     private Label timer = null;
+    private Label usernameLabel = null;
 
     /// Singleton thing
     private static GameOverUI _instance = null;
@@ -43,12 +46,13 @@ public class GameOverUI : MonoBehaviour
         }
 
         // elements
-        VisualElement root = GetComponent<UIDocument>().rootVisualElement;
-        mainContainer = root.Q<VisualElement>("MainContainer");
-        retryBtn = mainContainer.Q<Button>(retryID);
-        quitBtn = mainContainer.Q<Button>(quitID);
-        playerSprite = mainContainer.Q<MyImage>(spriteID);
-        timer = mainContainer.Q<Label>(timerID);
+        VisualElement root  = GetComponent<UIDocument>().rootVisualElement;
+        mainContainer       = root.Q<VisualElement>("MainContainer");
+        retryBtn            = mainContainer.Q<Button>(retryID);
+        quitBtn             = mainContainer.Q<Button>(quitID);
+        playerSprite        = mainContainer.Q<MyImage>(spriteID);
+        timer               = mainContainer.Q<Label>(timerID);
+        usernameLabel       = mainContainer.Q<Label>(usernameID);
 
         // button callbacks
         retryBtn.clicked += Retry;
@@ -69,6 +73,11 @@ public class GameOverUI : MonoBehaviour
 
         // set time survived
         timer.text = $"{GameManager.instance.Timer.currentTime.String} mins";
+
+        // set username (if it exists)
+        if (usernameLabel != null && PlayerPrefs.HasKey("username")) {
+            usernameLabel.text = PlayerPrefs.GetString("username");
+        }
 
         // show cursor
         CustomCursor.visible = true;
