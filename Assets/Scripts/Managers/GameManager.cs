@@ -12,6 +12,11 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private Vector2Int levelRadius = new Vector2Int(50, 50);
 
+    public enum Scenes {
+        MainMenu = 0,
+        Game = 1
+    }
+
     // Status
     private bool gameIsPaused = false;
 
@@ -41,8 +46,10 @@ public class GameManager : MonoBehaviour
 
         DontDestroyOnLoad(this.gameObject);
 
+        // initialise static classes
         ModManager.ListMods();
         Palette.LoadPalette();
+        CustomCursor.visible = true;
     }
 
     private void Start() {
@@ -67,13 +74,36 @@ public class GameManager : MonoBehaviour
     private void OnLevelStart(Scene scene, LoadSceneMode mode) {
         onLevelStart?.Invoke();
 
+        // reset time scale just in case
+        Time.timeScale = 1f;
+        
+        // start timer
         timer = new Timer();
         timer.Start();
+
+        // hide cursor by default
+        CustomCursor.visible = false;
 
         // it's probably best to just make the player a singleton tbh...
         if (!player) {
             player = FindObjectOfType<Player>();
         }
+    }
+
+    /// <summary>
+    /// Triggered when the Player dies. Stops the Timer.
+    /// </summary>
+    private void OnPlayerDeath() {
+        timer.Stop();
+    }
+
+    /// <summary>
+    /// Change to a new Scene.
+    /// </summary>
+    /// <param name="scene">Scene to load.</param>
+    public void ChangeScene(Scenes scene) {
+        int sceneID = (int)scene;
+        SceneManager.LoadScene(sceneID);
     }
 
     /// <summary>
@@ -88,9 +118,11 @@ public class GameManager : MonoBehaviour
     // Subscribing to Events
     private void OnEnable() {
         SceneManager.sceneLoaded += OnLevelStart;
+        Health.onPlayerDeath += OnPlayerDeath;
     }
     private void OnDisable() {
         SceneManager.sceneLoaded -= OnLevelStart;
+        Health.onPlayerDeath -= OnPlayerDeath;
     }
 
     // Getters
@@ -115,12 +147,14 @@ public class GameManager : MonoBehaviour
 
             // pausing the game
             if (gameIsPaused) {
-                onPause?.Invoke();
-                Time.timeScale = 0f;
+                onPause?.Invoke();              // trigger the game paused event
+                Time.timeScale = 0f;            // freeze the game
+                CustomCursor.visible = true;    // show the cursor
             }
             // unpausing the game
             else {
                 Time.timeScale = 1f;
+                CustomCursor.visible = false;
             }
         }
     }
