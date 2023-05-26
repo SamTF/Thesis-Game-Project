@@ -116,7 +116,7 @@ public class Backflip : MonoBehaviour
             gameObject.layer = newLayer.Value;
         
         // set new sprite sorting layer (if a value was given)
-        if (SortingLayer.NameToID(spriteLayer) > 0)
+        if (SortingLayer.NameToID(spriteLayer) != 0)
             player.SpriteRenderer.sortingLayerName = spriteLayer;
     }
 }
