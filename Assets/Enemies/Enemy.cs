@@ -108,8 +108,6 @@ public abstract class Enemy : MonoBehaviour
         else if (hitter.parent.TryGetComponent<IDamage>(out iDmg))
             damage = iDmg.Damage;
         
-        Debug.Log($"[ENEMY] >>> [{damage}] damage");
-        
         // subtract damage taken from health
         health -= damage;
 

@@ -147,7 +147,7 @@ public class Weapon : MonoBehaviour
             // creating the offset vector
             float offset = input.TimeHoldingDirection[0] * 0.75f;
             offset = Mathf.Clamp(offset, minOffset.x, maxOffset.x);
-            Debug.Log(offset);
+            // Debug.Log(offset);
             shootingVector.y = movementVector.y * offset;
         }
         // SHOOTING VERTICALLY WHILE MOVING HORIZONTALLY
@@ -160,7 +160,7 @@ public class Weapon : MonoBehaviour
             // creating the offset vector
             float offset = input.TimeHoldingDirection[0] * 0.75f;
             offset = Mathf.Clamp(offset, minOffset.y, maxOffset.y);
-            Debug.Log(offset);
+            // Debug.Log(offset);
             shootingVector.x = movementVector.x * offset;
         }
 

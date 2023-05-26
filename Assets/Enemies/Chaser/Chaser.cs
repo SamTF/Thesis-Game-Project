@@ -10,8 +10,7 @@ public class Chaser : Enemy
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log(health);
-        Debug.Log(spriteRenderer);
+        
     }
 
     // Update is called once per frame

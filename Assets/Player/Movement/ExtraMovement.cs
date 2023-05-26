@@ -44,7 +44,7 @@ public class ExtraMovement : MonoBehaviour
         ) {
             player.Stamina.UseStamina();                            // use up stamina points to perform this action
 
-            Debug.Log(input.TimeSinceDirectionSwitch.x);
+            // Debug.Log(input.TimeSinceDirectionSwitch.x);
             backflip.PerformBackflip(movement);                     // start the backflip movement
             Axis axis = movement.x != 0 ? Axis.Z : Axis.X;          // getting the correct axis for the current direction
             bool clockwise = movement.x > 0;                        // setting correct rotation direction
