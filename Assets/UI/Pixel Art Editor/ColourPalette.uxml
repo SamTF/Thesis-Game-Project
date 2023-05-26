@@ -31,12 +31,12 @@
                 <MyImage name="Sprite" style="background-image: url(&apos;project://database/Assets/UI/Static%20Images/Colour%20Splashes/splash7.png?fileID=21300000&amp;guid=497c31e738fbfa546a7cbd87bb34961d&amp;type=3#splash7&apos;);" />
             </ui:Button>
         </ui:VisualElement>
-        <ui:VisualElement name="ColorSplash" class="colour-splash" style="left: 52px; top: 76px; display: none;">
+        <ui:VisualElement name="ColorSplash" class="colour-splash" style="left: 43px; top: 69px; display: flex;">
             <ui:Button display-tooltip-when-elided="false" enable-rich-text="false" focusable="false" name="Button">
                 <MyImage name="Sprite" style="background-image: url(&apos;project://database/Assets/UI/Static%20Images/Colour%20Splashes/splash8.png?fileID=21300000&amp;guid=2c2e500bf885d1b4f8eda94a9ebe973a&amp;type=3#splash8&apos;);" />
             </ui:Button>
         </ui:VisualElement>
-        <ui:VisualElement name="ColorSplash" class="colour-splash" style="left: 56px; top: 98px; display: none;">
+        <ui:VisualElement name="ColorSplash" class="colour-splash" style="left: 44px; top: 100px; display: flex;">
             <ui:Button display-tooltip-when-elided="false" enable-rich-text="false" focusable="false" name="Button">
                 <MyImage name="Sprite" style="background-image: url(&apos;project://database/Assets/UI/Static%20Images/Colour%20Splashes/splash5.png?fileID=21300000&amp;guid=8524178cc73e77f408e6ef5f2e0dcbb9&amp;type=3#splash5&apos;);" />
             </ui:Button>
