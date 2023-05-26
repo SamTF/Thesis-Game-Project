@@ -18,7 +18,7 @@
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="PaperSidebar" style="background-image: url(&apos;project://database/Assets/UI/Static%20Images/Paper.png?fileID=2800000&amp;guid=fcf44c13bda0b5e4eb1a420106fe7832&amp;type=3#Paper&apos;); width: 112px; height: 164px; position: absolute; left: 266px; top: 40px; align-items: center;">
-            <ui:Label text="[USERNAME]" display-tooltip-when-elided="true" name="Header" class="text" style="-unity-text-align: upper-center; margin-top: 16px; margin-bottom: 16px; -unity-font-definition: url(&apos;project://database/Assets/UI%20Toolkit/Fonts/Precise-M%20Bold.asset?fileID=11400000&amp;guid=985ca571f19bb384a829249fbd98f274&amp;type=2#Precise-M Bold&apos;);" />
+            <ui:Label text="[USERNAME]" display-tooltip-when-elided="true" name="Username" class="text" style="-unity-text-align: upper-center; margin-top: 16px; margin-bottom: 16px; -unity-font-definition: url(&apos;project://database/Assets/UI%20Toolkit/Fonts/Precise-M%20Bold.asset?fileID=11400000&amp;guid=985ca571f19bb384a829249fbd98f274&amp;type=2#Precise-M Bold&apos;);" />
             <ui:VisualElement name="StatsContainer" style="width: 64px; height: 96px;">
                 <ui:VisualElement name="StatItem" class="stats-item">
                     <MyImage name="icon" style="background-image: url(&apos;project://database/Assets/Tiles/1bit%2016px%20tiles.png?fileID=8459057698258135811&amp;guid=18b01753eef6525499a8a9ea26e4c5f5&amp;type=3#1bit 16px tiles_25&apos;);" />
