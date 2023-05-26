@@ -3,13 +3,14 @@
     <Style src="project://database/Assets/UI/PauseMenu/PauseMenu%20v2.uss?fileID=7433441132597879392&amp;guid=6941f9b9ca3b7a4478881a8b422d3669&amp;type=3#PauseMenu v2" />
     <ui:VisualElement name="MainContainer" class="main-container">
         <ui:VisualElement name="Notebook" picking-mode="Ignore" class="notebook">
-            <ui:VisualElement name="TextContainer" class="text-container">
+            <ui:VisualElement name="TextContainer" class="text-container" style="height: 120px;">
                 <ui:VisualElement name="Header" picking-mode="Ignore" class="header" />
                 <ui:VisualElement name="MenuItems" class="menu-items">
                     <ui:Button text="resume" display-tooltip-when-elided="true" name="resume" enable-rich-text="false" class="text menu-item" />
-                    <ui:Button text="options" display-tooltip-when-elided="true" name="options" enable-rich-text="false" tabindex="1" class="text menu-item" />
-                    <ui:Button text="restart" display-tooltip-when-elided="true" name="restart" enable-rich-text="false" tabindex="2" class="text menu-item" />
-                    <ui:Button text="menu" display-tooltip-when-elided="true" name="menu" enable-rich-text="false" tabindex="3" class="text menu-item" />
+                    <ui:Button text="help" display-tooltip-when-elided="true" name="help" enable-rich-text="false" tabindex="1" class="text menu-item" />
+                    <ui:Button text="options" display-tooltip-when-elided="true" name="options" enable-rich-text="false" tabindex="2" class="text menu-item" />
+                    <ui:Button text="restart" display-tooltip-when-elided="true" name="restart" enable-rich-text="false" tabindex="3" class="text menu-item" />
+                    <ui:Button text="menu" display-tooltip-when-elided="true" name="menu" enable-rich-text="false" tabindex="4" class="text menu-item" />
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement name="PreviewContainer" class="preview-container" style="height: 72px;">

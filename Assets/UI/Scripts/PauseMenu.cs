@@ -12,6 +12,8 @@ public class PauseMenu : MonoBehaviour
     [SerializeField]
     private string resumeID = "resume";
     [SerializeField]
+    private string helpID = "help";
+    [SerializeField]
     private string optionsID = "options";
     [SerializeField]
     private string restartID = "restart";
@@ -24,6 +26,7 @@ public class PauseMenu : MonoBehaviour
     private VisualElement root = null;
     private VisualElement mainContainer = null;
     private Button resumeBtn = null;
+    private Button helpBtn = null;
     private Button optionsBtn = null;
     private Button restartBtn = null;
     private Button mainMenuBtn = null;
@@ -53,6 +56,7 @@ public class PauseMenu : MonoBehaviour
         VisualElement root = GetComponent<UIDocument>().rootVisualElement;
         mainContainer = root.Q<VisualElement>("MainContainer");
         resumeBtn = root.Q<Button>(resumeID);
+        helpBtn = root.Q<Button>(helpID);
         optionsBtn = root.Q<Button>(optionsID);
         restartBtn = root.Q<Button>(restartID);
         mainMenuBtn = root.Q<Button>(mainMenuID);
@@ -61,6 +65,8 @@ public class PauseMenu : MonoBehaviour
         // Set events
         resumeBtn.clicked += OnResumeGame;
         restartBtn.clicked += RestartLevel;
+        mainMenuBtn.clicked += QuitToMenu;
+        helpBtn.clicked += HelpMenu;
 
     }
 
@@ -123,6 +129,7 @@ public class PauseMenu : MonoBehaviour
     /// </summary>
     private void ResumeGame() {
         Time.timeScale = 1f;
+        CustomCursor.visible = false;
         Destroy(gameObject);
     }
 
@@ -135,10 +142,18 @@ public class PauseMenu : MonoBehaviour
     }
 
     /// <summary>
-    /// Quits the game. Temporary.
+    /// Returns to the Main Menu.
     /// </summary>
-    private void Quit() {
-        Application.Quit();
+    private void QuitToMenu() {
+        Time.timeScale = 1f;
+        GameManager.instance.ChangeScene(GameManager.Scenes.MainMenu);
+    }
+
+    /// <summary>
+    /// Show the Help menu.
+    /// </summary>
+    private void HelpMenu() {
+        UIManager.instance.HelpMenuToggle();
     }
 
     /// <summary>
