@@ -50,3 +50,80 @@
     border-top-width: 0;
     border-bottom-width: 0;
 }
+
+.text-input {
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 8px;
+    -unity-font: url('project://database/Assets/UI%20Toolkit/Fonts/m3x6.ttf?fileID=12800000&guid=3cec293915f72dc44a9a771950c02414&type=3#m3x6');
+    -unity-font-definition: url('project://database/Assets/UI%20Toolkit/Fonts/m3x6.asset?fileID=11400000&guid=e58d25536dd71ca4aadbafb8584ad099&type=2#m3x6');
+    padding-left: 0;
+    height: auto;
+    align-items: flex-start;
+    justify-content: center;
+    width: auto;
+}
+
+.text-input > .unity-base-field__input {
+    padding-left: 4px;
+    padding-right: 4px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    background-color: rgba(0, 0, 0, 0);
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-color: rgb(191, 182, 185);
+    border-right-color: rgb(191, 182, 185);
+    border-top-color: rgb(191, 182, 185);
+    border-bottom-color: rgb(191, 182, 185);
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.toggle-input {
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.toggle-input .unity-toggle__checkmark {
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    background-color: rgba(255, 0, 0, 0);
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-color: rgba(191, 182, 185, 255);
+    border-right-color: rgba(191, 182, 185, 255);
+    border-top-color: rgba(191, 182, 185, 255);
+    border-bottom-color: rgba(191, 182, 185, 255);
+    width: 8px;
+    height: 8px;
+}
+
+.toggle-input .unity-input {
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    background-color: rgba(255, 0, 0, 0);
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+}
