@@ -71,7 +71,11 @@ public class Projectile : MonoBehaviour, IDamage
     /// Scales up the Projectile according to its damage
     /// </summary>
     private void DamageScaleUp() {
+        if (myDamage <= 1)
+            return;
+            
         Vector3 scaleUp = Vector3.one * (myDamage * 0.25f);
+
         body.localScale += scaleUp;
     }
 
