@@ -18,17 +18,24 @@ public class Timer
 
     private bool timerOn = false;
     private float t = 0;
-    private int start = 0;
+    private float endTime = 0f;
+    // private int start = 0;
 
     public Timer(int startSeconds = 0) {
-        start = startSeconds;
-        t = Time.time;
+        t = Time.time + startSeconds;
     }
 
     public void Start() {
         timerOn = true;
     }
 
-    public float currentSeconds => Time.time - t;
-    public TimeFormat currentTime => new TimeFormat(Time.time - t);
+    public void Stop() {
+        endTime = currentSeconds;
+        timerOn = false;
+    }
+
+    /// <summary>Number of seconds elapsed in this Timer</summary>
+    public float currentSeconds => timerOn ? Time.time - t : endTime;
+    /// <summary>Number of seconds elapsed in this Timer (formatted nicely)</summary>
+    public TimeFormat currentTime => new TimeFormat(currentSeconds);
 }
