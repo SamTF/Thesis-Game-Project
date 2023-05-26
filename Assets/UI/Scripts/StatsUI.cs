@@ -137,9 +137,21 @@ public class StatsUI : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Updates the COMPACT UI values
+    /// </summary>
     private void UpdateCompactStats() {
+        if (!compactMode)
+            return;
+
         foreach (StatsItemCompactUI item in compactItems) {
             item.UpdateValue();
         }
+    }
+
+    /// <summary>Whether the HUD is currently rendered and visible.</summary>
+    public bool visible {
+        get { return mainContainer.visible; }
+        set { mainContainer.visible = value; }
     }
 }
