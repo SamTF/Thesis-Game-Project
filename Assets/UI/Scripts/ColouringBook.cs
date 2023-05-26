@@ -63,8 +63,8 @@ public class ColouringBook : MonoBehaviour
     // Subscribing to Events
     private void OnEnable() {
         // PaperUI.onSaveBtnClicked += SaveTexture;
-        PaperUI.onSaveBtnClicked += Close;
         PaperUI.onSaveBtnClicked += UpdateSprite;
+        PaperUI.onSaveBtnClicked += Close;
 
         PaperUI.onResetBtnClicked += ResetCanvas;
 
@@ -92,13 +92,14 @@ public class ColouringBook : MonoBehaviour
         // getting child objects if they weren't added in the inspector
         if (colourPalette == null) colourPalette = GetComponentInChildren<ColourPaletteUI>();
         if (statsUI == null) statsUI = GetComponentInChildren<StatsUI>();
-
-        // Pause the game
-        GameManager.instance.GameIsPaused = true;
     }
 
 
     private void Start() {
+        // Pause the game
+        GameManager.instance.GameIsPaused = true;
+        CustomCursor.visible = true;
+
         // Set position
         SetPosition();
 
@@ -124,6 +125,9 @@ public class ColouringBook : MonoBehaviour
 
         // Mouse cursor
         CustomCursor.SetCursor(CustomCursor.Style.brush);
+
+        // Hide HUD
+        HUDController.instance.visible = false;
     }
 
 
@@ -357,6 +361,9 @@ public class ColouringBook : MonoBehaviour
         // reset the cursor
         CustomCursor.SetCursor(CustomCursor.Style.auto);
         CustomCursor.visible = false;
+
+        // show the HUD
+        HUDController.instance.visible = true;
     }
 
     private IEnumerator CloseAnimation() {
