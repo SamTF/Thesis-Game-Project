@@ -94,7 +94,7 @@ MonoBehaviour:
   damageLayer:
     serializedVersion: 2
     m_Bits: 128
-  health: 6
+  health: 10
   spinAnimation: 1
   bouncesToActivate: 3
 --- !u!114 &3042545727195141420

@@ -196,7 +196,7 @@ MonoBehaviour:
   damageLayer:
     serializedVersion: 2
     m_Bits: 128
-  health: 6
+  health: 10
   respawnTime: 5
 --- !u!114 &7497381798389696479
 MonoBehaviour:
