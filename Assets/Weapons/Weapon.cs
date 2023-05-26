@@ -41,8 +41,8 @@ public class Weapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // If the player is pressing any attack buttons
-        if (input.IsAttacking) {
+        // If the player is pressing any attack buttons & is alive
+        if (input.IsAttacking && Player.instance.Status.IsAlive) {
             // checking if the player can shoot
             if (!player.Status.CanShoot)  return;
 
