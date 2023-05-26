@@ -53,17 +53,11 @@ public class LevelSystem : MonoBehaviour
 
         if (player == null)
             player = Player.instance;
+        
+        //  dummy colours
+        unlockedColours.Add(Palette.DummyColors[0]);
+        unlockedColours.Add(Palette.DummyColors[1]);
     }
-
-
-    // private void Start() {
-    //     UnlockColour(Palette.Colours[0]);
-
-    //     foreach (Color c in Palette.Colours[0..2])
-    //     {
-    //         Debug.Log(ColorUtility.ToHtmlStringRGBA(c));
-    //     }
-    // }
 
 
     /// <summary>
@@ -88,9 +82,9 @@ public class LevelSystem : MonoBehaviour
         // test
         float progress = ((float)xp / (float)xpToLevelUp) * 100f;
         int progressRounded = Mathf.FloorToInt(progress / 20) * 20;
-        Debug.Log($"Progress >>> {progress}%");
-        Debug.Log($"Rounded >>> {progressRounded}%");
-        Debug.Log(progressRounded / 20);
+        // Debug.Log($"Progress >>> {progress}%");
+        // Debug.Log($"Rounded >>> {progressRounded}%");
+        // Debug.Log(progressRounded / 20);
     }
 
     /// <summary>
@@ -133,12 +127,12 @@ public class LevelSystem : MonoBehaviour
     /// The Colours that the Player has unlocked so far by levelling up.
     /// </summary>
     public Color[] UnlockedColours => unlockedColours.ToArray();
-    // public Stat[] UnlockedStats => unlockedStats.ToArray();
+    public Stat[] UnlockedStats => unlockedStats.ToArray();
 
     /// <summary>The Stats that the Player has unlocked so far by levelling up.</summary>
-    public Stat[] UnlockedStats {
-        get {
-            return unlockedColours.Select(x => Player.instance.Stats.Colour2Stat[x]).ToArray();
-        }
-    }
+    // public Stat[] UnlockedStats {
+    //     get {
+    //         return unlockedColours.Select(x => Player.instance.Stats.Colour2Stat[x]).ToArray();
+    //     }
+    // }
 }

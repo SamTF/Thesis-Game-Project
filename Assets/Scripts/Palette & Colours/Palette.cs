@@ -13,7 +13,7 @@ public static class Palette
 
     private static Color[] coloursArray = null;
     private static Colour[] colourObjs = null;
-    private static Color[] dummyColors = { Color.black, Color.white };
+    private static Color[] dummyColors = { Color.white, Color.black };
     private static HSVColour bgColour;
 
 

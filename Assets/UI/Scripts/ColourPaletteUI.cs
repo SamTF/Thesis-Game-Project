@@ -76,9 +76,23 @@ public class ColourPaletteUI : MonoBehaviour
 
 
     private void Start() {
-        // Initialise vars
-        Color newestColour = LevelSystem.instance.UnlockedColours[ LevelSystem.instance.UnlockedColours.Length - 1 ];
+        // Initialise colour array and starting colour
+        Color[] colours;
+        Color newestColour;
+
+        // Use dummy colour if none have been unlocked yet
+        if (LevelSystem.instance.Level < 1) {
+            newestColour = Palette.DummyColors[0];
+            colours = Palette.DummyColors;
+        // otherwise use latest colour
+        } else {
+            newestColour = LevelSystem.instance.UnlockedColours[ LevelSystem.instance.UnlockedColours.Length - 1 ];
+            colours = LevelSystem.instance.UnlockedColours;
+        }
+
         SetColour(newestColour);
+        
+        // button callback
         OnClick = SetColour;
         
         // Get Elements
@@ -89,8 +103,6 @@ public class ColourPaletteUI : MonoBehaviour
         elementList.ForEach(element => { element.visible = false; });
 
         // Initialise ColourSplash elements for each unlocked colour
-        Color[] colours = LevelSystem.instance.UnlockedColours;
-
         for (int i = 0; i < colours.Length; i++) {
             VisualElement element = elementList[i];
             Color color = colours[i];
