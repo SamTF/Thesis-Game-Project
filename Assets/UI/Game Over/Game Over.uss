@@ -1,0 +1,11 @@
+.notebook {
+    background-image: url('project://database/Assets/UI/Static%20Images/notebook%20page%20ripped.png?fileID=2800000&guid=d364af1a33b5aea4097c6807e9e12708&type=3#notebook page ripped');
+    width: 176px;
+    height: 240px;
+    position: absolute;
+}
+
+.text-btn:hover {
+    scale: 1.1 1.1;
+    cursor: url('project://database/Assets/UI/Static%20Images/Cursors/cursor_pointer.png?fileID=2800000&guid=3440e1bceef78284f9b081373717aa6f&type=3#cursor_pointer');
+}

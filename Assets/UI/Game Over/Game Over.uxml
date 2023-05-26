@@ -1,0 +1,29 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Globals.uss?fileID=7433441132597879392&amp;guid=7d653874a8625ca4cb3f8366e0226acb&amp;type=3#Globals" />
+    <Style src="project://database/Assets/UI/Game%20Over/Game%20Over.uss?fileID=7433441132597879392&amp;guid=3830a34f87793e34cb371bd18895d981&amp;type=3#Game Over" />
+    <ui:VisualElement name="MainContainer" style="width: 384px; height: 216px; align-items: center;">
+        <ui:VisualElement name="Notebook" class="notebook" style="margin-top: 16px; align-items: center;">
+            <ui:VisualElement name="TextContainer" style="padding-left: 32px; width: 100%; height: 100%; padding-right: 16px; align-items: center;">
+                <ui:VisualElement name="Header" style="width: 100%; height: 48px; align-items: center; justify-content: flex-end;">
+                    <ui:Label text="GAME OVER" display-tooltip-when-elided="true" name="GameOver" style="-unity-text-align: upper-center; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 4px; font-size: 16px; -unity-font-definition: url(&apos;project://database/Assets/UI%20Toolkit/Fonts/quak.asset?fileID=11400000&amp;guid=c490adcb26f082443b5e2a1b43cf3d37&amp;type=2#quak&apos;); color: rgb(0, 0, 0);" />
+                </ui:VisualElement>
+                <ui:VisualElement name="RIP" style="margin-top: 8px; margin-bottom: 6px;">
+                    <ui:Label text="R.I.P." display-tooltip-when-elided="true" name="RIP" class="text" style="color: rgb(0, 0, 0); -unity-text-align: upper-center; -unity-font-definition: url(&apos;project://database/Assets/UI%20Toolkit/Fonts/Precise-M%20Bold.asset?fileID=11400000&amp;guid=985ca571f19bb384a829249fbd98f274&amp;type=2#Precise-M Bold&apos;);" />
+                    <ui:Label text="[USERNAME]" display-tooltip-when-elided="true" name="Username" class="text" style="color: rgb(0, 0, 0); -unity-text-align: upper-center; -unity-font-definition: url(&apos;project://database/Assets/UI%20Toolkit/Fonts/Precise-M%20Bold.asset?fileID=11400000&amp;guid=985ca571f19bb384a829249fbd98f274&amp;type=2#Precise-M Bold&apos;);" />
+                </ui:VisualElement>
+                <ui:VisualElement name="PlayerSprite" style="width: 64px; height: 64px; background-image: none; -unity-background-scale-mode: scale-to-fit;">
+                    <ui:VisualElement name="Wings" style="width: 64px; height: 64px; background-image: resource(&apos;FX/Wings&apos;);" />
+                    <MyImage name="Sprite" style="width: 32px; height: 32px; position: absolute; left: 16px; top: 16px;" />
+                </ui:VisualElement>
+                <ui:VisualElement name="TextInfo" style="align-items: center; width: 100%;">
+                    <ui:Label text="you survived for" display-tooltip-when-elided="true" name="Text" class="text" style="-unity-text-align: upper-center;" />
+                    <ui:Label text="1:23 mins" display-tooltip-when-elided="true" name="TimeSurvived" class="text" style="-unity-text-align: upper-center;" />
+                </ui:VisualElement>
+                <ui:VisualElement name="Buttons" style="width: 100%; height: 32px; margin-top: 8px;">
+                    <ui:Button text="Retry" display-tooltip-when-elided="true" name="retry" class="text text-btn" style="-unity-font-definition: url(&apos;project://database/Assets/UI%20Toolkit/Fonts/Precise-M%20Bold.asset?fileID=11400000&amp;guid=985ca571f19bb384a829249fbd98f274&amp;type=2#Precise-M Bold&apos;); margin-bottom: 8px;" />
+                    <ui:Button text="Quit to Menu" display-tooltip-when-elided="true" name="quit" class="text text-btn" style="-unity-font-definition: url(&apos;project://database/Assets/UI%20Toolkit/Fonts/Precise-M%20Bold.asset?fileID=11400000&amp;guid=985ca571f19bb384a829249fbd98f274&amp;type=2#Precise-M Bold&apos;); margin-bottom: 8px;" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
