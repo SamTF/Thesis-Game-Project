@@ -64,9 +64,17 @@ public class PaperUI : MonoBehaviour
 
         /// Setting Info Text
         if (textInfo != null) {
-            Stat newStat = LevelSystem.instance.UnlockedStats[ LevelSystem.instance.UnlockedStats.Length - 1 ];
-            textInfo.text = $"New stat:\n{newStat.Name.ToUpper()}!";
-            textInfo.style.color = newStat.Colour;
+            // show intro text if level 0
+            if (LevelSystem.instance.Level < 1) {
+                textInfo.text = $"Draw your \ncharacter!\n:D";
+            }
+            // show newest colour if levelled up at least once
+            else {
+                Stat newStat = LevelSystem.instance.UnlockedStats[ LevelSystem.instance.UnlockedStats.Length - 1 ];
+                textInfo.text = $"New stat:\n{newStat.Name.ToUpper()}!";
+                textInfo.style.color = newStat.Colour;
+            }
+            
         }        
     }
 }
