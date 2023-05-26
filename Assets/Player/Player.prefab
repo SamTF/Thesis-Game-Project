@@ -273,7 +273,7 @@ SpriteRenderer:
   m_SortingLayerID: -1280598203
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 1646a22b6d81312458ff660fea82ef4a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 838a51e3bd089ce40a070b07b7abeac7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -562,7 +562,7 @@ MonoBehaviour:
   modFileName: 
   analyseImage: 1
   spriteIsChild: 1
-  allowHotReload: 1
+  allowHotReload: 0
 --- !u!114 &1317082283
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -663,6 +663,7 @@ MonoBehaviour:
   damageLayer:
     serializedVersion: 2
     m_Bits: 768
+  health: 0
 --- !u!114 &6524137292192715906
 MonoBehaviour:
   m_ObjectHideFlags: 0
