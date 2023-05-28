@@ -189,6 +189,31 @@ public class Player : MonoBehaviour
         }
 
         onSpriteUpdated?.Invoke();
+
+        ResetMovement();
+
+        // become invulnerable for a short time after creating a new sprite
+        StartCoroutine(BlinkingAnimation());
+    }
+
+    /// <summary>
+    /// Stop dodging or backflipping
+    /// </summary>
+    public void ResetMovement() {
+        // reset dodging or backflipping
+        status.IsDodging = false;
+        status.IsBackflipping = false;
+    }
+
+    /// <summary>
+    /// Trigger a nice Blinking animation on the player sprite.
+    /// </summary>
+    private IEnumerator BlinkingAnimation() {
+        if (status.IsInvulnerable)   yield return null;
+
+        animator.SetBool("Blink", true);
+        yield return new WaitForSeconds(status.InvulnerableCooldown);
+        animator.SetBool("Blink", false);
     }
 
 
