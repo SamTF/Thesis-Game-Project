@@ -91,7 +91,7 @@ public class Player : MonoBehaviour
             Debug.Log($"[PLAYER] >>> Picked up a {itemType}!!");
 
             // Do the item's effect
-            OnItemPickup(itemType);
+            OnItemPickup(item);
 
             // Despawn the item right away
             item.Despawn();
@@ -110,15 +110,17 @@ public class Player : MonoBehaviour
     /// <summary>
     /// Triggered when an item is picked up.
     /// </summary>
-    /// <param name="itemType">What kind of item has been picked up?</param>
-    private void OnItemPickup(ItemType itemType) {
+    /// <param name="item">The item that has been picked up.</param>
+    private void OnItemPickup(Item item) {
         // XP pick up
-        if (itemType == ItemType.XP) {
+        if (item.ItemType == ItemType.XP) {
             levelSystem.GainXP();
+            item.Despawn();
         }
         // Health pick up
-        else if (itemType == ItemType.Heart) {
+        else if (item.ItemType == ItemType.Heart) {
             health.Heal();
+            item.Despawn();
         }
     }
 
@@ -180,6 +182,8 @@ public class Player : MonoBehaviour
     /// </summary>
     /// <param name="newTexture">Texture to update the Sprite with.</param>
     public void UpdateSprite(Texture2D newTexture) {
+        ResetMovement();
+
         moddableSprite.ReplaceSprite(newTexture);
         
         if (HUDController.instance == null) {
@@ -190,9 +194,8 @@ public class Player : MonoBehaviour
 
         onSpriteUpdated?.Invoke();
 
-        ResetMovement();
-
         // become invulnerable for a short time after creating a new sprite
+        status.IsInvulnerable = true;
         StartCoroutine(BlinkingAnimation());
     }
 
@@ -209,8 +212,6 @@ public class Player : MonoBehaviour
     /// Trigger a nice Blinking animation on the player sprite.
     /// </summary>
     private IEnumerator BlinkingAnimation() {
-        if (status.IsInvulnerable)   yield return null;
-
         animator.SetBool("Blink", true);
         yield return new WaitForSeconds(status.InvulnerableCooldown);
         animator.SetBool("Blink", false);
