@@ -85,6 +85,13 @@ public class LevelUpUI : MonoBehaviour
 
             colourItemsContainer.Add(item.element);
         }
+
+        // Pause the game (again just to make 100& sure?)
+        GameManager.instance.GameIsPaused = true;
+        // make player invulnerable just in case
+        Player.instance.Status.IsInvulnerable = true;
+        // STOP BACKFLIPPING AAAA
+        Player.instance.ResetMovement();
     }
 
     private Color[] GetLockedColours() {
