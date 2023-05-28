@@ -20,7 +20,7 @@ public class XPIconUI : MonoBehaviour
 
     // Sprites
     private Sprite[] iconSprites =  new Sprite[5];
-    private Sprite[] numberSprites = new Sprite[6];
+    private Sprite[] numberSprites = new Sprite[7];
 
     // UI Element
     private VisualElement xpIconContainer = null;
