@@ -101,6 +101,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   followDelay: 0.75
+  myCamera: {fileID: 1572892620791897155}
+  pixelPerfect: {fileID: 1572892620791897272}
 --- !u!114 &1572892620791897272
 MonoBehaviour:
   m_ObjectHideFlags: 0

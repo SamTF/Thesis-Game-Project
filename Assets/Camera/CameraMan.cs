@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering.Universal;
 
 public class CameraMan : MonoBehaviour
 {
@@ -13,10 +14,27 @@ public class CameraMan : MonoBehaviour
     private float followDelay = 0.75f;
     private Vector3 velocity = Vector3.zero;
 
+    // Components
+    [Header("Components")]
+    [SerializeField][Tooltip("The Camera component")]
+    private Camera myCamera = null;
+    [SerializeField][Tooltip("The Pixel Perfect Camera component")]
+    private PixelPerfectCamera pixelPerfect = null;
+
 
     void Start() {
         // Getting the Player object in the scene
         if (player == null) player = Player.instance;
+
+        // get components
+        if (myCamera == null)       myCamera = GetComponent<Camera>();
+        if (pixelPerfect == null)   pixelPerfect = GetComponent<PixelPerfectCamera>();
+
+        // set properties
+        myCamera.backgroundColor = Palette.BackgroundColour.Colour;
+
+        if (PlayerPrefs.HasKey("pixelPerfect"))
+            pixelPerfect.enabled = PlayerPrefs.GetInt("pixelPerfect") == 1;
     }
 
     // Update is called once per frame
@@ -51,14 +69,28 @@ public class CameraMan : MonoBehaviour
         return (int)((value / multipleOf) + 0.5f) * multipleOf;
     }
 
+    /// <summary>
+    /// Update Camera settings
+    /// </summary>
+    private void UpdateSettings() {
+        if (PlayerPrefs.HasKey("pixelPerfect") && pixelPerfect != null)
+            pixelPerfect.enabled = PlayerPrefs.GetInt("pixelPerfect") == 1;
+    }
+
 
     // Stop following if the Player is dead
     private void OnEnable() {
         Health.onPlayerDeath += OnPlayerDeath;
+        OptionsMenu.onSettingChanged += UpdateSettings;
     }
     private void OnDisable() {
         Health.onPlayerDeath -= OnPlayerDeath;
+        OptionsMenu.onSettingChanged -= UpdateSettings;
     }
+
+    /// <summary>
+    /// Disable camera movement after player dies.
+    /// </summary>
     private void OnPlayerDeath() {
         this.enabled = false;
     }
