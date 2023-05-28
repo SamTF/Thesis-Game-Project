@@ -8,6 +8,8 @@ public class UIManager : MonoBehaviour
     [Header("UI MANAGER")]
     [Header("UI Element Menus")]
     [SerializeField]
+    private GameObject HUD = null;
+    [SerializeField]
     private GameObject mainMenu = null;
     [SerializeField]
     private GameObject pauseMenu = null;
@@ -19,6 +21,8 @@ public class UIManager : MonoBehaviour
     private GameObject gameOverMenu = null;
     [SerializeField]
     private GameObject helpMenu = null;
+    [SerializeField]
+    private GameObject optionsMenu = null;
 
     // Singleton Thing
     private static UIManager _instance = null;
@@ -32,6 +36,27 @@ public class UIManager : MonoBehaviour
         // Singleton Thing
         if (instance == null)   { _instance = this; }
         else                    { Destroy(gameObject); }
+    }
+
+    private void Start() {
+        // Only Instantiate the Colouring Book in the Game scene
+        if (GameManager.instance.CurrentScene != GameManager.Scenes.Game)
+            return;
+
+        bool startWithDefaultCharacter = false;
+
+        // check if the player wants to start with the default character
+        if (PlayerPrefs.HasKey("startWithCowboy")) {
+            if (PlayerPrefs.GetInt("startWithCowboy") == 1) {
+                startWithDefaultCharacter = true;   
+            }
+        }
+
+        // start the Game with the colouring book if default character is not chosen
+        if (!startWithDefaultCharacter) {
+            Instantiate(colouringBook);
+        }
+            
     }
 
     // Events
@@ -48,6 +73,15 @@ public class UIManager : MonoBehaviour
         Health.onPlayerDeath -= GameOver;
     }
 
+    /// <summary>
+    /// Checks whether any UI Menu is currently open
+    /// </summary>
+    /// <returns></returns>
+    private bool IsAnyMenuOpen() {
+        return PauseMenu.instance || ColouringBook.instance || LevelUpUI.instance || HelpUI.instance
+                || GameOverUI.instance || MainMenu.instance || OptionsMenu.instance;
+    }
+
 
     /// <summary>
     /// Show the Pause Menu, or resume the Game if the pause menu is already visible.
@@ -60,7 +94,7 @@ public class UIManager : MonoBehaviour
         }
 
         // If another menu that pauses the game is running, do nothing
-        if (ColouringBook.instance || LevelUpUI.instance || HelpUI.instance || GameOverUI.instance || MainMenu.instance)
+        if (IsAnyMenuOpen())
             return;
             
         // Instantiate a Pause Menu
@@ -88,7 +122,7 @@ public class UIManager : MonoBehaviour
         // }
 
         // Instantiate(colouringBook);
-        StartCoroutine(DelayedDisplay(colouringBook, 0.1f));
+        StartCoroutine(DelayedDisplay(colouringBook, 0.01f));
     }
 
 
@@ -96,7 +130,10 @@ public class UIManager : MonoBehaviour
         StartCoroutine(LevelUpCelebration());
     }
 
-    private IEnumerator LevelUpCelebration(float duration = 3f) {
+    private IEnumerator LevelUpCelebration(float duration = 2f) {
+        // make player invulernable
+        Player.instance.Status.IsInvulnerable = true;
+
         // Instantiate Level Up text
         GameObject levelUpVFX = Resources.Load("FX/Animated/LevelUpVFX") as GameObject;
         GameObject levelUpObject = Instantiate(levelUpVFX, Player.instance.transform, false);
@@ -137,9 +174,21 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Display the Game Over screen after a few seconds delay.
+    /// </summary>
     private void GameOver() {
         if (GameOverUI.instance == null) {
             StartCoroutine(DelayedDisplay(gameOverMenu, 2f));
+        }
+    }
+
+    /// <summary>
+    /// Display the Options Menu on screen.
+    /// </summary>
+    public void OptionsMenuToggle() {
+        if (OptionsMenu.instance == null) {
+            Instantiate(optionsMenu);
         }
     }
 

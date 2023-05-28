@@ -44,9 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa35106286b90d04da32fb31a4f85d2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HUD: {fileID: 5419857184290456719, guid: 43f95cedd5b10c94a9f6b94d2c7c8c5e, type: 3}
   mainMenu: {fileID: 36449238734785114, guid: ae586a95cd18df546a4a5077d4e4547a, type: 3}
   pauseMenu: {fileID: 8846207254480795542, guid: fbb8d48da922fbc4fa08a45966c4c4e6, type: 3}
   colouringBook: {fileID: 7560860741495592438, guid: 22dd0097736e2d54b903977ef73d8d23, type: 3}
   levelUpMenu: {fileID: 7169814910712747006, guid: f0d4bda798c451940888e34c06479329, type: 3}
   gameOverMenu: {fileID: 5473664274466098107, guid: c3bd6def983e6e64f89db781d98d2691, type: 3}
   helpMenu: {fileID: 3440374774929384357, guid: a65dbbffa466c9640a67bfd89b9d82c4, type: 3}
+  optionsMenu: {fileID: 1569163118477956937, guid: 64d0133d3f8835048ac65ec2559c4eae, type: 3}
