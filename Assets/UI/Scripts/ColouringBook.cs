@@ -348,6 +348,7 @@ public class ColouringBook : MonoBehaviour
     /// Updates the Sprite of the GameObject that is currently being edited.
     /// </summary>
     private void UpdateSprite() {
+        Player.instance.ResetMovement();
         Player.instance.UpdateSprite(drawingTex);
     }
 
