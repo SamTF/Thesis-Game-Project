@@ -78,7 +78,7 @@ public class Weapon : MonoBehaviour
         float range = Mathf.Clamp(player.Stats.ShotSpeed.Value / 12f, minRange, 20);
 
         // Setting the damage value from the Attack stat
-        int damage = 1 + Mathf.FloorToInt(player.Stats.Attack.Value / player.Stats.Attack.valueModifier);
+        int damage = player.Stats.Attack.baseValue + Mathf.FloorToInt(player.Stats.Attack.Value / player.Stats.Attack.valueModifier);
 
         // Debug.Log(shootingVector);
 
