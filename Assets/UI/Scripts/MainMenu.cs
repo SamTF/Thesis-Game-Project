@@ -62,6 +62,7 @@ public class MainMenu : MonoBehaviour
         playBtn.clicked += Play;
         helpBtn.clicked += Help;
         quitBtn.clicked += Quit;
+        optionsBtn.clicked += Options;
 
     }
 
@@ -95,7 +96,7 @@ public class MainMenu : MonoBehaviour
             StartCoroutine( FlyAnimation (
                 transform.position, 
                 (Vector2)transform.position + new Vector2(0, 12), 
-                0.25f, 
+                0.5f, 
                 ShowUsernameMenu
             ));
         }
@@ -109,6 +110,7 @@ public class MainMenu : MonoBehaviour
 
     private void Options() {
         Debug.Log("Options btn clicked!");
+        UIManager.instance.OptionsMenuToggle();
     }
 
     private void Customise() {
