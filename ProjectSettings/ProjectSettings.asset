@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: Sam Casaleiro
-  productName: Omega Mancer
+  productName: Chroma Mancer
   defaultCursor: {fileID: 2800000, guid: 01cf40f689a77d444af47df9a0545ecc, type: 3}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -42,8 +42,8 @@ PlayerSettings:
   m_SplashScreenLogos: []
   m_VirtualRealitySplashScreen: {fileID: 0}
   m_HolographicTrackingLossScreen: {fileID: 0}
-  defaultScreenWidth: 768
-  defaultScreenHeight: 432
+  defaultScreenWidth: 1152
+  defaultScreenHeight: 648
   defaultScreenWidthWeb: 960
   defaultScreenHeightWeb: 600
   m_StereoRenderingPath: 0
@@ -273,7 +273,7 @@ PlayerSettings:
   - m_BuildTarget: 
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: 7c715bab8e5e0ef429fcf159590aba27, type: 3}
+      m_Icon: {fileID: 2800000, guid: 822aa95cd17ebe743828c19e56b860c9, type: 3}
       m_Width: 128
       m_Height: 128
       m_Kind: 0
