@@ -71,6 +71,7 @@ public class PauseMenu : MonoBehaviour
         restartBtn.clicked += RestartLevel;
         mainMenuBtn.clicked += QuitToMenu;
         helpBtn.clicked += HelpMenu;
+        optionsBtn.clicked += OptionsMenu;
 
     }
 
@@ -99,6 +100,9 @@ public class PauseMenu : MonoBehaviour
 
         // Lil animation
         StartCoroutine(FlyAnimation(offsetPosition, originalPosition, 0.25f, SetFocus));
+
+        // show cursor
+        CustomCursor.visible = true;
     }
 
     /// <summary>
@@ -137,7 +141,7 @@ public class PauseMenu : MonoBehaviour
     /// Executes the code that actually resumes the game.
     /// </summary>
     private void ResumeGame() {
-        Time.timeScale = 1f;
+        GameManager.instance.GameIsPaused = false;
         CustomCursor.visible = false;
         Destroy(gameObject);
     }
@@ -146,7 +150,7 @@ public class PauseMenu : MonoBehaviour
     /// Restart the current level
     /// </summary>
     private void RestartLevel() {
-        Time.timeScale = 1f;
+        GameManager.instance.GameIsPaused = false;
         GameManager.instance.RestartLevel();
     }
 
@@ -154,7 +158,7 @@ public class PauseMenu : MonoBehaviour
     /// Returns to the Main Menu.
     /// </summary>
     private void QuitToMenu() {
-        Time.timeScale = 1f;
+        GameManager.instance.GameIsPaused = false;
         GameManager.instance.ChangeScene(GameManager.Scenes.MainMenu);
     }
 
@@ -163,6 +167,13 @@ public class PauseMenu : MonoBehaviour
     /// </summary>
     private void HelpMenu() {
         UIManager.instance.HelpMenuToggle();
+    }
+
+    /// <summary>
+    /// Show the Options Menu.
+    /// </summary>
+    private void OptionsMenu() {
+        UIManager.instance.OptionsMenuToggle();
     }
 
     /// <summary>
