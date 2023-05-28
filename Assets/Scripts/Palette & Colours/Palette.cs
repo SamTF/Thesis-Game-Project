@@ -9,7 +9,8 @@ public static class Palette
     private const int paletteWidth = 16;
     private const string fileType = ".png";
     private const string fileName = "palette";
-    private const int amountOfColours = 5;
+    private const int amountOfColours = 6;
+    private const string bgColourName = "background";
 
     private static Color[] coloursArray = null;
     private static Colour[] colourObjs = null;
@@ -21,9 +22,7 @@ public static class Palette
     static Palette() {
         Debug.Log("Palette has woken up!");
 
-        Color rgbCamera = Camera.main.backgroundColor;
-        bgColour = new HSVColour(rgbCamera);
-        Debug.Log($"[PALETTE] >>> BG COLOR : {bgColour}");
+        LoadBackground();
     }
 
     public static void LoadPalette(bool forceDefault = false) {
@@ -63,6 +62,23 @@ public static class Palette
         }
     }
 
+    private static void LoadBackground() {
+        // Checking is user created a background colour file
+        if (ModManager.ModExists($"{bgColourName}{fileType}")) {
+            Debug.Log("Custom background found! Importing...");
+            Texture2D backgroundTex = ImageLoader.LoadTextureFromFile($"{bgColourName}{fileType}");
+            Color color = ImageAnalyser.GetColours(backgroundTex)[0];
+            bgColour = new HSVColour(color);
+            
+        // Use default background colour if no custom one was given
+        } else {
+            Color rgbCamera = Camera.main.backgroundColor;
+            bgColour = new HSVColour(rgbCamera);
+        }
+
+        Debug.Log(bgColour);
+    }
+
     /// <summary>An array of all the Colors used in the game palette.</summary>
     public static Color[] Colours => coloursArray;
     /// <summary>An array of all the Colors used in the game palette as Colour Objects.</summary>
@@ -71,4 +87,6 @@ public static class Palette
     public static int NumOfColours => amountOfColours;
     /// <summary>"Dumb" colours that have no stat but can be used for purely cosmetic purposes.</summary>
     public static Color[] DummyColors => dummyColors;
+    /// <summary>The main colour, used as the level background.</summary>
+    public static HSVColour BackgroundColour => bgColour;
 }
