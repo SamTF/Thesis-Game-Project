@@ -94,7 +94,7 @@ MonoBehaviour:
   damageLayer:
     serializedVersion: 2
     m_Bits: 128
-  health: 10
+  health: 15
   spinAnimation: 1
   bouncesToActivate: 3
 --- !u!114 &3042545727195141420
@@ -125,7 +125,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   body: {fileID: 3042545728280513734}
   shadow: {fileID: 0}
-  screenBounceSpeed: 2
+  screenBounceSpeed: 4
   bounceModifier: 1
   maxSpeed: 10
 --- !u!1 &3042545728280513733
