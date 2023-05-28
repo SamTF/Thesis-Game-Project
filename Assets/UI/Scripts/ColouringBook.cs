@@ -62,7 +62,7 @@ public class ColouringBook : MonoBehaviour
 
     // Subscribing to Events
     private void OnEnable() {
-        // PaperUI.onSaveBtnClicked += SaveTexture;
+        PaperUI.onSaveBtnClicked += SaveTexture;
         PaperUI.onSaveBtnClicked += UpdateSprite;
         PaperUI.onSaveBtnClicked += Close;
 
@@ -106,6 +106,8 @@ public class ColouringBook : MonoBehaviour
         // Get original texture
         if (LevelSystem.instance.Level > 0)
             originalTex = Player.instance?.Sprite.texture;
+        else
+            originalTex = CreateTexture(true);
 
         // Initialise Variables
         pixelGrid = new PixelBlockUI[canvasSize, canvasSize];
@@ -282,12 +284,20 @@ public class ColouringBook : MonoBehaviour
         byte[] texBytes = drawingTex.EncodeToPNG();
 
         // Hash the bytes to generate a unique filenames - why not?
-        Hash128 hash = new Hash128();
-        hash.Append(texBytes);
+        string hashStr = DataTracker.HashTexture(drawingTex);
         
-        // Save bytes as a PNG in the CUSTOM/MyDrawings folder (for now)
-        System.IO.File.WriteAllBytes($"{ModManager.ModDirectory}/MyDrawings/{hash.ToString()}.png", texBytes);
+        // Improved file name
+        string username = PlayerPrefs.GetString("username");
+        string datetime = System.DateTime.Now.ToString("dd_MM_HHmm");
+        string fileName = $"{username}-{hashStr}-{LevelSystem.instance.Level}-{datetime}";
 
+        // Save bytes as a PNG in the CUSTOM/MyDrawings folder
+        try {
+            System.IO.File.WriteAllBytes($"{ModManager.DrawingsDirectory}/{fileName}.png", texBytes);
+        } catch (System.Exception) {
+            return;
+        }
+        
         // Update button text
         saveButton.text = "SAVED!";
     }
@@ -367,7 +377,7 @@ public class ColouringBook : MonoBehaviour
     }
 
     private IEnumerator CloseAnimation() {
-        yield return new WaitForSecondsRealtime(1f); // must be realtime because the game is paused
+        yield return new WaitForSecondsRealtime(0.5f); // must be realtime because the game is paused
         GameManager.instance.GameIsPaused = false;
         Destroy(gameObject);
     }
