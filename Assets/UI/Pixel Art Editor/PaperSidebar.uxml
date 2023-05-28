@@ -10,10 +10,10 @@
             <ui:Label text="Draw your&#10;character&#10;or smthing!" display-tooltip-when-elided="true" name="Text" class="text" style="white-space: normal; height: auto;" />
         </ui:VisualElement>
         <ui:VisualElement name="Buttons" style="width: 80%; height: 40px; align-items: center; margin-top: 8px;">
-            <ui:Button text="SAVE" display-tooltip-when-elided="true" name="BtnSave" enable-rich-text="false" focusable="true" class="btn" />
+            <ui:Button text="SAVE" display-tooltip-when-elided="true" name="BtnSave" enable-rich-text="false" focusable="false" class="btn" />
             <ui:VisualElement name="IconsContainer" style="width: 100%; flex-direction: row; flex-wrap: wrap; justify-content: center;">
-                <ui:Button display-tooltip-when-elided="true" name="BtnReset" focusable="true" enable-rich-text="false" class="icon-btn" />
-                <ui:Button display-tooltip-when-elided="true" name="BtnClear" focusable="true" enable-rich-text="false" class="icon-btn" style="background-image: url(&apos;project://database/Assets/UI/Static%20Images/Buttons/trash.png?fileID=21300000&amp;guid=7ccab39a00b1cd54fa5ead15562c585f&amp;type=3#trash&apos;);" />
+                <ui:Button display-tooltip-when-elided="true" name="BtnReset" focusable="false" enable-rich-text="false" class="icon-btn" />
+                <ui:Button display-tooltip-when-elided="true" name="BtnClear" focusable="false" enable-rich-text="false" class="icon-btn" style="background-image: url(&apos;project://database/Assets/UI/Static%20Images/Buttons/trash.png?fileID=21300000&amp;guid=7ccab39a00b1cd54fa5ead15562c585f&amp;type=3#trash&apos;);" />
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
