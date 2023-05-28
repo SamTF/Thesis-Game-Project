@@ -57,17 +57,18 @@ public class GameOverUI : MonoBehaviour
         // button callbacks
         retryBtn.clicked += Retry;
         quitBtn.clicked += QuitToMenu;
-    }
 
-    private void Start() {
         // Set position
         Vector2 screenSize = new Vector2(Screen.width, Screen.height);
         Vector2 screenCenter = Camera.main.ScreenToWorldPoint(screenSize/2);
         Vector2 screenBottom = Camera.main.ScreenToWorldPoint(Vector2.zero);
+        transform.position = screenBottom;
 
         // Lil animation
         StartCoroutine(FlyAnimation(screenBottom, screenCenter, 2f, SetFocus));
+    }
 
+    private void Start() {
         // set player sprite
         playerSprite.sprite = Player.instance.Sprite;
 
