@@ -3,27 +3,31 @@
     <Style src="project://database/Assets/UI/Main%20Menu/Main%20Menu.uss?fileID=7433441132597879392&amp;guid=af15539f97b1fc14eb987e007b63225d&amp;type=3#Main Menu" />
     <ui:VisualElement name="MainContainer" class="main-container">
         <ui:VisualElement name="Notebook" class="notebook" style="background-image: url(&apos;project://database/Assets/UI/Static%20Images/notebook%20page%20ripped.png?fileID=21300000&amp;guid=d364af1a33b5aea4097c6807e9e12708&amp;type=3#notebook page ripped&apos;);">
-            <ui:VisualElement name="TextContainer" style="margin-left: 0; width: 100%; height: 100%; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 35px; padding-right: 22px;">
+            <ui:VisualElement name="TextContainer" style="margin-left: 0; width: 100%; height: 240px; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 35px; padding-right: 22px;">
                 <ui:VisualElement name="Header" style="height: 24px; width: 100%; align-items: center; justify-content: center; margin-top: 24px;">
                     <ui:Label text="SETTINGS" display-tooltip-when-elided="true" name="Header" class="text" style="align-items: center; height: 16px; font-size: 16px; -unity-font-definition: url(&apos;project://database/Assets/UI%20Toolkit/Fonts/Precise-M%20Bold.asset?fileID=11400000&amp;guid=985ca571f19bb384a829249fbd98f274&amp;type=2#Precise-M Bold&apos;);" />
                 </ui:VisualElement>
                 <ui:Label text="Game Options" display-tooltip-when-elided="true" name="GameOptions" class="text" style="-unity-font-definition: url(&apos;project://database/Assets/UI%20Toolkit/Fonts/Precise-M%20Bold.asset?fileID=11400000&amp;guid=985ca571f19bb384a829249fbd98f274&amp;type=2#Precise-M Bold&apos;); margin-top: 8px;" />
                 <ui:VisualElement name="Username" style="flex-direction: column; width: 100%; align-items: flex-start; height: auto; margin-bottom: 0;">
                     <ui:Label text="What is your name?" display-tooltip-when-elided="true" class="text" style="-unity-font-definition: url(&apos;project://database/Assets/UI%20Toolkit/Fonts/m3x6.asset?fileID=11400000&amp;guid=e58d25536dd71ca4aadbafb8584ad099&amp;type=2#m3x6&apos;); font-size: 16px; height: 16px; justify-content: flex-end; -unity-text-align: lower-left;" />
-                    <ui:TextField picking-mode="Ignore" value="username" text="username" class="text-input" style="width: 100%; -unity-font: url(&apos;project://database/Assets/UI%20Toolkit/Fonts/Precise-M.ttf?fileID=12800000&amp;guid=8593459e58f05b1479a9722b64d559a0&amp;type=3#Precise-M&apos;); -unity-font-definition: url(&apos;project://database/Assets/UI%20Toolkit/Fonts/Precise-M.asset?fileID=11400000&amp;guid=8377d9355ba010940a8750895108b850&amp;type=2#Precise-M&apos;);" />
+                    <ui:TextField picking-mode="Ignore" value="username" text="username" name="UsernameInput" class="text-input" style="width: 100%; -unity-font: url(&apos;project://database/Assets/UI%20Toolkit/Fonts/Precise-M.ttf?fileID=12800000&amp;guid=8593459e58f05b1479a9722b64d559a0&amp;type=3#Precise-M&apos;); -unity-font-definition: url(&apos;project://database/Assets/UI%20Toolkit/Fonts/Precise-M.asset?fileID=11400000&amp;guid=8377d9355ba010940a8750895108b850&amp;type=2#Precise-M&apos;);" />
                 </ui:VisualElement>
                 <ui:VisualElement name="Character" style="flex-direction: row; width: 100%; align-items: flex-start; height: 16px; margin-bottom: 0; justify-content: space-between;">
                     <ui:Label text="Start with cowboy" display-tooltip-when-elided="true" name="Title" class="text" style="-unity-font-definition: url(&apos;project://database/Assets/UI%20Toolkit/Fonts/m3x6.asset?fileID=11400000&amp;guid=e58d25536dd71ca4aadbafb8584ad099&amp;type=2#m3x6&apos;); font-size: 16px; height: 16px; justify-content: flex-end; -unity-text-align: lower-left; letter-spacing: 0; word-spacing: -2px;" />
-                    <ui:Toggle class="toggle-input" style="width: 24px; height: 24px;" />
+                    <ui:Toggle name="CowboyToggle" class="toggle-input" style="width: 24px; height: 24px;" />
                 </ui:VisualElement>
                 <ui:Label text="Video Options" display-tooltip-when-elided="true" name="VideoOptions" class="text" style="-unity-font-definition: url(&apos;project://database/Assets/UI%20Toolkit/Fonts/Precise-M%20Bold.asset?fileID=11400000&amp;guid=985ca571f19bb384a829249fbd98f274&amp;type=2#Precise-M Bold&apos;); margin-top: 16px;" />
                 <ui:VisualElement name="Fullscreen" style="flex-direction: row; width: 100%; align-items: flex-start; height: 16px; margin-bottom: 0; justify-content: space-between;">
                     <ui:Label text="Fullscreen?" display-tooltip-when-elided="true" name="Title" class="text" style="-unity-font-definition: url(&apos;project://database/Assets/UI%20Toolkit/Fonts/m3x6.asset?fileID=11400000&amp;guid=e58d25536dd71ca4aadbafb8584ad099&amp;type=2#m3x6&apos;); font-size: 16px; height: 16px; justify-content: flex-end; -unity-text-align: lower-left;" />
-                    <ui:Toggle class="toggle-input" style="width: 24px; height: 24px;" />
+                    <ui:Toggle name="FullscreenToggle" class="toggle-input" style="width: 24px; height: 24px;" />
                 </ui:VisualElement>
                 <ui:VisualElement name="PixelPerfect" style="flex-direction: row; width: 100%; align-items: flex-start; height: 16px; margin-bottom: 0; justify-content: space-between;">
                     <ui:Label text="Pixel perfect?" display-tooltip-when-elided="true" name="Title" class="text" style="-unity-font-definition: url(&apos;project://database/Assets/UI%20Toolkit/Fonts/m3x6.asset?fileID=11400000&amp;guid=e58d25536dd71ca4aadbafb8584ad099&amp;type=2#m3x6&apos;); font-size: 16px; height: 16px; justify-content: flex-end; -unity-text-align: lower-left;" />
-                    <ui:Toggle class="toggle-input" style="width: 24px; height: 24px;" />
+                    <ui:Toggle name="PixelPerfectToggle" class="toggle-input" style="width: 24px; height: 24px;" />
+                </ui:VisualElement>
+                <ui:VisualElement name="ButtonsContainer" style="width: 100%; align-items: flex-start; margin-top: 16px; justify-content: space-between; flex-direction: row;">
+                    <ui:Button text="Back" display-tooltip-when-elided="true" name="BtnBack" class="text-btn text" style="height: auto; -unity-font-definition: url(&apos;project://database/Assets/UI%20Toolkit/Fonts/Precise-M%20Bold.asset?fileID=11400000&amp;guid=985ca571f19bb384a829249fbd98f274&amp;type=2#Precise-M Bold&apos;);" />
+                    <ui:Button text="Save" display-tooltip-when-elided="true" name="BtnSave" class="text-btn text" style="height: auto; -unity-font-definition: url(&apos;project://database/Assets/UI%20Toolkit/Fonts/Precise-M%20Bold.asset?fileID=11400000&amp;guid=985ca571f19bb384a829249fbd98f274&amp;type=2#Precise-M Bold&apos;);" />
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
