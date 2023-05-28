@@ -117,5 +117,5 @@ public class Health : MonoBehaviour
     /// <summary>Checks if the Player is at full health</summary>
     public bool FullHealth => health == (maxHearts * 2);
     /// <summary>RNG chance to spawn a Heart (figured I should put this here for now)</summary>
-    public bool SpawnHeart => UnityEngine.Random.Range(0, 7) >= 5;
+    public bool SpawnHeart => UnityEngine.Random.Range(0, 7) >= 6;
 }
