@@ -108,10 +108,10 @@
     border-right-width: 1px;
     border-top-width: 1px;
     border-bottom-width: 1px;
-    border-left-color: rgba(191, 182, 185, 255);
-    border-right-color: rgba(191, 182, 185, 255);
-    border-top-color: rgba(191, 182, 185, 255);
-    border-bottom-color: rgba(191, 182, 185, 255);
+    border-left-color: rgb(191, 182, 185);
+    border-right-color: rgb(191, 182, 185);
+    border-top-color: rgb(191, 182, 185);
+    border-bottom-color: rgb(191, 182, 185);
     width: 8px;
     height: 8px;
 }
@@ -126,4 +126,8 @@
     padding-right: 0;
     padding-top: 0;
     padding-bottom: 0;
+}
+
+.text-btn:hover {
+    cursor: url('project://database/Assets/UI/Static%20Images/Cursors/cursor_pointer.png?fileID=2800000&guid=3440e1bceef78284f9b081373717aa6f&type=3#cursor_pointer');
 }
