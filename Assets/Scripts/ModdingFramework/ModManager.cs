@@ -12,6 +12,7 @@ public static class ModManager
     /// MODDING CONSTANTS
     private const string modFolderName = "CUSTOM";
     private const string fileType = "png";
+    private const string drawingsFolder = "MyDrawings";
     
     // Vars
     private static string modDirectory = null;
@@ -40,6 +41,11 @@ public static class ModManager
 
             Directory.CreateDirectory(modDirectory);
             return;
+        }
+
+        // Check if Drawings directory exists
+        if(!Directory.Exists($"{modDirectory}/{drawingsFolder}")) {
+            Directory.CreateDirectory($"{modDirectory}/{drawingsFolder}");
         }
 
         Debug.Log("[ModManager] >>> Mod Directory found!");
@@ -94,4 +100,6 @@ public static class ModManager
     public static string[] ModList => modList;
     ///<summary>The file extension used for mod files.</summary>
     public static string FileType => fileType;
+    /// <summary>Directory where Players drawings are saved</summary>
+    public static string DrawingsDirectory => $"{modDirectory}/{drawingsFolder}";
 }
