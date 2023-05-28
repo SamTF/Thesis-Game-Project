@@ -65,6 +65,11 @@ public class LevelSystem : MonoBehaviour
     /// </summary>
     /// <param name="gainedXP">Amount of XP to gain. (Default = 1)</param>
     public void GainXP(int gainedXP=1) {
+        // do nothing if XP and level are maxxed out
+        if (xp >= xpToLevelUp && level >= Palette.NumOfColours) {
+            return;
+        }
+        
         // Increment current XP with gained XP
         xp += gainedXP;
 
