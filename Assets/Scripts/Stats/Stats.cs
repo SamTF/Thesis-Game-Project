@@ -49,12 +49,12 @@ public class Stats : MonoBehaviour
         iconSprites = ImageLoader.CreateAllSprites(iconName, "UI", iconSprites.Length, iconSize);
 
         // Initialising the Stats
-        health          = new Stat(Attribute.Health,        "Health",       Palette.Colours[0], iconSprites[0], 1, 10, $"Num of Hearts\nyou can have");
+        health          = new Stat(Attribute.Health,        "Health",       Palette.Colours[0], iconSprites[0], 1, 20, $"Num of Hearts\nyou can have");
         attack          = new Stat(Attribute.Attack,        "Attack",       Palette.Colours[1], iconSprites[1], 1, 30, $"Damage dealt\nby projectiles");
-        moveSpeed       = new Stat(Attribute.MoveSpeed,     "Speed",        Palette.Colours[2], iconSprites[2], 2, 40, $"How fast you\nmove around");
-        attackRate      = new Stat(Attribute.AttackRate,    "Fire rate",    Palette.Colours[3], iconSprites[3], 2, 25, $"Shots fired\nper second");
+        moveSpeed       = new Stat(Attribute.MoveSpeed,     "Speed",        Palette.Colours[2], iconSprites[2], 2, 30, $"How fast you\nmove around");
+        attackRate      = new Stat(Attribute.AttackRate,    "Fire rate",    Palette.Colours[3], iconSprites[3], 2, 20, $"Shots fired\nper second");
         shotSpeed       = new Stat(Attribute.ShotSpeed,     "Shot Spd",     Palette.Colours[4], iconSprites[4], 4, 16, $"Speed your \nshots\ntravel at");
-        stamina         = new Stat(Attribute.Stamina,       "Stamina",      Palette.Colours[5], iconSprites[5], 3, 25, $"How often you\ncan dodge/jump");
+        stamina         = new Stat(Attribute.Stamina,       "Stamina",      Palette.Colours[5], iconSprites[5], 3, 25, $"How often you\ncan dodge\nand jump");
         // stamina         = new Stat(Attribute.Stamina,       "Stamina",      Color.black,        iconSprites[5], 1, 10, $"How often you\ncan dodge/jump");
         // shotRange       = new Stat(Attribute.ShotRange,     "shot range",   Palette.Colours[6]);
         // shotAmount      = new Stat(Attribute.ShotAmount,    "shot amount",  Palette.Colours[7]);
