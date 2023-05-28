@@ -49,15 +49,12 @@ public class GameManager : MonoBehaviour
         // initialise static classes
         ModManager.ListMods();
         Palette.LoadPalette();
+        DataTracker.WakeUp();
+
+        // make cursor visible
         CustomCursor.visible = true;
     }
 
-    private void Start() {
-        Color bgColor = Camera.main.backgroundColor;
-        Debug.Log(bgColor);
-        HSVColour hsv = new HSVColour(bgColor);
-        Debug.Log(hsv);
-    }
 
     // Game-wide Input
     private void Update() {
@@ -158,4 +155,7 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+
+    /// <summary>Gets the current scene as an Enum.</summary>
+    public Scenes CurrentScene => (Scenes)SceneManager.GetActiveScene().buildIndex;
 }
