@@ -32,6 +32,10 @@ public class ExtraMovement : MonoBehaviour
         // Movement Input
         Vector2 movement = input.Movement;
 
+        // do NOTHING if game is PAUSED
+        if (GameManager.instance.GameIsPaused)
+            return;
+
         // FLIP!!!
         if (
             input.JumpPress
