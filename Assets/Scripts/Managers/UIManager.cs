@@ -65,12 +65,14 @@ public class UIManager : MonoBehaviour
         LevelSystem.onLevelUp += LevelUp;
         LevelUpUI.onNewColourChosen += ColouringBookToggle;
         Health.onPlayerDeath += GameOver;
+        EnemySpawner.onAllEnemiesDefeated += YouWin;
     }
     private void OnDisable() {
         GameManager.onPause -= PauseMenuToggle;
         LevelSystem.onLevelUp -= LevelUp;
         LevelUpUI.onNewColourChosen -= ColouringBookToggle;
         Health.onPlayerDeath -= GameOver;
+        EnemySpawner.onAllEnemiesDefeated -= YouWin;
     }
 
     /// <summary>
@@ -127,17 +129,22 @@ public class UIManager : MonoBehaviour
 
 
     private void LevelUp() {
-        StartCoroutine(LevelUpCelebration());
+        GameObject levelUpVFX = Resources.Load("FX/Animated/LevelUpVFX") as GameObject;
+        StartCoroutine(Celebration(levelUpVFX, 2f, ShowLevelUpMenu));
     }
 
-    private IEnumerator LevelUpCelebration(float duration = 2f) {
+    private void YouWin() {
+        GameObject youWinVFX = Resources.Load("FX/Animated/YouWin!") as GameObject;
+        StartCoroutine(Celebration(youWinVFX, 10f));
+    }
+
+    private IEnumerator Celebration(GameObject textFX, float duration = 2f, System.Action callback = null) {
         // make player invulernable
         Player.instance.Status.IsInvulnerable = true;
 
-        // Instantiate Level Up text
-        GameObject levelUpVFX = Resources.Load("FX/Animated/LevelUpVFX") as GameObject;
-        GameObject levelUpObject = Instantiate(levelUpVFX, Player.instance.transform, false);
-        levelUpObject.transform.localPosition = new Vector2(0, 2);
+        // Instantiate Text VFX
+        GameObject textObject = Instantiate(textFX, Player.instance.transform, false);
+        textObject.transform.localPosition = new Vector2(0, 2);
 
         // Spawn Fireworks every x milliseconds over the duration period
         GameObject fireworksVFX = Resources.Load("FX/Animated/Fireworks") as GameObject;
@@ -158,11 +165,11 @@ public class UIManager : MonoBehaviour
             yield return new WaitForSeconds( Random.Range(0.01f, 0.1f) );
         }
 
-        // despawn level up text
-        Destroy(levelUpObject);
+        // despawn text
+        Destroy(textObject);
 
-        // enable the level up menu book
-        ShowLevelUpMenu();
+        // Callback to execute after animation is over
+        callback?.Invoke();
     }
 
     /// <summary>
