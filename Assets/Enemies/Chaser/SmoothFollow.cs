@@ -46,27 +46,33 @@ public class SmoothFollow : EnemyMovementBase
     private void Move(Vector2 target, float distance2target) {
         float delay = followDelay;
 
+        // Very Far
+        // 200% delay + 300% Delay randomisation + 300% target randomisation offset
+        if (distance2target >= 10f) {
+            delay += (delayOffset * 3f);
+            delay *= 2;
+            target += targetOffset * 4f;
+        }
         // Far
         // Slower speed (aka more Delay) + Delay randomisation + extra target randomisation offset
-        if (distance2target >= 8f) {
+        else if (distance2target > 8f) {
             delay += (delayOffset * 2f);
             delay *= 1.5f;
             target += targetOffset * 2f;
         }
         // Medium-far
         // Delay randomisation + target offset
-        else if (distance2target > 5f) {
-            delay += delayOffset;
+        else if (distance2target > 4f) {
+            delay += delayOffset * 1f;
             target += targetOffset;
         }
         //  Medium-close
         // Delay randomisation + 50% delay (faster) + smaller target offset
-        else if (distance2target > 3f) {
+        else if (distance2target > 2f) {
             delay += delayOffset * 0.5f;
-            delay = delay / 2f;
             target += targetOffset * 0.5f;
         }
-        // Close range
+        // // Close range
         // 25 delay (very very fast) and NO randomisation
         else {
             delay = followDelay / 4f;
