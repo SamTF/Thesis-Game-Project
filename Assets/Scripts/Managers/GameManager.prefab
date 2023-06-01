@@ -45,4 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  levelRadius: {x: 50, y: 50}
+  levelRadius: {x: 50, y: 52}
