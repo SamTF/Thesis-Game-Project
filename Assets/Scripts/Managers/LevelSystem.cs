@@ -29,6 +29,9 @@ public class LevelSystem : MonoBehaviour
     // Events
     public static event Action onXPGained;
     public static event Action onLevelUp;
+    public static event Action onMaxLevel;
+
+    private bool maxLevelReached = false;
 
     /// Singleton thing
     private static LevelSystem _instance = null;
@@ -79,6 +82,9 @@ public class LevelSystem : MonoBehaviour
             xp -= xpToLevelUp;                          // keep remainder XP
             xpToLevelUp += levelUpInflation;            // increase xp required to level up again
             onLevelUp?.Invoke();                        // trigger the level up event
+
+            if (level == Palette.NumOfColours)          // trigger event when max level is reached
+                onMaxLevel?.Invoke();
         }
 
         // Trigger the XP Gain Event
