@@ -7,6 +7,9 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     [System.Serializable]
+    /// <summary>
+    /// Helper Class to associate Enemies with a Character to create spawn strings.
+    /// </summary>
     public class SpawnCode {
         [SerializeField][Tooltip("GameObject of this enemy type.")]
         private GameObject prefab = null;
@@ -58,6 +61,11 @@ public class EnemySpawner : MonoBehaviour
     private Timer timer = null;
     private Dictionary<char, SpawnCode> charToEnemy = new Dictionary<char, SpawnCode>();
 
+    // Events
+    public static event System.Action onAllEnemiesDefeated;
+    private bool allEnemiesSpawned = false;
+    private bool allEnemiesDefeated = false;
+
 
     private void Start() {
         // initialise dictionary
@@ -78,6 +86,7 @@ public class EnemySpawner : MonoBehaviour
     /// Loop thru every character in the SpawnWave string and spawn the appropriate enemy or wait.
     /// </summary>
     private IEnumerator SpawnWave() {
+        // Spawn enemies
         foreach (char c in spawnOrder) {
             switch (c) {
                 case char when c == chaser.Code:
@@ -103,9 +112,21 @@ public class EnemySpawner : MonoBehaviour
             }
         }
 
+        Debug.Log("FINISHED SPAWNING!!");
+        Debug.Log("FINISHED SPAWNING!!");
+        Debug.Log("FINISHED SPAWNING!!");
+
+        // When spawning has finished
+        allEnemiesSpawned = true;
+        StartCoroutine(CheckForWin());
+
         yield return null;
     }
 
+    /// <summary>
+    /// Randomly generated spawn waves
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator RandomSpawning() {
         string enemyString = "ccssgb";
 
@@ -159,4 +180,21 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Checks if this Transform has no more child GameObjects after everything has spawned
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator CheckForWin() {
+        while (!allEnemiesDefeated) {
+            if (transform.childCount == 0) {
+                onAllEnemiesDefeated?.Invoke();
+                allEnemiesDefeated = true;
+                Debug.Log("YOU WIN!!!");
+                Debug.Log("YOU WIN!!!");
+                Debug.Log("YOU WIN!!!");
+            }
+
+            yield return new WaitForSeconds(1f);
+        }
+    }
 }
