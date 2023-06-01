@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1802443260627419418}
   - component: {fileID: 8132871453282776543}
   - component: {fileID: 1802443260627419417}
+  - component: {fileID: 7240052230396723198}
   m_Layer: 8
   m_Name: Chaser
   m_TagString: Enemy
@@ -126,6 +127,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flashMaterial: {fileID: 2100000, guid: b003a2d2e12788b46a840ee661fe1e28, type: 2}
   useAnimator: 1
+--- !u!114 &7240052230396723198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1802443260627419416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d554456133ebe1d49975fa62b8fac9e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enforceSize: 1
+  modFileName: Chaser
+  analyseImage: 0
+  spriteIsChild: 1
+  allowHotReload: 0
 --- !u!1 &1802443261690855194
 GameObject:
   m_ObjectHideFlags: 0

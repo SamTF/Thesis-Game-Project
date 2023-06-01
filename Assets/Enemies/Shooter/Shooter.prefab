@@ -144,6 +144,7 @@ GameObject:
   - component: {fileID: 5943692367927993121}
   - component: {fileID: 5943692367927993120}
   - component: {fileID: 363928205}
+  - component: {fileID: 692554538254256866}
   m_Layer: 8
   m_Name: Body
   m_TagString: Enemy
@@ -250,6 +251,23 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0.5}
   serializedVersion: 2
   m_Radius: 0.33
+--- !u!114 &692554538254256866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5943692367927993126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d554456133ebe1d49975fa62b8fac9e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enforceSize: 1
+  modFileName: Shooter
+  analyseImage: 0
+  spriteIsChild: 0
+  allowHotReload: 0
 --- !u!1 &5943692369010613540
 GameObject:
   m_ObjectHideFlags: 0
