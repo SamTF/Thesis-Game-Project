@@ -6,6 +6,7 @@ using System.Linq;
 public static class DataTracker
 {
     private static List<Sprite> playerSprites = new List<Sprite>();
+    private static List<Texture2D> characters = new List<Texture2D>();
     private static string characterHash = null;
 
     static DataTracker() {
@@ -26,6 +27,7 @@ public static class DataTracker
 
         // add new sprite to list
         playerSprites.Add(Player.instance.Sprite);
+        characters.Add(Player.instance.Sprite.texture);
     }
 
     private static void OnPlayerDeath() {
@@ -42,6 +44,7 @@ public static class DataTracker
         // reset variables
         playerSprites = null;
         characterHash = null;
+        characters = null;
     }
 
     /// <summary>
@@ -76,5 +79,7 @@ public static class DataTracker
     public static Sprite[] PlayerSprites => playerSprites.ToArray();
     /// <summary>Array of Character drawn by the Player in this run as Textures.</summary>
     public static Texture2D[] PlayerDrawings => playerSprites.Select(x => x.texture).ToArray();
+    /// <summary>Array of Character drawn by the Player in this run as Textures.</summary>
+    public static Texture2D[] Characters => characters.ToArray();
 
 }
