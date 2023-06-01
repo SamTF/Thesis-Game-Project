@@ -11,18 +11,66 @@ using UnityEngine.Networking;
 /// Class to interact with my Web API to fetch and post data to the leaderboard!
 /// </summary>
 public class WebAPI : MonoBehaviour
-{
+{   
+    /// <summary>
+    /// Helper class containing all Player information needed to post new record into the database.
+    /// </summary>
+    public class PlayerData {
+        private string username;
+        private int level;
+        private int timeSurvived;
+        private Texture2D[] characters;
+
+        public PlayerData(string username, int level, int timeSurvived, Texture2D[] characters) {
+            this.username = username;
+            this.level = level;
+            this.timeSurvived = timeSurvived;
+            this.characters = characters;
+        }
+
+        public string Username => username;
+        public int Level => level;
+        public int TimeSurvived => timeSurvived;
+        public Texture2D[] Characters => characters;
+    }
+
+
     [SerializeField]
     private Texture2D fetchedTexture = null;
     [SerializeField]
     private Texture2D imageToPost = null;
 
-    private const string URL = "http://localhost:5173/api/";
+    private const string URL = "https://chroma-mancer.com/api/";
+
+    private void OnEnable() {
+        Health.onPlayerDeath += UploadPlayerDataToDB;
+        EnemySpawner.onAllEnemiesDefeated += UploadPlayerDataToDB;
+    }
+    private void OnDisable() {
+        Health.onPlayerDeath -= UploadPlayerDataToDB;
+        EnemySpawner.onAllEnemiesDefeated -= UploadPlayerDataToDB;
+    }
 
     private void Start() {
-        StartCoroutine(GetRequest("pb"));
-        StartCoroutine(GetImage("get-image"));
-        StartCoroutine(PostRequest("pb", new { username = "harry", score = 19}, imageToPost));
+        // StartCoroutine(GetRequest("pb"));
+        // StartCoroutine(GetImage("get-image"));
+        // StartCoroutine(PostRequest("pb", new { username = "harry", score = 19}, imageToPost));
+    }
+
+    /// <summary>
+    /// Upload all needed player data to the database
+    /// </summary>
+    public void UploadPlayerDataToDB() {
+        // create data object
+        PlayerData data = new PlayerData(
+            PlayerPrefs.GetString("username"),
+            LevelSystem.instance.Level,
+            (int)GameManager.instance.Timer.currentSeconds,
+            DataTracker.Characters
+        );
+
+        // post data
+        StartCoroutine(PostPlayerData("pb", data));
     }
 
     
@@ -122,6 +170,49 @@ public class WebAPI : MonoBehaviour
         Debug.Log("POST REQUEST SENT!");
         Debug.Log(request.downloadHandler.text);
         request.Dispose();
+    }
+
+
+    private IEnumerator PostPlayerData(string uri, PlayerData data) {
+        Debug.Log("Uploading player data!");
+        Debug.Log("Uploading player data!");
+        Debug.Log("Uploading player data!");
+        Debug.Log("Uploading player data!");
+        Debug.Log("Uploading player data!");
+        Debug.Log(data);
+
+        // create a web form
+        WWWForm form = new WWWForm();
+
+        // add fiels
+        form.AddField("username", data.Username);
+        form.AddField("level", data.Level);
+        form.AddField("time_survived", data.TimeSurvived);
+        // form.AddBinaryData("character", Player.instance.Sprite.texture.EncodeToPNG());
+
+        // add images as binary data
+        foreach (Texture2D character in data.Characters) {
+            form.AddBinaryData("character", character.EncodeToPNG());
+        }
+
+        // super secret
+        // form.AddField("super_secret", "sawmill");
+
+        // send the post request
+        UnityWebRequest request = UnityWebRequest.Post(URL + uri, form);
+
+        yield return request.SendWebRequest();
+
+        // error handling
+        if (request.result != UnityWebRequest.Result.Success) {
+            Debug.LogError(request.error);
+            yield return null;
+        }
+
+        // successful request
+        Debug.Log("POST REQUEST SENT!");
+        Debug.Log(request.downloadHandler.text);
+        request.Dispose();        
     }
 
 
