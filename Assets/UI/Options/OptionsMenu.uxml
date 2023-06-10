@@ -16,7 +16,11 @@
                     <ui:Label text="Start with cowboy" display-tooltip-when-elided="true" name="Title" class="text" style="-unity-font-definition: url(&apos;project://database/Assets/UI%20Toolkit/Fonts/m3x6.asset?fileID=11400000&amp;guid=e58d25536dd71ca4aadbafb8584ad099&amp;type=2#m3x6&apos;); font-size: 16px; height: 16px; justify-content: flex-end; -unity-text-align: lower-left; letter-spacing: 0; word-spacing: -2px;" />
                     <ui:Toggle name="CowboyToggle" class="toggle-input" style="width: 24px; height: 24px;" />
                 </ui:VisualElement>
-                <ui:Label text="Video Options" display-tooltip-when-elided="true" name="VideoOptions" class="text" style="-unity-font-definition: url(&apos;project://database/Assets/UI%20Toolkit/Fonts/Precise-M%20Bold.asset?fileID=11400000&amp;guid=985ca571f19bb384a829249fbd98f274&amp;type=2#Precise-M Bold&apos;); margin-top: 16px;" />
+                <ui:VisualElement name="Difficulty" style="flex-direction: row; width: 100%; align-items: flex-start; height: 16px; margin-bottom: 0; justify-content: space-between;">
+                    <ui:Label text="Hard Mode" display-tooltip-when-elided="true" name="Title" class="text" style="-unity-font-definition: url(&apos;project://database/Assets/UI%20Toolkit/Fonts/m3x6.asset?fileID=11400000&amp;guid=e58d25536dd71ca4aadbafb8584ad099&amp;type=2#m3x6&apos;); font-size: 16px; height: 16px; justify-content: flex-end; -unity-text-align: lower-left; letter-spacing: 0; word-spacing: -2px;" />
+                    <ui:Toggle name="HardModeToggle" class="toggle-input" style="width: 24px; height: 24px;" />
+                </ui:VisualElement>
+                <ui:Label text="Video Options" display-tooltip-when-elided="true" name="VideoOptions" class="text" style="-unity-font-definition: url(&apos;project://database/Assets/UI%20Toolkit/Fonts/Precise-M%20Bold.asset?fileID=11400000&amp;guid=985ca571f19bb384a829249fbd98f274&amp;type=2#Precise-M Bold&apos;); margin-top: 8px;" />
                 <ui:VisualElement name="Fullscreen" style="flex-direction: row; width: 100%; align-items: flex-start; height: 16px; margin-bottom: 0; justify-content: space-between;">
                     <ui:Label text="Fullscreen?" display-tooltip-when-elided="true" name="Title" class="text" style="-unity-font-definition: url(&apos;project://database/Assets/UI%20Toolkit/Fonts/m3x6.asset?fileID=11400000&amp;guid=e58d25536dd71ca4aadbafb8584ad099&amp;type=2#m3x6&apos;); font-size: 16px; height: 16px; justify-content: flex-end; -unity-text-align: lower-left;" />
                     <ui:Toggle name="FullscreenToggle" class="toggle-input" style="width: 24px; height: 24px;" />
@@ -25,7 +29,7 @@
                     <ui:Label text="Pixel perfect?" display-tooltip-when-elided="true" name="Title" class="text" style="-unity-font-definition: url(&apos;project://database/Assets/UI%20Toolkit/Fonts/m3x6.asset?fileID=11400000&amp;guid=e58d25536dd71ca4aadbafb8584ad099&amp;type=2#m3x6&apos;); font-size: 16px; height: 16px; justify-content: flex-end; -unity-text-align: lower-left;" />
                     <ui:Toggle name="PixelPerfectToggle" class="toggle-input" style="width: 24px; height: 24px;" />
                 </ui:VisualElement>
-                <ui:VisualElement name="ButtonsContainer" style="width: 100%; align-items: flex-start; margin-top: 16px; justify-content: space-between; flex-direction: row;">
+                <ui:VisualElement name="ButtonsContainer" style="width: 100%; align-items: flex-start; margin-top: 12px; justify-content: space-between; flex-direction: row;">
                     <ui:Button text="Back" display-tooltip-when-elided="true" name="BtnBack" class="text-btn text" style="height: auto; -unity-font-definition: url(&apos;project://database/Assets/UI%20Toolkit/Fonts/Precise-M%20Bold.asset?fileID=11400000&amp;guid=985ca571f19bb384a829249fbd98f274&amp;type=2#Precise-M Bold&apos;);" />
                     <ui:Button text="Save" display-tooltip-when-elided="true" name="BtnSave" class="text-btn text" style="height: auto; -unity-font-definition: url(&apos;project://database/Assets/UI%20Toolkit/Fonts/Precise-M%20Bold.asset?fileID=11400000&amp;guid=985ca571f19bb384a829249fbd98f274&amp;type=2#Precise-M Bold&apos;);" />
                 </ui:VisualElement>

@@ -63,6 +63,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   usernameInputID: UsernameInput
   cowboyToggleID: CowboyToggle
+  hardModeToggleID: HardModeToggle
   fullscreenToggleID: FullscreenToggle
   pixelPerfectToggleID: PixelPerfectToggle
   saveBtnID: BtnSave

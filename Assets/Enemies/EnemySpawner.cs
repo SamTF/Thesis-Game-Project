@@ -57,6 +57,10 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField][Tooltip("How long to wait when skipping (in seconds)")][Range(1, 10)]
     private int skipTime = 10;
 
+    // gameplay modifiers
+    private bool hardMode = false;
+
+    // vars
     private string[] spawnWaves;
     private Timer timer = null;
     private Dictionary<char, SpawnCode> charToEnemy = new Dictionary<char, SpawnCode>();
@@ -68,6 +72,16 @@ public class EnemySpawner : MonoBehaviour
 
 
     private void Start() {
+        // check if normal mode or hard mode
+        if (PlayerPrefs.HasKey("hardMode"))
+            hardMode = PlayerPrefs.GetInt("hardMode") == 1;
+        
+        // enemies spawn faster in hard mode
+        if (hardMode)
+            skipTime = (int)(skipTime * 0.6f);
+        
+        Debug.Log(skipTime);
+
         // initialise dictionary
         foreach (SpawnCode enemy in enemies) {
             charToEnemy.Add(enemy.Code, enemy);
