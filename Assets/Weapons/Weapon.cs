@@ -18,7 +18,10 @@ public class Weapon : MonoBehaviour
     private float minRange = 2.5f;
 
     // BOI-Shooting Variables
-    float timeToBeginOffset = 0.15f; // feels like this value should be affected by the character's move speed
+    // float timeToBeginOffset = 0.15f; // feels like this value should be affected by the character's move speed
+    float timeToBeginOffset = 0.25f; // feels like this value should be affected by the character's move speed
+    // float timeOffsetStep = 0.75f;
+    float timeOffsetStep = 0.33f;
     Vector2 minOffset = new Vector2(0.25f, 0.25f);
     Vector2 maxOffset = new Vector2(0.75f, 1f);
 
@@ -145,7 +148,7 @@ public class Weapon : MonoBehaviour
             };
 
             // creating the offset vector
-            float offset = input.TimeHoldingDirection[0] * 0.75f;
+            float offset = input.TimeHoldingDirection[0] * timeOffsetStep;
             offset = Mathf.Clamp(offset, minOffset.x, maxOffset.x);
             // Debug.Log(offset);
             shootingVector.y = movementVector.y * offset;
@@ -158,7 +161,7 @@ public class Weapon : MonoBehaviour
             }
 
             // creating the offset vector
-            float offset = input.TimeHoldingDirection[0] * 0.75f;
+            float offset = input.TimeHoldingDirection[0] * timeOffsetStep;
             offset = Mathf.Clamp(offset, minOffset.y, maxOffset.y);
             // Debug.Log(offset);
             shootingVector.x = movementVector.x * offset;
