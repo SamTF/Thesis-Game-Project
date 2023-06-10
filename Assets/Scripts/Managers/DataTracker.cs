@@ -13,6 +13,8 @@ public static class DataTracker
         Debug.Log("Data Tracker has woken up!");
 
         Player.onSpriteUpdated += OnPlayerSpriteUpdated;
+        Health.onPlayerDeath += OnPlayerDeath;
+        GameManager.onLevelStart += Reset;
     }
 
     public static void WakeUp() {
@@ -40,11 +42,13 @@ public static class DataTracker
         }
         // otherwise, create key
         PlayerPrefs.SetInt("attempts", attempts);
+    }
 
+    private static void Reset() {
         // reset variables
-        playerSprites = null;
+        playerSprites = new List<Sprite>();
+        characters = new List<Texture2D>();
         characterHash = null;
-        characters = null;
     }
 
     /// <summary>
