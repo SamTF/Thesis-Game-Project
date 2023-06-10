@@ -51,9 +51,14 @@ public class CameraMan : MonoBehaviour
 
         // Position for the camera to smoothly move towards
         Vector3 newCameraPos = new Vector3(playerPos.x, playerPos.y, -10f) + offset;
+
+        // Update follow delay based on player speed
+        float delay = followDelay;
+        if (Player.instance.Stats.MoveSpeed.Value >= 8f)
+            delay = followDelay / 2;
         
-        // Smooth follow  
-        transform.position = Vector3.SmoothDamp(currentPos, newCameraPos, ref velocity, followDelay);
+        // Smooth follow
+        transform.position = Vector3.SmoothDamp(currentPos, newCameraPos, ref velocity, delay);
     }
 
 
