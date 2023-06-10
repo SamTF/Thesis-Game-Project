@@ -68,7 +68,7 @@ public class Status : MonoBehaviour
         get { return isDodging; }
         set {
             if (value == true) {
-                float dodgeLength = Mathf.Clamp(stats.MoveSpeed.Value / (stats.MoveSpeed.valueModifier * 6f), baseDodgeLength, 1f);
+                float dodgeLength = Mathf.Clamp(stats.MoveSpeed.Value / (stats.MoveSpeed.valueModifier * 6f), baseDodgeLength, 0.75f);
                 StartCoroutine(StatusCooldown(result => isDodging = result, true, dodgeLength));
                 StartCoroutine(StatusCooldown (result => canDodge = result, false, 0.5f));
             } else {
