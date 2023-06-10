@@ -9,6 +9,7 @@ public class Movement : MonoBehaviour
     private float movementSpeed = 0f;
     private float movementX     = 0f;
     private float movementY     = 0f;
+    private float maxSpeed      = 8f;
     // Movement Accelaration Stuff
     private float movementAcceleration  = 0.15f;
     private float startTime             = 0f;
@@ -61,6 +62,7 @@ public class Movement : MonoBehaviour
         // Movement speed
         Stat speedStat = player.Stats.MoveSpeed;
         movementSpeed = baseMovement + (speedStat.Value / speedStat.valueModifier);
+        movementSpeed = Mathf.Clamp(movementSpeed, baseMovement, maxSpeed);
 
 
         /// Slower start
